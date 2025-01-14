@@ -54,7 +54,7 @@ func (aac *AccessorAverageCoverage) Assess(thresholdPercent int, details []filte
 	total := 0
 	for _, detail := range details {
 		total += detail.Coverage
-		if detail.Coverage > thresholdPercent {
+		if detail.Coverage < thresholdPercent {
 			aac.ViolationCounter.AddViolation(detail)
 		}
 	}

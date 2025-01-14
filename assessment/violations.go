@@ -25,7 +25,7 @@ func (v *Violation) AddViolation(detail filter.GradeDetails) {
 
 func (v *Violation) Print() {
 	for _, detail := range v.ListViolations {
-		_, err := fmt.Fprintf(os.Stderr, "File: %s Grade: %s Coverage (Percent): %d \n", detail.FileName, detail.Grade, detail.Coverage)
+		_, err := fmt.Fprintf(os.Stderr, "File: %s Tool: %s Grade: %s Coverage (Percent): %d \n", detail.FileName, detail.Tool, detail.Grade, detail.Coverage)
 		if err != nil {
 			fmt.Println("Error printing violation")
 			return

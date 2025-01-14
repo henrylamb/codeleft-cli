@@ -1,0 +1,458 @@
+[
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/main.go",
+    "grade": "B",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:49:19.632Z",
+    "codeReview": {
+      "review": "This code lacks proper error handling for `toolsFlag` being `nil` (line 48).  The `parseTools` function (line 120) while handling empty input, doesn't validate for invalid input (e.g., non-comma separated values).  The code's reliance on global variables (e.g., `history`) makes it harder to test and maintain, violating the Single Responsibility Principle.\n"
+    },
+    "gradingDetails": {},
+    "hash": "6ad98f8c5d82a9c71af2a29fad81b88dab82bb996a0d6319cfeba66b0def6dfa"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/assessment/assessor.go",
+    "grade": "C",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:49:19.706Z",
+    "codeReview": {
+      "review": "This code has three critical areas of concern.  First, `AccessorGrade`'s `Assess` method uses a `failed` boolean that is unnecessarily inverted.  Second, `AccessorAverageCoverage`'s `Assess` method has a potential division by zero error if `details` is empty.  Third, both `AccessorGrade` and `AccessorAverageCoverage` rely on external `ViolationCounter` which couples the assessment logic to a specific violation handling mechanism.  Example: `ag.ViolationCounter.AddViolation(detail)` in `AccessorGrade.Assess`.\n"
+    },
+    "gradingDetails": {},
+    "hash": "f6d71c9e82f719472da60493dea48847920d6b22fab33d32012c68f10348eaae"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/pathFilter.go",
+    "grade": "A",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:49:19.710Z",
+    "codeReview": {
+      "review": "The code lacks proper error handling.  `filepath.ToSlash` normalization is redundant and potentially inefficient.  The `isIgnored` function's nested loops are inefficient for large lists of ignored files and folders.  Example:  `filepath.ToSlash(path)` is called twice in `isIgnored`, which is unnecessary.\n"
+    },
+    "gradingDetails": {},
+    "hash": "708540decf8323791340152f441e93bd4f315241b411275c56dfea95bde13b80"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/read/configReader.go",
+    "grade": "C",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:49:19.735Z",
+    "codeReview": {
+      "review": "This code lacks proper error handling and could benefit from more robust checks.  The `NewConfigReader` function has a critical flaw: it doesn't validate that `.codeleft` exists *before* attempting to join it with `config.json`.  This can lead to `config.json` being searched in a non-existent directory.  The `ReadConfig` function also suffers from similar issues, failing to check if `cr.CodeleftPath` is valid before using it.  Finally, the use of `defer file.Close()` is not ideal, as it can cause issues if errors occur during decoding.  These issues make the code vulnerable to panics and incorrect results.\n"
+    },
+    "gradingDetails": {},
+    "hash": "5a08105ed281bbb170cae918a1fc82c36d8b520c420e5f08543dc37337ac357a"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/filterTools.go",
+    "grade": "C",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:49:19.910Z",
+    "codeReview": {
+      "review": "1. **String manipulation in a loop:**  `strings.TrimPrefix` and `strings.TrimSuffix` are called within the loop.  This creates unnecessary overhead.  Example: `strings.TrimPrefix(value, \" \")`.  These should be performed once on the input slice.\n\n2. **Inefficient filtering:**  The code iterates through the entire `histories` slice for each `value` in the `values` slice.  This is a quadratic time complexity issue.  Example: `for _, history := range histories`.  Consider using a map for faster lookups.\n\n3. **Unnecessary copies:**  `filteredHistories` is repeatedly appended to.  This creates unnecessary copies of `Histories` objects.  Example: `filteredHistories = append(filteredHistories, toolFilteredHistories...)`.  Consider using a slice or other data structure that avoids repeated copies.\n"
+    },
+    "gradingDetails": {},
+    "hash": "28e68a8455ec366f5b6a51623a9a464cd02be7c57122c83f0cbd38992991901f"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/collectGrades.go",
+    "grade": "A",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:49:19.930Z",
+    "codeReview": {
+      "review": "This code violates the Single Responsibility Principle (SRP) by having `GradeCollection` handle both collecting grades and calculating numerical values.  `GradeCollection` also has a tight coupling with `GradeCalculator`, making it hard to swap implementations.  Finally, the repeated calculation of `GradeNumericalValue` within the loop is inefficient.  For example, the line `newDetails.GetCoverage(g.GradeCalculator.GradeNumericalValue(threshold))` could be improved by calculating the threshold value once outside the loop.\n"
+    },
+    "gradingDetails": {},
+    "hash": "f0157612170dcca0f720a208d072a555efa6d25a81e910c8056df44ed71b1593"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/read/fileReader.go",
+    "grade": "A",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:49:19.969Z",
+    "codeReview": {
+      "review": "This code has three critical areas of concern.  First, error handling is overly verbose and repetitive.  Checking for file existence and type multiple times (e.g., lines 58-66) is inefficient. Second, the `NewHistoryReader` function could benefit from a more robust way to handle the `repoRoot` parameter.  Instead of relying on `os.Getwd()`, it should accept the `repoRoot` as an argument.  Third, the code lacks clear separation of concerns.  The `HistoryReader` struct combines file reading and error handling, which could be improved by separating these responsibilities.  For example, line 28 and 32 could be improved by using a single error check.\n"
+    },
+    "gradingDetails": {},
+    "hash": "13e7d47b68bedd08062072d8bbed62cbacbfcbc9092e88ba6d327c75e70e38c3"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/read/fileReader.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:49:20.039Z",
+    "codeReview": {
+      "review": "This code lacks robust error handling for potential file system issues.  The `NewHistoryReader` function doesn't check if `.codeleft` exists *before* attempting to join it with `history.json`.  If `.codeleft` is missing, the `ReadHistory` function will return an error, but the error message is not informative.  Finally, the code doesn't validate the JSON structure of `history.json`, potentially leading to unexpected behavior or crashes if the file is malformed.  Example:  `if hr.CodeleftPath == \"\" { ... }` in `ReadHistory` is a critical error that should be handled earlier.\n"
+    },
+    "gradingDetails": {},
+    "hash": "db6ba4436810f9fd5b10c7fd72c803af2cf705c844e33896208bf8bcf67c2f96"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/main.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:49:20.172Z",
+    "codeReview": {
+      "review": "OWASP TOP 10 Review:\n\nCritical areas of concern include:\n\n1.  **Missing Input Validation:**  The code lacks robust input validation for the `toolsFlag`.  While it trims spaces, it doesn't prevent malicious input.  (e.g., `tools=OWASP-Top-10,../../etc/passwd`).  Improper handling of potentially harmful data could lead to directory traversal vulnerabilities.\n\n2.  **Lack of Error Handling:**  While error checks exist for file reading and initialization, the code lacks comprehensive error handling for potentially problematic inputs like empty `toolsFlag` values.  This can lead to unexpected behavior or crashes.  (e.g., `if toolsFlag == nil`).\n\n3.  **Unclear Logic:** The code's logic for handling different assessment types (`assess-grade`, `assess-coverage`) is not immediately obvious.  The conditional checks could be more explicit and readable.  (e.g., the `if *assessGrade` and `if *assessCoverage` blocks).\n"
+    },
+    "gradingDetails": {},
+    "hash": "584cdc3ba1fa9635bb18aac6f159a547a9833446b11802aecbe43d2a8436b5f2"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/types/model.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:49:20.198Z",
+    "codeReview": {
+      "review": "**OWASP Top 10 Review (Summary)**\n\nThis code snippet, defining a configuration structure, presents no immediate critical vulnerabilities.  However,  a lack of input validation for the `Threshold` field is a potential concern (Injection).  Additionally, the absence of any security measures related to the `Config` loading process (e.g., preventing malicious JSON input) is a significant weakness (Injection).  Finally, the `Config` structure lacks any mechanism to prevent or detect tampering with the `Security` settings, which could lead to unintended behavior (Improper Authentication).  Example:  No validation of `Threshold` string.\n"
+    },
+    "gradingDetails": {},
+    "hash": "dea209c268df3ee0a5e1e4910487a245dc3246f6da3d765a4f9429bcab86f6c1"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/assessment/violations.go",
+    "grade": "A",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:49:20.220Z",
+    "codeReview": {
+      "review": "This code demonstrates a basic implementation of a `Violations` interface and a `Violation` struct.  However, three critical areas of concern exist:\n\n1.  **Lack of error handling:** The `Print` method handles potential `fmt.Fprintf` errors, but the `NewViolation` function lacks error handling, which could lead to unexpected behavior if `filter.GradeDetails` is nil.\n\n2.  **Inefficient `AddViolation`:**  Appending to a slice within a method is generally fine, but if `ListViolations` is expected to grow very large, consider using a `sync.Pool` or a different data structure to avoid excessive allocations.\n\n3.  **Missing `Print` method implementation:** The `Print` method is implemented, but the `Violations` interface requires a `Print` method.  The current implementation is correct, but it could be improved by using a more efficient way to print the data.  For example, using a buffer to collect the output before writing to `os.Stderr`.\n"
+    },
+    "gradingDetails": {},
+    "hash": "c5360edeb8a9a92ee7434810f5a901ede92cadc78f53e8599c47cc34d664ef4f"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/model.go",
+    "grade": "D",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:49:20.245Z",
+    "codeReview": {
+      "review": "The `GetCoverage` function uses a series of `if/else if` statements, making it hard to read and maintain.  The logic for calculating coverage based on score thresholds is overly complex and could be simplified using a lookup table or a more concise conditional expression.  Finally, the `Histories` struct's `Len`, `Less`, and `Swap` methods are not efficient for large datasets, as they require copying the entire slice on each swap.\n"
+    },
+    "gradingDetails": {},
+    "hash": "dd7b16fbf79c554dc3775c23ca32223744000b6431321b89e5f919a92bdb78fb"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/pathFilter.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:49:20.311Z",
+    "codeReview": {
+      "review": "**OWASP Top 10 Review (Short Summary)**\n\nThree critical areas of concern:\n\n1.  **Improper Input Validation:**  The code lacks validation of the input `ignoredFiles` and `ignoredFolders`.  Maliciously crafted paths could lead to directory traversal vulnerabilities.  Example:  `../../etc/passwd` in `ignoredFiles`.\n\n2.  **Path Traversal:**  `filepath.ToSlash` normalizes paths, but this doesn't prevent directory traversal if the input paths are manipulated.  Example:  `../` in `ignoredFolders` could bypass intended filtering.\n\n3.  **Insufficient Error Handling:**  No error handling is present for potential issues with file paths or input data.  Example:  `filepath.Join` could fail if the input is malformed.\n"
+    },
+    "gradingDetails": {},
+    "hash": "d74296a8e94f35dc6166239601b792b3ac3944d50349a20d3db7ced18af6f668"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/read/configReader.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:49:20.404Z",
+    "codeReview": {
+      "review": "This code lacks robust error handling for file access and potential directory traversal vulnerabilities.  The `NewConfigReader` function doesn't validate the `.codeleft` directory's contents, potentially allowing malicious files to be included.  The `ReadConfig` function doesn't validate the `config.json` file's contents, leaving the application vulnerable to unexpected data.  Finally, the code assumes a specific directory structure, which could be problematic in different environments.  Example:  `filepath.Join(repoRoot, \".codeleft\")` in `NewConfigReader` is a potential vulnerability.\n"
+    },
+    "gradingDetails": {},
+    "hash": "c1bb555f214888fa6a3ded388a80663c4b0564e7dbd88794c775ec050f30fb08"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/model.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:49:20.426Z",
+    "codeReview": {
+      "review": "OWASP TOP 10 Review:\n\nCritical areas of concern include:\n\n1.  **Improper Input Validation:**  The `GetCoverage` function lacks input validation for `thresholdAsNum`.  Negative or extremely large values could lead to unexpected behavior or crashes.  Example: `if g.Score > thresholdAsNum { ... }`  This function is vulnerable to integer overflow.\n\n2.  **Unclear Logic:** The `GetCoverage` function's logic for calculating coverage based on score thresholds is complex and hard to follow.  This makes it prone to errors and difficult to maintain. Example: `else if g.Score >= thresholdAsNum-1 { ... }`  This could be simplified.\n\n3.  **Missing Error Handling:**  The code lacks error handling for potential issues, such as invalid data types or missing fields in the input data.  This could lead to unexpected behavior or crashes.\n"
+    },
+    "gradingDetails": {},
+    "hash": "efc1b00af57026905a1f4bd02b08f4dbcf0f0d93840c82f78f08636d0e287cc0"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/latestGrades.go",
+    "grade": "A",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:49:20.621Z",
+    "codeReview": {
+      "review": "* **Performance:**  The nested `if` statement within the loop significantly impacts performance.  Repeatedly checking for existence and comparing timestamps is inefficient.  (Line 20-23)\n\n* **Readability:** The `generateCompositeKey` function is overly simple and lacks clarity.  A more descriptive name would improve readability. (Line 27)\n\n* **Maintainability:**  The `ConvertMapToSlice` function is a simple but unnecessary conversion.  It's better to directly return the map if possible. (Line 34-40)\n"
+    },
+    "gradingDetails": {},
+    "hash": "d5ffb49b2193a6be4c04397c840f914a644b604a18d68e17495c71ac01e663f4"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/latestGrades.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:49:20.651Z",
+    "codeReview": {
+      "review": "**OWASP Top 10 Review (Short Summary)**\n\nThree critical areas of concern:\n\n1.  **Insecure Deserialization:**  No input validation is performed on `filePath` and `assessingTool` before constructing the composite key (`filePath + \"|\" + assessingTool`).  This could lead to a deserialization vulnerability if malicious input is used to craft a key that triggers unexpected behavior or exploits.  Example:  `../../../../etc/passwd|malicious_tool`.\n\n2.  **Improper Input Handling:**  The code lacks input validation for `filePath` and `assessingTool`.  These inputs are directly concatenated without any sanitization, potentially leading to issues like SQL injection or directory traversal vulnerabilities.  Example:  `filePath` containing special characters or path manipulation.\n\n3.  **Insufficient Data Validation:**  The code assumes that `TimeStamp` is always comparable.  If `TimeStamp` is not properly validated or if it's possible for it to be manipulated, the logic for selecting the latest history could be compromised.  Example:  `TimeStamp` being a string instead of a time.Time type.\n"
+    },
+    "gradingDetails": {},
+    "hash": "74c96ba52e1585c9f7642ff28a384c821980abc17c4ba4503f49d90dfae68f55"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/collectGrades.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:49:20.698Z",
+    "codeReview": {
+      "review": "**OWASP Top 10 Review (Critical Areas)**\n\n1.  **Injection:**  The code lacks input validation for the `threshold` string.  A malicious user could potentially inject code into the `threshold` parameter, leading to unexpected behavior or data breaches.  Example:  `threshold=\"A'; DROP TABLE Grades; --\"`.\n\n\n2.  **Improper Neutralization of Special Elements used in an SQL Command:**  The code does not sanitize the input `threshold` before using it in any calculations.  This could lead to SQL injection vulnerabilities if the `threshold` value is used in a database query.\n\n\n3.  **Insecure Deserialization:**  While not directly present in the provided code, the potential for insecure deserialization exists if the `Histories` type is not properly validated.  If `Histories` contains serialized data, malicious data could be deserialized and executed.\n"
+    },
+    "gradingDetails": {},
+    "hash": "fcc7fcac941501615b5ced60e8a51d0c1cf04c884aef0c15ca2efd6b33f73c02"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/types/model.go",
+    "grade": "A",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:49:20.767Z",
+    "codeReview": {
+      "review": "The code defines a `Config` struct for configuration, which is good for organization.  However, three critical areas of concern are:\n\n1.  **Lack of validation:**  The `Config` struct lacks validation for the `Threshold` string, which could lead to unexpected behavior if the value isn't correctly formatted.  Example:  No check for empty or invalid threshold values.\n\n2.  **Overly verbose quality flags:** The `Quality` struct has multiple boolean flags (e.g., `solid`, `liteTest`).  This could be improved by using a single flag or enum for a more concise representation. Example:  Replace `solid`, `liteTest`, `prReady`, `cleanCode` with a single `QualityLevel` enum.\n\n3.  **Missing error handling:** The code doesn't handle potential errors during JSON decoding or configuration usage.  Example:  Add error handling to the function that parses the config file.\n"
+    },
+    "gradingDetails": {},
+    "hash": "f59e5426afcd0bcf6bc550d2eb40285a0c3b28ea70d14d834c6557edf37c9994"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/assessment/assessor.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:49:20.777Z",
+    "codeReview": {
+      "review": "**OWASP Top 10 Review (Summary)**\n\n**Critical Areas of Concern:**\n\n1.  **Missing Input Validation:**  The code lacks validation for the `threshold` string in `AccessorGrade.Assess`.  A malicious user could potentially supply a string that isn't a valid numerical representation of a grade, leading to unexpected behavior or crashes.  Example: `Assess(\"abc\", ...)`\n\n2.  **Integer Overflow/Underflow:** The `AccessorAverageCoverage.Assess` function calculates an average. If the number of `details` is very large, the `total` variable could overflow, leading to incorrect results.  Example: `total += detail.Coverage`\n\n3.  **Improper Error Handling:**  `AccessorAverageCoverage.Assess` handles the case of an empty `details` slice, but doesn't handle other potential errors, such as `detail.Coverage` being negative or exceeding the maximum integer value. Example: `if (len(details)) == 0`\n"
+    },
+    "gradingDetails": {},
+    "hash": "a87940e8450711ab92ee359a48bf600012b5b0b3a53da8f9ec6c1afbc6cefbf0"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/assessment/violations.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:49:20.807Z",
+    "codeReview": {
+      "review": "**OWASP Top 10 Review (Snippet)**\n\n**Critical Areas of Concern:**\n\n1.  **Injection:**  No input validation is present.  Maliciously crafted `FileName`, `Grade`, or `Coverage` values could lead to unexpected behavior or system compromise.  Example:  `FileName` could be crafted to execute arbitrary commands.\n\n\n2.  **Improper Authentication:**  No authentication mechanisms are implemented.  Any user could potentially add violations and manipulate the output.\n\n\n3.  **Sensitive Data Exposure:**  The code directly prints sensitive information (file names, grades, coverage percentages) to standard error.  This data should be handled with more care, potentially redacted or logged securely.  Example: `fmt.Fprintf(os.Stderr, \"File: %s ...\")` exposes file names directly.\n"
+    },
+    "gradingDetails": {},
+    "hash": "e8660768cab04c82070375a2299855764a94940f3ba3bf24e1580ba07aa07696"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/filterTools.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:49:21.072Z",
+    "codeReview": {
+      "review": "**OWASP Top 10 Review (Short Summary)**\n\n**Critical Areas of Concern:**\n\n1.  **Improper Input Validation:**  The code lacks robust input validation for the `tool` string.  A malicious user could potentially supply input that could lead to unexpected behavior or security vulnerabilities.  Example: `strings.ToUpper(tool)` is vulnerable to a variety of attacks if the input is not sanitized.\n\n\n2.  **Insufficient Data Sanitization:**  The code does not sanitize the `value` string before using it in `strings.TrimPrefix` and `strings.TrimSuffix`.  This could lead to issues if the input contains special characters or unexpected formatting. Example: `strings.TrimPrefix(value, \" \")`.\n\n\n3.  **Potential for Denial-of-Service (DoS):**  If the input `values` array is very large, the code could potentially lead to a DoS attack.  The nested loops and appending operations could consume significant resources.  Example: The `for` loops in `Filter` and `filterByTool` are inefficient and could be optimized.\n"
+    },
+    "gradingDetails": {},
+    "hash": "9ed7f87fe74e9b4a93ad20538f0023325c768770c817fa2b3506771e316c5957"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/types/model.go",
+    "grade": "A",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:50:49.474Z",
+    "codeReview": {
+      "review": "The code defines a `Config` struct for configuration, which is good for organization.  However, three critical areas of concern are:\n\n1.  **Lack of validation:**  The `Config` struct lacks validation for the `Threshold` string, which could lead to unexpected behavior if the value isn't correctly formatted.  Example:  No check for empty or invalid threshold values.\n\n2.  **Overly verbose quality flags:** The `Quality` struct has multiple boolean flags (e.g., `solid`, `liteTest`).  This could be improved by using a single flag or enum for a more concise representation. Example:  Replace `solid`, `liteTest`, `prReady`, `cleanCode` with a single `QualityLevel` enum.\n\n3.  **Missing error handling:** The code doesn't handle potential errors during JSON decoding or configuration usage.  Example:  Add error handling to the function that parses the config file.\n"
+    },
+    "gradingDetails": {},
+    "hash": "f02ca9b36ff752cd83a296e9221d5b5ca616a3ebd57c9b25d04c8edfb9db4f84"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/assessment/violations.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:50:57.197Z",
+    "codeReview": {
+      "review": "**OWASP Top 10 Review (Snippet)**\n\n**Critical Areas of Concern:**\n\n1.  **Injection:**  No input validation is present.  Maliciously crafted `FileName`, `Grade`, or `Coverage` values could lead to unexpected behavior or system compromise.  Example:  `FileName` could be crafted to execute arbitrary commands.\n\n\n2.  **Improper Authentication:**  No authentication mechanisms are implemented.  Any user could potentially add violations and manipulate the output.\n\n\n3.  **Sensitive Data Exposure:**  The code directly prints sensitive information (file names, grades, coverage percentages) to standard error.  This data should be handled with more care, potentially redacted or logged securely.  Example: `fmt.Fprintf(os.Stderr, \"File: %s ...\")` exposes file names directly.\n"
+    },
+    "gradingDetails": {},
+    "hash": "0a6e4df8c89e0636f9029d8528e88fb9d260aafd3b32c79ee1a30317bec06498"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/assessment/assessor.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:51:03.449Z",
+    "codeReview": {
+      "review": "**OWASP Top 10 Review (Summary)**\n\n**Critical Areas of Concern:**\n\n1.  **Missing Input Validation:**  The code lacks validation for the `threshold` string in `AccessorGrade.Assess`.  A malicious user could potentially supply a string that isn't a valid numerical representation of a grade, leading to unexpected behavior or crashes.  Example: `Assess(\"abc\", ...)`\n\n2.  **Integer Overflow/Underflow:** The `AccessorAverageCoverage.Assess` function calculates an average. If the number of `details` is very large, the `total` variable could overflow, leading to incorrect results.  Example: `total += detail.Coverage`\n\n3.  **Improper Error Handling:**  `AccessorAverageCoverage.Assess` handles the case of an empty `details` slice, but doesn't handle other potential errors, such as `detail.Coverage` being negative or exceeding the maximum integer value. Example: `if (len(details)) == 0`\n"
+    },
+    "gradingDetails": {},
+    "hash": "c0aebd8e388e5aa56399f1c9f0048020274aaaa9cf5d1b1749e03420f482e12c"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/assessment/violations.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:51:09.035Z",
+    "codeReview": {
+      "review": "**OWASP Top 10 Review (Snippet)**\n\n**Critical Areas of Concern:**\n\n1.  **Injection:**  No input validation is present.  Maliciously crafted `FileName`, `Grade`, or `Coverage` values could lead to unexpected behavior or system compromise.  Example:  `FileName` could be crafted to execute arbitrary commands.\n\n\n2.  **Improper Authentication:**  No authentication mechanisms are implemented.  Any user could potentially add violations and manipulate the output.\n\n\n3.  **Sensitive Data Exposure:**  The code directly prints sensitive information (file names, grades, coverage percentages) to standard error.  This data should be handled with more care, potentially redacted or logged securely.  Example: `fmt.Fprintf(os.Stderr, \"File: %s ...\")` exposes file names directly.\n"
+    },
+    "gradingDetails": {},
+    "hash": "6b93f2e9eae5845ddc30f563f4516951242f2f1e39522530f9a29135d53cf735"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/collectGrades.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:51:14.681Z",
+    "codeReview": {
+      "review": "**OWASP Top 10 Review (Critical Areas)**\n\n1.  **Injection:**  The code lacks input validation for the `threshold` string.  A malicious user could potentially inject code into the `threshold` parameter, leading to unexpected behavior or data breaches.  Example:  `threshold=\"A'; DROP TABLE Grades; --\"`.\n\n\n2.  **Improper Neutralization of Special Elements used in an SQL Command:**  The code does not sanitize the input `threshold` before using it in any calculations.  This could lead to SQL injection vulnerabilities if the `threshold` value is used in a database query.\n\n\n3.  **Insecure Deserialization:**  While not directly present in the provided code, the potential for insecure deserialization exists if the `Histories` type is not properly validated.  If `Histories` contains serialized data, malicious data could be deserialized and executed.\n"
+    },
+    "gradingDetails": {},
+    "hash": "fb5dbda2ecfa790325fa422f3a87910b8cf79ea4595c76714d1091522e493633"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/filterTools.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:51:19.855Z",
+    "codeReview": {
+      "review": "**OWASP Top 10 Review (Short Summary)**\n\n**Critical Areas of Concern:**\n\n1.  **Improper Input Validation:**  The code lacks robust input validation for the `tool` string.  A malicious user could potentially supply input that could lead to unexpected behavior or security vulnerabilities.  Example: `strings.ToUpper(tool)` is vulnerable to a variety of attacks if the input is not sanitized.\n\n\n2.  **Insufficient Data Sanitization:**  The code does not sanitize the `value` string before using it in `strings.TrimPrefix` and `strings.TrimSuffix`.  This could lead to issues if the input contains special characters or unexpected formatting. Example: `strings.TrimPrefix(value, \" \")`.\n\n\n3.  **Potential for Denial-of-Service (DoS):**  If the input `values` array is very large, the code could potentially lead to a DoS attack.  The nested loops and appending operations could consume significant resources.  Example: The `for` loops in `Filter` and `filterByTool` are inefficient and could be optimized.\n"
+    },
+    "gradingDetails": {},
+    "hash": "2c241da1aa4453d1946824a8393394355c3a0afa424307f4bc589b1d794c4236"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/model.go",
+    "grade": "C",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:53:18.710Z",
+    "codeReview": {
+      "review": "The code defines a `History` struct and a `Histories` slice.  Three critical areas of concern are:\n\n1.  **Lack of error handling:**  No error handling is present in any of the functions, which could lead to unexpected behavior if input data is invalid.\n\n2.  **Unclear purpose of `CodeReview` and `GradingDetails`:** The `map[string]any` types for these fields lack specific types, making it unclear what data they should contain.  This could lead to runtime errors or unexpected behavior.\n\n3.  **Missing sorting context:** The sorting logic only considers the `TimeStamp`.  Without additional context, it's unclear if this is the intended sorting criteria.  For example, sorting by `Grade` or `Username` might be more appropriate in some cases.\n"
+    },
+    "gradingDetails": {},
+    "hash": "010166970c6bfcb789b6d1de077d12b61ef5e49ca70a993d28b3c068428cb37e"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/gradeDetails.go",
+    "grade": "C",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:53:26.152Z",
+    "codeReview": {
+      "review": "The code violates the Single Responsibility Principle (SRP) as `GetCoverage` handles both calculating and setting coverage.  It also lacks flexibility;  the hardcoded coverage values (e.g., `120`, `100`) are tightly coupled to the logic.  Finally, the `GetCoverage` function's numerous `if/else if` statements are overly complex and could be improved with a more maintainable approach, such as a lookup table or a function that maps scores to coverage.  Example: `if g.Score > thresholdAsNum { g.Coverage = 120 }`\n"
+    },
+    "gradingDetails": {},
+    "hash": "9b61ac03434f46da6c955cf8516b83f64df634881dd9b60d02cb523e76be643a"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/gradeDetails.go",
+    "grade": "F",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:55:29.194Z",
+    "codeReview": {
+      "review": "The code lacks proper SOLID principles.  The `GetCoverage` function is overly complex, with numerous `if/else if` statements, making it hard to maintain and understand.  The use of magic numbers (e.g., `aboveThreshold`, `threshold`) for thresholds makes the code less readable and maintainable.  Finally, the `GetCoverage` function's parameter `thresholdAsNum` is not used consistently with the other constants, making the code less clear and potentially error-prone.  Example:  `if g.Score > thresholdAsNum`.\n"
+    },
+    "gradingDetails": {},
+    "hash": "4ca9e02473995e341c2d18af0c92f31911753868b3bcec89e19f071ef10c90f4"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/gradeDetails.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:55:54.564Z",
+    "codeReview": {
+      "review": "**OWASP Top 10 Review (Snippet)**\n\n**Critical Areas of Concern:**\n\n1.  **Insecure Data Handling:**  The `GetCoverage` function lacks input validation.  `thresholdAsNum` is not validated, allowing arbitrary values to affect the coverage calculation.  This could lead to unexpected results or vulnerabilities if malicious input is used.  Example: `g.GetCoverage(-100)`.\n\n2.  **Improper Error Handling:**  No error handling is present.  If `g.Score` is not an integer, the program will likely panic.\n\n3.  **Unclear Logic:** The nested `if-else if` structure for coverage calculation is complex and hard to reason about.  The thresholds are numerous and not clearly defined, making it difficult to understand the intended behavior and potentially introducing bugs.  Example: The logic around `thresholdAsNum-1`, `thresholdAsNum-2`, and `thresholdAsNum-3` is unclear and could be simplified.\n"
+    },
+    "gradingDetails": {},
+    "hash": "d47e7a86d22e48ad3190c88c0bdb74496bfe421038ec25a8563fc8908e258248"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/gradeDetails.go",
+    "grade": "F",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:55:55.507Z",
+    "codeReview": {
+      "review": "The code lacks proper SOLID principles.  The `GetCoverage` function is overly complex, with numerous `if/else if` statements, making it hard to maintain and understand.  The use of magic numbers (e.g., `aboveThreshold`, `threshold`) for thresholds makes the code less readable and maintainable.  Finally, the `GetCoverage` function's parameter `thresholdAsNum` is not used consistently with the other constants, making the code less clear and potentially error-prone.  Example:  `if g.Score > thresholdAsNum`.\n"
+    },
+    "gradingDetails": {},
+    "hash": "044c41ec9db9d8305eb746a74c0d2d64a88fc5721c57ff0a84023f42e2d68e1c"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/gradeDetails.go",
+    "grade": "C",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:56:24.489Z",
+    "codeReview": {
+      "review": "The code violates the Single Responsibility Principle (SRP) as `GetCoverage` handles both calculating and setting coverage.  It also lacks flexibility;  the hardcoded coverage values (e.g., `120`, `100`) are tightly coupled to the logic.  Finally, the `GetCoverage` function's numerous `if/else if` statements are overly complex and could be improved with a more maintainable approach, such as a lookup table or a function that maps scores to coverage.  Example: `if g.Score > thresholdAsNum { g.Coverage = 120 }`\n"
+    },
+    "gradingDetails": {},
+    "hash": "5dc2f33b08d64f7a60ab75085003f845c9bf90a4aff407b702d428b40d84b30d"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/gradeDetails.go",
+    "grade": "F",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T19:55:32.210Z",
+    "codeReview": {
+      "review": "The `GetCoverage` method lacks clarity and maintainability.  The numerous `if/else if` conditions make it hard to understand the coverage calculation logic.  The `thresholdAsNum` parameter is not descriptive.  The method modifies the `GradeDetails` struct directly, violating the principle of immutability.  Example:  `if g.Score > thresholdAsNum { g.Coverage = 120 }`  This could be improved by creating a separate function to calculate coverage based on score and threshold.  A more descriptive parameter name (e.g., `threshold`) would also improve readability.\n"
+    },
+    "gradingDetails": {},
+    "hash": "78de013089b77002740ca68806844cbd11589f93a542bc62e6c5588d448b902e"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/gradeDetails.go",
+    "grade": "D",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T19:55:39.166Z",
+    "codeReview": {
+      "review": "This code has three critical areas of concern.  First, the `GetCoverage` function uses a series of `if/else if` statements to determine coverage based on score thresholds.  This is overly complex and hard to maintain.  Second, the coverage values (120, 100, etc.) are arbitrary and lack clear rationale.  Third, the `GetCoverage` function modifies the `GradeDetails` struct directly, violating the principle of immutability.  Example: `if g.Score > thresholdAsNum { g.Coverage = 120 }`.  A more robust solution would use a function to calculate coverage based on a clear scoring system.\n"
+    },
+    "gradingDetails": {},
+    "hash": "c9bb42a237797619d684e8b08e21bd7e2e6fc5ef955e0f3616377311dc876443"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/gradeDetails.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T19:56:02.249Z",
+    "codeReview": {
+      "review": "**OWASP Top 10 Review (Critical Areas)**\n\nThis code lacks input validation, potentially leading to **Injection flaws**.  The `GetCoverage` function's conditional logic for calculating coverage based on score is **unclear and brittle**.  The `thresholdAsNum` parameter is not validated, making it susceptible to **Improper Neutralization of Data Leading to SQL Injection** if used in a database query.  For example, if `thresholdAsNum` is manipulated, the coverage calculation could produce unexpected results.  The `GetCoverage` function's logic is also overly complex and could be simplified.  Example: `if g.Score > thresholdAsNum { g.Coverage = 120 } else { g.Coverage = 0 }`\n"
+    },
+    "gradingDetails": {},
+    "hash": "1bc98e160c5e47594ff68b83bcb647d49a5e3df4fd1efe5c391c094cf096832a"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/gradeDetails.go",
+    "grade": "D",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T19:56:07.297Z",
+    "codeReview": {
+      "review": "This code has three critical areas of concern.  First, the `GetCoverage` function uses a series of `if/else if` statements to determine coverage based on score thresholds.  This is overly complex and hard to maintain.  Second, the coverage values (120, 100, etc.) are arbitrary and lack clear rationale.  Third, the `GetCoverage` function modifies the `GradeDetails` struct directly, violating the principle of immutability.  Example: `if g.Score > thresholdAsNum { g.Coverage = 120 }`.  A more robust solution would use a function to calculate coverage based on a clear scoring system.\n"
+    },
+    "gradingDetails": {},
+    "hash": "23ccfaeaaf1560a004d286068b6bac038eed8c648e18ddc428f50dca41ec762e"
+  }
+]

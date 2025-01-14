@@ -1,57 +1,141 @@
-name: Codeleft Coverage Assessment
+name: Codeleft CLI Runner
 
+# Trigger the workflow on push to main branch and on pull requests
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
-  codeleft-coverage:
-    runs-on: ubuntu-latest
+  run-codeleft-cli:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        architecture: [amd64, arm64]
 
     steps:
-      # Step 1: Check out the repository
-      - name: Check out repository
+      # 1. Checkout the repository
+      - name: Checkout Repository
         uses: actions/checkout@v3
 
-      # Step 2: Set environment variables
+      # 2. Set up environment variables based on OS
       - name: Set Variables
+        id: vars
         run: |
-          echo "VERSION=v1.0.0" >> $GITHUB_ENV
-          echo "OS=Linux" >> $GITHUB_ENV
-          echo "ARCH=x86_64" >> $GITHUB_ENV
+          echo "OS_NAME=$(uname -s | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+          echo "ARCH=$(uname -m)" >> $GITHUB_ENV
+        shell: bash
+        if: runner.os != 'Windows'
 
-      # Step 3: Download the codeleft-cli binary using wget
-      - name: Download codeleft-cli binary
+      - name: Set Variables for Windows
+        id: vars-windows
         run: |
-          FILENAME="codeleft-cli_${VERSION}_${OS}_${ARCH}.tar.gz"
-          DOWNLOAD_URL="https://github.com/henrylamb/codeleft-cli/archive/refs/tags/v.1.0.0.tar.gz"
+          echo "OS_NAME=$(echo $env:OS | ForEach-Object { $_.ToLower() })" >> $GITHUB_ENV
+          echo "ARCH=$(echo $env:PROCESSOR_ARCHITECTURE)" >> $GITHUB_ENV
+        shell: powershell
+        if: runner.os == 'Windows'
+
+      # 3. Determine the download URL
+      - name: Determine Download URL
+        id: download_url
+        run: |
+          VERSION=v0.1.1
+          OS=${{ matrix.os }}
+          ARCH=${{ matrix.architecture }}
           
-          echo "Downloading codeleft-cli from $DOWNLOAD_URL"
-          wget "$DOWNLOAD_URL" -O "$FILENAME"
+          # Map GitHub Actions runners to asset naming conventions
+          if [[ "$OS" == "ubuntu-latest" ]]; then
+            OS_SHORT="linux"
+          elif [[ "$OS" == "macos-latest" ]]; then
+            OS_SHORT="darwin"
+          elif [[ "$OS" == "windows-latest" ]]; then
+            OS_SHORT="windows"
+          fi
+          
+          # Map architecture
+          if [[ "$ARCH" == "amd64" ]]; then
+            ARCH_SHORT="amd64"
+          elif [[ "$ARCH" == "arm64" ]]; then
+            ARCH_SHORT="arm64"
+          fi
+          
+          # Construct asset name
+          if [[ "$OS_SHORT" == "windows" ]]; then
+            ASSET_NAME="codeleft-cli_${VERSION#v}_${OS_SHORT}_${ARCH_SHORT}.zip"
+          else
+            ASSET_NAME="codeleft-cli_${VERSION#v}_${OS_SHORT}_${ARCH_SHORT}.tar.gz"
+          fi
+          
+          # GitHub API URL to get the release
+          API_URL="https://api.github.com/repos/henrylamb/codeleft-cli/releases/tags/${VERSION}"
+          
+          # Fetch the download URL using jq
+          DOWNLOAD_URL=$(curl -s $API_URL | jq -r --arg ASSET_NAME "$ASSET_NAME" '.assets[] | select(.name == $ASSET_NAME) | .browser_download_url')
+          
+          if [[ "$DOWNLOAD_URL" == "null" ]]; then
+            echo "Asset not found: $ASSET_NAME"
+            exit 1
+          fi
+          
+          echo "DOWNLOAD_URL=$DOWNLOAD_URL" >> $GITHUB_ENV
+        shell: bash
+        env:
+          VERSION: v0.1.1
 
-      # Step 4: Extract the binary
-      - name: Extract codeleft-cli
+      # 4. Download the appropriate asset
+      - name: Download codeleft-cli
         run: |
-          tar -xzf "codeleft-cli_${VERSION}_${OS}_${ARCH}.tar.gz"
+          curl -L -o codeleft-cli-asset $DOWNLOAD_URL
+        shell: bash
+        env:
+          DOWNLOAD_URL: ${{ env.DOWNLOAD_URL }}
 
-      # Step 5: Make the binary executable and move it to /usr/local/bin
+      # 5. Install codeleft-cli
       - name: Install codeleft-cli
         run: |
-          chmod +x codeleft-cli
-          sudo mv codeleft-cli /usr/local/bin/codeleft-cli
+          if [[ "$RUNNER_OS" == "Windows" ]]; then
+            Expand-Archive -Path codeleft-cli-asset -DestinationPath codeleft-cli
+            Move-Item -Path codeleft-cli\codeleft-cli.exe -DestinationPath codeleft-cli.exe
+            Remove-Item -Recurse -Force codeleft-cli
+          else
+            tar -xzf codeleft-cli-asset
+            chmod +x codeleft-cli
+          fi
+        shell: bash
+        if: runner.os != 'Windows'
 
-      # Step 6: Verify the installation
-      - name: Verify codeleft-cli installation
+      - name: Install codeleft-cli on Windows
         run: |
-          codeleft-cli --version
-          which codeleft-cli
+          Expand-Archive -Path codeleft-cli-asset -DestinationPath codeleft-cli
+          Move-Item -Path codeleft-cli\codeleft-cli.exe -DestinationPath codeleft-cli.exe
+          Remove-Item -Recurse -Force codeleft-cli
+        shell: powershell
+        if: runner.os == 'Windows'
 
-      # Step 7: Run codeleft-cli coverage assessment
-      - name: Run codeleft-cli coverage
+      # 6. Add codeleft-cli to PATH
+      - name: Add codeleft-cli to PATH
+        run: echo "${{ github.workspace }}" >> $GITHUB_PATH
+        shell: bash
+        if: runner.os != 'Windows'
+
+      - name: Add codeleft-cli to PATH on Windows
+        run: echo "${{ github.workspace }}" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8
+        shell: powershell
+        if: runner.os == 'Windows'
+
+      # 7. Run codeleft-cli with desired parameters
+      - name: Execute codeleft-cli Command
         run: |
-          codeleft-cli --asses-coverage \
-                       --threshold-percent=80 \
-                       --threshold-grade=A \
-                       --tools "SOLID, OWASP-TOP-10"
+          ./codeleft-cli --asses-coverage --threshold-percent=80 --threshold-grade=A --tools="SOLID, OWASP-TOP-10"
+        shell: bash
+        if: runner.os != 'Windows'
+
+      - name: Execute codeleft-cli Command on Windows
+        run: |
+          .\codeleft-cli.exe --asses-coverage --threshold-percent=80 --threshold-grade=A --tools="SOLID, OWASP-TOP-10"
+        shell: powershell
+        if: runner.os == 'Windows'

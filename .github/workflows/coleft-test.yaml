@@ -19,13 +19,19 @@ jobs:
       - name: Download codeleft-cli
         run: |
           VERSION=v0.1.1
-          OS=linux
-          ARCH=amd64
-          ASSET_NAME=codeleft-cli_${VERSION}_${OS}_${ARCH}.tar.gz
+          OS=Linux
+          ARCH=x86_64
+          ASSET_NAME=codeleft-cli_${OS}_${ARCH}.tar.gz
           DOWNLOAD_URL="https://github.com/henrylamb/codeleft-cli/releases/download/${VERSION}/${ASSET_NAME}"
           
           echo "Downloading codeleft-cli from $DOWNLOAD_URL"
           curl -L -o codeleft-cli.tar.gz $DOWNLOAD_URL
+
+          # Verify the file is a gzip archive
+          if ! file codeleft-cli.tar.gz | grep -q "gzip compressed data"; then
+            echo "Error: Downloaded file is not a valid gzip archive."
+            exit 1
+          fi
 
       # 3. Extract the binary
       - name: Extract codeleft-cli

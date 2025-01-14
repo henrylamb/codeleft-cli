@@ -1,35 +1,28 @@
-name: Codeleft Analysis
+name: Codeleft CLI Usage
 
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+on: [push, pull_request]
 
 jobs:
   run-codeleft-cli:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out the repo to analyze
+      - name: Check out the code
         uses: actions/checkout@v3
 
-      - name: Set up Go
-        uses: actions/setup-go@v3
-        with:
-          go-version: '1.20'
+      - name: Download codeleft-cli binary
+        run: |
+          # Adjust the URL to your actual release asset
+          wget https://github.com/your-org/codeleft-cli/releases/download/v1.0.0/codeleft-cli_1.0.0_Linux_x86_64.tar.gz \
+               -O codeleft-cli.tar.gz
 
       - name: Install codeleft-cli
         run: |
-          # If the main package is in cmd/codeleft-cli
-          go install github.com/henrylamb/codeleft-cli/cmd/codeleft-cli@latest
+          tar -xzf codeleft-cli.tar.gz
+          chmod +x codeleft-cli-linux-amd64
+          sudo mv codeleft-cli-linux-amd64 /usr/local/bin/codeleft-cli
 
-      - name: Verify codeleft-cli
-        run: |
-          which codeleft-cli
-          codeleft-cli --version
-
-      - name: Run codeleft-cli coverage
+      - name: Run codeleft-cli
         run: |
           codeleft-cli --asses-coverage \
                        --threshold-percent=80 \

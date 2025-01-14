@@ -21,7 +21,7 @@ jobs:
 
       - name: Install codeleft-cli from source
         run: |
-          go install github.com/henrylamb/codeleft-cli/cmd/codeleft-cli@latest
+          go install github.com/henrylamb/codeleft-cli
 
       - name: Verify codeleft-cli installation
         run: |

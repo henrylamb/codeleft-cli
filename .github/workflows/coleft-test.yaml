@@ -1,21 +1,55 @@
-name: Codeleft CLI Usage
-on: [push, pull_request]
+name: Codeleft Coverage Assessment
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
-  run-codeleft-cli:
+  codeleft-coverage:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Check out repo
+      # Step 1: Check out the repository
+      - name: Check out repository
         uses: actions/checkout@v3
 
-      - name: Download codeleft-cli
+      # Step 2: Set environment variables
+      - name: Set Variables
         run: |
-          wget https://github.com/henrylamb/codeleft-cli/releases/download/v.1.0.0/codeleft-cli_1.0.0_Linux_x86_64.tar.gz -O codeleft-cli.tar.gz
-          tar -xzf codeleft-cli.tar.gz
-          chmod +x codeleft-cli
-          sudo mv codeleft-cli /usr/local/bin
+          echo "VERSION=v1.0.0" >> $GITHUB_ENV
+          echo "OS=Linux" >> $GITHUB_ENV
+          echo "ARCH=x86_64" >> $GITHUB_ENV
 
-      - name: Run codeleft-cli
+      # Step 3: Download the codeleft-cli binary using wget
+      - name: Download codeleft-cli binary
+        run: |
+          FILENAME="codeleft-cli_${VERSION}_${OS}_${ARCH}.tar.gz"
+          DOWNLOAD_URL="https://github.com/henrylamb/codeleft-cli/releases/download/${VERSION}/${FILENAME}"
+          
+          echo "Downloading codeleft-cli from $DOWNLOAD_URL"
+          wget "$DOWNLOAD_URL" -O "$FILENAME"
+
+      # Step 4: Extract the binary
+      - name: Extract codeleft-cli
+        run: |
+          tar -xzf "codeleft-cli_${VERSION}_${OS}_${ARCH}.tar.gz"
+
+      # Step 5: Make the binary executable and move it to /usr/local/bin
+      - name: Install codeleft-cli
+        run: |
+          chmod +x codeleft-cli
+          sudo mv codeleft-cli /usr/local/bin/codeleft-cli
+
+      # Step 6: Verify the installation
+      - name: Verify codeleft-cli installation
+        run: |
+          codeleft-cli --version
+          which codeleft-cli
+
+      # Step 7: Run codeleft-cli coverage assessment
+      - name: Run codeleft-cli coverage
         run: |
           codeleft-cli --asses-coverage \
                        --threshold-percent=80 \

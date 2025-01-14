@@ -1,26 +1,19 @@
 name: Codeleft CLI Usage
-
 on: [push, pull_request]
 
 jobs:
   run-codeleft-cli:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Check out the code
+      - name: Check out repo
         uses: actions/checkout@v3
 
-      - name: Download codeleft-cli binary
+      - name: Download codeleft-cli
         run: |
-          # Adjust the URL to your actual release asset
-          wget https://github.com/your-org/codeleft-cli/releases/download/v1.0.0/codeleft-cli_1.0.0_Linux_x86_64.tar.gz \
-               -O codeleft-cli.tar.gz
-
-      - name: Install codeleft-cli
-        run: |
+          wget https://github.com/henrylamb/codeleft-cli/releases/download/v.1.0.0/codeleft-cli_1.0.0_Linux_x86_64.tar.gz -O codeleft-cli.tar.gz
           tar -xzf codeleft-cli.tar.gz
-          chmod +x codeleft-cli-linux-amd64
-          sudo mv codeleft-cli-linux-amd64 /usr/local/bin/codeleft-cli
+          chmod +x codeleft-cli
+          sudo mv codeleft-cli /usr/local/bin
 
       - name: Run codeleft-cli
         run: |

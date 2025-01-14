@@ -26,7 +26,7 @@ jobs:
       - name: Download codeleft-cli binary
         run: |
           FILENAME="codeleft-cli_${VERSION}_${OS}_${ARCH}.tar.gz"
-          DOWNLOAD_URL="https://github.com/henrylamb/codeleft-cli/releases/download/${VERSION}/${FILENAME}"
+          DOWNLOAD_URL="https://github.com/henrylamb/codeleft-cli/archive/refs/tags/v.1.0.0.tar.gz"
           
           echo "Downloading codeleft-cli from $DOWNLOAD_URL"
           wget "$DOWNLOAD_URL" -O "$FILENAME"

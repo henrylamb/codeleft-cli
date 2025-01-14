@@ -1,0 +1,55 @@
+name: Codeleft CLI CI
+
+# Trigger the workflow on push events to any branch
+on:
+  push:
+    branches:
+      - '**'  # Triggers on all branches. Modify if needed.
+
+jobs:
+  assess-code:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Go environment
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.23'  # Specify the Go version you're using
+
+      # Step 3: Cache Go modules to speed up builds
+      - name: Cache Go Modules
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cache/go-build
+            ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
+
+      # Step 4: Install Dependencies
+      - name: Install Dependencies
+        run: go mod tidy
+
+      # Step 5: Install codeleft-cli using go install
+      - name: Install codeleft-cli
+        run: |
+          go install github.com/henrylamb/codeleft-cli@latest
+
+      # Step 6: Add Go Bin to PATH
+      - name: Add Go Bin to PATH
+        run: echo "$HOME/go/bin" >> $GITHUB_PATH
+
+      # Step 7: Verify codeleft-cli Installation (Optional)
+      - name: Verify codeleft-cli Installation
+        run: codeleft-cli --version
+
+      # Step 8: Run codeleft-cli Assessments
+      - name: Run codeleft-cli Assessments
+        run: |
+          codeleft-cli --asses-coverage --threshold-percent=90 --threshold-grade=A --tools="SOLID,OWASP-TOP-10"

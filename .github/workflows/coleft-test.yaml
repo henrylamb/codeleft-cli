@@ -1,4 +1,4 @@
-name: Codeleft Coverage Assessment
+name: Codeleft Analysis
 
 on:
   push:
@@ -7,30 +7,30 @@ on:
     branches: [ "main" ]
 
 jobs:
-  codeleft-coverage:
+  run-codeleft-cli:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out your code
+      - name: Check out the repo to analyze
         uses: actions/checkout@v3
 
       - name: Set up Go
         uses: actions/setup-go@v3
         with:
-          go-version: '1.23'
+          go-version: '1.20'
 
-      - name: Install codeleft-cli from source
+      - name: Install codeleft-cli
         run: |
-          go install github.com/henrylamb/codeleft-cli
+          # If the main package is in cmd/codeleft-cli
+          go install github.com/henrylamb/codeleft-cli/cmd/codeleft-cli@latest
 
-      - name: Verify codeleft-cli installation
+      - name: Verify codeleft-cli
         run: |
-          codeleft-cli --version || true
           which codeleft-cli
+          codeleft-cli --version
 
       - name: Run codeleft-cli coverage
         run: |
-          # Execute the CLI against the code in this repo (checked out above)
           codeleft-cli --asses-coverage \
                        --threshold-percent=80 \
                        --threshold-grade=A \

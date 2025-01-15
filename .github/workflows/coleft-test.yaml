@@ -18,7 +18,7 @@ jobs:
       # 2. Download the codeleft-cli binary from GitHub Releases
       - name: Download codeleft-cli
         run: |
-          VERSION=v0.1.1
+          VERSION=v0.1.4  # Update to the desired version
           OS=Linux
           ARCH=x86_64
           ASSET_NAME=codeleft-cli_${OS}_${ARCH}.tar.gz
@@ -81,4 +81,4 @@ jobs:
           fi
 
           # Execute the corrected codeleft-cli command
-          codeleft-cli --assess-coverage --threshold-percent=80 --threshold-grade=A --tools "SOLID,OWASP-TOP-10,PR Ready"
+          codeleft-cli -asses-coverage -threshold-percent=80 -threshold-grade=A -tools "SOLID,OWASP-TOP-10,PR Ready"

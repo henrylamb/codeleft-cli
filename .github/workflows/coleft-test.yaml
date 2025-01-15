@@ -59,25 +59,17 @@ jobs:
           echo "Current Directory:"
           pwd
 
-      # 5. Change directory if inside 'codeleft-cli' and execute the command
+      # 5. Execute codeleft-cli Command with Directory Change
       - name: Execute codeleft-cli Command
         run: |
-          # Store the current directory
-          CURRENT_DIR=$(pwd)
-          
-          # Check if the current directory is 'codeleft-cli'
-          if [ "$(basename "$CURRENT_DIR")" = "codeleft-cli" ]; then
-            echo "Currently inside 'codeleft-cli' directory. Navigating to repository root."
-            cd ..
-          else
-            echo "Not inside 'codeleft-cli' directory. Proceeding."
-          fi
-          
+          # Change to the parent directory if inside 'codeleft-cli'
+          cd ..
+
           # Verify the presence of .codeleft directory
           if [ ! -d ".codeleft" ]; then
             echo "Error: .codeleft directory does not exist in the repository root."
             exit 1
           fi
-          
+
           # Execute the codeleft-cli command
           codeleft-cli --asses-coverage --threshold-percent=80 --threshold-grade=A --tools "SOLID,OWASP-TOP-10,PR Ready"

@@ -1,6 +1,5 @@
 name: Run Codeleft CLI
 
-# Trigger the workflow on push
 on:
   push:
     branches:
@@ -15,8 +14,8 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      # 2. Download the codeleft-cli binary from GitHub Releases
-      - name: Download codeleft-cli
+      # 2. Download and Extract codeleft-cli
+      - name: Download & Install codeleft-cli
         run: |
           VERSION=v0.1.4  # Update to the desired version
           OS=Linux
@@ -24,61 +23,21 @@ jobs:
           ASSET_NAME=codeleft-cli_${OS}_${ARCH}.tar.gz
           DOWNLOAD_URL="https://github.com/henrylamb/codeleft-cli/releases/download/${VERSION}/${ASSET_NAME}"
           
-          echo "Downloading codeleft-cli from $DOWNLOAD_URL"
-          curl -L -o codeleft-cli.tar.gz $DOWNLOAD_URL
-
-          # Verify the file is a gzip archive
-          if ! file codeleft-cli.tar.gz | grep -q "gzip compressed data"; then
-            echo "Error: Downloaded file is not a valid gzip archive."
-            echo "Contents of the downloaded file:"
-            head codeleft-cli.tar.gz
-            exit 1
-          fi
-
-      # 3. Extract the binary
-      - name: Extract codeleft-cli
-        run: |
+          curl -L -o codeleft-cli.tar.gz "$DOWNLOAD_URL"
           tar -xzf codeleft-cli.tar.gz
           chmod +x codeleft-cli
           sudo mv codeleft-cli /usr/local/bin/
 
-      # 4. Verify installation
-      - name: Verify codeleft-cli Installation
-        run: |
-          codeleft-cli --version
-
-      # 5. Confirm codeleft-cli is in PATH
-      - name: Confirm codeleft-cli in PATH
-        run: |
-          which codeleft-cli
-          codeleft-cli --version
-
-      # 6. List repository files after checkout (including hidden directories)
-      - name: List Repository Files
-        run: |
-          echo "Listing all files and directories (including hidden ones):"
-          ls -laR "${GITHUB_WORKSPACE}"
-
-      # 7. Print current working directory
-      - name: Print Current Directory
-        run: |
-          echo "Current Directory:"
-          pwd
-
-      # 8. Execute codeleft-cli Command with Directory Change
+      # 3. Execute codeleft-cli Command
       - name: Execute codeleft-cli Command
         run: |
-          echo "Changing to repository root directory:"
           cd "${GITHUB_WORKSPACE}"
 
-          echo "Listing files after changing directory:"
-          ls -laR
-
-          # Verify the presence of .codeleft directory
+          # Ensure .codeLeft directory exists
           if [ ! -d ".codeLeft" ]; then
             echo "Error: .codeleft directory does not exist in the repository root."
             exit 1
           fi
 
-          # Execute the corrected codeleft-cli command
+          # Run the codeleft-cli command
           codeleft-cli -asses-coverage -threshold-percent=80 -threshold-grade=A -tools "SOLID,OWASP-TOP-10,PR Ready"

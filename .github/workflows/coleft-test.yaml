@@ -1,5 +1,6 @@
 name: Run Codeleft CLI
 
+# Trigger the workflow on push to the main branch
 on:
   push:
     branches:
@@ -14,38 +15,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      # 2. List repository contents for debugging
-      - name: List Repository Contents
-        run: |
-          echo "Listing root directory:"
-          ls -la
-          echo "Listing .codeleft directory:"
-          ls -la .codeleft || echo ".codeleft directory does not exist."
-
-      # 3. Create .codeleft directory and history.json if not present
-      - name: Setup .codeleft Directory
-        run: |
-          if [ ! -d ".codeleft" ]; then
-            echo ".codeleft directory not found. Creating it."
-            mkdir -p .codeleft
-            echo '[
-              {
-                "id": 1,
-                "description": "Initial commit",
-                "date": "2025-01-01"
-              }
-            ]' > .codeleft/history.json
-          else
-            echo ".codeleft directory exists."
-          fi
-
-      # 4. List .codeleft contents for debugging
-      - name: List .codeleft Contents
-        run: |
-          echo "Listing .codeleft directory contents:"
-          ls -la .codeleft
-
-      # 5. Download the codeleft-cli binary from GitHub Releases
+      # 2. Download the codeleft-cli binary from GitHub Releases
       - name: Download codeleft-cli
         run: |
           VERSION=v0.1.1
@@ -65,31 +35,19 @@ jobs:
             exit 1
           fi
 
-      # 6. List downloaded files for debugging
-      - name: List Downloaded Files
-        run: |
-          echo "Listing downloaded files:"
-          ls -la
-
-      # 7. Extract the binary
+      # 3. Extract the binary
       - name: Extract codeleft-cli
         run: |
           tar -xzf codeleft-cli.tar.gz
           chmod +x codeleft-cli
           sudo mv codeleft-cli /usr/local/bin/
 
-      # 8. Verify installation
+      # 4. Verify installation
       - name: Verify codeleft-cli Installation
         run: |
           codeleft-cli --version
 
-      # 9. Confirm .codeleft Directory Exists
-      - name: Confirm .codeleft Directory Exists
-        run: |
-          echo "Confirming .codeleft directory exists:"
-          ls -la .codeleft
-
-      # 10. Run the desired codeleft-cli command
+      # 5. Run the desired codeleft-cli command
       - name: Execute codeleft-cli Command
         run: |
           codeleft-cli --asses-coverage --threshold-percent=80 --threshold-grade=A --tools "SOLID,OWASP-TOP-10,PR Ready"

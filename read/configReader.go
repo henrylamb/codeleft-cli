@@ -15,9 +15,9 @@ type ConfigReader struct {
 }
 
 // NewConfigReader creates a new instance of ConfigReader.
-// It searches for the .codeleft folder directly within the RepoRoot.
+// It walks the RepoRoot directory tree to find the first .codeleft folder it encounters.
 // If repoRoot is empty, it defaults to the current working directory.
-// Returns an error if .codeleft is not found.
+// Returns an error if .codeleft is not found anywhere in the repo.
 func NewConfigReader() (*ConfigReader, error) {
 	repoRoot, err := os.Getwd()
 	if err != nil {
@@ -26,24 +26,13 @@ func NewConfigReader() (*ConfigReader, error) {
 
 	cr := &ConfigReader{RepoRoot: repoRoot}
 
-	// Define the expected path for .codeleft directly under RepoRoot
-	expectedCodeleftPath := filepath.Join(repoRoot, ".codeleft")
-
-	// Check if .codeleft exists directly under RepoRoot
-	info, err := os.Stat(expectedCodeleftPath)
+	// Recursively search for the .codeleft folder
+	codeleftPath, err := findCodeleftRecursive(repoRoot)
 	if err != nil {
-		if os.IsNotExist(err) {
-			return nil, fmt.Errorf(".codeleft directory does not exist in the repository root: %s", repoRoot)
-		}
-		return nil, fmt.Errorf("error accessing .codeleft directory: %w", err)
+		return nil, err
 	}
 
-	if !info.IsDir() {
-		return nil, fmt.Errorf(".codeleft exists but is not a directory: %s", expectedCodeleftPath)
-	}
-
-	cr.CodeleftPath = expectedCodeleftPath
-
+	cr.CodeleftPath = codeleftPath
 	return cr, nil
 }
 
@@ -52,7 +41,7 @@ func NewConfigReader() (*ConfigReader, error) {
 func (cr *ConfigReader) ReadConfig() (*types.Config, error) {
 	// Ensure the .codeleft path is set
 	if cr.CodeleftPath == "" {
-		return nil, fmt.Errorf(".codeleft folder not found in the repository root: %s", cr.RepoRoot)
+		return nil, fmt.Errorf(".codeLeft folder not found in the repository root: %s", cr.RepoRoot)
 	}
 
 	configPath := filepath.Join(cr.CodeleftPath, "config.json")

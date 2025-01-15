@@ -41,17 +41,23 @@ func (pf *PathFilter) isIgnored(path string) bool {
 
 	// Check against ignored files
 	for _, file := range pf.ignoredFiles {
+		// Join the file path and name, then normalize
 		ignoredFilePath := filepath.ToSlash(filepath.Join(file.Path, file.Name))
 		if normalizedPath == ignoredFilePath {
 			return true
 		}
 	}
 
-	// Check against ignored folders
-	for _, folder := range pf.ignoredFolders {
-		normalizedFolder := filepath.ToSlash(folder)
-		if strings.HasPrefix(normalizedPath, normalizedFolder+"/") {
-			return true
+	// Split the path into directories
+	dirs := strings.Split(normalizedPath, "/")
+
+	// Exclude the last element if it's a file
+	// This assumes that the path ends with a file name. Adjust if directories can also be in histories.
+	for _, dir := range dirs[:len(dirs)-1] {
+		for _, ignoredFolder := range pf.ignoredFolders {
+			if dir == ignoredFolder {
+				return true
+			}
 		}
 	}
 

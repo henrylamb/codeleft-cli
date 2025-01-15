@@ -1,6 +1,6 @@
 name: Run Codeleft CLI
 
-# Trigger the workflow on push to the main branch
+# Trigger the workflow on push
 on:
   push:
     branches:

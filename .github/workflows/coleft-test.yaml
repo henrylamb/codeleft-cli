@@ -75,7 +75,7 @@ jobs:
           ls -laR
 
           # Verify the presence of .codeleft directory
-          if [ ! -d ".codeleft" ]; then
+          if [ ! -d ".codeLeft" ]; then
             echo "Error: .codeleft directory does not exist in the repository root."
             exit 1
           fi

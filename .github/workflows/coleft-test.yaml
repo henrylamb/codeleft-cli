@@ -47,31 +47,38 @@ jobs:
         run: |
           codeleft-cli --version
 
-      # 4.1. List repository files for debugging (including hidden directories)
+      # 5. Confirm codeleft-cli is in PATH
+      - name: Confirm codeleft-cli in PATH
+        run: |
+          which codeleft-cli
+          codeleft-cli --version
+
+      # 6. List repository files after checkout (including hidden directories)
       - name: List Repository Files
         run: |
           echo "Listing all files and directories (including hidden ones):"
-          ls -laR $GITHUB_WORKSPACE/codeleft-cli
+          ls -laR "${GITHUB_WORKSPACE}"
 
-      # 4.2. Print current working directory
+      # 7. Print current working directory
       - name: Print Current Directory
         run: |
           echo "Current Directory:"
           pwd
 
-      # 5. Execute codeleft-cli Command with Specified Working Directory
+      # 8. Execute codeleft-cli Command with Directory Change
       - name: Execute codeleft-cli Command
-        working-directory: $GITHUB_WORKSPACE/codeleft-cli
         run: |
-          echo "Listing files in working directory:"
+          echo "Changing to repository root directory:"
+          cd "${GITHUB_WORKSPACE}"
+
+          echo "Listing files after changing directory:"
           ls -laR
-          
+
           # Verify the presence of .codeleft directory
           if [ ! -d ".codeleft" ]; then
             echo "Error: .codeleft directory does not exist in the repository root."
             exit 1
           fi
-          
+
           # Execute the corrected codeleft-cli command
           codeleft-cli --assess-coverage --threshold-percent=80 --threshold-grade=A --tools "SOLID,OWASP-TOP-10,PR Ready"
-    

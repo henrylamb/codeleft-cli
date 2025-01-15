@@ -24,15 +24,16 @@ func NewConfigReader() (*ConfigReader, error) {
 		return nil, fmt.Errorf("failed to get current working directory: %w", err)
 	}
 
-	cr := &ConfigReader{RepoRoot: repoRoot}
-
-	// Recursively search for the .codeleft folder
+	// Recursively find .codeleft
 	codeleftPath, err := findCodeleftRecursive(repoRoot)
 	if err != nil {
 		return nil, err
 	}
 
-	cr.CodeleftPath = codeleftPath
+	cr := &ConfigReader{
+		RepoRoot:     repoRoot,
+		CodeleftPath: codeleftPath,
+	}
 	return cr, nil
 }
 

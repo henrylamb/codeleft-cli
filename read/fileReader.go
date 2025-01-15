@@ -29,15 +29,16 @@ func NewHistoryReader() (CodeLeftReader, error) {
 		return nil, fmt.Errorf("failed to get current working directory: %w", err)
 	}
 
-	hr := &HistoryReader{RepoRoot: repoRoot}
-
-	// Recursively search for the .codeleft folder
+	// Recursively find .codeleft
 	codeleftPath, err := findCodeleftRecursive(repoRoot)
 	if err != nil {
 		return nil, err
 	}
 
-	hr.CodeleftPath = codeleftPath
+	hr := &HistoryReader{
+		RepoRoot:     repoRoot,
+		CodeleftPath: codeleftPath,
+	}
 	return hr, nil
 }
 
@@ -46,7 +47,7 @@ func NewHistoryReader() (CodeLeftReader, error) {
 func (hr *HistoryReader) ReadHistory() (filter.Histories, error) {
 	// If .codeleft was not found, return an error
 	if hr.CodeleftPath == "" {
-		return nil, fmt.Errorf(".codeleft folder not found in the repository root: %s", hr.RepoRoot)
+		return nil, fmt.Errorf(".codeLeft folder not found in the repository root: %s", hr.RepoRoot)
 	}
 
 	historyPath := filepath.Join(hr.CodeleftPath, "history.json")

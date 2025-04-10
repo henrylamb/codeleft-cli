@@ -8,10 +8,11 @@ import (
 	"fmt"
 	"os"
 	"strings"
+	"codeleft-cli/report"
 )
 
 // Version of the CLI tool
-const Version = "1.0.2"
+const Version = "1.0.3"
 
 // main is the entry point for your CLI tool.
 func main() {
@@ -22,6 +23,7 @@ func main() {
 	versionFlag := flag.Bool("version", false, "Displays the current version of the CLI tool.")
 	assessGrade := flag.Bool("asses-grade", false, "Assess the grade threshold.")
 	assessCoverage := flag.Bool("asses-coverage", false, "Assess the coverage threshold.")
+	createReport := flag.Bool("create-report", false, "Create a report of the assessment.")
 
 	// Customize the usage message to include version information
 	flag.Usage = func() {
@@ -107,6 +109,15 @@ Options:
 	if *assessCoverage && !accessorCoverage.Assess(*thresholdPercent, gradeDetails) {
 		fmt.Fprintf(os.Stderr, "Coverage threshold failed :( \n")
 		os.Exit(1)
+	}
+
+	if *createReport {
+		reporter := report.NewHtmlReport(report.NewRepoConstructor())
+		if err := reporter.GenerateReport(gradeDetails, *thresholdGrade); err != nil {
+			fmt.Fprintf(os.Stderr, "Error generating report: %v\n", err)
+			os.Exit(1)
+		}		
+		fmt.Fprintf(os.Stderr, "Report generated successfully!\n")
 	}
 
 	fmt.Fprintf(os.Stderr, "All checks passed!\n")

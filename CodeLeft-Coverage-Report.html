@@ -1,0 +1,1169 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Repository Structure Report</title>
+    <meta charset="UTF-8">
+    <style>
+         
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #24292e;
+            --border-color: #e1e4e8;
+            --header-bg-color: #f6f8fa;
+            --green-color: #28a745;
+            --orange-color: #dbab09;
+            --red-color: #cb2431;
+            --blue-color: #0366d6;
+            --grey-color: #586069;
+            --light-red-bg: rgba(244, 67, 54, 0.1);
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            line-height: 1.5;
+            padding: 20px;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-size: 14px;
+        }
+        h1, h2 {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.3em;
+            margin-bottom: 1em;
+            margin-top: 1.5em;
+        }
+        h1 { font-size: 1.8em; font-weight: 600; }
+        h2 { font-size: 1.5em; font-weight: 600; }
+        .summary {
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            background-color: var(--header-bg-color);
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+        }
+        .summary div { margin: 5px 10px; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: middle;
+        }
+        th {
+            background-color: var(--header-bg-color);
+            font-weight: 600;
+            text-align: center;
+        }
+        td:first-child, th:first-child { text-align: left; }
+        tr:last-child td { border-bottom: none; }
+        .coverage-cell {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+        .coverage-text { font-weight: 600; font-size: 0.95em; }
+        .green { color: var(--green-color); }
+        .orange { color: var(--orange-color); }
+        .red { color: var(--red-color); }
+        .grey { color: var(--grey-color); text-align: center; }
+        .progress-bar {
+            width: 80px;
+            height: 8px;
+            background-color: #eaecef;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 4px;
+        }
+        .progress-fill {
+            height: 100%;
+            transition: width 0.3s ease;
+            border-radius: 4px;
+        }
+        .low-coverage { background-color: var(--light-red-bg); }
+        .folder-name { font-weight: 600; color: var(--blue-color); }
+        .file-name {
+           font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+           font-size: 0.9em;
+        }
+        .icon {
+            display: inline-block;
+            vertical-align: text-bottom;
+            margin-right: 5px;
+            fill: currentColor;
+        }
+        .icon-folder { color: var(--blue-color); }
+        .icon-file { color: var(--grey-color); }
+        .grade-cell { text-align: center; font-weight: bold; }
+        .tool-cell { text-align: center; font-size: 0.9em; color: var(--grey-color); }
+    </style>
+</head>
+<body>
+    <h1>Repository Structure Report</h1>
+    <div class="summary">
+        <div>Threshold Grade: <strong>A</strong></div>
+        <div>Overall Coverage:
+            <strong class="coverage-text orange">
+                75.38%
+            </strong>
+        </div>
+    </div>
+    <h2>Detailed Coverage</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>File / Directory</th>
+                
+                    <th>SOLID</th>
+                
+                <th>Grade</th>
+                <th>Tool</th>
+                <th>Coverage (%)</th>
+            </tr>
+            
+            <tr>
+                <td><strong>Overall Averages</strong></td>
+                
+                    
+                    <td>
+                        
+                        <div class="coverage-cell">
+                            <span class="coverage-text orange">75.38%</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 75.38461538461539%; background-color: #F0AB86;"></div>
+                            </div>
+                        </div>
+                        
+                    </td>
+                
+                <td class="grey">N/a</td>
+                <td class="grey">N/a</td>
+                <td>
+                    <div class="coverage-cell">
+                        <span class="coverage-text orange">75.38%</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 75.38461538461539%; background-color: #F0AB86;"></div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            
+            
+        
+        
+            
+        
+        
+        <tr >
+            <td>
+                <span style="padding-left: 0px;">
+                    
+                        <svg class="icon icon-folder" width="16" height="16" viewBox="0 0 16 16" version="1.1">
+                            <path fill-rule="evenodd" d="M1.75 1A1.75 1.75 0 000 2.75v10.5C0 14.216.784 15 1.75 15h12.5A1.75 1.75 0 0016 13.25v-8.5A1.75 1.75 0 0014.25 3h-6.5a.25.25 0 01-.2-.1l-.9-1.2c-.33-.44-.85-.7-1.4-.7h-3.5z"></path>
+                        </svg>
+                        <span class="folder-name"></span>
+                    
+                </span>
+            </td>
+            
+                <td>
+                    
+                </td>
+            
+            <td class="grade-cell">
+                
+            </td>
+            <td class="tool-cell">
+                
+            </td>
+            <td>
+                
+                    <div class="coverage-cell">
+                        <span class="coverage-text orange">73.67%</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 73.66666666666667%; background-color: #F0AB86;"></div>
+                        </div>
+                    </div>
+                
+            </td>
+        </tr>
+        
+            
+        
+        
+            
+        
+        
+        <tr >
+            <td>
+                <span style="padding-left: 0px;">
+                    
+                        <svg class="icon icon-folder" width="16" height="16" viewBox="0 0 16 16" version="1.1">
+                            <path fill-rule="evenodd" d="M1.75 1A1.75 1.75 0 000 2.75v10.5C0 14.216.784 15 1.75 15h12.5A1.75 1.75 0 0016 13.25v-8.5A1.75 1.75 0 0014.25 3h-6.5a.25.25 0 01-.2-.1l-.9-1.2c-.33-.44-.85-.7-1.4-.7h-3.5z"></path>
+                        </svg>
+                        <span class="folder-name">Users</span>
+                    
+                </span>
+            </td>
+            
+                <td>
+                    
+                </td>
+            
+            <td class="grade-cell">
+                
+            </td>
+            <td class="tool-cell">
+                
+            </td>
+            <td>
+                
+                    <div class="coverage-cell">
+                        <span class="coverage-text orange">73.67%</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 73.66666666666667%; background-color: #F0AB86;"></div>
+                        </div>
+                    </div>
+                
+            </td>
+        </tr>
+        
+            
+        
+        
+            
+        
+        
+        <tr >
+            <td>
+                <span style="padding-left: 15px;">
+                    
+                        <svg class="icon icon-folder" width="16" height="16" viewBox="0 0 16 16" version="1.1">
+                            <path fill-rule="evenodd" d="M1.75 1A1.75 1.75 0 000 2.75v10.5C0 14.216.784 15 1.75 15h12.5A1.75 1.75 0 0016 13.25v-8.5A1.75 1.75 0 0014.25 3h-6.5a.25.25 0 01-.2-.1l-.9-1.2c-.33-.44-.85-.7-1.4-.7h-3.5z"></path>
+                        </svg>
+                        <span class="folder-name">henrylamb</span>
+                    
+                </span>
+            </td>
+            
+                <td>
+                    
+                </td>
+            
+            <td class="grade-cell">
+                
+            </td>
+            <td class="tool-cell">
+                
+            </td>
+            <td>
+                
+                    <div class="coverage-cell">
+                        <span class="coverage-text orange">73.67%</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 73.66666666666667%; background-color: #F0AB86;"></div>
+                        </div>
+                    </div>
+                
+            </td>
+        </tr>
+        
+            
+        
+        
+            
+        
+        
+        <tr >
+            <td>
+                <span style="padding-left: 30px;">
+                    
+                        <svg class="icon icon-folder" width="16" height="16" viewBox="0 0 16 16" version="1.1">
+                            <path fill-rule="evenodd" d="M1.75 1A1.75 1.75 0 000 2.75v10.5C0 14.216.784 15 1.75 15h12.5A1.75 1.75 0 0016 13.25v-8.5A1.75 1.75 0 0014.25 3h-6.5a.25.25 0 01-.2-.1l-.9-1.2c-.33-.44-.85-.7-1.4-.7h-3.5z"></path>
+                        </svg>
+                        <span class="folder-name">multiple</span>
+                    
+                </span>
+            </td>
+            
+                <td>
+                    
+                </td>
+            
+            <td class="grade-cell">
+                
+            </td>
+            <td class="tool-cell">
+                
+            </td>
+            <td>
+                
+                    <div class="coverage-cell">
+                        <span class="coverage-text orange">73.67%</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 73.66666666666667%; background-color: #F0AB86;"></div>
+                        </div>
+                    </div>
+                
+            </td>
+        </tr>
+        
+            
+        
+        
+            
+        
+        
+        <tr >
+            <td>
+                <span style="padding-left: 45px;">
+                    
+                        <svg class="icon icon-folder" width="16" height="16" viewBox="0 0 16 16" version="1.1">
+                            <path fill-rule="evenodd" d="M1.75 1A1.75 1.75 0 000 2.75v10.5C0 14.216.784 15 1.75 15h12.5A1.75 1.75 0 0016 13.25v-8.5A1.75 1.75 0 0014.25 3h-6.5a.25.25 0 01-.2-.1l-.9-1.2c-.33-.44-.85-.7-1.4-.7h-3.5z"></path>
+                        </svg>
+                        <span class="folder-name">codeleft-cli</span>
+                    
+                </span>
+            </td>
+            
+                <td>
+                    
+                </td>
+            
+            <td class="grade-cell">
+                
+            </td>
+            <td class="tool-cell">
+                
+            </td>
+            <td>
+                
+                    <div class="coverage-cell">
+                        <span class="coverage-text orange">73.67%</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 73.66666666666667%; background-color: #F0AB86;"></div>
+                        </div>
+                    </div>
+                
+            </td>
+        </tr>
+        
+            
+        
+        
+            
+        
+        
+        <tr >
+            <td>
+                <span style="padding-left: 60px;">
+                    
+                        <svg class="icon icon-folder" width="16" height="16" viewBox="0 0 16 16" version="1.1">
+                            <path fill-rule="evenodd" d="M1.75 1A1.75 1.75 0 000 2.75v10.5C0 14.216.784 15 1.75 15h12.5A1.75 1.75 0 0016 13.25v-8.5A1.75 1.75 0 0014.25 3h-6.5a.25.25 0 01-.2-.1l-.9-1.2c-.33-.44-.85-.7-1.4-.7h-3.5z"></path>
+                        </svg>
+                        <span class="folder-name">assessment</span>
+                    
+                </span>
+            </td>
+            
+                <td>
+                    
+                </td>
+            
+            <td class="grade-cell">
+                
+            </td>
+            <td class="tool-cell">
+                
+            </td>
+            <td>
+                
+                    <div class="coverage-cell">
+                        <span class="coverage-text green">85.00%</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 85%; background-color: #76C474;"></div>
+                        </div>
+                    </div>
+                
+            </td>
+        </tr>
+        
+            
+        
+        
+            
+        
+        
+        <tr >
+            <td>
+                <span style="padding-left: 75px;">
+                    
+                        <svg class="icon icon-file" width="16" height="16" viewBox="0 0 16 16" version="1.1">
+                            <path fill-rule="evenodd" d="M3.75 1.5a.25.25 0 01.25-.25h8.5a.25.25 0 01.25.25v13.25a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25V1.5zm.5 0v13h7.5v-13h-7.5z"></path>
+                        </svg>
+                        <span class="file-name">assessor.go</span>
+                    
+                </span>
+            </td>
+            
+                <td>
+                    
+                        
+                            
+                            <div class="coverage-cell">
+                                <span class="coverage-text orange">70.00%</span>
+                            </div>
+                        
+                    
+                </td>
+            
+            <td class="grade-cell">
+                B
+            </td>
+            <td class="tool-cell">
+                SOLID
+            </td>
+            <td>
+                
+                    <div class="coverage-cell">
+                        <span class="coverage-text orange">70.00%</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 70%; background-color: #F0AB86;"></div>
+                        </div>
+                    </div>
+                
+            </td>
+        </tr>
+        
+    
+        
+            
+        
+        
+        <tr >
+            <td>
+                <span style="padding-left: 75px;">
+                    
+                        <svg class="icon icon-file" width="16" height="16" viewBox="0 0 16 16" version="1.1">
+                            <path fill-rule="evenodd" d="M3.75 1.5a.25.25 0 01.25-.25h8.5a.25.25 0 01.25.25v13.25a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25V1.5zm.5 0v13h7.5v-13h-7.5z"></path>
+                        </svg>
+                        <span class="file-name">violations.go</span>
+                    
+                </span>
+            </td>
+            
+                <td>
+                    
+                        
+                            
+                            <div class="coverage-cell">
+                                <span class="coverage-text green">100.00%</span>
+                            </div>
+                        
+                    
+                </td>
+            
+            <td class="grade-cell">
+                A
+            </td>
+            <td class="tool-cell">
+                SOLID
+            </td>
+            <td>
+                
+                    <div class="coverage-cell">
+                        <span class="coverage-text green">100.00%</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%; background-color: #76C474;"></div>
+                        </div>
+                    </div>
+                
+            </td>
+        </tr>
+        
+    
+        
+    
+        
+    
+        
+            
+        
+        
+        <tr >
+            <td>
+                <span style="padding-left: 60px;">
+                    
+                        <svg class="icon icon-folder" width="16" height="16" viewBox="0 0 16 16" version="1.1">
+                            <path fill-rule="evenodd" d="M1.75 1A1.75 1.75 0 000 2.75v10.5C0 14.216.784 15 1.75 15h12.5A1.75 1.75 0 0016 13.25v-8.5A1.75 1.75 0 0014.25 3h-6.5a.25.25 0 01-.2-.1l-.9-1.2c-.33-.44-.85-.7-1.4-.7h-3.5z"></path>
+                        </svg>
+                        <span class="folder-name">filter</span>
+                    
+                </span>
+            </td>
+            
+                <td>
+                    
+                </td>
+            
+            <td class="grade-cell">
+                
+            </td>
+            <td class="tool-cell">
+                
+            </td>
+            <td>
+                
+                    <div class="coverage-cell">
+                        <span class="coverage-text orange">80.00%</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 80%; background-color: #F0AB86;"></div>
+                        </div>
+                    </div>
+                
+            </td>
+        </tr>
+        
+            
+        
+        
+            
+        
+        
+        <tr >
+            <td>
+                <span style="padding-left: 75px;">
+                    
+                        <svg class="icon icon-file" width="16" height="16" viewBox="0 0 16 16" version="1.1">
+                            <path fill-rule="evenodd" d="M3.75 1.5a.25.25 0 01.25-.25h8.5a.25.25 0 01.25.25v13.25a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25V1.5zm.5 0v13h7.5v-13h-7.5z"></path>
+                        </svg>
+                        <span class="file-name">collectGrades.go</span>
+                    
+                </span>
+            </td>
+            
+                <td>
+                    
+                        
+                            
+                            <div class="coverage-cell">
+                                <span class="coverage-text green">100.00%</span>
+                            </div>
+                        
+                    
+                </td>
+            
+            <td class="grade-cell">
+                A
+            </td>
+            <td class="tool-cell">
+                SOLID
+            </td>
+            <td>
+                
+                    <div class="coverage-cell">
+                        <span class="coverage-text green">100.00%</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%; background-color: #76C474;"></div>
+                        </div>
+                    </div>
+                
+            </td>
+        </tr>
+        
+    
+        
+            
+        
+        
+        <tr >
+            <td>
+                <span style="padding-left: 75px;">
+                    
+                        <svg class="icon icon-file" width="16" height="16" viewBox="0 0 16 16" version="1.1">
+                            <path fill-rule="evenodd" d="M3.75 1.5a.25.25 0 01.25-.25h8.5a.25.25 0 01.25.25v13.25a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25V1.5zm.5 0v13h7.5v-13h-7.5z"></path>
+                        </svg>
+                        <span class="file-name">filterTools.go</span>
+                    
+                </span>
+            </td>
+            
+                <td>
+                    
+                        
+                            
+                            <div class="coverage-cell">
+                                <span class="coverage-text orange">70.00%</span>
+                            </div>
+                        
+                    
+                </td>
+            
+            <td class="grade-cell">
+                B
+            </td>
+            <td class="tool-cell">
+                SOLID
+            </td>
+            <td>
+                
+                    <div class="coverage-cell">
+                        <span class="coverage-text orange">70.00%</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 70%; background-color: #F0AB86;"></div>
+                        </div>
+                    </div>
+                
+            </td>
+        </tr>
+        
+    
+        
+            
+        
+        
+        <tr >
+            <td>
+                <span style="padding-left: 75px;">
+                    
+                        <svg class="icon icon-file" width="16" height="16" viewBox="0 0 16 16" version="1.1">
+                            <path fill-rule="evenodd" d="M3.75 1.5a.25.25 0 01.25-.25h8.5a.25.25 0 01.25.25v13.25a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25V1.5zm.5 0v13h7.5v-13h-7.5z"></path>
+                        </svg>
+                        <span class="file-name">gradeDetails.go</span>
+                    
+                </span>
+            </td>
+            
+                <td>
+                    
+                        
+                            
+                            <div class="coverage-cell">
+                                <span class="coverage-text orange">70.00%</span>
+                            </div>
+                        
+                    
+                </td>
+            
+            <td class="grade-cell">
+                B
+            </td>
+            <td class="tool-cell">
+                SOLID
+            </td>
+            <td>
+                
+                    <div class="coverage-cell">
+                        <span class="coverage-text orange">70.00%</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 70%; background-color: #F0AB86;"></div>
+                        </div>
+                    </div>
+                
+            </td>
+        </tr>
+        
+    
+        
+            
+        
+        
+        <tr >
+            <td>
+                <span style="padding-left: 75px;">
+                    
+                        <svg class="icon icon-file" width="16" height="16" viewBox="0 0 16 16" version="1.1">
+                            <path fill-rule="evenodd" d="M3.75 1.5a.25.25 0 01.25-.25h8.5a.25.25 0 01.25.25v13.25a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25V1.5zm.5 0v13h7.5v-13h-7.5z"></path>
+                        </svg>
+                        <span class="file-name">latestGrades.go</span>
+                    
+                </span>
+            </td>
+            
+                <td>
+                    
+                        
+                            
+                            <div class="coverage-cell">
+                                <span class="coverage-text green">100.00%</span>
+                            </div>
+                        
+                    
+                </td>
+            
+            <td class="grade-cell">
+                A
+            </td>
+            <td class="tool-cell">
+                SOLID
+            </td>
+            <td>
+                
+                    <div class="coverage-cell">
+                        <span class="coverage-text green">100.00%</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%; background-color: #76C474;"></div>
+                        </div>
+                    </div>
+                
+            </td>
+        </tr>
+        
+    
+        
+            
+        
+        
+        <tr >
+            <td>
+                <span style="padding-left: 75px;">
+                    
+                        <svg class="icon icon-file" width="16" height="16" viewBox="0 0 16 16" version="1.1">
+                            <path fill-rule="evenodd" d="M3.75 1.5a.25.25 0 01.25-.25h8.5a.25.25 0 01.25.25v13.25a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25V1.5zm.5 0v13h7.5v-13h-7.5z"></path>
+                        </svg>
+                        <span class="file-name">model.go</span>
+                    
+                </span>
+            </td>
+            
+                <td>
+                    
+                        
+                            
+                            <div class="coverage-cell">
+                                <span class="coverage-text orange">70.00%</span>
+                            </div>
+                        
+                    
+                </td>
+            
+            <td class="grade-cell">
+                B
+            </td>
+            <td class="tool-cell">
+                SOLID
+            </td>
+            <td>
+                
+                    <div class="coverage-cell">
+                        <span class="coverage-text orange">70.00%</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 70%; background-color: #F0AB86;"></div>
+                        </div>
+                    </div>
+                
+            </td>
+        </tr>
+        
+    
+        
+            
+        
+        
+        <tr >
+            <td>
+                <span style="padding-left: 75px;">
+                    
+                        <svg class="icon icon-file" width="16" height="16" viewBox="0 0 16 16" version="1.1">
+                            <path fill-rule="evenodd" d="M3.75 1.5a.25.25 0 01.25-.25h8.5a.25.25 0 01.25.25v13.25a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25V1.5zm.5 0v13h7.5v-13h-7.5z"></path>
+                        </svg>
+                        <span class="file-name">pathFilter.go</span>
+                    
+                </span>
+            </td>
+            
+                <td>
+                    
+                        
+                            
+                            <div class="coverage-cell">
+                                <span class="coverage-text orange">70.00%</span>
+                            </div>
+                        
+                    
+                </td>
+            
+            <td class="grade-cell">
+                B
+            </td>
+            <td class="tool-cell">
+                SOLID
+            </td>
+            <td>
+                
+                    <div class="coverage-cell">
+                        <span class="coverage-text orange">70.00%</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 70%; background-color: #F0AB86;"></div>
+                        </div>
+                    </div>
+                
+            </td>
+        </tr>
+        
+    
+        
+    
+        
+    
+        
+            
+        
+        
+        <tr >
+            <td>
+                <span style="padding-left: 60px;">
+                    
+                        <svg class="icon icon-folder" width="16" height="16" viewBox="0 0 16 16" version="1.1">
+                            <path fill-rule="evenodd" d="M1.75 1A1.75 1.75 0 000 2.75v10.5C0 14.216.784 15 1.75 15h12.5A1.75 1.75 0 0016 13.25v-8.5A1.75 1.75 0 0014.25 3h-6.5a.25.25 0 01-.2-.1l-.9-1.2c-.33-.44-.85-.7-1.4-.7h-3.5z"></path>
+                        </svg>
+                        <span class="folder-name">read</span>
+                    
+                </span>
+            </td>
+            
+                <td>
+                    
+                </td>
+            
+            <td class="grade-cell">
+                
+            </td>
+            <td class="tool-cell">
+                
+            </td>
+            <td>
+                
+                    <div class="coverage-cell">
+                        <span class="coverage-text orange">63.33%</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 63.333333333333336%; background-color: #F0AB86;"></div>
+                        </div>
+                    </div>
+                
+            </td>
+        </tr>
+        
+            
+        
+        
+            
+        
+        
+        <tr >
+            <td>
+                <span style="padding-left: 75px;">
+                    
+                        <svg class="icon icon-file" width="16" height="16" viewBox="0 0 16 16" version="1.1">
+                            <path fill-rule="evenodd" d="M3.75 1.5a.25.25 0 01.25-.25h8.5a.25.25 0 01.25.25v13.25a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25V1.5zm.5 0v13h7.5v-13h-7.5z"></path>
+                        </svg>
+                        <span class="file-name">configReader.go</span>
+                    
+                </span>
+            </td>
+            
+                <td>
+                    
+                        
+                            
+                            <div class="coverage-cell">
+                                <span class="coverage-text orange">70.00%</span>
+                            </div>
+                        
+                    
+                </td>
+            
+            <td class="grade-cell">
+                B
+            </td>
+            <td class="tool-cell">
+                SOLID
+            </td>
+            <td>
+                
+                    <div class="coverage-cell">
+                        <span class="coverage-text orange">70.00%</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 70%; background-color: #F0AB86;"></div>
+                        </div>
+                    </div>
+                
+            </td>
+        </tr>
+        
+    
+        
+            
+        
+        
+        <tr >
+            <td>
+                <span style="padding-left: 75px;">
+                    
+                        <svg class="icon icon-file" width="16" height="16" viewBox="0 0 16 16" version="1.1">
+                            <path fill-rule="evenodd" d="M3.75 1.5a.25.25 0 01.25-.25h8.5a.25.25 0 01.25.25v13.25a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25V1.5zm.5 0v13h7.5v-13h-7.5z"></path>
+                        </svg>
+                        <span class="file-name">fileReader.go</span>
+                    
+                </span>
+            </td>
+            
+                <td>
+                    
+                        
+                            
+                            <div class="coverage-cell">
+                                <span class="coverage-text orange">70.00%</span>
+                            </div>
+                        
+                    
+                </td>
+            
+            <td class="grade-cell">
+                B
+            </td>
+            <td class="tool-cell">
+                SOLID
+            </td>
+            <td>
+                
+                    <div class="coverage-cell">
+                        <span class="coverage-text orange">70.00%</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 70%; background-color: #F0AB86;"></div>
+                        </div>
+                    </div>
+                
+            </td>
+        </tr>
+        
+    
+        
+            
+        
+        
+        <tr >
+            <td>
+                <span style="padding-left: 75px;">
+                    
+                        <svg class="icon icon-file" width="16" height="16" viewBox="0 0 16 16" version="1.1">
+                            <path fill-rule="evenodd" d="M3.75 1.5a.25.25 0 01.25-.25h8.5a.25.25 0 01.25.25v13.25a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25V1.5zm.5 0v13h7.5v-13h-7.5z"></path>
+                        </svg>
+                        <span class="file-name">findCodeLeft.go</span>
+                    
+                </span>
+            </td>
+            
+                <td>
+                    
+                        
+                            
+                            <div class="coverage-cell">
+                                <span class="coverage-text orange">50.00%</span>
+                            </div>
+                        
+                    
+                </td>
+            
+            <td class="grade-cell">
+                C
+            </td>
+            <td class="tool-cell">
+                SOLID
+            </td>
+            <td>
+                
+                    <div class="coverage-cell">
+                        <span class="coverage-text orange">50.00%</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 50%; background-color: #F0AB86;"></div>
+                        </div>
+                    </div>
+                
+            </td>
+        </tr>
+        
+    
+        
+    
+        
+    
+        
+            
+        
+        
+        <tr >
+            <td>
+                <span style="padding-left: 60px;">
+                    
+                        <svg class="icon icon-folder" width="16" height="16" viewBox="0 0 16 16" version="1.1">
+                            <path fill-rule="evenodd" d="M1.75 1A1.75 1.75 0 000 2.75v10.5C0 14.216.784 15 1.75 15h12.5A1.75 1.75 0 0016 13.25v-8.5A1.75 1.75 0 0014.25 3h-6.5a.25.25 0 01-.2-.1l-.9-1.2c-.33-.44-.85-.7-1.4-.7h-3.5z"></path>
+                        </svg>
+                        <span class="folder-name">types</span>
+                    
+                </span>
+            </td>
+            
+                <td>
+                    
+                </td>
+            
+            <td class="grade-cell">
+                
+            </td>
+            <td class="tool-cell">
+                
+            </td>
+            <td>
+                
+                    <div class="coverage-cell">
+                        <span class="coverage-text orange">70.00%</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 70%; background-color: #F0AB86;"></div>
+                        </div>
+                    </div>
+                
+            </td>
+        </tr>
+        
+            
+        
+        
+            
+        
+        
+        <tr >
+            <td>
+                <span style="padding-left: 75px;">
+                    
+                        <svg class="icon icon-file" width="16" height="16" viewBox="0 0 16 16" version="1.1">
+                            <path fill-rule="evenodd" d="M3.75 1.5a.25.25 0 01.25-.25h8.5a.25.25 0 01.25.25v13.25a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25V1.5zm.5 0v13h7.5v-13h-7.5z"></path>
+                        </svg>
+                        <span class="file-name">model.go</span>
+                    
+                </span>
+            </td>
+            
+                <td>
+                    
+                        
+                            
+                            <div class="coverage-cell">
+                                <span class="coverage-text orange">70.00%</span>
+                            </div>
+                        
+                    
+                </td>
+            
+            <td class="grade-cell">
+                B
+            </td>
+            <td class="tool-cell">
+                SOLID
+            </td>
+            <td>
+                
+                    <div class="coverage-cell">
+                        <span class="coverage-text orange">70.00%</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 70%; background-color: #F0AB86;"></div>
+                        </div>
+                    </div>
+                
+            </td>
+        </tr>
+        
+    
+        
+    
+        
+    
+        
+            
+        
+        
+        <tr >
+            <td>
+                <span style="padding-left: 60px;">
+                    
+                        <svg class="icon icon-file" width="16" height="16" viewBox="0 0 16 16" version="1.1">
+                            <path fill-rule="evenodd" d="M3.75 1.5a.25.25 0 01.25-.25h8.5a.25.25 0 01.25.25v13.25a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25V1.5zm.5 0v13h7.5v-13h-7.5z"></path>
+                        </svg>
+                        <span class="file-name">main.go</span>
+                    
+                </span>
+            </td>
+            
+                <td>
+                    
+                        
+                            
+                            <div class="coverage-cell">
+                                <span class="coverage-text orange">70.00%</span>
+                            </div>
+                        
+                    
+                </td>
+            
+            <td class="grade-cell">
+                B
+            </td>
+            <td class="tool-cell">
+                SOLID
+            </td>
+            <td>
+                
+                    <div class="coverage-cell">
+                        <span class="coverage-text orange">70.00%</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 70%; background-color: #F0AB86;"></div>
+                        </div>
+                    </div>
+                
+            </td>
+        </tr>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        </tbody>
+    </table>
+    
+    
+</body>
+</html>

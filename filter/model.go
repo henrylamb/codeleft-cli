@@ -13,6 +13,7 @@ type History struct {
 	CodeReview     map[string]any `json:"codeReview"`
 	GradingDetails map[string]any `json:"gradingDetails"`
 	Hash           string         `json:"hash"`
+	Id 		  string         `json:"id"`
 }
 
 type Histories []History

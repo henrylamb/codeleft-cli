@@ -1,6 +1,6 @@
 # codeleft-cli
 
-**Version:** 1.0.2
+**Version:** 1.0.3
 
 ## Overview
 
@@ -35,7 +35,7 @@
    ```bash
    codeleft-cli --version
    ```
-   You should see output indicating **version 1.0.2** (or whichever current version you installed).
+   You should see output indicating **version 1.0.3** (or whichever current version you installed).
 
 ## Quick Start
 

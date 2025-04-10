@@ -42,9 +42,18 @@ jobs:
           # Run the codeleft-cli command (adjust flags as necessary)
           codeleft-cli -asses-coverage --create-report -threshold-percent=80 -threshold-grade=A -tools "SOLID,OWASP-TOP-10,PR Ready"
 
-# 4. Upload Coverage Report as an Artifact
+      # 4. Upload Coverage Report as an Artifact
       - name: Upload Coverage Report Artifact
         uses: actions/upload-artifact@v4  # <-- UPDATED HERE
         with:
           name: CodeLeft-Coverage-Report
           path: CodeLeft-Coverage-Report.html # Make sure this file actually exists after the previous step runs
+
+      # 5. Add Link Information to Job Summary
+      - name: Add Report Info to Summary
+        run: |
+          echo "### CodeLeft Coverage Report" >> $GITHUB_STEP_SUMMARY
+          echo "📊 The full HTML coverage report has been generated." >> $GITHUB_STEP_SUMMARY
+          echo "You can download it from the **Artifacts** section of this workflow run (usually found above or below this summary)." >> $GITHUB_STEP_SUMMARY
+          # Note: You cannot easily get the *direct download URL* during the run to put here.
+          # GitHub automatically lists artifacts with download links on the summary page itself.

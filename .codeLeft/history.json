@@ -1,0 +1,1459 @@
+[
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/main.go",
+    "grade": "B",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:49:19.632Z",
+    "codeReview": {
+      "review": "This code lacks proper error handling for `toolsFlag` being `nil` (line 48).  The `parseTools` function (line 120) while handling empty input, doesn't validate for invalid input (e.g., non-comma separated values).  The code's reliance on global variables (e.g., `history`) makes it harder to test and maintain, violating the Single Responsibility Principle.\n"
+    },
+    "gradingDetails": {},
+    "hash": "6ad98f8c5d82a9c71af2a29fad81b88dab82bb996a0d6319cfeba66b0def6dfa"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/assessment/assessor.go",
+    "grade": "C",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:49:19.706Z",
+    "codeReview": {
+      "review": "This code has three critical areas of concern.  First, `AccessorGrade`'s `Assess` method uses a `failed` boolean that is unnecessarily inverted.  Second, `AccessorAverageCoverage`'s `Assess` method has a potential division by zero error if `details` is empty.  Third, both `AccessorGrade` and `AccessorAverageCoverage` rely on external `ViolationCounter` which couples the assessment logic to a specific violation handling mechanism.  Example: `ag.ViolationCounter.AddViolation(detail)` in `AccessorGrade.Assess`.\n"
+    },
+    "gradingDetails": {},
+    "hash": "f6d71c9e82f719472da60493dea48847920d6b22fab33d32012c68f10348eaae"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/pathFilter.go",
+    "grade": "A",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:49:19.710Z",
+    "codeReview": {
+      "review": "The code lacks proper error handling.  `filepath.ToSlash` normalization is redundant and potentially inefficient.  The `isIgnored` function's nested loops are inefficient for large lists of ignored files and folders.  Example:  `filepath.ToSlash(path)` is called twice in `isIgnored`, which is unnecessary.\n"
+    },
+    "gradingDetails": {},
+    "hash": "708540decf8323791340152f441e93bd4f315241b411275c56dfea95bde13b80"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/read/configReader.go",
+    "grade": "C",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:49:19.735Z",
+    "codeReview": {
+      "review": "This code lacks proper error handling and could benefit from more robust checks.  The `NewConfigReader` function has a critical flaw: it doesn't validate that `.codeleft` exists *before* attempting to join it with `config.json`.  This can lead to `config.json` being searched in a non-existent directory.  The `ReadConfig` function also suffers from similar issues, failing to check if `cr.CodeleftPath` is valid before using it.  Finally, the use of `defer file.Close()` is not ideal, as it can cause issues if errors occur during decoding.  These issues make the code vulnerable to panics and incorrect results.\n"
+    },
+    "gradingDetails": {},
+    "hash": "5a08105ed281bbb170cae918a1fc82c36d8b520c420e5f08543dc37337ac357a"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/filterTools.go",
+    "grade": "C",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:49:19.910Z",
+    "codeReview": {
+      "review": "1. **String manipulation in a loop:**  `strings.TrimPrefix` and `strings.TrimSuffix` are called within the loop.  This creates unnecessary overhead.  Example: `strings.TrimPrefix(value, \" \")`.  These should be performed once on the input slice.\n\n2. **Inefficient filtering:**  The code iterates through the entire `histories` slice for each `value` in the `values` slice.  This is a quadratic time complexity issue.  Example: `for _, history := range histories`.  Consider using a map for faster lookups.\n\n3. **Unnecessary copies:**  `filteredHistories` is repeatedly appended to.  This creates unnecessary copies of `Histories` objects.  Example: `filteredHistories = append(filteredHistories, toolFilteredHistories...)`.  Consider using a slice or other data structure that avoids repeated copies.\n"
+    },
+    "gradingDetails": {},
+    "hash": "28e68a8455ec366f5b6a51623a9a464cd02be7c57122c83f0cbd38992991901f"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/collectGrades.go",
+    "grade": "A",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:49:19.930Z",
+    "codeReview": {
+      "review": "This code violates the Single Responsibility Principle (SRP) by having `GradeCollection` handle both collecting grades and calculating numerical values.  `GradeCollection` also has a tight coupling with `GradeCalculator`, making it hard to swap implementations.  Finally, the repeated calculation of `GradeNumericalValue` within the loop is inefficient.  For example, the line `newDetails.GetCoverage(g.GradeCalculator.GradeNumericalValue(threshold))` could be improved by calculating the threshold value once outside the loop.\n"
+    },
+    "gradingDetails": {},
+    "hash": "f0157612170dcca0f720a208d072a555efa6d25a81e910c8056df44ed71b1593"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/read/fileReader.go",
+    "grade": "A",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:49:19.969Z",
+    "codeReview": {
+      "review": "This code has three critical areas of concern.  First, error handling is overly verbose and repetitive.  Checking for file existence and type multiple times (e.g., lines 58-66) is inefficient. Second, the `NewHistoryReader` function could benefit from a more robust way to handle the `repoRoot` parameter.  Instead of relying on `os.Getwd()`, it should accept the `repoRoot` as an argument.  Third, the code lacks clear separation of concerns.  The `HistoryReader` struct combines file reading and error handling, which could be improved by separating these responsibilities.  For example, line 28 and 32 could be improved by using a single error check.\n"
+    },
+    "gradingDetails": {},
+    "hash": "13e7d47b68bedd08062072d8bbed62cbacbfcbc9092e88ba6d327c75e70e38c3"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/read/fileReader.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:49:20.039Z",
+    "codeReview": {
+      "review": "This code lacks robust error handling for potential file system issues.  The `NewHistoryReader` function doesn't check if `.codeleft` exists *before* attempting to join it with `history.json`.  If `.codeleft` is missing, the `ReadHistory` function will return an error, but the error message is not informative.  Finally, the code doesn't validate the JSON structure of `history.json`, potentially leading to unexpected behavior or crashes if the file is malformed.  Example:  `if hr.CodeleftPath == \"\" { ... }` in `ReadHistory` is a critical error that should be handled earlier.\n"
+    },
+    "gradingDetails": {},
+    "hash": "db6ba4436810f9fd5b10c7fd72c803af2cf705c844e33896208bf8bcf67c2f96"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/main.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:49:20.172Z",
+    "codeReview": {
+      "review": "OWASP TOP 10 Review:\n\nCritical areas of concern include:\n\n1.  **Missing Input Validation:**  The code lacks robust input validation for the `toolsFlag`.  While it trims spaces, it doesn't prevent malicious input.  (e.g., `tools=OWASP-Top-10,../../etc/passwd`).  Improper handling of potentially harmful data could lead to directory traversal vulnerabilities.\n\n2.  **Lack of Error Handling:**  While error checks exist for file reading and initialization, the code lacks comprehensive error handling for potentially problematic inputs like empty `toolsFlag` values.  This can lead to unexpected behavior or crashes.  (e.g., `if toolsFlag == nil`).\n\n3.  **Unclear Logic:** The code's logic for handling different assessment types (`assess-grade`, `assess-coverage`) is not immediately obvious.  The conditional checks could be more explicit and readable.  (e.g., the `if *assessGrade` and `if *assessCoverage` blocks).\n"
+    },
+    "gradingDetails": {},
+    "hash": "584cdc3ba1fa9635bb18aac6f159a547a9833446b11802aecbe43d2a8436b5f2"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/types/model.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:49:20.198Z",
+    "codeReview": {
+      "review": "**OWASP Top 10 Review (Summary)**\n\nThis code snippet, defining a configuration structure, presents no immediate critical vulnerabilities.  However,  a lack of input validation for the `Threshold` field is a potential concern (Injection).  Additionally, the absence of any security measures related to the `Config` loading process (e.g., preventing malicious JSON input) is a significant weakness (Injection).  Finally, the `Config` structure lacks any mechanism to prevent or detect tampering with the `Security` settings, which could lead to unintended behavior (Improper Authentication).  Example:  No validation of `Threshold` string.\n"
+    },
+    "gradingDetails": {},
+    "hash": "dea209c268df3ee0a5e1e4910487a245dc3246f6da3d765a4f9429bcab86f6c1"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/assessment/violations.go",
+    "grade": "A",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:49:20.220Z",
+    "codeReview": {
+      "review": "This code demonstrates a basic implementation of a `Violations` interface and a `Violation` struct.  However, three critical areas of concern exist:\n\n1.  **Lack of error handling:** The `Print` method handles potential `fmt.Fprintf` errors, but the `NewViolation` function lacks error handling, which could lead to unexpected behavior if `filter.GradeDetails` is nil.\n\n2.  **Inefficient `AddViolation`:**  Appending to a slice within a method is generally fine, but if `ListViolations` is expected to grow very large, consider using a `sync.Pool` or a different data structure to avoid excessive allocations.\n\n3.  **Missing `Print` method implementation:** The `Print` method is implemented, but the `Violations` interface requires a `Print` method.  The current implementation is correct, but it could be improved by using a more efficient way to print the data.  For example, using a buffer to collect the output before writing to `os.Stderr`.\n"
+    },
+    "gradingDetails": {},
+    "hash": "c5360edeb8a9a92ee7434810f5a901ede92cadc78f53e8599c47cc34d664ef4f"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/model.go",
+    "grade": "D",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:49:20.245Z",
+    "codeReview": {
+      "review": "The `GetCoverage` function uses a series of `if/else if` statements, making it hard to read and maintain.  The logic for calculating coverage based on score thresholds is overly complex and could be simplified using a lookup table or a more concise conditional expression.  Finally, the `Histories` struct's `Len`, `Less`, and `Swap` methods are not efficient for large datasets, as they require copying the entire slice on each swap.\n"
+    },
+    "gradingDetails": {},
+    "hash": "dd7b16fbf79c554dc3775c23ca32223744000b6431321b89e5f919a92bdb78fb"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/pathFilter.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:49:20.311Z",
+    "codeReview": {
+      "review": "**OWASP Top 10 Review (Short Summary)**\n\nThree critical areas of concern:\n\n1.  **Improper Input Validation:**  The code lacks validation of the input `ignoredFiles` and `ignoredFolders`.  Maliciously crafted paths could lead to directory traversal vulnerabilities.  Example:  `../../etc/passwd` in `ignoredFiles`.\n\n2.  **Path Traversal:**  `filepath.ToSlash` normalizes paths, but this doesn't prevent directory traversal if the input paths are manipulated.  Example:  `../` in `ignoredFolders` could bypass intended filtering.\n\n3.  **Insufficient Error Handling:**  No error handling is present for potential issues with file paths or input data.  Example:  `filepath.Join` could fail if the input is malformed.\n"
+    },
+    "gradingDetails": {},
+    "hash": "d74296a8e94f35dc6166239601b792b3ac3944d50349a20d3db7ced18af6f668"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/read/configReader.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:49:20.404Z",
+    "codeReview": {
+      "review": "This code lacks robust error handling for file access and potential directory traversal vulnerabilities.  The `NewConfigReader` function doesn't validate the `.codeleft` directory's contents, potentially allowing malicious files to be included.  The `ReadConfig` function doesn't validate the `config.json` file's contents, leaving the application vulnerable to unexpected data.  Finally, the code assumes a specific directory structure, which could be problematic in different environments.  Example:  `filepath.Join(repoRoot, \".codeleft\")` in `NewConfigReader` is a potential vulnerability.\n"
+    },
+    "gradingDetails": {},
+    "hash": "c1bb555f214888fa6a3ded388a80663c4b0564e7dbd88794c775ec050f30fb08"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/model.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:49:20.426Z",
+    "codeReview": {
+      "review": "OWASP TOP 10 Review:\n\nCritical areas of concern include:\n\n1.  **Improper Input Validation:**  The `GetCoverage` function lacks input validation for `thresholdAsNum`.  Negative or extremely large values could lead to unexpected behavior or crashes.  Example: `if g.Score > thresholdAsNum { ... }`  This function is vulnerable to integer overflow.\n\n2.  **Unclear Logic:** The `GetCoverage` function's logic for calculating coverage based on score thresholds is complex and hard to follow.  This makes it prone to errors and difficult to maintain. Example: `else if g.Score >= thresholdAsNum-1 { ... }`  This could be simplified.\n\n3.  **Missing Error Handling:**  The code lacks error handling for potential issues, such as invalid data types or missing fields in the input data.  This could lead to unexpected behavior or crashes.\n"
+    },
+    "gradingDetails": {},
+    "hash": "efc1b00af57026905a1f4bd02b08f4dbcf0f0d93840c82f78f08636d0e287cc0"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/latestGrades.go",
+    "grade": "A",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:49:20.621Z",
+    "codeReview": {
+      "review": "* **Performance:**  The nested `if` statement within the loop significantly impacts performance.  Repeatedly checking for existence and comparing timestamps is inefficient.  (Line 20-23)\n\n* **Readability:** The `generateCompositeKey` function is overly simple and lacks clarity.  A more descriptive name would improve readability. (Line 27)\n\n* **Maintainability:**  The `ConvertMapToSlice` function is a simple but unnecessary conversion.  It's better to directly return the map if possible. (Line 34-40)\n"
+    },
+    "gradingDetails": {},
+    "hash": "d5ffb49b2193a6be4c04397c840f914a644b604a18d68e17495c71ac01e663f4"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/latestGrades.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:49:20.651Z",
+    "codeReview": {
+      "review": "**OWASP Top 10 Review (Short Summary)**\n\nThree critical areas of concern:\n\n1.  **Insecure Deserialization:**  No input validation is performed on `filePath` and `assessingTool` before constructing the composite key (`filePath + \"|\" + assessingTool`).  This could lead to a deserialization vulnerability if malicious input is used to craft a key that triggers unexpected behavior or exploits.  Example:  `../../../../etc/passwd|malicious_tool`.\n\n2.  **Improper Input Handling:**  The code lacks input validation for `filePath` and `assessingTool`.  These inputs are directly concatenated without any sanitization, potentially leading to issues like SQL injection or directory traversal vulnerabilities.  Example:  `filePath` containing special characters or path manipulation.\n\n3.  **Insufficient Data Validation:**  The code assumes that `TimeStamp` is always comparable.  If `TimeStamp` is not properly validated or if it's possible for it to be manipulated, the logic for selecting the latest history could be compromised.  Example:  `TimeStamp` being a string instead of a time.Time type.\n"
+    },
+    "gradingDetails": {},
+    "hash": "74c96ba52e1585c9f7642ff28a384c821980abc17c4ba4503f49d90dfae68f55"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/collectGrades.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:49:20.698Z",
+    "codeReview": {
+      "review": "**OWASP Top 10 Review (Critical Areas)**\n\n1.  **Injection:**  The code lacks input validation for the `threshold` string.  A malicious user could potentially inject code into the `threshold` parameter, leading to unexpected behavior or data breaches.  Example:  `threshold=\"A'; DROP TABLE Grades; --\"`.\n\n\n2.  **Improper Neutralization of Special Elements used in an SQL Command:**  The code does not sanitize the input `threshold` before using it in any calculations.  This could lead to SQL injection vulnerabilities if the `threshold` value is used in a database query.\n\n\n3.  **Insecure Deserialization:**  While not directly present in the provided code, the potential for insecure deserialization exists if the `Histories` type is not properly validated.  If `Histories` contains serialized data, malicious data could be deserialized and executed.\n"
+    },
+    "gradingDetails": {},
+    "hash": "fcc7fcac941501615b5ced60e8a51d0c1cf04c884aef0c15ca2efd6b33f73c02"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/types/model.go",
+    "grade": "A",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:49:20.767Z",
+    "codeReview": {
+      "review": "The code defines a `Config` struct for configuration, which is good for organization.  However, three critical areas of concern are:\n\n1.  **Lack of validation:**  The `Config` struct lacks validation for the `Threshold` string, which could lead to unexpected behavior if the value isn't correctly formatted.  Example:  No check for empty or invalid threshold values.\n\n2.  **Overly verbose quality flags:** The `Quality` struct has multiple boolean flags (e.g., `solid`, `liteTest`).  This could be improved by using a single flag or enum for a more concise representation. Example:  Replace `solid`, `liteTest`, `prReady`, `cleanCode` with a single `QualityLevel` enum.\n\n3.  **Missing error handling:** The code doesn't handle potential errors during JSON decoding or configuration usage.  Example:  Add error handling to the function that parses the config file.\n"
+    },
+    "gradingDetails": {},
+    "hash": "f59e5426afcd0bcf6bc550d2eb40285a0c3b28ea70d14d834c6557edf37c9994"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/assessment/assessor.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:49:20.777Z",
+    "codeReview": {
+      "review": "**OWASP Top 10 Review (Summary)**\n\n**Critical Areas of Concern:**\n\n1.  **Missing Input Validation:**  The code lacks validation for the `threshold` string in `AccessorGrade.Assess`.  A malicious user could potentially supply a string that isn't a valid numerical representation of a grade, leading to unexpected behavior or crashes.  Example: `Assess(\"abc\", ...)`\n\n2.  **Integer Overflow/Underflow:** The `AccessorAverageCoverage.Assess` function calculates an average. If the number of `details` is very large, the `total` variable could overflow, leading to incorrect results.  Example: `total += detail.Coverage`\n\n3.  **Improper Error Handling:**  `AccessorAverageCoverage.Assess` handles the case of an empty `details` slice, but doesn't handle other potential errors, such as `detail.Coverage` being negative or exceeding the maximum integer value. Example: `if (len(details)) == 0`\n"
+    },
+    "gradingDetails": {},
+    "hash": "a87940e8450711ab92ee359a48bf600012b5b0b3a53da8f9ec6c1afbc6cefbf0"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/assessment/violations.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:49:20.807Z",
+    "codeReview": {
+      "review": "**OWASP Top 10 Review (Snippet)**\n\n**Critical Areas of Concern:**\n\n1.  **Injection:**  No input validation is present.  Maliciously crafted `FileName`, `Grade`, or `Coverage` values could lead to unexpected behavior or system compromise.  Example:  `FileName` could be crafted to execute arbitrary commands.\n\n\n2.  **Improper Authentication:**  No authentication mechanisms are implemented.  Any user could potentially add violations and manipulate the output.\n\n\n3.  **Sensitive Data Exposure:**  The code directly prints sensitive information (file names, grades, coverage percentages) to standard error.  This data should be handled with more care, potentially redacted or logged securely.  Example: `fmt.Fprintf(os.Stderr, \"File: %s ...\")` exposes file names directly.\n"
+    },
+    "gradingDetails": {},
+    "hash": "e8660768cab04c82070375a2299855764a94940f3ba3bf24e1580ba07aa07696"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/filterTools.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:49:21.072Z",
+    "codeReview": {
+      "review": "**OWASP Top 10 Review (Short Summary)**\n\n**Critical Areas of Concern:**\n\n1.  **Improper Input Validation:**  The code lacks robust input validation for the `tool` string.  A malicious user could potentially supply input that could lead to unexpected behavior or security vulnerabilities.  Example: `strings.ToUpper(tool)` is vulnerable to a variety of attacks if the input is not sanitized.\n\n\n2.  **Insufficient Data Sanitization:**  The code does not sanitize the `value` string before using it in `strings.TrimPrefix` and `strings.TrimSuffix`.  This could lead to issues if the input contains special characters or unexpected formatting. Example: `strings.TrimPrefix(value, \" \")`.\n\n\n3.  **Potential for Denial-of-Service (DoS):**  If the input `values` array is very large, the code could potentially lead to a DoS attack.  The nested loops and appending operations could consume significant resources.  Example: The `for` loops in `Filter` and `filterByTool` are inefficient and could be optimized.\n"
+    },
+    "gradingDetails": {},
+    "hash": "9ed7f87fe74e9b4a93ad20538f0023325c768770c817fa2b3506771e316c5957"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/types/model.go",
+    "grade": "A",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:50:49.474Z",
+    "codeReview": {
+      "review": "The code defines a `Config` struct for configuration, which is good for organization.  However, three critical areas of concern are:\n\n1.  **Lack of validation:**  The `Config` struct lacks validation for the `Threshold` string, which could lead to unexpected behavior if the value isn't correctly formatted.  Example:  No check for empty or invalid threshold values.\n\n2.  **Overly verbose quality flags:** The `Quality` struct has multiple boolean flags (e.g., `solid`, `liteTest`).  This could be improved by using a single flag or enum for a more concise representation. Example:  Replace `solid`, `liteTest`, `prReady`, `cleanCode` with a single `QualityLevel` enum.\n\n3.  **Missing error handling:** The code doesn't handle potential errors during JSON decoding or configuration usage.  Example:  Add error handling to the function that parses the config file.\n"
+    },
+    "gradingDetails": {},
+    "hash": "f02ca9b36ff752cd83a296e9221d5b5ca616a3ebd57c9b25d04c8edfb9db4f84"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/assessment/violations.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:50:57.197Z",
+    "codeReview": {
+      "review": "**OWASP Top 10 Review (Snippet)**\n\n**Critical Areas of Concern:**\n\n1.  **Injection:**  No input validation is present.  Maliciously crafted `FileName`, `Grade`, or `Coverage` values could lead to unexpected behavior or system compromise.  Example:  `FileName` could be crafted to execute arbitrary commands.\n\n\n2.  **Improper Authentication:**  No authentication mechanisms are implemented.  Any user could potentially add violations and manipulate the output.\n\n\n3.  **Sensitive Data Exposure:**  The code directly prints sensitive information (file names, grades, coverage percentages) to standard error.  This data should be handled with more care, potentially redacted or logged securely.  Example: `fmt.Fprintf(os.Stderr, \"File: %s ...\")` exposes file names directly.\n"
+    },
+    "gradingDetails": {},
+    "hash": "0a6e4df8c89e0636f9029d8528e88fb9d260aafd3b32c79ee1a30317bec06498"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/assessment/assessor.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:51:03.449Z",
+    "codeReview": {
+      "review": "**OWASP Top 10 Review (Summary)**\n\n**Critical Areas of Concern:**\n\n1.  **Missing Input Validation:**  The code lacks validation for the `threshold` string in `AccessorGrade.Assess`.  A malicious user could potentially supply a string that isn't a valid numerical representation of a grade, leading to unexpected behavior or crashes.  Example: `Assess(\"abc\", ...)`\n\n2.  **Integer Overflow/Underflow:** The `AccessorAverageCoverage.Assess` function calculates an average. If the number of `details` is very large, the `total` variable could overflow, leading to incorrect results.  Example: `total += detail.Coverage`\n\n3.  **Improper Error Handling:**  `AccessorAverageCoverage.Assess` handles the case of an empty `details` slice, but doesn't handle other potential errors, such as `detail.Coverage` being negative or exceeding the maximum integer value. Example: `if (len(details)) == 0`\n"
+    },
+    "gradingDetails": {},
+    "hash": "c0aebd8e388e5aa56399f1c9f0048020274aaaa9cf5d1b1749e03420f482e12c"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/assessment/violations.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:51:09.035Z",
+    "codeReview": {
+      "review": "**OWASP Top 10 Review (Snippet)**\n\n**Critical Areas of Concern:**\n\n1.  **Injection:**  No input validation is present.  Maliciously crafted `FileName`, `Grade`, or `Coverage` values could lead to unexpected behavior or system compromise.  Example:  `FileName` could be crafted to execute arbitrary commands.\n\n\n2.  **Improper Authentication:**  No authentication mechanisms are implemented.  Any user could potentially add violations and manipulate the output.\n\n\n3.  **Sensitive Data Exposure:**  The code directly prints sensitive information (file names, grades, coverage percentages) to standard error.  This data should be handled with more care, potentially redacted or logged securely.  Example: `fmt.Fprintf(os.Stderr, \"File: %s ...\")` exposes file names directly.\n"
+    },
+    "gradingDetails": {},
+    "hash": "6b93f2e9eae5845ddc30f563f4516951242f2f1e39522530f9a29135d53cf735"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/collectGrades.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:51:14.681Z",
+    "codeReview": {
+      "review": "**OWASP Top 10 Review (Critical Areas)**\n\n1.  **Injection:**  The code lacks input validation for the `threshold` string.  A malicious user could potentially inject code into the `threshold` parameter, leading to unexpected behavior or data breaches.  Example:  `threshold=\"A'; DROP TABLE Grades; --\"`.\n\n\n2.  **Improper Neutralization of Special Elements used in an SQL Command:**  The code does not sanitize the input `threshold` before using it in any calculations.  This could lead to SQL injection vulnerabilities if the `threshold` value is used in a database query.\n\n\n3.  **Insecure Deserialization:**  While not directly present in the provided code, the potential for insecure deserialization exists if the `Histories` type is not properly validated.  If `Histories` contains serialized data, malicious data could be deserialized and executed.\n"
+    },
+    "gradingDetails": {},
+    "hash": "fb5dbda2ecfa790325fa422f3a87910b8cf79ea4595c76714d1091522e493633"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/filterTools.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:51:19.855Z",
+    "codeReview": {
+      "review": "**OWASP Top 10 Review (Short Summary)**\n\n**Critical Areas of Concern:**\n\n1.  **Improper Input Validation:**  The code lacks robust input validation for the `tool` string.  A malicious user could potentially supply input that could lead to unexpected behavior or security vulnerabilities.  Example: `strings.ToUpper(tool)` is vulnerable to a variety of attacks if the input is not sanitized.\n\n\n2.  **Insufficient Data Sanitization:**  The code does not sanitize the `value` string before using it in `strings.TrimPrefix` and `strings.TrimSuffix`.  This could lead to issues if the input contains special characters or unexpected formatting. Example: `strings.TrimPrefix(value, \" \")`.\n\n\n3.  **Potential for Denial-of-Service (DoS):**  If the input `values` array is very large, the code could potentially lead to a DoS attack.  The nested loops and appending operations could consume significant resources.  Example: The `for` loops in `Filter` and `filterByTool` are inefficient and could be optimized.\n"
+    },
+    "gradingDetails": {},
+    "hash": "2c241da1aa4453d1946824a8393394355c3a0afa424307f4bc589b1d794c4236"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/model.go",
+    "grade": "C",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:53:18.710Z",
+    "codeReview": {
+      "review": "The code defines a `History` struct and a `Histories` slice.  Three critical areas of concern are:\n\n1.  **Lack of error handling:**  No error handling is present in any of the functions, which could lead to unexpected behavior if input data is invalid.\n\n2.  **Unclear purpose of `CodeReview` and `GradingDetails`:** The `map[string]any` types for these fields lack specific types, making it unclear what data they should contain.  This could lead to runtime errors or unexpected behavior.\n\n3.  **Missing sorting context:** The sorting logic only considers the `TimeStamp`.  Without additional context, it's unclear if this is the intended sorting criteria.  For example, sorting by `Grade` or `Username` might be more appropriate in some cases.\n"
+    },
+    "gradingDetails": {},
+    "hash": "010166970c6bfcb789b6d1de077d12b61ef5e49ca70a993d28b3c068428cb37e"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/gradeDetails.go",
+    "grade": "C",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:53:26.152Z",
+    "codeReview": {
+      "review": "The code violates the Single Responsibility Principle (SRP) as `GetCoverage` handles both calculating and setting coverage.  It also lacks flexibility;  the hardcoded coverage values (e.g., `120`, `100`) are tightly coupled to the logic.  Finally, the `GetCoverage` function's numerous `if/else if` statements are overly complex and could be improved with a more maintainable approach, such as a lookup table or a function that maps scores to coverage.  Example: `if g.Score > thresholdAsNum { g.Coverage = 120 }`\n"
+    },
+    "gradingDetails": {},
+    "hash": "9b61ac03434f46da6c955cf8516b83f64df634881dd9b60d02cb523e76be643a"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/gradeDetails.go",
+    "grade": "F",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:55:29.194Z",
+    "codeReview": {
+      "review": "The code lacks proper SOLID principles.  The `GetCoverage` function is overly complex, with numerous `if/else if` statements, making it hard to maintain and understand.  The use of magic numbers (e.g., `aboveThreshold`, `threshold`) for thresholds makes the code less readable and maintainable.  Finally, the `GetCoverage` function's parameter `thresholdAsNum` is not used consistently with the other constants, making the code less clear and potentially error-prone.  Example:  `if g.Score > thresholdAsNum`.\n"
+    },
+    "gradingDetails": {},
+    "hash": "4ca9e02473995e341c2d18af0c92f31911753868b3bcec89e19f071ef10c90f4"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/gradeDetails.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:55:54.564Z",
+    "codeReview": {
+      "review": "**OWASP Top 10 Review (Snippet)**\n\n**Critical Areas of Concern:**\n\n1.  **Insecure Data Handling:**  The `GetCoverage` function lacks input validation.  `thresholdAsNum` is not validated, allowing arbitrary values to affect the coverage calculation.  This could lead to unexpected results or vulnerabilities if malicious input is used.  Example: `g.GetCoverage(-100)`.\n\n2.  **Improper Error Handling:**  No error handling is present.  If `g.Score` is not an integer, the program will likely panic.\n\n3.  **Unclear Logic:** The nested `if-else if` structure for coverage calculation is complex and hard to reason about.  The thresholds are numerous and not clearly defined, making it difficult to understand the intended behavior and potentially introducing bugs.  Example: The logic around `thresholdAsNum-1`, `thresholdAsNum-2`, and `thresholdAsNum-3` is unclear and could be simplified.\n"
+    },
+    "gradingDetails": {},
+    "hash": "d47e7a86d22e48ad3190c88c0bdb74496bfe421038ec25a8563fc8908e258248"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/gradeDetails.go",
+    "grade": "F",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:55:55.507Z",
+    "codeReview": {
+      "review": "The code lacks proper SOLID principles.  The `GetCoverage` function is overly complex, with numerous `if/else if` statements, making it hard to maintain and understand.  The use of magic numbers (e.g., `aboveThreshold`, `threshold`) for thresholds makes the code less readable and maintainable.  Finally, the `GetCoverage` function's parameter `thresholdAsNum` is not used consistently with the other constants, making the code less clear and potentially error-prone.  Example:  `if g.Score > thresholdAsNum`.\n"
+    },
+    "gradingDetails": {},
+    "hash": "044c41ec9db9d8305eb746a74c0d2d64a88fc5721c57ff0a84023f42e2d68e1c"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/gradeDetails.go",
+    "grade": "C",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T18:56:24.489Z",
+    "codeReview": {
+      "review": "The code violates the Single Responsibility Principle (SRP) as `GetCoverage` handles both calculating and setting coverage.  It also lacks flexibility;  the hardcoded coverage values (e.g., `120`, `100`) are tightly coupled to the logic.  Finally, the `GetCoverage` function's numerous `if/else if` statements are overly complex and could be improved with a more maintainable approach, such as a lookup table or a function that maps scores to coverage.  Example: `if g.Score > thresholdAsNum { g.Coverage = 120 }`\n"
+    },
+    "gradingDetails": {},
+    "hash": "5dc2f33b08d64f7a60ab75085003f845c9bf90a4aff407b702d428b40d84b30d"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/gradeDetails.go",
+    "grade": "F",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T19:55:32.210Z",
+    "codeReview": {
+      "review": "The `GetCoverage` method lacks clarity and maintainability.  The numerous `if/else if` conditions make it hard to understand the coverage calculation logic.  The `thresholdAsNum` parameter is not descriptive.  The method modifies the `GradeDetails` struct directly, violating the principle of immutability.  Example:  `if g.Score > thresholdAsNum { g.Coverage = 120 }`  This could be improved by creating a separate function to calculate coverage based on score and threshold.  A more descriptive parameter name (e.g., `threshold`) would also improve readability.\n"
+    },
+    "gradingDetails": {},
+    "hash": "78de013089b77002740ca68806844cbd11589f93a542bc62e6c5588d448b902e"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/gradeDetails.go",
+    "grade": "D",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T19:55:39.166Z",
+    "codeReview": {
+      "review": "This code has three critical areas of concern.  First, the `GetCoverage` function uses a series of `if/else if` statements to determine coverage based on score thresholds.  This is overly complex and hard to maintain.  Second, the coverage values (120, 100, etc.) are arbitrary and lack clear rationale.  Third, the `GetCoverage` function modifies the `GradeDetails` struct directly, violating the principle of immutability.  Example: `if g.Score > thresholdAsNum { g.Coverage = 120 }`.  A more robust solution would use a function to calculate coverage based on a clear scoring system.\n"
+    },
+    "gradingDetails": {},
+    "hash": "c9bb42a237797619d684e8b08e21bd7e2e6fc5ef955e0f3616377311dc876443"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/gradeDetails.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T19:56:02.249Z",
+    "codeReview": {
+      "review": "**OWASP Top 10 Review (Critical Areas)**\n\nThis code lacks input validation, potentially leading to **Injection flaws**.  The `GetCoverage` function's conditional logic for calculating coverage based on score is **unclear and brittle**.  The `thresholdAsNum` parameter is not validated, making it susceptible to **Improper Neutralization of Data Leading to SQL Injection** if used in a database query.  For example, if `thresholdAsNum` is manipulated, the coverage calculation could produce unexpected results.  The `GetCoverage` function's logic is also overly complex and could be simplified.  Example: `if g.Score > thresholdAsNum { g.Coverage = 120 } else { g.Coverage = 0 }`\n"
+    },
+    "gradingDetails": {},
+    "hash": "1bc98e160c5e47594ff68b83bcb647d49a5e3df4fd1efe5c391c094cf096832a"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/gradeDetails.go",
+    "grade": "D",
+    "username": "Hlamb",
+    "timestamp": "2025-01-14T19:56:07.297Z",
+    "codeReview": {
+      "review": "This code has three critical areas of concern.  First, the `GetCoverage` function uses a series of `if/else if` statements to determine coverage based on score thresholds.  This is overly complex and hard to maintain.  Second, the coverage values (120, 100, etc.) are arbitrary and lack clear rationale.  Third, the `GetCoverage` function modifies the `GradeDetails` struct directly, violating the principle of immutability.  Example: `if g.Score > thresholdAsNum { g.Coverage = 120 }`.  A more robust solution would use a function to calculate coverage based on a clear scoring system.\n"
+    },
+    "gradingDetails": {},
+    "hash": "23ccfaeaaf1560a004d286068b6bac038eed8c648e18ddc428f50dca41ec762e"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/main.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-04-09T17:18:38.088Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "brokenAccessControl": {
+        "clientServerAccessPolicyEnforcement": 0,
+        "idorPrevention": 0,
+        "roleBasedAccessControl": 0
+      },
+      "cryptographicFailures": {
+        "dataEncryption": 0,
+        "encryptionAlgorithmStrength": 0
+      },
+      "identificationAuthentication": {
+        "multiFactorAuthentication": 0,
+        "passwordPolicy": 0,
+        "sessionManagement": 0
+      },
+      "injection": {
+        "inputSanitization": 0,
+        "preparedStatementsUsage": 0
+      },
+      "insecureDesign": {
+        "secureDesignPattern": 0,
+        "sensitiveDataExposure": 0,
+        "threatModeling": 0
+      },
+      "securityLoggingMonitoring": {
+        "anomalyMonitoring": 0,
+        "criticalEventLogging": 0,
+        "secureLogStorage": 0
+      },
+      "securityMisconfiguration": {
+        "adminEndpointExposure": 0,
+        "defaultConfiguration": 0,
+        "securityHeaders": 0
+      },
+      "serverSideRequestForgery": {
+        "inputValidation": 0,
+        "internalSystemExposure": 0,
+        "networkLayerProtection": 0
+      },
+      "softwareDataIntegrity": {
+        "versionControl": 0
+      },
+      "vulnerableOutdatedComponents": {
+        "knownVulnerabilities": 0
+      }
+    },
+    "hash": "e3a95bb113a8d398f51ce8da3394b613ad6b21b92cf75ddff254d735950c1d0b",
+    "id": "eJytV99P3DgQ/leGSK2yNJvAPa60D9xSWiR0oFvaeyBI+JLJrlXHjmwvV47yv5/Gdn4toS1398KGzMw334w/25PHiBmDxnC5uVZKRIvo8o+T9dX8+vJqfnwUJVGhSlwpaVHaaBE1rPjCNgg14zKXueR1o7SFOJe5zZ2vwMrOC8Ezj1ujtHk0Ya64sKgnTRpZ2RoqwTbdc91BKdM+Gau53Lh/Z8Qoy+AzasOVBFWB3SKsLs7BKiVyWShpbGdeQh4dp0fpLw6KAqkq4MZFobT6ARrFpYVKaXhQO91BpbmsdrJwAfEMHolKlsEpVlwiEGdDr+xWo9kqUX7QrERYLJ0pXTvKcR519vmGHPIogTzyf9doPQ9ngc4zzaPZCPoKdYHSduDn0o6QG28n1KMRcDDQaj5HV0qYM8E2E5zJNGS6UnXN5gYbppnFEgQ31rVeKcHlBmJMN2kC68uL89MkiEs18+OjZCWQyflKlZikaToLue/98oyy/6qUiPMomChvxYRBSn/KTSPYg6+p2GlNzbifVkBbnpfmeFFCCmfql6NLc+JCvrciHnSl7lFTTydxi2B9Cbq1P0P3+lrtjFU1/xud8864nYjG/VoFXBZiV2JXPZeV0jWz1DKZW0fnk3NeAsm3VW5uHdQ1fnUyuhtuxm633MG77vkd3BEnh7XIJcAo4kY1lNLcks+lf17k8s6nqmqbnjWaSytk7Cg5AcnygktML3e22dl4lkBHaRbiyPWK4k6xYjthTewsT113rpg21EKHNhejneijySHu2/mRyVL07XJHjcwtr+BwKMLHfeJVrEy6tiVqTes32a43Js+dUMOLUIUy6fuv3MZHe9xXSt6jtk6lBri0Chj4ow2M4AUGYv3GXC5BcvFDch6QSqODTXIR1NpTOe6o+G1/Qft3sYSGukV3gokPu7R9884lt5wJEuNHbqzSD78jK1GTeTt8kQBqTYB0rKe/4V8jd7+IvHJOBz9X03utlQbeEqAehYwuB+oFvLkP7UetX6zXF0I82vgB+Y72qJiUfkIB/546sRywfhXdk6YRD+BvTwNMltBftE7qglk01h1uZ87LHUXuibp/0ZvDDmp7t4Rnoan/GcUE96AEUsZUmuvu/X6SPiKgx53sEhiDZ1mhZMU3AZdLtz/9uxfEtRoY/ydtBQ6vklYg2dEbcnYa8jz/u4Q88M8riFchJD3fSKUxPVOiJCWF7N++7du5QLPHrWF2O7XoV937eAIkmc4c2PYC6dFbgQxUMTozhcDC+vt4uBXcFMGVcDffSu1kINpvFCL7ufVob4SCiWInmFV7VTnd+/ln1bn4lXOpA4/JsGCjLD18H3qKlnFhKHAMlYan8Z5L4HA8UgbmrCjQGKW7iWZc6cnQPOCRwH6XWjkeDiekt2/hYJQh9RNLvEcmgWFNsx8K+cN4joKKcYElLGJwUv6eils6w2lruuYT79A6xj+ouAMcFt2+fF53GL5fW/nq2Zj3muJfhD0RAootFl8MNFROedBjDQePp/C509/wYBrBbTuDjuf54QQR5hIaSGi2Dt9e7dfQYGLo5xTvM4Ob2zDOPE6NMvQx0bZNo91p2QU8PnWHapbBmoiCkp6m2/RW8xpMwwo03RBDgmjZuZCeEXUqCV2hDzvurg8m3QxNoYGG++eG30KPdK15vaZEcWvsD/zA2n8eUYujJKq4QDoTo0WUfTKoTbZFqR8Eq//M6p2wvBGYjT596YMy3ajo6R8Ca52J"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/main.go",
+    "grade": "B",
+    "username": "Hlamb",
+    "timestamp": "2025-04-09T17:18:39.990Z",
+    "codeReview": {
+      "review": "This code lacks proper error handling for `toolsFlag` being `nil` (line 48).  The `parseTools` function (line 118) while handling empty input, doesn't validate for invalid input (e.g., non-comma separated values).  The code's reliance on multiple filters (latest grades, tools, paths) could be improved by composing them into a single filter for better maintainability and readability.  For example, combining `latestGradeFilter`, `toolFilter`, and `pathFilter` into a single filter object.\n"
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "B",
+      "interfaceSegregationScore": "B",
+      "liskovSubstitutionScore": "B",
+      "openClosedScore": "B",
+      "singleResponsibilityScore": "B"
+    },
+    "hash": "dade0b9ad8822d22799abd5048ae2e035e87363af53f23836c71cc532c645506",
+    "id": "eJytV01v3DYQ/SsTAQm0jlZyelxgD+46TgwYtdF10kMUwKw02iVCkQJJuXEd//diSOprLSdx24tX1sy8eTN8JEf3ETMGjeFyd62UiFbR9vLi/DRKokKVuFHSorTRKmpY8YXtEGrGZS5zyetGaQtxLnObO1+BlV0WgmcesEZp82jGXHFhUc+aNLKyM1SC7frnuodSpnsyVnO5c/8uiFGWwUfUhisJqgK7R9hcnINVSuSyUNLY3ryGPHqTHqe/OCgKpKqAGxeF0uo7aBSXFiql4U61uodKc1m1snAB8QLuiUqWwSlWXCIQZ0Ov7F6j2StRvtOsRFitnSndOspxHvX25Y4c8iiBPPJ/t2g9D2eB3jPNo8UE+gp1gdL24OfSTpAbbyfU4wlwMNBqPkZXSpgzwXYznMk0ZrpRdc2WBhummcUSBDfWtV4pweUOYkx3aQJOT8nlHyfbq+W1apZvjpONQCaXG1VikqbpIuS+9cszyf6rUiLOo2CivBUTBin9KTeNYHe+pqLVmppxO6+ArjwvzemihBTONCxHn+bEhXxvRTzoRt2ipp7O4hbB+hR0Z3+E7vW1aY1VNf8bnXNr3E5E436tAi4L0ZbYV89lpXTNLLVM5tbR+eCc10Dy7ZSbWwd1jV+djG7Gm7HfLTfwun9+DTfEyWGtcgkwifikGkppPpPPpX9e5fLGp6pqm541mksrZOwoOQHJ8oJLTC9b27Q2XiTQU1qEOHK9orhTrFgrrImd5aHvzhXThlro0JZishN9NDnEQzvfM1mKoV3uqJG55RUcjUV4f0i8ipVJt7ZErWn9Ztv10uS5E2p4EapQJn37ldv4+ID7Rslb1Nap1ACXVgEDf7SBEbzAQGzYmOs1SC5+SM4DUml0sEkugloHKm96Kn7bX9D+Xa2hoW7RZWDioz7t0LxzyS1ngsT4nhur9N3vyErUZN6PXySAWhMgHevpb/jXxN0vIq+c04ufq+mt1koD7whQj0JGlwP1Cl7ehvaj1k/W6wshHl38iHxPe1JMSj+hgH9PnViOWD+L7knTiDvwt6cBJksYLlondcEsGusOtzPn5Y4i90TdvxjMYQd1vVvDo9DU/0xigntQAiljLs11//4wyRAR0ONedglMwbOsULLiu4DLpduf/t0T4tqMjP+TtgKHZ0krkOzpjTk7DXme/11CHvjnFcSrEJKe76TSmJ4pUZKSQvZv3w7tXKA54NYwu59b9Kv+fTwDksxnDmwHgQzonUBGqpicmUJgYf19PN4KborgSribb6NaGYgOG4XIfuw8uhuhYKJoBbPqoCqnez//bHoXv3IudeAxGxZslGWAH0JP0TIuDAVOodLwNN1zCRxNR8rAnBUFGqN0P9FMKz0Zm0c8EjjsUifHo/GE9OoVvJhkSP3EEh+QSWBc0+KHQn43naOgYlxgCasYnJS/p+KOznjamq/5xDt0jvEPKu4Bx0V3Lx/XHYbv51a+eTTmPaf4J2FPhIBij8UXAw2VU74YsMaDx0P43BlueDCN4LabQafz/HiCCHMJDSQ0W4dvr+5raDQxDHOK91nAp89hnLmfG2XoY6Jrm0bbatkH3D/0h2qWwZaIgpKeptv0VvMaTMMKNP0QQ4Lo2LmQgRF1KgldoQ877q4PJt0MTaGBhvvnE/8MA9K15vWWEsWdcTjwA2v/eUQtjpKo4gLpTIxWUfbBoDbZHqW+E6z+M6tbYXkjMJt8+tIHZbpT0cM/2gebzA=="
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/filterTools.go",
+    "grade": "B",
+    "username": "Hlamb",
+    "timestamp": "2025-04-09T17:18:41.348Z",
+    "codeReview": {
+      "review": "**OWASP Top 10 Review (Short)**\n\n**Critical Areas of Concern:**\n\n1.  **Improper Input Validation:**  The code lacks robust input validation for the `tool` string.  A malicious user could potentially inject harmful characters or exploit the code.  Example: `strings.ToUpper(tool)` is vulnerable to command injection if `tool` is user-supplied.\n\n\n2.  **Insufficient Data Sanitization:**  The code doesn't sanitize the `value` string before using `strings.TrimPrefix` and `strings.TrimSuffix`.  This could lead to unexpected behavior or vulnerabilities if the input contains special characters. Example: `strings.TrimPrefix(value, \" \")`.\n\n\n3.  **Potential for Denial-of-Service (DoS):**  If the input `values` array is very large, the code could potentially lead to a DoS attack.  The nested loops and appending operations could consume significant resources.  Example: The `for` loop iterating over `values` and appending to `filteredHistories` in the `Filter` method.\n"
+    },
+    "gradingDetails": {
+      "brokenAccessControl": {
+        "clientServerAccessPolicyEnforcement": 0,
+        "idorPrevention": 0,
+        "roleBasedAccessControl": 0
+      },
+      "cryptographicFailures": {
+        "dataEncryption": 0,
+        "encryptionAlgorithmStrength": 0
+      },
+      "identificationAuthentication": {
+        "multiFactorAuthentication": 0,
+        "passwordPolicy": 0,
+        "sessionManagement": 0
+      },
+      "injection": {
+        "inputSanitization": 1,
+        "preparedStatementsUsage": 0
+      },
+      "insecureDesign": {
+        "secureDesignPattern": 0,
+        "sensitiveDataExposure": 0,
+        "threatModeling": 0
+      },
+      "securityLoggingMonitoring": {
+        "anomalyMonitoring": 0,
+        "criticalEventLogging": 0,
+        "secureLogStorage": 0
+      },
+      "securityMisconfiguration": {
+        "adminEndpointExposure": 0,
+        "defaultConfiguration": 0,
+        "securityHeaders": 0
+      },
+      "serverSideRequestForgery": {
+        "inputValidation": 0,
+        "internalSystemExposure": 0,
+        "networkLayerProtection": 0
+      },
+      "softwareDataIntegrity": {
+        "versionControl": 0
+      },
+      "vulnerableOutdatedComponents": {
+        "knownVulnerabilities": 0
+      }
+    },
+    "hash": "b6b690dd9e55ab2717958315d362310cf8324456ef9b81222fc70dc13d38aa99",
+    "id": "eJytlEFvnDAQhf/KyIcKKhba60oc0lRtT82q2aiHOKpcGMCqsZE9JEWr/e+VMSy7JW0VqScs3rxvxn6GAxPOoXNS13tjFNuym69Xt7vN/ma3efuGJawwJV4bTaiJbVknih+iRqikIrRccy3bzliCiGtOnDmyUteOM65jr9LQIXwYiz3egdSEthIFwsE7ghQ9CtWjg/uH4E+gkY6Mlejg07yKlyXXxxPcYwMFHNm+oMOoVb0u4DM+LXIUXwwytrdIvdXwaqny7gUQEbxetBnw0nFDr3BkWC6vt/lSM05NlbHwLYGR72UrdI0wtRspnKYjTvdWtjuLlfwZ5kmAM+AsXlfd9tUfqui0t9/mojSM+27w25+tp21O9vWWchBdh7qMVlICzzZL03SEHc/iWHn/FsnFnL4F/OdQllgCcFiCaS5hnGQFp4M3d12HNppM6dX5ZxZDnq8qaRQmEqcss1j2BQI1CKUgAcqIclZn7LUp8Qs+SnyCHFrR3Qfqg9BDuFLnxR+tKKWu3yMJqdzzhsnysminBtO1OM6B/itSlrBKKtwJatiWZXcOrcsa1HZQov2etb0i2SnM/D9IYUWbQsksoKbH+C2ntWHHXy4FzQw="
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/filterTools.go",
+    "grade": "B",
+    "username": "Hlamb",
+    "timestamp": "2025-04-09T17:18:41.750Z",
+    "codeReview": {
+      "review": "1. **String manipulation in a loop:**  `strings.TrimPrefix` and `strings.TrimSuffix` are called within the loop.  This creates unnecessary repeated string allocations and copies.  Example: `strings.TrimPrefix(value, \" \")`.  Should be done once outside the loop.\n\n2. **Unnecessary `ToUpper`:** Converting to uppercase for comparison (`strings.ToUpper`) is inefficient and potentially problematic if case-insensitive matching is not the intended behavior.  Example: `strings.ToUpper(history.AssessingTool)`.\n\n3. **Mutable `Histories`:** The `Filter` method modifies the input `histories` object. This violates the principle of immutability, making the code harder to reason about and potentially leading to unexpected side effects.  Example: `filteredHistories = append(filteredHistories, history)`.\n"
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "A*",
+      "interfaceSegregationScore": "B",
+      "liskovSubstitutionScore": "B",
+      "openClosedScore": "B",
+      "singleResponsibilityScore": "B"
+    },
+    "hash": "9a02da4fc060678cdfa7209d1e24146d311ea0ab74b74a4b8d580ab4e0e4e389",
+    "id": "eJytlE9vnDAQxb/KyIcKKgr3lTi0ifpHqtqoSU5xFLkwBqvGtuwhKVrtd6/AsOyWtFWknrB4834z9jPsmQgBQ1CmubFWsx27/vr50yXLWGVrvLCG0BDbMSeqH6JBkEoTem64UZ2zniDhhhNngbwyTeCMm3RUaXAI76fikRtAGUIvRYWwHx1RSh6F7jHA3X30Z9CqQNYrDPBxWaXrkpvDET5iIwUC+b6i/aTJ3lTwBZ9WOUnPBpnae6TeG3i1Vo3uFZAQvF61BfDScWOveGRYr6935VozTU3SenjIYOKPshemQZjbTRRO8xHnN151Vx6l+hnnyYAz4CzdVl338g9VdNzbb3NRHsd9N4zbX6zHbc727ZZKEM6hqZONlMGzzfI8n2CHkzg23r9Fcjbn2AL+cyhrLBE4rMG05zBOSsLx4O2tc+iT2ZS/Pf2+UijLTSVNwkziVBQe675CoBahFiRAW1Ev6oK9sDV+w0eFT1BCJ9xdpN4LM8QrdVr8wYtameYSSSgdnjfMlpdFOzeYr8VhCfRfkbKMSaXxSlDLdqy4DehD0aLxgxbd96LrNSmnsRj/QRolvam0KiJqfkzfct5YdvgF0JHLTw=="
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/gradeDetails.go",
+    "grade": "B",
+    "username": "Hlamb",
+    "timestamp": "2025-04-09T17:18:42.468Z",
+    "codeReview": {
+      "review": "**OWASP Top 10 Review (Snippet)**\n\n**Critical Areas of Concern:**\n\n1.  **Insecure Data Handling:**  The `GetCoverage` function's logic for calculating coverage based on score thresholds is overly complex and lacks clear justification.  This makes it hard to understand and maintain, potentially introducing vulnerabilities.  Example: `if g.Score > thresholdAsNum { g.Coverage = 120 }`.  This arbitrary value (120) could lead to unexpected behavior.\n\n2.  **Improper Input Validation:**  The `GetCoverage` function doesn't validate the `thresholdAsNum` input.  A malicious or unexpected input could lead to unexpected results or crashes.\n\n3.  **Lack of Error Handling:**  The `GetCoverage` function doesn't handle potential errors (e.g., negative scores).  This could lead to unexpected behavior or crashes.\n"
+    },
+    "gradingDetails": {
+      "brokenAccessControl": {
+        "clientServerAccessPolicyEnforcement": 0,
+        "idorPrevention": 0,
+        "roleBasedAccessControl": 0
+      },
+      "cryptographicFailures": {
+        "dataEncryption": 0,
+        "encryptionAlgorithmStrength": 0
+      },
+      "identificationAuthentication": {
+        "multiFactorAuthentication": 0,
+        "passwordPolicy": 0,
+        "sessionManagement": 0
+      },
+      "injection": {
+        "inputSanitization": 1,
+        "preparedStatementsUsage": 0
+      },
+      "insecureDesign": {
+        "secureDesignPattern": 0,
+        "sensitiveDataExposure": 0,
+        "threatModeling": 0
+      },
+      "securityLoggingMonitoring": {
+        "anomalyMonitoring": 0,
+        "criticalEventLogging": 0,
+        "secureLogStorage": 0
+      },
+      "securityMisconfiguration": {
+        "adminEndpointExposure": 0,
+        "defaultConfiguration": 0,
+        "securityHeaders": 0
+      },
+      "serverSideRequestForgery": {
+        "inputValidation": 0,
+        "internalSystemExposure": 0,
+        "networkLayerProtection": 0
+      },
+      "softwareDataIntegrity": {
+        "versionControl": 0
+      },
+      "vulnerableOutdatedComponents": {
+        "knownVulnerabilities": 0
+      }
+    },
+    "hash": "c7a118a1a943a50363f3cae64e346b3a06403ecf8cabda04eb3c58c8ea34efe5",
+    "id": "eJyNU8Fq4zAQ/ZVBp2Rx4qRlWTCkULpsb2mgXfbiiyqPZbHKKEjjllLy74tkJ6sWF3LzvJk3b96M9S5kCBiCIf3knBWVePhz+7hbPD3sFuuVKIRyDd45YiQWlThI9VdqhNZYRl9TTfx2QLj3ssGfyNJYMMToW6kQ3muq+R75zr2glxpnhnhe03GKFiCw7xWPpJgAgAga0hF6VM4nyBDH+NT0FP8yFrdyjxklGoK8S1Jue1KwxddcfKaT4FBXQEhahriIRvO2BXBsOgTzjwbS5B659/QhkfDRUxXHSWLFgCZbCU2iI3oyU531x0S0lKrTHAk8jr7KErJdg5JW9VYyBuAOQZ3wA3qFxPHzWQZswFEqGDxLaoA7j6Fzthl3NdPwLfczz3Vm5+rbsO33cWnzYROmBb0crnYDn6rGlejledwNrK9WyQ6gDQgZe7O5iL76gn7zmb5YTzb4cTH/apL//WL+9ST/OudPO/x/blGI+GfsJHeiEuXvgD6UHZJ/s3L/XO57y+ZgsYyv12LLC2VNOTzaUme3XGonjv8Ap4NutA=="
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/model.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-04-09T17:18:42.478Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "brokenAccessControl": {
+        "clientServerAccessPolicyEnforcement": 0,
+        "idorPrevention": 0,
+        "roleBasedAccessControl": 0
+      },
+      "cryptographicFailures": {
+        "dataEncryption": 0,
+        "encryptionAlgorithmStrength": 0
+      },
+      "identificationAuthentication": {
+        "multiFactorAuthentication": 0,
+        "passwordPolicy": 0,
+        "sessionManagement": 0
+      },
+      "injection": {
+        "inputSanitization": 0,
+        "preparedStatementsUsage": 0
+      },
+      "insecureDesign": {
+        "secureDesignPattern": 0,
+        "sensitiveDataExposure": 0,
+        "threatModeling": 0
+      },
+      "securityLoggingMonitoring": {
+        "anomalyMonitoring": 0,
+        "criticalEventLogging": 0,
+        "secureLogStorage": 0
+      },
+      "securityMisconfiguration": {
+        "adminEndpointExposure": 0,
+        "defaultConfiguration": 0,
+        "securityHeaders": 0
+      },
+      "serverSideRequestForgery": {
+        "inputValidation": 0,
+        "internalSystemExposure": 0,
+        "networkLayerProtection": 0
+      },
+      "softwareDataIntegrity": {
+        "versionControl": 0
+      },
+      "vulnerableOutdatedComponents": {
+        "knownVulnerabilities": 0
+      }
+    },
+    "hash": "50c2022b2957e23982b2d36831f70989015a3ce4dbc233454ad4e0b506780738",
+    "id": "eJyFk8Fu2zAMhl9F0MkGnHi7Btih7bD1MKDBkqKHKEBVh7aZSZQh0SuCou9eyFFdp1gyXQyQ//dTJqkXqUOAEJCatXNGLuTdw9VqOVvfLWdfv8hCVm4HN44YiOVCdrr6oxsQNRoGr0gR2s55FpkixUoyWlBSUR5TfOhA3GJg5w8isO8rFi9RdzUtKWIKqRHv53EfHC3U6cWUfIzkDzSw1Nwm6RmyTqoE/fR6B6PoHNREVSLuA3jSFi4TfVIlaI0WVqxtd1TFVsxj7BTid1WibtwOfsNfhOdBZnW3OZbbajqMVDWqJv+E1HwH1mjCOaw5USX0VodW/LcdrQ7H/r1+GiVCEJttGmvM1T1VIms/0rn4BZTlAinN2wP3noQByto8Of6TCiHDQuwjmYunuBxTvt3gdj52eX4NtfOQtZv9JHrBfvWsu4n94BwtCxEtxLfhUwxVBhNZjIskF7KMOxHKFsgfjLZPpe0NY2egjLMxUPOsMlgeH0ZpY2zeOPn6BvclJv4="
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/gradeDetails.go",
+    "grade": "B",
+    "username": "Hlamb",
+    "timestamp": "2025-04-09T17:18:42.686Z",
+    "codeReview": {
+      "review": "The code violates the Single Responsibility Principle (SRP) as `GetCoverage` calculates coverage *and* sets the `Coverage` field.  It also lacks flexibility;  coverage is hardcoded to specific score ranges.  Finally, the `GetCoverage` function's logic is overly complex and could be simplified using a lookup table or a more structured approach.  Example: `if g.Score > thresholdAsNum { g.Coverage = 120 }`  should be replaced with a more maintainable approach.\n"
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "B",
+      "interfaceSegregationScore": "B",
+      "liskovSubstitutionScore": "B",
+      "openClosedScore": "B",
+      "singleResponsibilityScore": "B"
+    },
+    "hash": "a40a0fb3453dfbeaef8394637903bcaaf2f8cac00294528f55dc95ea3243940f",
+    "id": "eJyNU11L7DAQ/StDnnYvdesHIhRWEOXKBVkF9a0vMZ2m4WYnSzJVRPa/S9LuGqXCvnXOzJkzZ6b5EDIEDMGQfnLOiko83t/9uxGFUK7Ba0eMxKISG6n+S43QGsvoa6qJ3zcIt142eIMsjQVDjL6VCuGjpppvka/dK3qpcWaI5zVtp2gBAvte8UiKCQCIoCEdoUflfIIMcYx3TXfxX2NxJdeYUaITyLsk5bYnBSt8y8VnOgkOdQWEpGWIi2g0b1sAx6ZDMP9uIE3ukXtP3xIJHz1VcZwkVgxospXQJDqiOzPVXn9MREupOs2RwO3oqywh2zUoaVVvJWMA7hDUDt+gV0gcP19kwAYcpYLBs6QGuPMYOmebcVczDX9yP/NcZ7avvgqrfh2XNh82YVrQi+Fql/CjalyJXuzHXcLJ6XGyA2gDQsZeLg+iH/9Cv/xJPzqZbHBxMP90kn9+MP9skn+W86cdfp1bFCL+GQ+SO1GJ8jmgD2WH5N+tXL+U696y2Vgs4+u12PKRsqYcHm2ps1sutBPbT6CebPc="
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/pathFilter.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-04-09T17:18:44.215Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "brokenAccessControl": {
+        "clientServerAccessPolicyEnforcement": 0,
+        "idorPrevention": 0,
+        "roleBasedAccessControl": 0
+      },
+      "cryptographicFailures": {
+        "dataEncryption": 0,
+        "encryptionAlgorithmStrength": 0
+      },
+      "identificationAuthentication": {
+        "multiFactorAuthentication": 0,
+        "passwordPolicy": 0,
+        "sessionManagement": 0
+      },
+      "injection": {
+        "inputSanitization": 0,
+        "preparedStatementsUsage": 0
+      },
+      "insecureDesign": {
+        "secureDesignPattern": 0,
+        "sensitiveDataExposure": 0,
+        "threatModeling": 0
+      },
+      "securityLoggingMonitoring": {
+        "anomalyMonitoring": 0,
+        "criticalEventLogging": 0,
+        "secureLogStorage": 0
+      },
+      "securityMisconfiguration": {
+        "adminEndpointExposure": 0,
+        "defaultConfiguration": 0,
+        "securityHeaders": 0
+      },
+      "serverSideRequestForgery": {
+        "inputValidation": 0,
+        "internalSystemExposure": 0,
+        "networkLayerProtection": 0
+      },
+      "softwareDataIntegrity": {
+        "versionControl": 0
+      },
+      "vulnerableOutdatedComponents": {
+        "knownVulnerabilities": 0
+      }
+    },
+    "hash": "f358e5f04c73f0dec1c458d3092bd49ea85b0d9faee331285bd5c700e33d9df1",
+    "id": "eJx9VU1v3DYQ/SsTHZpVsRaT6wI+BEGDpIfEgF30YBkBVxpJ01BDgZy1sw383wuS+vRHbxQ5nPfmvRnqV6a9R++J2xtrTXbIvv394frq4ubb1cX7d9k+q2yNHy0LsmSHbNDVD90iNGQEXcklUz9YJ7AruZQyRhts5KIypOQ8oC+zdDJo6VRDBsNi2vTiiNsYk4dkSsGVlu5TzA7kwaEfLHs6GoTGuhGXuA0rhJDLw1F7rMEyUMvWYR3PPGiuobGmRueLkgOZdXIv7lQJ/ApExnuf4jWA27vIvAjf6+OUC27vEu2SH0fOX/FhlblyqCXgA+MDEHvRXCHYZg3/QNKBdAiDs/dUY/2/5JsTV1uU3YbzmvEeXuGbw+8rArFwh3JyDL8t+3F7q8gBANbf+21IQjk8QY1Bj4tEI2ryz4M9Sax+5aJ0WqDXUnWg+RzkCgFbVawLHUE1Rv1o5fgslVLwRSAVNnngDVUIlWXRxKF5LJvzi/jaIbCVKe8k/W5o1uLlYzm7jrxYR+jh87TKl2XS+F67QOLz89AgTSmhrb/vIaU6w+ESnOYWodumKYUaeDM0BfkvidyIfo6uB3L5FFnKBvAS9DAg17v17oyYpzuPo2GrtliHL07O+FB1WP3w8NChdOhAQ0v3yIumyc3YzOeNkcFH8pOHm9Po46uyL7XH/FNfH601qfYwjNb12tC/mMYrxAWJq/CM+PCMQWX7QTvyNhbLU3wdkIL+0ytV3Nhro30XwfIkjVLwMZQNutVhtLcNuvIz1jmbGXxbD+xolFLwpyXetmKcfdY97sM+w0zw2Wi+SnjeCNnjVxFiE6viq+4xz+emeiLA5SU8hZjbamwMcSd83jVKwfVgSBbdicVCTQ6rueGlJucD5/HpL+KV3ZbDHspMldki+R8/K3Oqk6NGewE02AcrqQGSt2HOm/GxVgpuOvKgvT/1OI71zAi5Tn033og6F/Ch/ufkY7YVW6g0gzbewhGBeBnIYmVzTW5xOdR2ezDIu7DKL97fTdKN0Zs38sXuGN/sWfFEaW1KujsHvGDKaMuLM91o4zEOc7bPmtHg7JCpvzw6rzpkdza6P6r+ZIQGg2rzS0/vtxrmmSxamz3+B+NvCTM="
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/model.go",
+    "grade": "B",
+    "username": "Hlamb",
+    "timestamp": "2025-04-09T17:18:44.501Z",
+    "codeReview": {
+      "review": "The code defines a `History` struct and a `Histories` slice.  Three critical areas of concern are:\n\n1.  **Lack of validation:**  The `History` struct lacks validation for fields like `AssessingTool`, `FilePath`, `Grade`, and `Username`.  This could lead to unexpected behavior or errors later on.  Example:  No check for empty strings or invalid characters.\n\n2.  **Unclear use of `map[string]any`:**  Using `map[string]any` for `CodeReview` and `GradingDetails` is problematic.  It makes type checking and maintainability difficult.  Example:  `CodeReview[\"complexity\"]` might be an integer or a string, leading to runtime errors.\n\n3.  **Missing sorting context:** The sorting logic (`Less`) only considers `TimeStamp`.  If other criteria are needed for sorting (e.g., `Username` or `Grade`), the current implementation is insufficient.  Example:  No way to sort by `Grade` in ascending or descending order.\n"
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "B",
+      "interfaceSegregationScore": "B",
+      "liskovSubstitutionScore": "A*",
+      "openClosedScore": "B",
+      "singleResponsibilityScore": "B"
+    },
+    "hash": "7e32ff0dab2983d2078ac8697a5079b84d8da1b320c8f6c0a47b9d0c19629d04",
+    "id": "eJyFk8Fu2zAMhl+F0MkGvPgeYIetxdYBBVos3SkKUNWhbWYSZUj0iqDouw9yVM8Zlk4XA+T//ZRJ6kWZGDFG4u7Be6vWanN3++1aVarxe7zyLMii1mowzU/TIbRkBYNmzeQGHwQKzVq0EnKoleYypeQ4INxQFB+OECWMjcBL0n1a1oKUIu7g7Tweoue1Pr+RVo+J/EIW7430WXqBbLMqQ1+D2eMsugR1SZWJHxEDG4fvE2NWZeiBHG7EuOGkSq1Ypdg5JG+qTF35PX7HX4TPk8yZYXsqtzN8nKlmVi3+ibi7RjFk4yWsO1Nl9MbEHv7bjt7EU/9e/xolYYTtLo815dqRGyj6P+kSbpGLEojzvAPKGBgsctGX2fGfVIwFVXBIZAlPaTmWfL+l3Wru8uoztj5g0W8Pi+g79ptnMyzsJ+dkWUGygI/Tp5qqTCaqmhdJrVWddiLWPXI4WuOeajdaocFinWZjsZUPjaX69DBql2KrzqvX3wu1JUE="
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/collectGrades.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-04-09T17:18:45.748Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "brokenAccessControl": {
+        "clientServerAccessPolicyEnforcement": 0,
+        "idorPrevention": 0,
+        "roleBasedAccessControl": 0
+      },
+      "cryptographicFailures": {
+        "dataEncryption": 0,
+        "encryptionAlgorithmStrength": 0
+      },
+      "identificationAuthentication": {
+        "multiFactorAuthentication": 0,
+        "passwordPolicy": 0,
+        "sessionManagement": 0
+      },
+      "injection": {
+        "inputSanitization": 0,
+        "preparedStatementsUsage": 0
+      },
+      "insecureDesign": {
+        "secureDesignPattern": 0,
+        "sensitiveDataExposure": 0,
+        "threatModeling": 0
+      },
+      "securityLoggingMonitoring": {
+        "anomalyMonitoring": 0,
+        "criticalEventLogging": 0,
+        "secureLogStorage": 0
+      },
+      "securityMisconfiguration": {
+        "adminEndpointExposure": 0,
+        "defaultConfiguration": 0,
+        "securityHeaders": 0
+      },
+      "serverSideRequestForgery": {
+        "inputValidation": 0,
+        "internalSystemExposure": 0,
+        "networkLayerProtection": 0
+      },
+      "softwareDataIntegrity": {
+        "versionControl": 0
+      },
+      "vulnerableOutdatedComponents": {
+        "knownVulnerabilities": 0
+      }
+    },
+    "hash": "3d15178e0113e6b9f3cfb5978a8e14a9455aea70ff50c9f557f94651846aeb38",
+    "id": "eJydVE1vnDAQ/SuWDxVELCT9uCDlsN2o6SlZKWl6KFXlmgGsem1kD12tVvvfKzABr0k/1BueN/Pe83iGI2XWgrVC1Y9aS5rT+8/rh+3q8X67urqkCeW6hI1WCAppTlvGf7AaSCUkgilUofDQAtloKYHjrWElWCIUgqkYB3IsVIFnYNQIi9oIsOTj81dCsDFgGy1LYtEIVcfky9ch/waQCWkLdZq0hvjIKbTqKzqOTsphTPJOMtSGBOeRpuoUJ3ewD5gi/tvCOLjhIGYAO6PIq4BmwBZWcjKzJ33GyTcT1eQioAkk/69vzmjtR/LrIOfY28BKG/ItIU7l0GcZpmogs+x4LwV7j+q5i2NodHlIh2BC6jRogzvfdTswgjP5xGQH50XxZCL9ICRsGTZzZO3PahwaSm8BN/onGFZD9G/SUwPjke2sV9eEtS2oMvKjCZkV+yL3ltM41H8c23nCgiV5ydxANb2sULjgexgwj9Utw3E55mFmFC8cLYc6LDq+PLRh2kj9t9s4QbsXyBvXNhfhzAIp6PqioLl7lNHUOx8Nwbce+D4E33jgJgRfe+BNCF71pxIq1kk8Ry7nLaYJrcZZpTnNPlkwNmtAmYNku+/ZrpMoWglZ/y+VUOGKS5G5X2jG/S1Pa01PvwDXZBWX"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/pathFilter.go",
+    "grade": "B",
+    "username": "Hlamb",
+    "timestamp": "2025-04-09T17:18:46.257Z",
+    "codeReview": {
+      "review": "The `PathFilter` implementation has three critical areas of concern:\n\n1.  **Inefficient `isIgnored` function:**  The nested loops in `isIgnored` (checking ignored files and folders) have a time complexity of O(n*m), where n is the number of ignored files and m is the number of ignored folders.  This is inefficient for large lists of ignored items.  Consider using a Trie or a similar data structure to speed up the lookup.  Example:  Replace the `for` loops with a more optimized approach.\n\n2.  **Assumes file path structure:** The `isIgnored` function assumes that the `path` always ends with a file name.  If the `histories` can contain directory paths, this will lead to incorrect filtering.  Example: Modify the `isIgnored` function to handle directory paths correctly.\n\n3.  **Lack of error handling:** The code lacks error handling.  `filepath.Join` or `filepath.ToSlash` could potentially return errors.  Example: Add error handling to `filepath.Join` and `filepath.ToSlash` calls.\n"
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "B",
+      "interfaceSegregationScore": "B",
+      "liskovSubstitutionScore": "B",
+      "openClosedScore": "B",
+      "singleResponsibilityScore": "A"
+    },
+    "hash": "80dd796ba0e760c4809d87f253552d6931326a4fea56173df4ddaa3c6489f632",
+    "id": "eJx9VU2P3DYM/SusD+m4mFjodYA9BGmCbFGkBXZ7Wi8KjU3bbGTKkOjdToP974Ukf+5Hb7JE8T2+R8rfM+09ek/c3lprslN28/tv179kx6yyNX60LMiSnbJBV990i9CQEXQll0z9YJ3AoeRSyhhtsJH3lSEllwF9maWTQUunGjIYFvOmF0fcxpg8JFMK/tDSfY7ZgTw49INlT2eD0Fg34RK3YYUQcnk4a481WAZq2Tqs45kHzTU01tTofFFyILNN7sWNlcD3QGS69zleA7i7j8yL8L09Trng7j7RLvlp4vwVHzeZK4daAj4wPgKxF80Vgm228I8kHUiHMDj7QDXW/0u+Gbnaoxx2nLeMj/AG3xx+2hCIhTuU0TG8W/fj9l6REwBsv4/7kIRyeoYag55WiSbU5J8HO0qsfuOidFqg11J1oPkS5AoBe1WsCx1BNUb9aOP4IpVScC2QCps98IYqhMqyaOLQPJbN5VV87RDYypx3lv4wNFvx8qmcQ0derCP08GVe5esyafygXSDx5WVokKaU0NZ/HSGlusDpCpzmFqHbpymFGvhhaAry14nchH6Jrgdy+RxZyg7wCvQwINeH7e6CmKc7T5Nhm7bYhq9OLvhQdVh98/DYoXToQENLD8irpsnN2MyXnZHBR/Kzh7vT6OObsq+1x/xzX5+tNan2MIzW9drQv5jGK8QFiavwjPjwjEFl+0E78jYWy3N8HZCC/vMrVdzaG6N9F8HyJI1S8DGUDbrVYbT3DbrxM9a5mBl82w7sZJRS8Ksl3rdinH3WPR7DPsNC8MVovkl42QjZ41cRYhOr4qvuMc+XpnomwNUVPIdY2mpqDHEjvuwapeBmMCSr7sRioSaH1dLwUpPzgfP09BfxymHP4QhlpspslfzTP5UZ6+So0V4ADfbBSmqA5Mcw5830WCsFtx150N6PPU5jvTBCrlPfTTeizgV8qP8efcy2YQuVZtDGWzgjEK8DWWxsrsmtLofa7k4G+RBW+fuf72fppujdG/lqd0xv9qJ4orQ1Jd1dAl4xZbLl1ZlutPEYhzk7Zs1kcHbK1J8enVcdsrsY3Z9VPxqhwaDa/dLT+62GZSaL1mZP/wF3JAd2"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/collectGrades.go",
+    "grade": "A",
+    "username": "Hlamb",
+    "timestamp": "2025-04-09T17:18:46.320Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "A*",
+      "interfaceSegregationScore": "B",
+      "liskovSubstitutionScore": "A*",
+      "openClosedScore": "A",
+      "singleResponsibilityScore": "B"
+    },
+    "hash": "094d1274ce8c2753f20cf5b1d21cbf90117fee9ebf95da3b09e6a72ac8adc6ce",
+    "id": "eJydVE1v1DAQ/SuWDyipwobPS6Qeyq4oSKggFbiQChln4lh47ciesFpF+99R4jTxOqUgbvG8mfeexzPpKXMOnJNafDZG0YLefvzwfkczyk0FW6MRNNKCtoz/ZAJILRWCLXWp8dgC2RqlgOO1ZRU4IjWCrRkH0pe6xDMwaaRDYyU48u7+KyPYWHCNURVxaKUWKfl2N+bvAJlUrtSnWWuMT5zS6KGi4+ilPMYU7xRDY0l0nmjqTnNyA4eIKeF/LEyjG45iFrCzmjyJaEZsZaUgC3s2ZJxCM4kgFxFNJPl/ffNGRRgpLqOcfrCBtbHke0a8ynHIskwLIIvsdC8Nh4DqvotTaHJ53IzBjIhN1AZ/vun2YCVn6itTHZwXpbOJzVup4BPDZolchUOaxoY214Bb8wssE5D8m/TcwHRiO+vVJWFtC7pKwmhGFsWhyL/lPA7i0bFdJixakofMjVTzy0qNK77bEQtY/TL06zGPM5N05Wg91HFR//DQxmkT9d9u4wXdQSJvfNt8hDMHpKRXFyUt/KNMpl6HaAy+CsA3MfgyALcx+CIAdzH4fDhVULNO4TnybNlimtF6mlVa0PyLA+vyBrQ9Krb/ke87hbJVkA//UgU1PuVK5v4XmvNwyzfC0NNvGs4T2g=="
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/latestGrades.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-04-09T17:18:46.942Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "brokenAccessControl": {
+        "clientServerAccessPolicyEnforcement": 0,
+        "idorPrevention": 0,
+        "roleBasedAccessControl": 0
+      },
+      "cryptographicFailures": {
+        "dataEncryption": 0,
+        "encryptionAlgorithmStrength": 0
+      },
+      "identificationAuthentication": {
+        "multiFactorAuthentication": 0,
+        "passwordPolicy": 0,
+        "sessionManagement": 0
+      },
+      "injection": {
+        "inputSanitization": 0,
+        "preparedStatementsUsage": 0
+      },
+      "insecureDesign": {
+        "secureDesignPattern": 0,
+        "sensitiveDataExposure": 0,
+        "threatModeling": 0
+      },
+      "securityLoggingMonitoring": {
+        "anomalyMonitoring": 0,
+        "criticalEventLogging": 0,
+        "secureLogStorage": 0
+      },
+      "securityMisconfiguration": {
+        "adminEndpointExposure": 0,
+        "defaultConfiguration": 0,
+        "securityHeaders": 0
+      },
+      "serverSideRequestForgery": {
+        "inputValidation": 0,
+        "internalSystemExposure": 0,
+        "networkLayerProtection": 0
+      },
+      "softwareDataIntegrity": {
+        "versionControl": 0
+      },
+      "vulnerableOutdatedComponents": {
+        "knownVulnerabilities": 0
+      }
+    },
+    "hash": "dbd7413890d34287d7e52c2bb4bba9b9e51919bc1375df3e750e3985e200ca44",
+    "id": "eJyVVE1v2zAM/SuEDkO8unZ3zZBDFyAbsHUNkBQ7VMWg2rQjRJY8idlmpPnvgz/kjyZAsZMFkXx8fH7UkQnn0Dmp860xis3Z/Y/bzfp6e7++/nDDQpaYFJdGE2pic1aKZC9yhEwqQss111SVCCup02+C0NFnK1J0IDWhzUSCcOSa06pJH2fMdtKRsRIdfPGnYDhyferBJ8CO7CGhYxPNDjqB7/hnghuck2koWKSD1fBuHKlhBqSZyuH9OFxD/Sfvtlccw4NDEJCYojROEsIeqzlwtpIK14J2L7dj1Tmrq1TTpoWqYL6AQuxxVojy0ZGVOn/qQkHNmFNmLPwMYTfkW6FzhN2UC6c9NtEcNVpBuPScvmLVTVNFnlePF00Idi05yQzqMKYdlxDwr3Tk6gYT/o97rJ4++mjH5Lw+2soCNySKMvqEmbHYM+oDwVD9SqOmByw8ZZ91ag8nQOVwKH67tCk8taN2dlka/Rst3YlyazZKJjibwASdf+L4oryQWKzTQcBBy1+HxgbwLBymYDR40UHoFKaGaB158Zdl/a+abC60Jgm678T0vgSugLMXzuBqWjtMcTYvJO1NPUMhSjAZeIeSAQGuSRpuo476uXCd1HeihAuefr1CXXbLwe9CnxPCTQgK9Qg0CN5eiqZ5Z4hJgwWIskSdzsa3PUzgfeH1HGc12rGQeY3ZnMUPDq2Ld6htpUTxHBcHRbJUGNePqcKMrhMl4/YNjdXodYlyw07/ABd4GCw="
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/latestGrades.go",
+    "grade": "A",
+    "username": "Hlamb",
+    "timestamp": "2025-04-09T17:18:47.512Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "A*",
+      "interfaceSegregationScore": "B",
+      "liskovSubstitutionScore": "A*",
+      "openClosedScore": "B",
+      "singleResponsibilityScore": "A"
+    },
+    "hash": "0deeead86ae5c9dece5fdc93cf3aa152367b8e2996c4ac13abfa9c56e85cc237",
+    "id": "eJyVVE2P0zAQ/SsjH1DDhoRzUQ9QVEDsAlJ3T+sV8iaT1KpjB3sKRN3+d5TEzse20opTLM/Mmzcvb3xkwjl0Tury1hjFlmz7/frLRxazzOS4NppQE1uyWmR7USIUUhFarrmmpkbYSJ1fC0JHn6zI0YHUhLYQGcKRa06bLn2asdhJR8ZKdPA5nKLxyPVpAJ8BO7KHjI5dtDjoDL7hnxludE6mo2CRDlbDq2mkhRmRFqqE19NwC/WfvPteaQp3DkFAZqraOEkIe2yWwNlGKvwhaPf0fio3Z22V6tr0UA0sV1CJPS4qUd87slKXDz4UtYw5FcbCzxh2Y74VukTYzblw2mMXLVGjFYTrwOkrNn6aJgm8BrxkRtC35CQLaMOYey4x4F/pyLUNZvzv99g8vAtRz+S8PrmVFW5JVHXyAQtjcWA0BKKx+plGXQ9YBcoh69QfToDK4Vj8cmlXeOpH9XZZG/0bLd2I+tZslcxwMYOJvH/S9KK8kFls00HAQctfh84G8Cgc5mA0BNFB6BzmhugdefGXFcOvmq0s9CaJ/Hdm+lACV8DZE2dwNa8dpzibF7L+pp2hEjWYAoJDyYAA1yWNt4mnfi6cl/pG1HDB089XyGf3HMIuDDkxvI1BoZ6ARtHLS9E194aYNViBqGvU+WJ6O8BEwRdBz2lWpx2LWdCYLVl659C6dIfaNkpUj2l1UCRrhWn7mCos6E2mZNq/oamavC5JadjpH1rTFm8="
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/assessment/violations.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-04-09T17:18:48.249Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "brokenAccessControl": {
+        "clientServerAccessPolicyEnforcement": 0,
+        "idorPrevention": 0,
+        "roleBasedAccessControl": 0
+      },
+      "cryptographicFailures": {
+        "dataEncryption": 0,
+        "encryptionAlgorithmStrength": 0
+      },
+      "identificationAuthentication": {
+        "multiFactorAuthentication": 0,
+        "passwordPolicy": 0,
+        "sessionManagement": 0
+      },
+      "injection": {
+        "inputSanitization": 0,
+        "preparedStatementsUsage": 0
+      },
+      "insecureDesign": {
+        "secureDesignPattern": 0,
+        "sensitiveDataExposure": 0,
+        "threatModeling": 0
+      },
+      "securityLoggingMonitoring": {
+        "anomalyMonitoring": 0,
+        "criticalEventLogging": 0,
+        "secureLogStorage": 0
+      },
+      "securityMisconfiguration": {
+        "adminEndpointExposure": 0,
+        "defaultConfiguration": 0,
+        "securityHeaders": 0
+      },
+      "serverSideRequestForgery": {
+        "inputValidation": 0,
+        "internalSystemExposure": 0,
+        "networkLayerProtection": 0
+      },
+      "softwareDataIntegrity": {
+        "versionControl": 0
+      },
+      "vulnerableOutdatedComponents": {
+        "knownVulnerabilities": 0
+      }
+    },
+    "hash": "64b726403c63f534efe1e069d284778b467cfe2e4e87a57cf6147755528b0e34",
+    "id": "eJyNk1Fv1DAMx7+KiTTUol4Lr5XuYRqMF7SdtAEPBE2hdW8RqVM5vkPT6b47SrJ2x4YQb3Zs//x34hyUCQFDsLS99d6pVl1/Pb/ZrG6vN6t3b1WlOt/jhSdBEtWqyXQ/zRYhF41IokmTHSfPAoUmLTpVOBxk1TnbDNYJslY5NIwymz5Eq4zl8jAhfLHeGbGeAlgS5MF0CIeYu2FLUsRMOe/7Ja/oUYx1kDvUH9n0+D4dhVLT8SUYgvCukwz9ZIOctPz2/S+YR8qwow6u8NdT5/JUbcIxyo4JXi/nh+NpdbGHN0uohP8dI7P39TOxazDThNQXzyMVZFj5j96Pt5nRg2e4m6ugXQMb2iK86JiStdxVgMwxbxilvpwiaih8qG+kR+YKtLq0Dls4CxC3KRlpomRd+D1y3J5ig9whSdnCWQ9ak1aziDoCrsyIy0EELU6CLd4MLLM8OyR5r9ZA1s2atUStaWpHhVYfmD1Dkm5pC/t5SK3KuSA/ZvbiPUp+S1WpwTrcGLlXrWo+B+TQ3CPxgzPjj2bcObGTw+aP/X/6KM3SKtRbr46/AcSoQ5o="
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/assessment/violations.go",
+    "grade": "A",
+    "username": "Hlamb",
+    "timestamp": "2025-04-09T17:18:48.818Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "B",
+      "interfaceSegregationScore": "B",
+      "liskovSubstitutionScore": "A*",
+      "openClosedScore": "A",
+      "singleResponsibilityScore": "A"
+    },
+    "hash": "bb28fd78b64c183cd65c4324711e3df8783460d0819ac67e50667e623f32c56d",
+    "id": "eJyNk1Fr3DAMx7+KZuhISpa8B+5htOsYlO6g217mUbxESc0cOci6G+W47z5sN+mtHaNvkiX99JctH5QJAUOwNH7x3qlW3X6+/nSpKtX5Hi88CZKoVs2m+2VGhJw9IYkmTXaaPQsUmrToVOFwkHeds81gnSBrlUPDJIvpQ7TKWC4PM8I3650R6ymAJUEeTIdwiLlbtiRFzJT3fb/mFT2KsQ5yh/ojmx4v01EoNR1fgiEI7zrJ0Gsb5KTl9x//wDxShh11cIO/nzqXp2oTjlF2TPB2PT8cT6uLPZyvoRJeO0Zm7+tnYjdg5hmpL55HKsiw8j+9H28zowfPcLdUQbsBNjQivOiYkrXcVYDMMW+YpL6aI2oofKhvpUfmCrS6sg5bOAsQ1ygZaaJkXfg9ctyeYovcIUnZwlkPWpNWi4g6Am7MhOtBBK1Ogq3eAiyzPDskeW82QNYtmrVErWlqR4VWH5g9Q5JuaYT9MqRW5VKQHzN78R4lv6Wq1GAdbo3cq1Y1XwNyaO6R+MGZ6Wcz7ZzY2WHz1/4/fZRmbRXq0avjH620Qd0="
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/assessment/assessor.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-04-09T17:18:49.625Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "brokenAccessControl": {
+        "clientServerAccessPolicyEnforcement": 0,
+        "idorPrevention": 0,
+        "roleBasedAccessControl": 0
+      },
+      "cryptographicFailures": {
+        "dataEncryption": 0,
+        "encryptionAlgorithmStrength": 0
+      },
+      "identificationAuthentication": {
+        "multiFactorAuthentication": 0,
+        "passwordPolicy": 0,
+        "sessionManagement": 0
+      },
+      "injection": {
+        "inputSanitization": 0,
+        "preparedStatementsUsage": 0
+      },
+      "insecureDesign": {
+        "secureDesignPattern": 0,
+        "sensitiveDataExposure": 0,
+        "threatModeling": 0
+      },
+      "securityLoggingMonitoring": {
+        "anomalyMonitoring": 0,
+        "criticalEventLogging": 0,
+        "secureLogStorage": 0
+      },
+      "securityMisconfiguration": {
+        "adminEndpointExposure": 0,
+        "defaultConfiguration": 0,
+        "securityHeaders": 0
+      },
+      "serverSideRequestForgery": {
+        "inputValidation": 0,
+        "internalSystemExposure": 0,
+        "networkLayerProtection": 0
+      },
+      "softwareDataIntegrity": {
+        "versionControl": 0
+      },
+      "vulnerableOutdatedComponents": {
+        "knownVulnerabilities": 0
+      }
+    },
+    "hash": "d8cb197188d94217a91923a55f3e22a24f518a9107e58e70eaa028b762c04231",
+    "id": "eJylVV1v2zAM/CucgA725jpd92Y0A4IM21sboF33MA+DKtOOMVkKJLpDUeS/D7JkO3EyrB95EijeHUkfo0fGrUVra1XdaC1Zxq6+L65XpzdXq9MPZyxhQhe41IpQEcvYhovfvELwoAYV5SpXdbPRhiDKVU55h5BY0qmQ9aysJaHJmb8qG+qP2rpT7OD0sEFYCIHWagO1IjQlFwiPLnPRKUW0NmjXWhZgydSqSqBA4rW08OOn10i/Gl7gZx+N4U5rmavtAX+X5UhaQV5hyaVoJSdtwP92+cZLl3pba8mp1mqpW1cmDAEbtMpWCbjEP3tykRgljpMncP9v6ngcTlewQWqNgrd7Gt3NbjNZ6GbUTnzKtInsQLtL3O52FPEK3u3pxfCaL+MbKXktsYBsDmRa7CLawK+ewV0YriocGEOTdQm8SsdWvcBl26CpBZe3XLYYeUwair14AmLoJO6FhhLnUHJpsY/yKp1OMV0UxRAL4rHP34ZxdoW/CYxB4RjTytSKonhAhe/tgcc8vdT3aNxa/md3VmgEKnJpL96fhZcaJHc36fnrMWGLnrQFg/bRbZhQPr7G9FyMrp/wHvr/udP15ZMm3jn97On+95j38xBP+5qG7ZjE4QIOqhwczrl4sZkjif21jWOYz+GsJy4b8kaWKsrZpXZ/fGiBdHg7chYIB3eH/ermnxMPpWdzKKXm9PE86tqOYTYE9tQdaMOtdYge/GkHPBlA7GXcRnaofh+PTWO6kK63LxsXLCNt02sq0JgEchY8AiIMPoOT9Lw8OclzlbOkLyvesa3T7jzHEuYmtOK0ZhmbfbNo7GyNyjxI3tzNmlZSvZE423tdx2c4HLVJK822fwFzm+nf"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/read/fileReader.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-04-09T17:18:51.445Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "brokenAccessControl": {
+        "clientServerAccessPolicyEnforcement": 0,
+        "idorPrevention": 0,
+        "roleBasedAccessControl": 0
+      },
+      "cryptographicFailures": {
+        "dataEncryption": 0,
+        "encryptionAlgorithmStrength": 0
+      },
+      "identificationAuthentication": {
+        "multiFactorAuthentication": 0,
+        "passwordPolicy": 0,
+        "sessionManagement": 0
+      },
+      "injection": {
+        "inputSanitization": 0,
+        "preparedStatementsUsage": 0
+      },
+      "insecureDesign": {
+        "secureDesignPattern": 0,
+        "sensitiveDataExposure": 0,
+        "threatModeling": 0
+      },
+      "securityLoggingMonitoring": {
+        "anomalyMonitoring": 0,
+        "criticalEventLogging": 0,
+        "secureLogStorage": 0
+      },
+      "securityMisconfiguration": {
+        "adminEndpointExposure": 0,
+        "defaultConfiguration": 0,
+        "securityHeaders": 0
+      },
+      "serverSideRequestForgery": {
+        "inputValidation": 0,
+        "internalSystemExposure": 0,
+        "networkLayerProtection": 0
+      },
+      "softwareDataIntegrity": {
+        "versionControl": 0
+      },
+      "vulnerableOutdatedComponents": {
+        "knownVulnerabilities": 0
+      }
+    },
+    "hash": "8a949490c2520986e31f561736c71aec1d866bae5321112f4ce842e3878d5c64",
+    "id": "eJydVlFv20YM/iucgBby4Mjbqwc/DG6xpSiSIGmxF71cJJ51i3Qn8Kh4RtH/PvBOZ0uZ0xjLS2SKR378+JG6b5nyHr03dvfFuTZbZ7d//f5wd/Xl9u7q11+yZVa5GrfOMlrO1lmvqie1QyBUdWlLa7reEUNe2pLL4Nui5quqNSttWkYqs/gKbeVqY3erv72zyag7To/Op6decSOHUR7EuJBEqxVsXY2fUfM9qhoJjGUkrSoB0yljPXCD4FWHpeVDj6/7f5NEYv3TeHZ0yBeQR7RFtBj0S0AiR4vSfh/Tj84pmgdC3zvrzWOLoB0FTozdBRhNdC6kWpBiihHUPIpnGipOgHp37xyD/HkmY3di3o6c3ilujuaE6Qb384AVoWL0oMDiHoz1rGyF4PQ8cRFOXzPsVfsUiTumrw1hJa7AhAjsQBtbBx9tyDMUqc2gXRu4YJD2DkKwH0NroBTQeMCu58NSHGvUamjZS1wJWQ1EaBn2jp6EvGP2GOceeSDrQdnYDzB6kt94sE5gDLYGZQ/7BgnB2BBZ8hel1YOt/sOTdHwuj9Tv2IuEPVhhvQHniz+Q93UuYmSjg/2nDVjTxhNyRqCKZQm64+KjxNN5mWllWqyl4B3y6wWv4d2+zELGkCT0uORAQjWQN8/YHmIvjgyIQzURyBGvuCXlHI/nqazLikCiCY4mxH0/o3E8lKSzDtI9chdfTvW7hhnYFD1lbWgpmU/ynsxomC5/frZAk+vCq9r4yj0j4YSjSyR1PuxMXo6gUlZ+P8b1l7SVNwQ/z2hZwIXLJbIex+WEd68meZcwkpPgjq1rqJhths0GyqzM3hRjSPN5MrynCidz403kPDT1nRdZNlTcT+WTZBGrDBiC7uLeLj45Y/MXIJdQZlOWy2xx1Pi2wepJWjFrA/5jPPtQstVuOo0PrDifJH9d0kaL/7W/cfxRwuUyYOnlD5iaAakdxqYERKAY+qDnkZsXOEZZ/yB4VJ6qqvjpnVX9yiIwGoSE4tp/MLLA3ur0GSLhcQhLU822ztkSTtvntkd7fkDEQf5P+yLel/Xlgn3pJPVb1HCNGil+ZLet85ifVPUBRe4B/aeH2xu5AzhQ4Fsz+yiK97OilApezmvMIqFCmYKkuMF9jE4y3jitc72B0buILvn7MfLit/9HRAx3iUrSKo2ep32aLTOBKS3J1tnqq0fyqwYtHVrVPa66oWXTt7iaXeFkzYWr2Hhr2Lns+7/Pd642"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/assessment/assessor.go",
+    "grade": "B",
+    "username": "Hlamb",
+    "timestamp": "2025-04-09T17:18:51.719Z",
+    "codeReview": {
+      "review": "This code has three critical areas of concern.  First, `AccessorGrade`'s `Assess` method uses a boolean (`failed`) that is unnecessarily inverted.  Second, `AccessorAverageCoverage`'s `Assess` method has a potential division by zero error if `details` is empty.  Third, both `Assess` methods lack clear error handling;  if `GradeNumericalValue` or `threshold` are invalid types, the program will panic.  For example, in `AccessorGrade`,  `ag.Calculator.GradeNumericalValue(detail.Grade)` and `ag.Calculator.GradeNumericalValue(threshold)` could fail if the input types are incorrect.\n"
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "A*",
+      "interfaceSegregationScore": "B",
+      "liskovSubstitutionScore": "B",
+      "openClosedScore": "A",
+      "singleResponsibilityScore": "B"
+    },
+    "hash": "aafb80f2fe9b28dfaa6b94e980efc896655149eb4bb37d6d82d13f45808ae7ea",
+    "id": "eJylVe9r2zAQ/Vdugg5785zSfTPNIKRsDEZX6NYv0xiqfHbMZClI545S8r8PWbKTOBnrj3wSp3vv3Z3fRQ9MOIfONbr+ZoxiBbv++uXzBcuYNCUujSbUxAq2FvK3qBFCdouauOa6adfGEiRcc+I9QmFF76RqZlWjCC1n4apqaTga50+ph9P9GmEhJTpnLDSa0FZCIjz4zEWvlNDKolsZVYIj2+g6gxJJNMrBj59BI/9kRYkXIZrCrTGK680Bf5/lSTpJQWEplOyUIGMh/Hb5tpc+9aYxSlBj9NJ0vkwYAy5qVZ2WcIl/9uQSuZU4Tp7B3b+p0+1w+oItUmc1vN7T6G92myliN1vtLKRMmygOtPvEzW5HiajhzZ5eCi/5MqGRSjQKSyjmQLbDPmIs/BoY/IUVusaRMTbZVCDqfNtqELjsWrSNFOpGqA6TgMljseePQIydpIPQWOIcKqEcDlFR59Mp5ouyHGNRPA35mzjOvvBXkTEqHGO6so2mJB1R8XsH4DFPL80dWr+W/9mdK7QSNfm0Z+/PIkiNkrub9PT1mLAlj9qCUfvoNkwoH15ieiG3rp/wHvr/qdMN5ZMh0Tv99PH+D5i38xjPh5rG7ZjE4RwOqhwdLoR8tpkThcO1S1OYz+F0IK5aCkZWOuHs0vg/PnRAJr4dnEXC0d1xv/r5cxKx9GIOlTKC3p8lfdspzMbAnroHrYVzHjGAP+yAJwNIg4zfyB417OOxaUwX0vf2ce2DVWJcfk0lWpsBZ9EjIOPgCzjJz6qTE841Z9lQVrpjW6/de45lzE/oStCKFWz23aF1sxVqe69EeztrO0XNWuFs73XdPsPxaGxeG7b5C8hD6CI="
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/read/findCodeLeft.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-04-09T17:18:52.818Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "brokenAccessControl": {
+        "clientServerAccessPolicyEnforcement": 0,
+        "idorPrevention": 0,
+        "roleBasedAccessControl": 0
+      },
+      "cryptographicFailures": {
+        "dataEncryption": 0,
+        "encryptionAlgorithmStrength": 0
+      },
+      "identificationAuthentication": {
+        "multiFactorAuthentication": 0,
+        "passwordPolicy": 0,
+        "sessionManagement": 0
+      },
+      "injection": {
+        "inputSanitization": 0,
+        "preparedStatementsUsage": 0
+      },
+      "insecureDesign": {
+        "secureDesignPattern": 0,
+        "sensitiveDataExposure": 0,
+        "threatModeling": 0
+      },
+      "securityLoggingMonitoring": {
+        "anomalyMonitoring": 0,
+        "criticalEventLogging": 0,
+        "secureLogStorage": 0
+      },
+      "securityMisconfiguration": {
+        "adminEndpointExposure": 0,
+        "defaultConfiguration": 0,
+        "securityHeaders": 0
+      },
+      "serverSideRequestForgery": {
+        "inputValidation": 0,
+        "internalSystemExposure": 0,
+        "networkLayerProtection": 0
+      },
+      "softwareDataIntegrity": {
+        "versionControl": 0
+      },
+      "vulnerableOutdatedComponents": {
+        "knownVulnerabilities": 0
+      }
+    },
+    "hash": "3f2c264b9e0d6237aac81438d407b0640050e2df82277f8604b5a15a7a97b90b",
+    "id": "eJx1U01v2zAM/SucgHU24FjbNUAOW9oBBQa0WDv0oosqU7EQmQooOVlQ5L8PsuN8bN1JND/fe6TfhI4RY3S0eg7Bi7l4ePn69Dh7fnicffksKmFCg8tACSmJudhos9YrBEbdKFLkuk3gBIUilZSwXVJiNEOcrI1OrbTOYzays8yFUoJ11CxDgx5t+omm5+i2CBE1mxYj8OTye7CBQUPjGE0KvAfSHTagRG2O9UpATw0yKMEhJCVqRbYn8/6QIudATOxoVUIxGhUgc+AS3jLurWaYmj/q1B6zM3SVkBnmC5hI1S/ar4eeFeShxeZcUIEjGyDE+rvzeE82VLDTfn3HPM0bnnGqSs6ewh8WQM5PAZUYU880hUfvYXykhGWLZg3OgumZkRIMIFz8v24/Bt1OYzPO+j7eOi5KuLk5s/umIw6USlgsrovP4K60WgzDp5CU8LR2G2gwGqTG0Qpsz6lFhkAGYYeftgg29NSAhk4n0/5F+QQl97l119yPOeR8/j7k68p08B8Fj4lKKDHsekgfF5pluyKwGNLerbRdqu/yymxxocWFyE3ACBQS4G8XE2ja71pkHA90Dh9j7pKvpbxAcBxxiaIaOR0UiUpkCbJTzIX8FZGjbJF473X3KrveJ7fxKKfqmfFO5l9UTuefIdarIA5/ACNda2o="
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/read/fileReader.go",
+    "grade": "B",
+    "username": "Hlamb",
+    "timestamp": "2025-04-09T17:18:52.948Z",
+    "codeReview": {
+      "review": "This code has three critical areas of concern.  First, `NewHistoryReader` relies on `os.Getwd()`, which is not ideal for a reusable component.  Second, the error handling for `os.Stat` could be improved by checking for `os.IsNotExist` more explicitly.  Third, the code lacks clear separation of concerns; the `HistoryReader` handles both finding the `.codeleft` folder and reading the file, which blurs responsibilities.\n"
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "A*",
+      "interfaceSegregationScore": "B",
+      "liskovSubstitutionScore": "A",
+      "openClosedScore": "B",
+      "singleResponsibilityScore": "B"
+    },
+    "hash": "fa5ab27c5ac410bee67febbffc6a623635f6f428d0876abad3cfab0dcf4ede82",
+    "id": "eJydVlFv4zYM/iucgDs4Q+a8Z8hTeth6KNqh3d78otpUrNWRDIpuFhzuvw+UrMTu0muwvtShKfLjx4+0vikdAoZg3e5P7zu1Vk8Pd7c3aqlq3+DWO0bHaq16Xb/oHQKhbipXObvvPTEUlau4ir4dGv6l7uzK2I6RKpVeoat9Y91u9XfwLhvNnvOjD/mp19zKYZQHMS4k0WoFW9/gHRp+RN0ggXWMZHQtYPbaugDcIgS9x8rxscf3/b9JIrH+bgN7OhYLKBLaMlkshiUgkadF5b6P6UfnHC0AYei9C/a5QzCeIifW7SKMNjmXUi1IMeUIah4lMA01Z0C9f/SeQf4Ck3U7MW9HTv/Q3J7MGdM9HuYBa0LNGECDwwNYF1i7GsGbeeIynr5lOOjuJRF3St9YwlpcgQkR2IOxrok+xlJgKHObwfgucsEg7R2E4DCGNkA5oA2A+56PS3Fs0Oih4yBxJWQ9EKFjOHh6EfJO2VOcR+SBXADtUj/Amkl+G8B5gTG4BrQ7HlokBOtiZMlfVs4Mrv4PT9LxuTxyv1MvMvZohfUGfCh/Qz40hYiRrYn2nzbgbJdOyBmBKpYlmD2XXySeKSpltO2wkYJ3yO8XvIZPh0rFjDFJ7HHFkYR6oGBfsTumXpwYEId6IpATXnHLyjkdL3JZ1xWBRBMcbYz7eUbjeChLZx2le+IuvZzqdw0zsDl6ztrSUjKf5T2Z0Thd4fJsgSG/j68aG2r/ioQTjq6R1OWwM3l5glo7+f2c1l/WVtES/DyjZQFXLpfEehqXM96DnuRdwkhOhju2rqVythk2G6hUpT4UY0xzNxnec4WTuQk2cR6b+imILFsqH6fyybJIVUYMUXdpb5dfvXXFG5BLqNSU5UotThrftli/SCtmbcB/bOAQS3bGT6fxiTUXk+TvS9oa8b8N956/SLhCBiy//AFTMyCNx9SUiAg0Qx/1PHLzBsco6x8ET8rTdZ2+ubOq31kE1oCQUN6GGysL7KNOXyASnoe4NPVs61ws4bx9Hnp0lwdEHOT/tC/ifV1frtiXXlJ/RA03aJDSR3bb+YDFWVU3KHKP6L8+PdzLHcCDhtDZ2UdRvF815VTwdl5TFgkVyxQk5T0eUnSS8cZpnesNjN5lcik+j5EXv/4/IlK4a1SSV2nyPO9TtVQCU1qi1mr1V0AKqxYdHTu9f17th45t3+FqdoWTNRevYuOtYefV938BC8OseQ=="
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/read/configReader.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-04-09T17:18:54.550Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "brokenAccessControl": {
+        "clientServerAccessPolicyEnforcement": 0,
+        "idorPrevention": 0,
+        "roleBasedAccessControl": 0
+      },
+      "cryptographicFailures": {
+        "dataEncryption": 0,
+        "encryptionAlgorithmStrength": 0
+      },
+      "identificationAuthentication": {
+        "multiFactorAuthentication": 0,
+        "passwordPolicy": 0,
+        "sessionManagement": 0
+      },
+      "injection": {
+        "inputSanitization": 0,
+        "preparedStatementsUsage": 0
+      },
+      "insecureDesign": {
+        "secureDesignPattern": 0,
+        "sensitiveDataExposure": 0,
+        "threatModeling": 0
+      },
+      "securityLoggingMonitoring": {
+        "anomalyMonitoring": 0,
+        "criticalEventLogging": 0,
+        "secureLogStorage": 0
+      },
+      "securityMisconfiguration": {
+        "adminEndpointExposure": 0,
+        "defaultConfiguration": 0,
+        "securityHeaders": 0
+      },
+      "serverSideRequestForgery": {
+        "inputValidation": 0,
+        "internalSystemExposure": 0,
+        "networkLayerProtection": 0
+      },
+      "softwareDataIntegrity": {
+        "versionControl": 0
+      },
+      "vulnerableOutdatedComponents": {
+        "knownVulnerabilities": 0
+      }
+    },
+    "hash": "4604575174e0b320e5e43c9bd21a1dc6f67065902e04db78c4490b6992259770",
+    "id": "eJydVk1v2zgQ/StTAS3khSPtXl34ULjBIkWRBE6LXnRhqKHNjUwaw1G9RtH/vhhSn9mkCZpLbGr43puZNyP/yFQIGIJ1uy/eN9kqu/n24e724svN7cVff2bLTPsaN94xOs5W2VHpB7VDIFR15SpnD0dPDHnlKq5ibIOGL3RjSz4fMVRZeoJO+9q6XflP8K4/NAfuP/oh8qh4XxrboHyQw4XwlCVsvDN2t0VVI4ENQBiO3gV73yAYT1GSdTvgPYKOsYWQgWAVlRM5c4zA1GqGH8K7xaPfes8gf4HJup0cb7qEbhXvh+OfnaBrPM3wNKFiDKDA4QmsC6ycRvBmRlvEu1cMJ9U8hKh2IK8toWZPZ2BCBPZgrKtjjLEUGIq+wmB8E+vAIKVtHSOFDtoA9YA2AB6OfF5KYI1GtQ0HwY1FaonQMZw8PUjhBvaEs0VuyQVQDpDIE1gz4bcBnBcZratBufNpj4RgXUQW/qJypnX6cZXyBeR/TA+WCX2R+tArj6ewWoMPxd/IpzoXG7A18fzNGpxt0g25I0LlZAnmwMWl4Jm8yoyyDdaS7g75+XRX8PZUZZExksT+VhxLoFsK9js259SJIX8J0BNzDHolrHfNcD3v03pdEkg00aEj7rtpzbo7vW9W0bVD6dLDqXVXMNPag/ekmpZCPDpbWBJfnKrw5EyBIX+IT0ZXPGehbgLGoVDRNaOxniSYecwTaOXk+31aP73Bck0wc9Rioj/aLW6iIh3M7VaWcOlCS/goD9k9Qh+Qu45pKmbLYL2GKquyFz0YMT9PJnbMaDIswcapp9jMt0HcqKnYTl3TuyFmESVEt6U9WXzy1uWPNC5BNvJQ0ypbDMbe7FE/SN2nNcd/beAQ83XGTyfwjhXnI/PzLrZGwq/CtedLQctlpvqHv6jSVEbtMfU96gGVujGUZa6iM/IvoJPFlNbpJTfN+JnBtwakAMVV+GhlX73U4v/XEO7buCHVbMk8pX/cNTdHdE+OgTyX/9OGSPCrGvKK3eiF+IWqcI0GKb1KN40PmI9e+ohi8Sj9093NNVjHfpz49JKV0O+KOhqYDmRCF4iYnCgorvGUUCkXyml6qzV00UUKyd8l0MX730s/ob3CFh1WRzduzGyZiUjpQ7bKyq8BKZR7dHRu1OG+PLQN22OD5ezHkSywUk9/Fux89vM/1K9prA=="
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/read/findCodeLeft.go",
+    "grade": "C",
+    "username": "Hlamb",
+    "timestamp": "2025-04-09T17:18:54.743Z",
+    "codeReview": {
+      "review": "1. **Missing Error Handling:** The `filepath.Walk` function's error is not checked within the loop.  This could lead to silent failures if there's an issue during traversal.  Example:  `if walkErr != nil { return walkErr }` should be outside the loop.\n\n\n2. **Inconsistent Naming:**  `.codeLeft` in the code and `.codeleft` in the function signature.  This inconsistency should be fixed for better readability and maintainability.\n\n\n3. **Unnecessary Variable:** The `codeleftPath` variable is assigned within the loop but not used until after the loop.  This is unnecessary and can be simplified.\n"
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "F",
+      "interfaceSegregationScore": "B",
+      "liskovSubstitutionScore": "B",
+      "openClosedScore": "F",
+      "singleResponsibilityScore": "A*"
+    },
+    "hash": "56aade082dc40cf6f9d0f65cd4eb959577f3002870ca343cdf1bf64254733b75",
+    "id": "eJx1U02L2zAQ/StTQbc2uNY94EuTLQQWWrotveiiyqNYRB6ZkZw0LPnvRXacTdrtSeP5fO/N+EXoGDFGR7vvIXixEs9fnrYbUQkTWlwHSkhJrMSgzV7vEBh1q0iR64fACQpFKilh+6TEbIa4WINOnbTOYzays8yFUoJ11K5Dix5t+oZm5OgOCBE1mw4j8OLyJ7CBQUPrGE0KfALSPbagRG0u9UrASC0yKMEhJCVqRXYk8/aQIudATOxoV0IxGxUgc+ASXjLug2ZYmn/VqbtkZ+gqITOsGlhI1T+13089K8hDi+G1oAJHNkCI9WfncUs2VHDUfv/IvMybnnmqSs5ew+8aIOeXgEqMaWRawrP3PD9SwrpDswdnwYzMSAkmEC7+X7enSbfr2Iyz3saN46KEh4dXdp90xIlSCU1zX/wK7k6rZhq+hKSE570boMVokFpHO7Ajpw4ZAhmEI344INgwUgsaep1M9xflK5TcZ+PuuV9yyPn8fc7XlengPwpeEpVQYtr1lD4vNMt2R6CZ0t6stH2qH/PKbHGjxY3IbcAIFBLgbxcTaDodO2ScD3QF72Pukq+lvEFwGXGLopo5nRWJSmQJslOshPwRkaPskPjkdf9L9qNPbvAol+qPxjuZf1G5nH+GWO+COP8BPzxprQ=="
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/types/model.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-04-09T17:18:55.934Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "brokenAccessControl": {
+        "clientServerAccessPolicyEnforcement": 0,
+        "idorPrevention": 0,
+        "roleBasedAccessControl": 0
+      },
+      "cryptographicFailures": {
+        "dataEncryption": 0,
+        "encryptionAlgorithmStrength": 0
+      },
+      "identificationAuthentication": {
+        "multiFactorAuthentication": 0,
+        "passwordPolicy": 0,
+        "sessionManagement": 0
+      },
+      "injection": {
+        "inputSanitization": 0,
+        "preparedStatementsUsage": 0
+      },
+      "insecureDesign": {
+        "secureDesignPattern": 0,
+        "sensitiveDataExposure": 0,
+        "threatModeling": 0
+      },
+      "securityLoggingMonitoring": {
+        "anomalyMonitoring": 0,
+        "criticalEventLogging": 0,
+        "secureLogStorage": 0
+      },
+      "securityMisconfiguration": {
+        "adminEndpointExposure": 0,
+        "defaultConfiguration": 0,
+        "securityHeaders": 0
+      },
+      "serverSideRequestForgery": {
+        "inputValidation": 0,
+        "internalSystemExposure": 0,
+        "networkLayerProtection": 0
+      },
+      "softwareDataIntegrity": {
+        "versionControl": 0
+      },
+      "vulnerableOutdatedComponents": {
+        "knownVulnerabilities": 0
+      }
+    },
+    "hash": "0a4103f249f2ea8d7289bbbbba73d28d453cc772d47ba9da254701dca2984213",
+    "id": "eJxlUk1PwzAM/StWzmyF625oEhISYoMNcSBIZK3bBtK4xK7QhPbfUdIPbSWn6Pm9Zzt5v8owI7P11Z7IqZXavN7utov9Zru4uVZXKqcC1+QFvaiVak3+ZSoEObbI2mufZbAmX9oKArYBGb0wSI3AErpcuoBAZQLyRFt+MnkorcOl9tFllPd8+NVey74OyDW5IqLWV/ARVSutZCxo9RGJO8y7YOUIF3Itmx/DLRyI3CSlCA2y04TyYDAUnjrjot2l246cLSCeC0eO8CDU8mAF98gyI7kBnnjb8IymOM7N2h6eaGuHxq+pwEtaPsL/NvnuRx/w+8pTwNked9YhA8Dbe7wBTNr4HTy1viNXYGB4e5+9ftkX/rW2qVmCT0MmUoOzRJj05SAEB4SeX4D158EY4pCU53M/mgbnOfCmGV9ga6Sel1sj9TiOukrrRZpaqeyFMXBWow9HZ5pD1nRObOswizl3WMoidzZL8c6aCC0rUqc/1DUlSw=="
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/read/configReader.go",
+    "grade": "B",
+    "username": "Hlamb",
+    "timestamp": "2025-04-09T17:18:56.198Z",
+    "codeReview": {
+      "review": "This code has three critical areas of concern.  First, `NewConfigReader` relies on a recursive function (`findCodeleftRecursive`) which is not ideal for large repositories.  Second, error handling is not consistent; some errors are wrapped, others are not.  Third, the code lacks clear separation of concerns; the `ConfigReader` handles both finding the `.codeleft` folder and reading the config file.  Example: `findCodeleftRecursive` function should be extracted.  Example:  Error handling in `ReadConfig` should be more consistent. Example:  Create a separate function to handle finding the `.codeleft` folder.\n"
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "B",
+      "interfaceSegregationScore": "B",
+      "liskovSubstitutionScore": "B",
+      "openClosedScore": "B",
+      "singleResponsibilityScore": "A"
+    },
+    "hash": "79764b3a59c6eee5755fddfa57cff06c36100cec22970c2abf328a7958947afc",
+    "id": "eJydVk1v2zgQ/SuzAlrIC69098InJyhSFEnhdG+6MNTQZiOTwnBU1yj634sh9ZkmTbC5xKaG772ZeTPyj0yFgCFYd/jifZNtsvu7TzdX2TrTvsadd4yOs03WKv2oDgiEqq5c5eyp9cSQV67iKsY2aPgf3diSLy2GKktP0GlfW3covwbvhkNz4uGjHyNbxcfS2AblgxyuhKcsYeedsYc9qhoJbADC0HoX7EODYDxFSdYdgI8IOsYWQgaCVVRO5CwxAlOnGX4I7x5bv/eeQf4Ck3UHOd71CX1WfByPf/aCbvG8wNOEijGAAodnsC6wchrBmwVtEe/eMJxV8xii2pG8toSaPV2ACRHYg7GujjHGUmAohgqD8U2sA4OUtnOMFHpoAzQA2gB4avmylsAajeoaDoIbi9QRoWM4e3qUwo3sCWeP3JELoBwgkSewZsZvAzgvMjpXg3KX8xEJwbqILPxF5Uzn9NMq5SvI/54frBP6KvVhUB5PYbMFH4oPyOc6FxuwNfH8ry0426QbckeEyskazImLa8EzeZUZZRusJd0D8svpbuDducoiYySJ/a04lkB3FOw3bC6pE2P+EqBn5hj1StjgmvF6PqT1tiSQaKZDR9z385r1dwbfbKJrx9Klh3PrbmChdQAfSDWthXhytrAkvjhV4dmZAkP+FJ9MrnjJQv0ETEOhomsmYz1LsPCYJ9DKyfeHtH4Gg+WaYOGo1Ux/tFvcREU6WNqtLOHahY7wSR6ye4Q+IPcd01QslsF2C1VWZa96MGJ+mk3slNFsWIKNU0+xme+CuFFTsZ+7ZnBDzCJKiG5Le7L46K3Ln2hcg2zksaZVthqNvTuifpS6z2uO323gEPN1xs8n8J4V5xPzyy62RsJvwq3na0HLZaaGh3+o0lxG7TH1PeoBlboxlmWpojfyH6CTxZTW6e02z/iFwbcGpADFTbiysq9ea/HvNYSHLm5ItVgyz+mfds1di+7ZMZDn8n/eEAl+U0PesBu9EL9SFa7RIKVX6a7xAfPJS1coFo/SP97f3YJ17KeJTy9ZCf2mqKeB+UAmdIGIyYmC4hbPCZVyoZynt9lCH12kkPx9Al39+//ST2hvsEWP1dNNGzNbZyJS+pBtsvK/gBTKIzq6NOr0UJ66hm3bYLn4cSQLrNTznwUHn/38BS4eZ+8="
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/types/model.go",
+    "grade": "B",
+    "username": "Hlamb",
+    "timestamp": "2025-04-09T17:18:58.099Z",
+    "codeReview": {
+      "review": "The code defines a `Config` struct for configuration, which is good for organization.  However, three critical areas of concern are:\n\n1.  **Lack of validation:**  The `Config` struct lacks validation for the `Threshold` string, which could lead to unexpected behavior if the value isn't correctly formatted.  Example:  No check for `Threshold` being a valid number.\n\n2.  **Overly verbose `Quality` struct:**  The `Quality` struct contains multiple boolean flags, which could be simplified into a single, more descriptive field.  Example:  Instead of `Solid`, `LiteTest`, `PrReady`, `CleanCode`, consider a `QualityLevel` enum or a single `QualityScore` field.\n\n3.  **Missing error handling:**  The code doesn't handle potential errors during JSON decoding or configuration usage.  Example:  No `if err != nil` checks after decoding `config.json`.\n"
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "A",
+      "interfaceSegregationScore": "B",
+      "liskovSubstitutionScore": "A",
+      "openClosedScore": "B",
+      "singleResponsibilityScore": "A*"
+    },
+    "hash": "465ccd1135903488339c07dfa043c460c5152a236992c2d4aa13e4793cd763ac",
+    "id": "eJxlUstqwzAQ/JVF5za+55oSCJS+kp6iQBR7bauVta52TQkh/14kP0hcncTszOyuNBdlmJHZ+mpH5NRSbV+fN0/qQeVU4Iq8oBe1VK3Jv02FIOcWWXvtswxW5EtbQcA2IKMXBqkRWEKXSxcQqExAnmiLLyYPpXW40D66jPKeDxfttezqgFyTKyJqfQXHqFpqJWNBq2MkbjHvgpUz3Mm1vP4abuFE5CYpRWiQXSeUB4Oh8N4ZF+3u3bbkbAHx3DlyhAehlmcruEOWGckN8MR7Cx9oivPcrO3hibZyaPyKCryn5SP8b5OffvQB31SeAs72WFuHDAD7Q7wBTNr4HTy1XpMrMDDsD7PXL/vCv9Y2NUvwdchEanCTCJO+HITghNDzC7D+NhhDHJLydu4X0+A8B9404wu8Gann5dZIPY6jHtJ6kaaWKvtkDJzV6MPZmeaUNZ0T2zrMYs4dlvKYO5uleGdNhBYVqesfT1Qjjg=="
+  }
+]

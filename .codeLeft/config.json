@@ -1,0 +1,17 @@
+{
+  "threshold": "A",
+  "security": {
+    "owasp": true
+  },
+  "quality": {
+    "solid": true,
+    "cleanCode": false,
+    "prReady": false
+  },
+  "safetyCritical": {
+    "misraCpp": false
+  },
+  "testing": {
+    "functionalCoverage": false
+  }
+}

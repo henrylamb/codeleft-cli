@@ -1,47 +1,56 @@
-name: Run Codeleft CLI and Attempt HTML Render in Summary
+# File: .github/workflows/your-workflow-name.yml
+name: Run Codeleft CLI and Deploy Report to GitHub Pages
 
 on:
   push:
     branches:
-      - main
+      - main # Trigger workflow on pushes to the main branch
 
 jobs:
-  run-codeleft-cli:
+  build-and-deploy-report: # Renamed job for clarity
     runs-on: ubuntu-latest
+
+    # Grant write permission to the GITHUB_TOKEN for this job only
+    permissions:
+      contents: write
 
     steps:
       # 1. Checkout the repository
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Fetches all history, potentially needed by gh-pages action or changelogs
 
       # 2. Download and Extract codeleft-cli
       - name: Download & Install codeleft-cli
         run: |
-          VERSION=v0.1.5  # Update to the desired version
+          VERSION=v0.1.4  # Make sure this is the desired version
           OS=Linux
           ARCH=x86_64
           ASSET_NAME=codeleft-cli_${OS}_${ARCH}.tar.gz
           DOWNLOAD_URL="https://github.com/henrylamb/codeleft-cli/releases/download/${VERSION}/${ASSET_NAME}"
 
+          echo "Downloading CodeLeft CLI from ${DOWNLOAD_URL}"
           curl -L -o codeleft-cli.tar.gz "$DOWNLOAD_URL"
           tar -xzf codeleft-cli.tar.gz
           chmod +x codeleft-cli
           sudo mv codeleft-cli /usr/local/bin/
+          echo "CodeLeft CLI installed."
 
       # 3. Execute codeleft-cli Command
       - name: Execute codeleft-cli Command
-        id: run-codeleft # Give the step an ID to check its outcome if needed
+        id: run-codeleft # Give the step an ID to check its outcome
         run: |
           cd "${GITHUB_WORKSPACE}"
 
-          # Ensure .codeLeft directory exists
+          # Ensure .codeLeft directory exists (Adjust if your tool needs different setup)
           if [ ! -d ".codeLeft" ]; then
-            echo "Error: .codeleft directory does not exist in the repository root."
-            exit 1
+            echo "Warning: .codeleft directory does not exist in the repository root. Creating it."
+            mkdir .codeLeft # Or handle as needed by your tool
           fi
 
-          # Run the codeleft-cli command (adjust flags as necessary)
-          # Ensure this command actually creates 'CodeLeft-Coverage-Report.html'
+          echo "Running CodeLeft CLI..."
+          # Run the codeleft-cli command - ensure it creates 'CodeLeft-Coverage-Report.html'
           codeleft-cli -asses-coverage --create-report -threshold-percent=80 -threshold-grade=A -tools "SOLID,OWASP-TOP-10,PR Ready"
 
           # Check if the report file was created
@@ -52,41 +61,53 @@ jobs:
             echo "CodeLeft-Coverage-Report.html generated successfully."
           fi
 
-        # 4. Upload Coverage Report as an Artifact (Still useful backup)
+      # 4. Upload Coverage Report as an Artifact (Useful backup/alternative)
       - name: Upload Coverage Report Artifact
+        # Only run if the report generation step was successful
+        if: steps.run-codeleft.outcome == 'success'
         uses: actions/upload-artifact@v4
         with:
-          name: CodeLeft-Coverage-Report-(Downloadable)
-          path: CodeLeft-Coverage-Report.html
+          name: CodeLeft-Coverage-Report-(Downloadable) # Name shown in Artifacts section
+          path: CodeLeft-Coverage-Report.html # Path to the file to upload
 
-      # 5. Deploy Report to GitHub Pages
+      # 5. Deploy Report to GitHub Pages branch (gh-pages)
       - name: Deploy Report to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4 # Or latest version
+        # Only run if the report generation step was successful
+        if: steps.run-codeleft.outcome == 'success'
+        uses: peaceiris/actions-gh-pages@v4 # Use the dedicated action
         with:
+          # The GITHUB_TOKEN is granted 'contents: write' permission by the 'permissions' key above
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./ # Assuming the report is in the root, adjust if needed
-          publish_branch: gh-pages # Branch to deploy to
-          # Optional: Keep history or force push
-          # keep_files: false
-          # force_orphan: true
-          # Optional: Put in a specific directory on gh-pages, e.g., based on run ID
-          # destination_dir: ./reports/${{ github.run_id }}
-          # If using destination_dir, adjust the URL below accordingly
+          # Directory to deploy from (relative to workspace root)
+          publish_dir: ./
+          # The branch to deploy to
+          publish_branch: gh-pages
+          # Keep default user_name and user_email (github-actions[bot])
+          # Optional: Add a commit message
+          # commit_message: 'Deploy CodeLeft report for ${{ github.sha }}'
+          # Optional: Set destination directory within the branch (e.g., './reports/${{ github.run_id }}')
+          # destination_dir: ./reports/latest
 
-      # 6. Add Link to GitHub Pages Report in Summary
+      # 6. Add Link to GitHub Pages Report in Job Summary
       - name: Add Report Link to Summary
+        # Only run if the report generation step was successful
+        if: steps.run-codeleft.outcome == 'success'
         run: |
-          # Construct the GitHub Pages URL (adjust for your username/repo/path)
-          # Basic structure: https://<username>.github.io/<repository-name>/<path-to-report>
-          # Example assumes report is at the root of gh-pages branch:
-          PAGES_URL="https://$(echo $GITHUB_REPOSITORY | cut -d/ -f1).github.io/$(echo $GITHUB_REPOSITORY | cut -d/ -f2)/CodeLeft-Coverage-Report.html"
-          # If using destination_dir like above:
-          # PAGES_URL="https://$(echo $GITHUB_REPOSITORY | cut -d/ -f1).github.io/$(echo $GITHUB_REPOSITORY | cut -d/ -f2)/reports/${{ github.run_id }}/CodeLeft-Coverage-Report.html"
+          # Construct the GitHub Pages URL dynamically
+          # Assumes report is at the root of the gh-pages branch.
+          # Adjust the final path if using destination_dir in step 5.
+          # Example: /CodeLeft-Coverage-Report.html if destination_dir is not set or './'
+          # Example: /reports/latest/CodeLeft-Coverage-Report.html if destination_dir is './reports/latest'
+          REPORT_PATH="CodeLeft-Coverage-Report.html" # Change this if using destination_dir
+          OWNER_AND_REPO="${{ github.repository }}" # e.g., henrylamb/codeleft-cli
+          OWNER=$(echo $OWNER_AND_REPO | cut -d/ -f1)
+          REPO=$(echo $OWNER_AND_REPO | cut -d/ -f2)
+          PAGES_URL="https://${OWNER}.github.io/${REPO}/${REPORT_PATH}"
 
           echo "### CodeLeft Coverage Report" >> $GITHUB_STEP_SUMMARY
-          echo "📊 The full HTML coverage report has been deployed." >> $GITHUB_STEP_SUMMARY
+          echo "📊 A new report has been generated and deployed." >> $GITHUB_STEP_SUMMARY
           # Use Markdown link syntax: [Link Text](URL)
-          echo "[**Click here to view the rendered report**](${PAGES_URL})" >> $GITHUB_STEP_SUMMARY
-          echo "(Opens the report hosted on GitHub Pages in a new tab)" >> $GITHUB_STEP_SUMMARY
+          echo "[**Click here to view the rendered report on GitHub Pages**](${PAGES_URL})" >> $GITHUB_STEP_SUMMARY
+          echo "(Opens the report hosted on GitHub Pages in a new tab. Note: There might be a small delay before the page updates after deployment.)" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "Alternatively, download the report from the 'Artifacts' section above." >> $GITHUB_STEP_SUMMARY
+          echo "Alternatively, download the raw report file from the 'Artifacts' section named 'CodeLeft-Coverage-Report-(Downloadable)'." >> $GITHUB_STEP_SUMMARY

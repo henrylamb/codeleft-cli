@@ -256,20 +256,22 @@ var templateFuncs = template.FuncMap{
 		return "N/a"
 	},
 	"getCoverageClass": func(coverage float64) string {
+		// Keep class names semantic, colors are handled by CSS
 		if coverage > 80 {
-			return "green"
+			return "green" // Represents good coverage
 		} else if coverage >= 50 {
-			return "orange"
+			return "orange" // Represents medium coverage
 		}
-		return "red"
+		return "red" // Represents low coverage
 	},
 	"getCoverageColor": func(coverage float64) string {
+		// These colors should work reasonably well on a dark background
 		if coverage > 80 {
-			return "#76C474"
+			return "#76C474" // Green
 		} else if coverage >= 50 {
-			return "#F0AB86"
+			return "#F0AB86" // Orange
 		}
-		return "rgb(224, 66, 66)"
+		return "rgb(224, 66, 66)" // Red
 	},
 	"getToolAverage": func(averages map[string]float64, tool string) float64 {
 		if avg, ok := averages[tool]; ok {
@@ -318,7 +320,7 @@ var templateFuncs = template.FuncMap{
 	"dict": dict,
 }
 
-// --- HTML Template ---
+// --- HTML Template (Dark Theme) ---
 // We pass a dictionary with two keys: "Nodes" and "Root".
 // "Nodes" is a slice of ReportNode to be rendered.
 // "Root" is the full ReportViewData to preserve global context.
@@ -329,18 +331,18 @@ const repoReportTemplateHTML = `
     <title>Repository Structure Report</title>
     <meta charset="UTF-8">
     <style>
-        /* CSS styles for the report */
+        /* --- Dark Theme CSS --- */
         :root {
-            --bg-color: #ffffff;
-            --text-color: #24292e;
-            --border-color: #e1e4e8;
-            --header-bg-color: #f6f8fa;
-            --green-color: #28a745;
-            --orange-color: #dbab09;
-            --red-color: #cb2431;
-            --blue-color: #0366d6;
-            --grey-color: #586069;
-            --light-red-bg: rgba(244, 67, 54, 0.1);
+            --bg-color: #1e1e1e;         /* Dark background */
+            --text-color: #e0e0e0;       /* Light text */
+            --border-color: #444444;     /* Darker border */
+            --header-bg-color: #2a2a2a;  /* Slightly lighter dark bg for headers */
+            --green-color: #76C474;      /* Green (kept, visible on dark) */
+            --orange-color: #F0AB86;     /* Orange (kept, visible on dark) */
+            --red-color: #e04242;        /* Slightly adjusted Red for visibility */
+            --blue-color: #58a6ff;       /* Lighter blue for links/folders */
+            --grey-color: #aaaaaa;       /* Lighter grey for secondary text/icons */
+            --light-red-bg: rgba(224, 66, 66, 0.2); /* Darker translucent red bg */
         }
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
@@ -355,6 +357,7 @@ const repoReportTemplateHTML = `
             padding-bottom: 0.3em;
             margin-bottom: 1em;
             margin-top: 1.5em;
+            color: #cccccc; /* Slightly lighter heading color */
         }
         h1 { font-size: 1.8em; font-weight: 600; }
         h2 { font-size: 1.5em; font-weight: 600; }
@@ -388,9 +391,21 @@ const repoReportTemplateHTML = `
             background-color: var(--header-bg-color);
             font-weight: 600;
             text-align: center;
+            color: #f0f0f0; /* Ensure header text is light */
         }
         td:first-child, th:first-child { text-align: left; }
-        tr:last-child td { border-bottom: none; }
+        /* Remove last border in tbody and thead */
+        tbody tr:last-child td { border-bottom: none; }
+        thead tr:last-child th { border-bottom: 1px solid var(--border-color); } /* Keep border below header */
+
+        /* Style rows for better readability on dark theme */
+        tbody tr:nth-child(even) {
+             background-color: rgba(255, 255, 255, 0.03); /* Subtle alternating row color */
+        }
+        tbody tr:hover {
+            background-color: rgba(255, 255, 255, 0.06); /* Subtle hover effect */
+        }
+
         .coverage-cell {
             text-align: center;
             display: flex;
@@ -400,6 +415,7 @@ const repoReportTemplateHTML = `
             height: 100%;
         }
         .coverage-text { font-weight: 600; font-size: 0.95em; }
+        /* Coverage color classes - use color variables */
         .green { color: var(--green-color); }
         .orange { color: var(--orange-color); }
         .red { color: var(--red-color); }
@@ -407,7 +423,7 @@ const repoReportTemplateHTML = `
         .progress-bar {
             width: 80px;
             height: 8px;
-            background-color: #eaecef;
+            background-color: #555555; /* Darker background for progress bar */
             border-radius: 4px;
             overflow: hidden;
             margin-top: 4px;
@@ -418,17 +434,23 @@ const repoReportTemplateHTML = `
             border-radius: 4px;
         }
         .low-coverage { background-color: var(--light-red-bg); }
+        /* Ensure low-coverage hover is distinct */
+        .low-coverage:hover {
+             background-color: rgba(224, 66, 66, 0.3);
+        }
         .folder-name { font-weight: 600; color: var(--blue-color); }
         .file-name {
            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
            font-size: 0.9em;
+           color: var(--text-color); /* Ensure file names use main text color */
         }
         .icon {
             display: inline-block;
             vertical-align: text-bottom;
             margin-right: 5px;
-            fill: currentColor;
+            fill: currentColor; /* Icons inherit color */
         }
+        /* Icon colors now directly use the variables */
         .icon-folder { color: var(--blue-color); }
         .icon-file { color: var(--grey-color); }
         .grade-cell { text-align: center; font-weight: bold; }
@@ -457,7 +479,6 @@ const repoReportTemplateHTML = `
                 <th>Tool</th>
                 <th>Coverage (%)</th>
             </tr>
-            <!-- Overall Averages Row -->
             <tr>
                 <td><strong>Overall Averages</strong></td>
                 {{ range .AllTools }}
@@ -492,12 +513,16 @@ const repoReportTemplateHTML = `
             {{ template "nodeList" (dict "Nodes" .RootNodes "Root" .) }}
         </tbody>
     </table>
+
+    {{/* --- Template Definitions --- */}}
+
     {{ define "nodeList" }}
         {{ $root := .Root }}
         {{ range .Nodes }}
             {{ template "node" (dict "Node" . "Root" $root) }}
         {{ end }}
     {{ end }}
+
     {{ define "node" }}
         {{ $node := .Node }}
         {{ $root := .Root }}
@@ -528,14 +553,17 @@ const repoReportTemplateHTML = `
                         {{ else }}
                             <span class="grey">-</span>
                         {{ end }}
+                    {{ else }}
+                       {{/* Empty cell for directory rows in tool columns */}}
+                       <span class="grey"></span>
                     {{ end }}
                 </td>
             {{ end }}
             <td class="grade-cell">
-                {{ if not $node.IsDir }}{{ $node.Details.Grade }}{{ end }}
+                {{ if not $node.IsDir }}{{ $node.Details.Grade }}{{ else }}<span class="grey"></span>{{ end }}
             </td>
             <td class="tool-cell">
-                {{ if not $node.IsDir }}{{ $node.Details.Tool }}{{ end }}
+                {{ if not $node.IsDir }}{{ $node.Details.Tool }}{{ else }}<span class="grey"></span>{{ end }}
             </td>
             <td>
                 {{ if $node.CoverageOk }}

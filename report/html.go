@@ -12,7 +12,7 @@ import (
 	"strings"
 )
 
-// --- Data Structures for Template ---
+// --- Data Structures remain the same ---
 
 // ReportNode represents a node (file or directory) in the report tree.
 type ReportNode struct {
@@ -35,87 +35,86 @@ type ReportViewData struct {
 	ThresholdGrade  string             // The threshold grade used for calculations
 }
 
-// --- Core Report Generation Function ---
-
-// GenerateRepoHTMLReport creates an HTML report from the repo structure.
+// --- Core Report Generation Function remains the same ---
 func GenerateRepoHTMLReport(repoStructure map[string]any, outputPath string, thresholdGrade string) error {
-	// 1. Build the ReportNode tree and calculate file coverage.
-	rootNodes := buildReportNodes(repoStructure, "", thresholdGrade)
+	// ... (Code for building nodes, calculating averages, etc. - unchanged) ...
+    // 1. Build the ReportNode tree and calculate file coverage.
+    rootNodes := buildReportNodes(repoStructure, "", thresholdGrade)
 
-	// 2. Calculate directory averages and collect all tool names.
-	toolSet := make(map[string]struct{})
-	toolFileCounts := make(map[string]int)     // Files per tool
-	toolCoverageSums := make(map[string]float64) // Sum of coverage per tool
+    // 2. Calculate directory averages and collect all tool names.
+    toolSet := make(map[string]struct{})
+    toolFileCounts := make(map[string]int)     // Files per tool
+    toolCoverageSums := make(map[string]float64) // Sum of coverage per tool
 
-	calculateAveragesAndTools(rootNodes, toolSet, toolCoverageSums, toolFileCounts)
+    calculateAveragesAndTools(rootNodes, toolSet, toolCoverageSums, toolFileCounts)
 
-	// Convert tool set to a sorted slice.
-	allTools := make([]string, 0, len(toolSet))
-	for tool := range toolSet {
-		allTools = append(allTools, tool)
-	}
-	sort.Strings(allTools)
+    // Convert tool set to a sorted slice.
+    allTools := make([]string, 0, len(toolSet))
+    for tool := range toolSet {
+        allTools = append(allTools, tool)
+    }
+    sort.Strings(allTools)
 
-	// 3. Calculate overall averages.
-	overallAverages := make(map[string]float64)
-	var totalCoverageSum float64
-	var totalFileCount int
+    // 3. Calculate overall averages.
+    overallAverages := make(map[string]float64)
+    var totalCoverageSum float64
+    var totalFileCount int
 
-	for _, tool := range allTools {
-		sum := toolCoverageSums[tool]
-		count := toolFileCounts[tool]
-		if count > 0 {
-			overallAverages[tool] = sum / float64(count)
-			totalCoverageSum += sum
-			totalFileCount += count
-		} else {
-			overallAverages[tool] = 0
-		}
-	}
+    for _, tool := range allTools {
+        sum := toolCoverageSums[tool]
+        count := toolFileCounts[tool]
+        if count > 0 {
+            overallAverages[tool] = sum / float64(count)
+            totalCoverageSum += sum
+            totalFileCount += count
+        } else {
+            overallAverages[tool] = 0
+        }
+    }
 
-	var totalAverage float64
-	if totalFileCount > 0 {
-		totalAverage = totalCoverageSum / float64(totalFileCount)
-	}
+    var totalAverage float64
+    if totalFileCount > 0 {
+        totalAverage = totalCoverageSum / float64(totalFileCount)
+    }
 
-	// 4. Prepare data for the template.
-	viewData := ReportViewData{
-		RootNodes:       rootNodes,
-		AllTools:        allTools,
-		OverallAverages: overallAverages,
-		TotalAverage:    totalAverage,
-		ThresholdGrade:  thresholdGrade,
-	}
+    // 4. Prepare data for the template.
+    viewData := ReportViewData{
+        RootNodes:       rootNodes,
+        AllTools:        allTools,
+        OverallAverages: overallAverages,
+        TotalAverage:    totalAverage,
+        ThresholdGrade:  thresholdGrade,
+    }
 
-	// 5. Parse and execute the template with our custom functions.
-	tmpl, err := template.New("repoReport").Funcs(templateFuncs).Parse(repoReportTemplateHTML)
-	if err != nil {
-		return fmt.Errorf("failed to parse HTML template: %w", err)
-	}
+    // 5. Parse and execute the template with our custom functions.
+    tmpl, err := template.New("repoReport").Funcs(templateFuncs).Parse(repoReportTemplateHTML) // Use the updated template constant below
+    if err != nil {
+        return fmt.Errorf("failed to parse HTML template: %w", err)
+    }
 
-	// Ensure output directory exists.
-	outputDir := filepath.Dir(outputPath)
-	if err := os.MkdirAll(outputDir, 0755); err != nil {
-		return fmt.Errorf("failed to create output directory '%s': %w", outputDir, err)
-	}
+    // Ensure output directory exists.
+    outputDir := filepath.Dir(outputPath)
+    if err := os.MkdirAll(outputDir, 0755); err != nil {
+        return fmt.Errorf("failed to create output directory '%s': %w", outputDir, err)
+    }
 
-	outputFile, err := os.Create(outputPath)
-	if err != nil {
-		return fmt.Errorf("failed to create HTML output file '%s': %w", outputPath, err)
-	}
-	defer outputFile.Close()
+    outputFile, err := os.Create(outputPath)
+    if err != nil {
+        return fmt.Errorf("failed to create HTML output file '%s': %w", outputPath, err)
+    }
+    defer outputFile.Close()
 
-	if err := tmpl.Execute(outputFile, viewData); err != nil {
-		return fmt.Errorf("failed to execute HTML template: %w", err)
-	}
+    if err := tmpl.Execute(outputFile, viewData); err != nil {
+        return fmt.Errorf("failed to execute HTML template: %w", err)
+    }
 
-	fmt.Printf("Successfully generated repository report: %s\n", outputPath)
-	return nil
+    fmt.Printf("Successfully generated repository report: %s\n", outputPath)
+    return nil
 }
 
-// --- Helper Functions ---
 
-// buildReportNodes recursively converts the map structure to a slice of ReportNodes.
+// --- Helper Functions remain the same ---
+// ... (buildReportNodes, calculateAveragesAndTools, getGradeIndex, calculateCoverage) ...
 func buildReportNodes(data map[string]any, currentPath string, thresholdGrade string) []ReportNode {
 	nodes := make([]ReportNode, 0, len(data))
 	for name, value := range data {
@@ -155,8 +154,6 @@ func buildReportNodes(data map[string]any, currentPath string, thresholdGrade st
 	})
 	return nodes
 }
-
-// calculateAveragesAndTools recursively calculates directory averages and collects tool info.
 func calculateAveragesAndTools(nodes []ReportNode, toolSet map[string]struct{}, toolCoverageSums map[string]float64, toolFileCounts map[string]int) (float64, bool) {
 	var totalCoverageSum float64
 	var nodesWithCoverage int
@@ -189,8 +186,6 @@ func calculateAveragesAndTools(nodes []ReportNode, toolSet map[string]struct{}, 
 	}
 	return 0, false
 }
-
-// getGradeIndex maps a grade string to a numeric value.
 func getGradeIndex(grade string) int {
 	gradeIndices := map[string]int{
 		"A*": 5, "A": 4, "B": 3, "C": 2, "D": 1, "F": 0,
@@ -201,8 +196,6 @@ func getGradeIndex(grade string) int {
 	}
 	return index
 }
-
-// calculateCoverage computes the coverage percentage given a grade and threshold.
 func calculateCoverage(grade, thresholdGrade string) float64 {
 	gradeIndex := getGradeIndex(grade)
 	thresholdIndex := getGradeIndex(thresholdGrade)
@@ -223,15 +216,12 @@ func calculateCoverage(grade, thresholdGrade string) float64 {
 	}
 }
 
-// --- Template Functions and Helpers ---
 
-// split is a helper function that splits a string by a given separator.
+// --- Template Functions remain the same ---
+// ... (split, dict, formatFloat, getCoverageClass, getCoverageColor, etc.) ...
 func split(s string, sep string) []string {
 	return strings.Split(s, sep)
 }
-
-// dict constructs a map from a variadic list of key/value pairs.
-// Keys must be strings.
 func dict(values ...interface{}) map[string]interface{} {
 	if len(values)%2 != 0 {
 		panic("dict function requires an even number of arguments")
@@ -246,7 +236,6 @@ func dict(values ...interface{}) map[string]interface{} {
 	}
 	return d
 }
-
 var templateFuncs = template.FuncMap{
 	// Formatting and coverage helpers.
 	"formatFloat": func(f float64) string {
@@ -320,10 +309,7 @@ var templateFuncs = template.FuncMap{
 	"dict": dict,
 }
 
-// --- HTML Template (Dark Theme) ---
-// We pass a dictionary with two keys: "Nodes" and "Root".
-// "Nodes" is a slice of ReportNode to be rendered.
-// "Root" is the full ReportViewData to preserve global context.
+// --- HTML Template (Dark Theme - Hardcoded Colors) ---
 const repoReportTemplateHTML = `
 <!DOCTYPE html>
 <html>
@@ -331,29 +317,19 @@ const repoReportTemplateHTML = `
     <title>Repository Structure Report</title>
     <meta charset="UTF-8">
     <style>
-        /* --- Dark Theme CSS --- */
-        :root {
-            --bg-color: #1e1e1e;         /* Dark background */
-            --text-color: #e0e0e0;       /* Light text */
-            --border-color: #444444;     /* Darker border */
-            --header-bg-color: #2a2a2a;  /* Slightly lighter dark bg for headers */
-            --green-color: #76C474;      /* Green (kept, visible on dark) */
-            --orange-color: #F0AB86;     /* Orange (kept, visible on dark) */
-            --red-color: #e04242;        /* Slightly adjusted Red for visibility */
-            --blue-color: #58a6ff;       /* Lighter blue for links/folders */
-            --grey-color: #aaaaaa;       /* Lighter grey for secondary text/icons */
-            --light-red-bg: rgba(224, 66, 66, 0.2); /* Darker translucent red bg */
-        }
+        /* --- Dark Theme CSS (Hardcoded Colors) --- */
+        /* :root variables removed as they are no longer used */
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
             line-height: 1.5;
             padding: 20px;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background-color: #1e1e1e; /* Dark background */
+            color: #e0e0e0;       /* Light text */
             font-size: 14px;
         }
         h1, h2 {
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid #444444; /* Darker border */
             padding-bottom: 0.3em;
             margin-bottom: 1em;
             margin-top: 1.5em;
@@ -367,9 +343,9 @@ const repoReportTemplateHTML = `
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
-            background-color: var(--header-bg-color);
+            background-color: #2a2a2a;  /* Slightly lighter dark bg */
             padding: 15px;
-            border: 1px solid var(--border-color);
+            border: 1px solid #444444; /* Darker border */
             border-radius: 6px;
         }
         .summary div { margin: 5px 10px; }
@@ -378,27 +354,25 @@ const repoReportTemplateHTML = `
             border-collapse: collapse;
             text-align: left;
             margin-bottom: 30px;
-            border: 1px solid var(--border-color);
+            border: 1px solid #444444; /* Darker border */
             border-radius: 6px;
             overflow: hidden;
         }
         th, td {
             padding: 10px 12px;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid #444444; /* Darker border */
             vertical-align: middle;
         }
         th {
-            background-color: var(--header-bg-color);
+            background-color: #2a2a2a; /* Slightly lighter dark bg */
             font-weight: 600;
             text-align: center;
             color: #f0f0f0; /* Ensure header text is light */
         }
         td:first-child, th:first-child { text-align: left; }
-        /* Remove last border in tbody and thead */
         tbody tr:last-child td { border-bottom: none; }
-        thead tr:last-child th { border-bottom: 1px solid var(--border-color); } /* Keep border below header */
+        thead tr:last-child th { border-bottom: 1px solid #444444; } /* Darker border */
 
-        /* Style rows for better readability on dark theme */
         tbody tr:nth-child(even) {
              background-color: rgba(255, 255, 255, 0.03); /* Subtle alternating row color */
         }
@@ -415,11 +389,11 @@ const repoReportTemplateHTML = `
             height: 100%;
         }
         .coverage-text { font-weight: 600; font-size: 0.95em; }
-        /* Coverage color classes - use color variables */
-        .green { color: var(--green-color); }
-        .orange { color: var(--orange-color); }
-        .red { color: var(--red-color); }
-        .grey { color: var(--grey-color); text-align: center; }
+        /* Coverage color classes - hardcoded colors */
+        .green { color: #76C474; }  /* Green */
+        .orange { color: #F0AB86; } /* Orange */
+        .red { color: #e04242; }    /* Red */
+        .grey { color: #aaaaaa; text-align: center; } /* Lighter grey */
         .progress-bar {
             width: 80px;
             height: 8px;
@@ -433,28 +407,27 @@ const repoReportTemplateHTML = `
             transition: width 0.3s ease;
             border-radius: 4px;
         }
-        .low-coverage { background-color: var(--light-red-bg); }
-        /* Ensure low-coverage hover is distinct */
+        .low-coverage { background-color: rgba(224, 66, 66, 0.2); } /* Darker translucent red bg */
         .low-coverage:hover {
              background-color: rgba(224, 66, 66, 0.3);
         }
-        .folder-name { font-weight: 600; color: var(--blue-color); }
+        .folder-name { font-weight: 600; color: #58a6ff; } /* Lighter blue */
         .file-name {
            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
            font-size: 0.9em;
-           color: var(--text-color); /* Ensure file names use main text color */
+           color: #e0e0e0; /* Light text */
         }
         .icon {
             display: inline-block;
             vertical-align: text-bottom;
             margin-right: 5px;
-            fill: currentColor; /* Icons inherit color */
+            fill: currentColor; /* Icons inherit color from parent class */
         }
-        /* Icon colors now directly use the variables */
-        .icon-folder { color: var(--blue-color); }
-        .icon-file { color: var(--grey-color); }
+        /* Icon colors are set by parent class */
+        .icon-folder { color: #58a6ff; } /* Lighter blue */
+        .icon-file { color: #aaaaaa; } /* Lighter grey */
         .grade-cell { text-align: center; font-weight: bold; }
-        .tool-cell { text-align: center; font-size: 0.9em; color: var(--grey-color); }
+        .tool-cell { text-align: center; font-size: 0.9em; color: #aaaaaa; } /* Lighter grey */
     </style>
 </head>
 <body>
@@ -536,7 +509,7 @@ const repoReportTemplateHTML = `
                         <span class="folder-name">{{ $node.Name }}</span>
                     {{ else }}
                         <svg class="icon icon-file" width="16" height="16" viewBox="0 0 16 16" version="1.1">
-                            <path fill-rule="evenodd" d="M3.75 1.5a.25.25 0 01.25-.25h8.5a.25.25 0 01.25.25v13.25a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25V1.5zm.5 0v13h7.5v-13h-7.5z"></path>
+                            <path fill-rule="evenodd" d="M3.75 1.5a.25.25 0 01.25-.25h8.5a.25.25 0 01.25.25v13.25a.25.25 0 01-.25-.25h-8.5a.25.25 0 01-.25-.25V1.5zm.5 0v13h7.5v-13h-7.5z"></path>
                         </svg>
                         <span class="file-name">{{ $node.Name }}</span>
                     {{ end }}

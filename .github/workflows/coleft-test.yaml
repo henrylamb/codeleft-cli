@@ -52,35 +52,41 @@ jobs:
             echo "CodeLeft-Coverage-Report.html generated successfully."
           fi
 
-      # 4. Upload Coverage Report as an Artifact (Recommended Fallback)
+        # 4. Upload Coverage Report as an Artifact (Still useful backup)
       - name: Upload Coverage Report Artifact
-        # Only run if the report generation step was successful
-        if: steps.run-codeleft.outcome == 'success'
         uses: actions/upload-artifact@v4
         with:
-          name: CodeLeft-Coverage-Report-(Downloadable) # Renamed slightly for clarity
+          name: CodeLeft-Coverage-Report-(Downloadable)
           path: CodeLeft-Coverage-Report.html
 
-      # 5. Attempt to Render HTML Report Directly in Summary (EXPERIMENTAL)
-      - name: Attempt to Render HTML Report in Summary (Experimental)
-        # Only run if the report generation step was successful
-        if: steps.run-codeleft.outcome == 'success'
-        run: |
-          echo "" >> $GITHUB_STEP_SUMMARY # Add a blank line
-          echo "---" >> $GITHUB_STEP_SUMMARY # Add a horizontal rule separator
-          echo "## EXPERIMENTAL: Attempting Raw HTML Embed" >> $GITHUB_STEP_SUMMARY
-          echo "**Disclaimer:** The following content is the raw HTML from \`CodeLeft-Coverage-Report.html\`." >> $GITHUB_STEP_SUMMARY
-          echo "**It will likely NOT render correctly.** GitHub Actions summaries use Markdown, which does not support full HTML, CSS, or JavaScript rendering." >> $GITHUB_STEP_SUMMARY
-          echo "For proper viewing, please download the 'CodeLeft-Coverage-Report-(Downloadable)' artifact from this run." >> $GITHUB_STEP_SUMMARY
-          echo "---" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
+      # 5. Deploy Report to GitHub Pages
+      - name: Deploy Report to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4 # Or latest version
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./ # Assuming the report is in the root, adjust if needed
+          publish_branch: gh-pages # Branch to deploy to
+          # Optional: Keep history or force push
+          # keep_files: false
+          # force_orphan: true
+          # Optional: Put in a specific directory on gh-pages, e.g., based on run ID
+          # destination_dir: ./reports/${{ github.run_id }}
+          # If using destination_dir, adjust the URL below accordingly
 
-          # Check if file exists again just in case, then append its content
-          if [ -f "CodeLeft-Coverage-Report.html" ]; then
-            cat CodeLeft-Coverage-Report.html >> $GITHUB_STEP_SUMMARY
-          else
-            echo "**Error:** Could not find CodeLeft-Coverage-Report.html to embed." >> $GITHUB_STEP_SUMMARY
-          fi
+      # 6. Add Link to GitHub Pages Report in Summary
+      - name: Add Report Link to Summary
+        run: |
+          # Construct the GitHub Pages URL (adjust for your username/repo/path)
+          # Basic structure: https://<username>.github.io/<repository-name>/<path-to-report>
+          # Example assumes report is at the root of gh-pages branch:
+          PAGES_URL="https://$(echo $GITHUB_REPOSITORY | cut -d/ -f1).github.io/$(echo $GITHUB_REPOSITORY | cut -d/ -f2)/CodeLeft-Coverage-Report.html"
+          # If using destination_dir like above:
+          # PAGES_URL="https://$(echo $GITHUB_REPOSITORY | cut -d/ -f1).github.io/$(echo $GITHUB_REPOSITORY | cut -d/ -f2)/reports/${{ github.run_id }}/CodeLeft-Coverage-Report.html"
+
+          echo "### CodeLeft Coverage Report" >> $GITHUB_STEP_SUMMARY
+          echo "📊 The full HTML coverage report has been deployed." >> $GITHUB_STEP_SUMMARY
+          # Use Markdown link syntax: [Link Text](URL)
+          echo "[**Click here to view the rendered report**](${PAGES_URL})" >> $GITHUB_STEP_SUMMARY
+          echo "(Opens the report hosted on GitHub Pages in a new tab)" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "---" >> $GITHUB_STEP_SUMMARY
-          echo "(End of experimental HTML embed)" >> $GITHUB_STEP_SUMMARY
+          echo "Alternatively, download the report from the 'Artifacts' section above." >> $GITHUB_STEP_SUMMARY

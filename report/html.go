@@ -12,8 +12,6 @@ import (
 	"strings"
 )
 
-// --- Data Structures remain the same ---
-
 // ReportNode represents a node (file or directory) in the report tree.
 type ReportNode struct {
 	Name          string

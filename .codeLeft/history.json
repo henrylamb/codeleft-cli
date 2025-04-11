@@ -1474,5 +1474,1545 @@
     },
     "hash": "4fc054b64feb4b57521ca15237782f7f6a553f50a29aa7854d6d270e903dd268",
     "id": "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"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/assessment/violations.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T10:19:14.216Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "brokenAccessControl": {
+        "clientServerAccessPolicyEnforcement": 0,
+        "idorPrevention": 0,
+        "roleBasedAccessControl": 0
+      },
+      "cryptographicFailures": {
+        "dataEncryption": 0,
+        "encryptionAlgorithmStrength": 0
+      },
+      "identificationAuthentication": {
+        "multiFactorAuthentication": 0,
+        "passwordPolicy": 0,
+        "sessionManagement": 0
+      },
+      "injection": {
+        "inputSanitization": 0,
+        "preparedStatementsUsage": 0
+      },
+      "insecureDesign": {
+        "secureDesignPattern": 0,
+        "sensitiveDataExposure": 0,
+        "threatModeling": 0
+      },
+      "securityLoggingMonitoring": {
+        "anomalyMonitoring": 0,
+        "criticalEventLogging": 0,
+        "secureLogStorage": 0
+      },
+      "securityMisconfiguration": {
+        "adminEndpointExposure": 0,
+        "defaultConfiguration": 0,
+        "securityHeaders": 0
+      },
+      "serverSideRequestForgery": {
+        "inputValidation": 0,
+        "internalSystemExposure": 0,
+        "networkLayerProtection": 0
+      },
+      "softwareDataIntegrity": {
+        "versionControl": 0
+      },
+      "vulnerableOutdatedComponents": {
+        "knownVulnerabilities": 0
+      }
+    },
+    "hash": "77b1d903effbd9115ee9da262c502599802b5e2730cf39f401e98ca15b8f6098",
+    "id": "eJyNk1Fv1DAMx7+KiTTUol4Lr5XuYRqMF7SdtAEPBE2hdW8RqVM5vkPT6b47SrJ2x4YQb3Zs//x34hyUCQFDsLS99d6pVl1/Pb/ZrG6vN6t3b1WlOt/jhSdBEtWqyXQ/zRYhF41IokmTHSfPAoUmLTpVOBxk1TnbDNYJslY5NIwymz5Eq4zl8jAhfLHeGbGeAlgS5MF0CIeYu2FLUsRMOe/7Ja/oUYx1kDvUH9n0+D4dhVLT8SUYgvCukwz9ZIOctPz2/S+YR8qwow6u8NdT5/JUbcIxyo4JXi/nh+NpdbGHN0uohP8dI7P39TOxazDThNQXzyMVZFj5j96Pt5nRg2e4m6ugXQMb2iK86JiStdxVgMwxbxilvpwiaih8qG+kR+YKtLq0Dls4CxC3KRlpomRd+D1y3J5ig9whSdnCWQ9ak1aziDoCrsyIy0EELU6CLd4MLLM8OyR5r9ZA1s2atUStaWpHhVYfmD1Dkm5pC/t5SK3KuSA/ZvbiPUp+S1WpwTrcGLlXrWo+B+TQ3CPxgzPjj2bcObGTw+aP/X/6KM3SKtRbr46/AcSoQ5o="
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/assessment/violations.go",
+    "grade": "A",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T10:19:14.263Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "B",
+      "interfaceSegregationScore": "B",
+      "liskovSubstitutionScore": "A*",
+      "openClosedScore": "A",
+      "singleResponsibilityScore": "A"
+    },
+    "hash": "30dc7be84c3fa50e30de5fb7a9fc6ba323847e82c7c66b170c5da9e79307163e",
+    "id": "eJyNk1Fr3DAMx7+KZuhISpa8B+5htOsYlO6g217mUbxESc0cOci6G+W47z5sN+mtHaNvkiX99JctH5QJAUOwNH7x3qlW3X6+/nSpKtX5Hi88CZKoVs2m+2VGhJw9IYkmTXaaPQsUmrToVOFwkHeds81gnSBrlUPDJIvpQ7TKWC4PM8I3650R6ymAJUEeTIdwiLlbtiRFzJT3fb/mFT2KsQ5yh/ojmx4v01EoNR1fgiEI7zrJ0Gsb5KTl9x//wDxShh11cIO/nzqXp2oTjlF2TPB2PT8cT6uLPZyvoRJeO0Zm7+tnYjdg5hmpL55HKsiw8j+9H28zowfPcLdUQbsBNjQivOiYkrXcVYDMMW+YpL6aI2oofKhvpUfmCrS6sg5bOAsQ1ygZaaJkXfg9ctyeYovcIUnZwlkPWpNWi4g6Am7MhOtBBK1Ogq3eAiyzPDskeW82QNYtmrVErWlqR4VWH5g9Q5JuaYT9MqRW5VKQHzN78R4lv6Wq1GAdbo3cq1Y1XwNyaO6R+MGZ6Wcz7ZzY2WHz1/4/fZRmbRXq0avjH620Qd0="
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/assessment/assessor.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T10:19:14.321Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "brokenAccessControl": {
+        "clientServerAccessPolicyEnforcement": 0,
+        "idorPrevention": 0,
+        "roleBasedAccessControl": 0
+      },
+      "cryptographicFailures": {
+        "dataEncryption": 0,
+        "encryptionAlgorithmStrength": 0
+      },
+      "identificationAuthentication": {
+        "multiFactorAuthentication": 0,
+        "passwordPolicy": 0,
+        "sessionManagement": 0
+      },
+      "injection": {
+        "inputSanitization": 0,
+        "preparedStatementsUsage": 0
+      },
+      "insecureDesign": {
+        "secureDesignPattern": 0,
+        "sensitiveDataExposure": 0,
+        "threatModeling": 0
+      },
+      "securityLoggingMonitoring": {
+        "anomalyMonitoring": 0,
+        "criticalEventLogging": 0,
+        "secureLogStorage": 0
+      },
+      "securityMisconfiguration": {
+        "adminEndpointExposure": 0,
+        "defaultConfiguration": 0,
+        "securityHeaders": 0
+      },
+      "serverSideRequestForgery": {
+        "inputValidation": 0,
+        "internalSystemExposure": 0,
+        "networkLayerProtection": 0
+      },
+      "softwareDataIntegrity": {
+        "versionControl": 0
+      },
+      "vulnerableOutdatedComponents": {
+        "knownVulnerabilities": 0
+      }
+    },
+    "hash": "dfa34dcc6991f6e13356589c1d83f9836d2095e4c17aa9b860a74f7751aafbc4",
+    "id": "eJylVV1v2zAM/CucgA725jpd92Y0A4IM21sboF33MA+DKtOOMVkKJLpDUeS/D7JkO3EyrB95EijeHUkfo0fGrUVra1XdaC1Zxq6+L65XpzdXq9MPZyxhQhe41IpQEcvYhovfvELwoAYV5SpXdbPRhiDKVU55h5BY0qmQ9aysJaHJmb8qG+qP2rpT7OD0sEFYCIHWagO1IjQlFwiPLnPRKUW0NmjXWhZgydSqSqBA4rW08OOn10i/Gl7gZx+N4U5rmavtAX+X5UhaQV5hyaVoJSdtwP92+cZLl3pba8mp1mqpW1cmDAEbtMpWCbjEP3tykRgljpMncP9v6ngcTlewQWqNgrd7Gt3NbjNZ6GbUTnzKtInsQLtL3O52FPEK3u3pxfCaL+MbKXktsYBsDmRa7CLawK+ewV0YriocGEOTdQm8SsdWvcBl26CpBZe3XLYYeUwair14AmLoJO6FhhLnUHJpsY/yKp1OMV0UxRAL4rHP34ZxdoW/CYxB4RjTytSKonhAhe/tgcc8vdT3aNxa/md3VmgEKnJpL96fhZcaJHc36fnrMWGLnrQFg/bRbZhQPr7G9FyMrp/wHvr/udP15ZMm3jn97On+95j38xBP+5qG7ZjE4QIOqhwczrl4sZkjif21jWOYz+GsJy4b8kaWKsrZpXZ/fGiBdHg7chYIB3eH/ermnxMPpWdzKKXm9PE86tqOYTYE9tQdaMOtdYge/GkHPBlA7GXcRnaofh+PTWO6kK63LxsXLCNt02sq0JgEchY8AiIMPoOT9Lw8OclzlbOkLyvesa3T7jzHEuYmtOK0ZhmbfbNo7GyNyjxI3tzNmlZSvZE423tdx2c4HLVJK822fwFzm+nf"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/assessment/assessor.go",
+    "grade": "B",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T10:19:14.372Z",
+    "codeReview": {
+      "review": "This code has three critical areas of concern.  First, `AccessorGrade`'s `Assess` method uses a boolean (`failed`) that is unnecessarily inverted.  Second, `AccessorAverageCoverage`'s `Assess` method has a potential division by zero error if `details` is empty.  Third, both `Assess` methods lack clear error handling;  if `GradeNumericalValue` or `threshold` are invalid types, the program will panic.  For example, in `AccessorGrade`,  `ag.Calculator.GradeNumericalValue(detail.Grade)` and `ag.Calculator.GradeNumericalValue(threshold)` could fail if the input types are incorrect.\n"
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "A*",
+      "interfaceSegregationScore": "B",
+      "liskovSubstitutionScore": "B",
+      "openClosedScore": "A",
+      "singleResponsibilityScore": "B"
+    },
+    "hash": "15b8b01bdbdc35988b9dca1d137d93ce6a6bc14cbcd8066a936818ed377f8312",
+    "id": "eJylVe9r2zAQ/Vdugg5785zSfTPNIKRsDEZX6NYv0xiqfHbMZClI545S8r8PWbKTOBnrj3wSp3vv3Z3fRQ9MOIfONbr+ZoxiBbv++uXzBcuYNCUujSbUxAq2FvK3qBFCdouauOa6adfGEiRcc+I9QmFF76RqZlWjCC1n4apqaTga50+ph9P9GmEhJTpnLDSa0FZCIjz4zEWvlNDKolsZVYIj2+g6gxJJNMrBj59BI/9kRYkXIZrCrTGK680Bf5/lSTpJQWEplOyUIGMh/Hb5tpc+9aYxSlBj9NJ0vkwYAy5qVZ2WcIl/9uQSuZU4Tp7B3b+p0+1w+oItUmc1vN7T6G92myliN1vtLKRMmygOtPvEzW5HiajhzZ5eCi/5MqGRSjQKSyjmQLbDPmIs/BoY/IUVusaRMTbZVCDqfNtqELjsWrSNFOpGqA6TgMljseePQIydpIPQWOIcKqEcDlFR59Mp5ouyHGNRPA35mzjOvvBXkTEqHGO6so2mJB1R8XsH4DFPL80dWr+W/9mdK7QSNfm0Z+/PIkiNkrub9PT1mLAlj9qCUfvoNkwoH15ieiG3rp/wHvr/qdMN5ZMh0Tv99PH+D5i38xjPh5rG7ZjE4RwOqhwdLoR8tpkThcO1S1OYz+F0IK5aCkZWOuHs0vg/PnRAJr4dnEXC0d1xv/r5cxKx9GIOlTKC3p8lfdspzMbAnroHrYVzHjGAP+yAJwNIg4zfyB417OOxaUwX0vf2ce2DVWJcfk0lWpsBZ9EjIOPgCzjJz6qTE841Z9lQVrpjW6/de45lzE/oStCKFWz23aF1sxVqe69EeztrO0XNWuFs73XdPsPxaGxeG7b5C8hD6CI="
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/main.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T10:19:15.522Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "brokenAccessControl": {
+        "clientServerAccessPolicyEnforcement": 0,
+        "idorPrevention": 0,
+        "roleBasedAccessControl": 0
+      },
+      "cryptographicFailures": {
+        "dataEncryption": 0,
+        "encryptionAlgorithmStrength": 0
+      },
+      "identificationAuthentication": {
+        "multiFactorAuthentication": 0,
+        "passwordPolicy": 0,
+        "sessionManagement": 0
+      },
+      "injection": {
+        "inputSanitization": 0,
+        "preparedStatementsUsage": 0
+      },
+      "insecureDesign": {
+        "secureDesignPattern": 0,
+        "sensitiveDataExposure": 0,
+        "threatModeling": 0
+      },
+      "securityLoggingMonitoring": {
+        "anomalyMonitoring": 0,
+        "criticalEventLogging": 0,
+        "secureLogStorage": 0
+      },
+      "securityMisconfiguration": {
+        "adminEndpointExposure": 0,
+        "defaultConfiguration": 0,
+        "securityHeaders": 0
+      },
+      "serverSideRequestForgery": {
+        "inputValidation": 0,
+        "internalSystemExposure": 0,
+        "networkLayerProtection": 0
+      },
+      "softwareDataIntegrity": {
+        "versionControl": 0
+      },
+      "vulnerableOutdatedComponents": {
+        "knownVulnerabilities": 0
+      }
+    },
+    "hash": "df85f1aac382316398217b59a4e31d9c6b4cbbc3ed7f8b8a6526e5bb71096dbf",
+    "id": "eJytWN9v2zgM/lc4AxucznHal3vIIQ+9dN0KFGuxdLuHeUB1Np0KkyVDkrvluv7vB0ryr9Rd17t7WVyR/PiRoihqdxEzBo3hcnullIiW0cWfx5vL+dXF5fzoMEqiXBW4VtKitNEyqln+lW0RKsZlJjPJq1ppC3EmM5s5XYGlneeCLzxuhdJm0YS45MKinhRpZEUrKAXbdt9VB6VM+2Ws5nJrHgEidiSaEdnFAj6hNlxJUCXYG4T1+RlYpUQmcyWN7cQryKKj9DD9zcGSIQUM3DgrlFbvoFZcWiiVhp1qdAeVZrJsZO4M4hncEa3FAk6w5BKBwjG0ZG80mhslireaFQjLlROlGxdNnEWdfL4lhSxKIIv8vxu0noeTQKeZZtFsBH2JOkdpO/AzaUfItZcT6uEIOAhoox+iKyXMqWDbCc4kGjJdq6pic4M108xiAYIb61KvlOByCzGm2zSBzcX52UkS6k7V86PDZC2QyflaFZikaToLvm/99oy8/6GUiLMoiMhvyYRBcn/CTS3YzseUN1pTMm6nK6ANz1fteFOCCyfqt6Nzc+xMfrYjHnStblFTTidx8yB9DLqVP0TPNTKLH1yt72N72bw9CAPotZMAAy9r89Gf2gDvy3fdGKsq/jc6pca4HoDG/VoFXOaiKbBLLpel0hWztCMys47RR6e8Ajod7cHIrIO6wu+O+fXw9HaH8Rped9+v4Zo4OaxlJgFGFp9VTS7NF9K58N/LTF57V2Vl09Nac2mFjB0lV5+yOOcS04vG1o2NZwl0lGbBjlQvye4ES9YIa2Inue+yc8m0oR1yaHMxOujemhTiPp3vmCxEny7X5GRmeQkHwxq/2ydexsqkG1ug1rSHk+l6abLMnYOwEKJQJn3zndv4cI/7Wslb1NYdAgNcWgUMfFMFI3iOgVh/7lcrkFw8Sc4DUmjUNyUXoVx7KkcdFd9Vzqk9LFdQU7boNjLxQee2T96Z5JYzQcX4jhur9O4DsgI1iW+GCwmg1gRIF0r6Hr+N1P0m8tIpvfi1mN5orTTwlgDlKHh0PlAv4eVtSD9q/Wi8PhDi0doPyHe0R8Gk9BMC+PfUieWA9bPoHte12IG/tw0wWQyahSt1wSwa63rnqdNy3ch9UfbPe3E4QW3uVvDANPU/I5ugHiqBKmPKzVW3vu+ktwjocVd2CYzBF4tcyZJvAy6X7nz6tUeKaz0Q/k+1FTg8q7QCyY7ekLOrIc/zv5eQB/71CuJlMEnPtlJpTE+VKKiSgvcfP/blXKDZ41YzezO16ZfdejwBkkx7Dmz7AunR2wIZVMWoZwqBufXX/fAouCGFK+FuvrVqZCA6uFXf47dPrUZ7I+RM5I1gVu1F5erej1frTsXvnHMdeEyaBRl56eF70xO0jAtDhmOoNHyNz1wCB+OJNTBneY7GKN0NTONIj4fiAY8E9rPUluPBcAB79QpejDykfiCK98gkMIxp9mQhvx2PaVAyLrCAZQyulH9WxS2d4TA3HfOxV2gV4yci7gCHQbeLD+MOs/1zI18/mCKfEzyxHU2bwZ0fITG0Q/p2t62thNeLA2hoN50W6vQtStQdYDyM5mHN/T7RrZ7sV1vvgVqW9zrZsvYjpphp+efpDGkILrAA07idKxshdi/6fIb8PYpzLATkN5h/NVBTORQD2+Hgdh9eo/2EBKYW3LZPhPFzaziBhbmOBjoa9cOruX2sDiaufs7zOjP4/CWMg3dToyC99fo6sI2WncHdfXcpLRawIaKgpKfpmqbVvAJTsxxNNwRSdbTsnEnPiDKVhKzQu5u7SmLSvUHINNBwf3zmX6BHutK82pCjuBX2F2Zg7V+vlOIoiUoukO6UaBktPhrUZnGDUu8Eq/5aVI2wvBa4GP1fA733062K7v8BrV494w=="
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/filterTools.go",
+    "grade": "B",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T10:19:17.225Z",
+    "codeReview": {
+      "review": "**OWASP Top 10 Review (Short)**\n\n**Critical Areas of Concern:**\n\n1.  **Improper Input Validation:**  The code lacks robust input validation for the `tool` string.  A malicious user could potentially inject harmful characters or exploit the code.  Example: `strings.ToUpper(tool)` is vulnerable to command injection if `tool` is user-supplied.\n\n\n2.  **Insufficient Data Sanitization:**  The code doesn't sanitize the `value` string before using `strings.TrimPrefix` and `strings.TrimSuffix`.  This could lead to unexpected behavior or vulnerabilities if the input contains special characters. Example: `strings.TrimPrefix(value, \" \")`.\n\n\n3.  **Potential for Denial-of-Service (DoS):**  If the input `values` array is very large, the code could potentially lead to a DoS attack.  The nested loops and appending operations could consume significant resources.  Example: The `for` loop iterating over `values` and appending to `filteredHistories` in the `Filter` method.\n"
+    },
+    "gradingDetails": {
+      "brokenAccessControl": {
+        "clientServerAccessPolicyEnforcement": 0,
+        "idorPrevention": 0,
+        "roleBasedAccessControl": 0
+      },
+      "cryptographicFailures": {
+        "dataEncryption": 0,
+        "encryptionAlgorithmStrength": 0
+      },
+      "identificationAuthentication": {
+        "multiFactorAuthentication": 0,
+        "passwordPolicy": 0,
+        "sessionManagement": 0
+      },
+      "injection": {
+        "inputSanitization": 1,
+        "preparedStatementsUsage": 0
+      },
+      "insecureDesign": {
+        "secureDesignPattern": 0,
+        "sensitiveDataExposure": 0,
+        "threatModeling": 0
+      },
+      "securityLoggingMonitoring": {
+        "anomalyMonitoring": 0,
+        "criticalEventLogging": 0,
+        "secureLogStorage": 0
+      },
+      "securityMisconfiguration": {
+        "adminEndpointExposure": 0,
+        "defaultConfiguration": 0,
+        "securityHeaders": 0
+      },
+      "serverSideRequestForgery": {
+        "inputValidation": 0,
+        "internalSystemExposure": 0,
+        "networkLayerProtection": 0
+      },
+      "softwareDataIntegrity": {
+        "versionControl": 0
+      },
+      "vulnerableOutdatedComponents": {
+        "knownVulnerabilities": 0
+      }
+    },
+    "hash": "a42f8a686137c4917440db6f1e73fb7fc60333f16aa02ac918ff7b8b1c2d522c",
+    "id": "eJytlEFvnDAQhf/KyIcKKhba60oc0lRtT82q2aiHOKpcGMCqsZE9JEWr/e+VMSy7JW0VqScs3rxvxn6GAxPOoXNS13tjFNuym69Xt7vN/ma3efuGJawwJV4bTaiJbVknih+iRqikIrRccy3bzliCiGtOnDmyUteOM65jr9LQIXwYiz3egdSEthIFwsE7ghQ9CtWjg/uH4E+gkY6Mlejg07yKlyXXxxPcYwMFHNm+oMOoVb0u4DM+LXIUXwwytrdIvdXwaqny7gUQEbxetBnw0nFDr3BkWC6vt/lSM05NlbHwLYGR72UrdI0wtRspnKYjTvdWtjuLlfwZ5kmAM+AsXlfd9tUfqui0t9/mojSM+27w25+tp21O9vWWchBdh7qMVlICzzZL03SEHc/iWHn/FsnFnL4F/OdQllgCcFiCaS5hnGQFp4M3d12HNppM6dX5ZxZDnq8qaRQmEqcss1j2BQI1CKUgAcqIclZn7LUp8Qs+SnyCHFrR3Qfqg9BDuFLnxR+tKKWu3yMJqdzzhsnysminBtO1OM6B/itSlrBKKtwJatiWZXcOrcsa1HZQov2etb0i2SnM/D9IYUWbQsksoKbH+C2ntWHHXy4FzQw="
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/filterTools.go",
+    "grade": "B",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T10:19:17.281Z",
+    "codeReview": {
+      "review": "1. **String manipulation in a loop:**  `strings.TrimPrefix` and `strings.TrimSuffix` are called within the loop.  This creates unnecessary repeated string allocations and copies.  Example: `strings.TrimPrefix(value, \" \")`.  Should be done once outside the loop.\n\n2. **Unnecessary `ToUpper`:** Converting to uppercase for comparison (`strings.ToUpper`) is inefficient and potentially problematic if case-insensitive matching is not the intended behavior.  Example: `strings.ToUpper(history.AssessingTool)`.\n\n3. **Mutable `Histories`:** The `Filter` method modifies the input `histories` object. This violates the principle of immutability, making the code harder to reason about and potentially leading to unexpected side effects.  Example: `filteredHistories = append(filteredHistories, history)`.\n"
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "A*",
+      "interfaceSegregationScore": "B",
+      "liskovSubstitutionScore": "B",
+      "openClosedScore": "B",
+      "singleResponsibilityScore": "B"
+    },
+    "hash": "322b5f8dac63c1b7d9fa0a0199a9ef0fb4b9c69110a70c25cf448c6228ae72b1",
+    "id": "eJytlE9vnDAQxb/KyIcKKgr3lTi0ifpHqtqoSU5xFLkwBqvGtuwhKVrtd6/AsOyWtFWknrB4834z9jPsmQgBQ1CmubFWsx27/vr50yXLWGVrvLCG0BDbMSeqH6JBkEoTem64UZ2zniDhhhNngbwyTeCMm3RUaXAI76fikRtAGUIvRYWwHx1RSh6F7jHA3X30Z9CqQNYrDPBxWaXrkpvDET5iIwUC+b6i/aTJ3lTwBZ9WOUnPBpnae6TeG3i1Vo3uFZAQvF61BfDScWOveGRYr6935VozTU3SenjIYOKPshemQZjbTRRO8xHnN151Vx6l+hnnyYAz4CzdVl338g9VdNzbb3NRHsd9N4zbX6zHbc727ZZKEM6hqZONlMGzzfI8n2CHkzg23r9Fcjbn2AL+cyhrLBE4rMG05zBOSsLx4O2tc+iT2ZS/Pf2+UijLTSVNwkziVBQe675CoBahFiRAW1Ev6oK9sDV+w0eFT1BCJ9xdpN4LM8QrdVr8wYtameYSSSgdnjfMlpdFOzeYr8VhCfRfkbKMSaXxSlDLdqy4DehD0aLxgxbd96LrNSmnsRj/QRolvam0KiJqfkzfct5YdvgF0JHLTw=="
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/main.go",
+    "grade": "B",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T10:19:18.259Z",
+    "codeReview": {
+      "review": "This code lacks proper error handling for `toolsFlag` being `nil` (line 48).  The `parseTools` function (line 128) doesn't validate the input string for malformed comma-separated values.  Finally, the code lacks clear separation of concerns; multiple responsibilities are bundled within functions like `main`.\n"
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "B",
+      "interfaceSegregationScore": "B",
+      "liskovSubstitutionScore": "B",
+      "openClosedScore": "B",
+      "singleResponsibilityScore": "B"
+    },
+    "hash": "19c7cfa512fbd4ac0769caf939d51791b517f98ddca570f6a52262df19e7bd02",
+    "id": "eJytWN9v2zgM/lc4AxucznG6l3vIIQ+9dN0KFGuxdLuHekB1Np0KkyVDkrvluv7vB0ryr9Rd17t7WVyR/PiRoihqdxEzBo3hcnuplIiW0eb87PQ4SqJcFbhW0qK00TKqWf6VbREqxmUmM8mrWmkLcSYzmzldgaWd54IvPGCF0mbRhLjkwqKeFGlkRSsoBdt231UHpUz7ZazmcmseASJ2JJoR2cUCPqM2XElQJdgbhPXZKVilRCZzJY3txCvIojfpYfqbgyVDChi4cVYord5Brbi0UCoNO9XoDirNZNnI3BnEM7gjWosFHGPJJQKFY2jJ3mg0N0oU7zQrEJYrJ0o3Lpo4izr5fEsKWZRAFvl/N2g9DyeBTjPNotkI+gJ1jtJ24KfSjpBrLyfUwxFwENBGP0RXSpgTwbYTnEk0ZLpWVcXmBmummcUCBDfWpV4pweUWYky3aQKu1JLzP482F/NLVc/fHCZrgUzO16rAJE3TWfB967dn5P0PpUScRUFEfksmDJL7Y25qwXY+przRmpJxO10BbXi+asebElw4Ub8dnZsjZ/KzHfGga3WLmnI6iZsH6WPQrfwheq6RWfzoan0f28vm7UEYQK+dBBh4WZuP/tQGeF++68ZYVfG/0Sk1xvUANO7XKuAyF02BXXK5LJWumKUdkZl1jD455RXQ6WgPRmYd1CV+d8yvh6e3O4zX8Lr7fg3XxMlhLTMJMLK4UjW5NF9I59x/LzN57V2VlU1Pas2lFTJ2lFx9yuKMS0zPG1s3Np4l0FGaBTtSvSC7YyxZI6yJneS+y84F04Z2yKHNxeige2tSiPt0vmeyEH26XJOTmeUlHAxr/G6feBkrk25sgVrTHk6m66XJMncOwkKIQpn07Xdu48M97mslb1FbdwgMcGkVMPBNFYzgOQZi/blfrUBy8SQ5D0ihUd+UXIRy7am86aj4rnJG7WG5gpqyRdeQiQ86t33yTiW3nAkqxvfcWKV3H5EVqEl8M1xIALUmQLpQ0g/4baTuN5GXTunFr8X0VmulgbcEKEfBo/OBegkvb0P6UetH4/WBEI/WfkC+oz0KJqWfEMC/p04sB6yfRfeorsUO/L1tgMli0CxcqQtm0VjXO0+clutG7ouyf9aLwwlqc7eCB6ap/xnZBPVQCVQZU24uu/V9J71FQI+7sktgDL5Y5EqWfBtwuXTn0689UlzrgfB/qq3A4VmlFUh29IacXQ15nv+9hDzwr1cQL4NJerqVSmN6okRBlRS8//ixL+cCzR63mtmbqU2/6NbjCZBk2nNg2xdIj94WyKAqRj1TCMytv+6HR8ENKVwJd/OtVSMD0cGt+gG/fW412hshZyJvBLNqLypX9368Wncqfuec68Bj0izIyEsP35seo2VcGDIcQ6Xha3zmEjgYT6yBOctzNEbpbmAaR3o0FA94JLCfpbYcD4YD2KtX8GLkIfUDUbxHJoFhTLMnC/ndeEyDknGBBSxjcKX8sypu6QyHuemYj7xCqxg/EXEHOAy6XXwYd5jtnxv5+sEU+Zzgie1o2gzu/AiJoR3St7ttbSW8XhxAQ7vptFCn71Ci7gDjYTQPa+73iW71ZL/aeg/UsrzXyZa1HzHFTMs/T2dIQ3CBBZjG7VzZCLF70ecz5O9RnCMhIL/B/KuBmsqhGNgOB7f78BrtJyQwteC2fSKMn1vDCSzMdTTQ0agfXs3tY3UwcfVznteZwdWXMA7eTY2C9Nbr68A2WnYGd/fdpbRYwIaIgpKepmuaVvMKTM1yNN0QSNXRsnMmPSPKVBKyQu9u7iqJSfcGIdNAw/1xxb9Aj3SpebUhR3Er7C/MwNq/XinFURKVXCDdKdEyWnwyqM3iBqXeCVb9tagaYXktcDH6vwZ676dbFd3/A4SKPCY="
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/gradeDetails.go",
+    "grade": "B",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T10:19:19.504Z",
+    "codeReview": {
+      "review": "**OWASP Top 10 Review (Snippet)**\n\nThree critical areas of concern:\n\n1.  **Insecure Data Handling:**  The `GetCoverage` function's coverage calculation is overly simplistic and lacks proper input validation.  Hardcoded values (120, 100, etc.) for coverage are problematic.  This could lead to unexpected results or vulnerabilities if the threshold is manipulated.  Example: `if g.Score > thresholdAsNum { g.Coverage = 120 }`.\n\n2.  **Improper Error Handling:**  No error handling is present in `GetCoverage`.  If `thresholdAsNum` is negative or invalid, the program will likely crash or produce incorrect results.\n\n3.  **Lack of Input Validation:** The `GetCoverage` function does not validate the input `thresholdAsNum`.  This could lead to unexpected behavior or vulnerabilities if malicious input is provided.\n"
+    },
+    "gradingDetails": {
+      "brokenAccessControl": {
+        "clientServerAccessPolicyEnforcement": 0,
+        "idorPrevention": 0,
+        "roleBasedAccessControl": 0
+      },
+      "cryptographicFailures": {
+        "dataEncryption": 0,
+        "encryptionAlgorithmStrength": 0
+      },
+      "identificationAuthentication": {
+        "multiFactorAuthentication": 0,
+        "passwordPolicy": 0,
+        "sessionManagement": 0
+      },
+      "injection": {
+        "inputSanitization": 1,
+        "preparedStatementsUsage": 0
+      },
+      "insecureDesign": {
+        "secureDesignPattern": 0,
+        "sensitiveDataExposure": 0,
+        "threatModeling": 0
+      },
+      "securityLoggingMonitoring": {
+        "anomalyMonitoring": 0,
+        "criticalEventLogging": 0,
+        "secureLogStorage": 1
+      },
+      "securityMisconfiguration": {
+        "adminEndpointExposure": 0,
+        "defaultConfiguration": 0,
+        "securityHeaders": 0
+      },
+      "serverSideRequestForgery": {
+        "inputValidation": 0,
+        "internalSystemExposure": 0,
+        "networkLayerProtection": 0
+      },
+      "softwareDataIntegrity": {
+        "versionControl": 0
+      },
+      "vulnerableOutdatedComponents": {
+        "knownVulnerabilities": 0
+      }
+    },
+    "hash": "426e35a11bbd85e4480c9b28b432f12fe86dc528c98c13e26b6f65dbaeb9da49",
+    "id": "eJyNVMFq4zAU/JWHTklx4qRlWTCkULpsb2kgXfbiQ1X52dGuLBnpuUsp+fdFspzYwYXc7HkzfjMj25+MO4fOSV29GKNYxp5/P+x3i5fn3WK9YgkTpsBHowk1sYw1XPzlFUIpFaHNda5l3RhLkDOSNebMQ/TRIDxZXuAPJC4VSE1oSy4QPnOd0xPSo3lHyyucSU3zXB+nZA4c2VZQFPkBAHhQ6gpe/zijs5xVHs/Zq+fshbGBIzWdCM6DkdCvHRFEBCPnp1S45TVeLiojHmm+LZjwQ8aoniJrdMTrBnw3S397pvWzwA35y1YL2OK/YQWzEC/uSCBk8eYTKMc2E/CLzzeyxv149XzcbSjVIrVWjwYBj3VnPl9wkHRoKDigwUlE+8ayk6k48B0FdjDXg33y7OwyjI6xhzSFwRsCgivRKk7ogA4I/WlBg1agJn/5xh0WYHQgdB1xXQAdLLqDUUXsdlbBzTDqfLhndmI/uG1b+5LnXUmyhGrZvVr3cMGKbVXLk90NrG9XIQ6gcggD9WZzlXz1hfz+Ur5YTz7g+9X620n9t6v1d5P6u6F+OuH5uFkSPqwdpwPLWPrLoXXpAbX9ULx+S+tWkWwUpv43pLCkhVAy7f4+aTU4y2Vl2PE/QLa3ag=="
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/model.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T10:19:21.909Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "brokenAccessControl": {
+        "clientServerAccessPolicyEnforcement": 0,
+        "idorPrevention": 0,
+        "roleBasedAccessControl": 0
+      },
+      "cryptographicFailures": {
+        "dataEncryption": 0,
+        "encryptionAlgorithmStrength": 0
+      },
+      "identificationAuthentication": {
+        "multiFactorAuthentication": 0,
+        "passwordPolicy": 0,
+        "sessionManagement": 0
+      },
+      "injection": {
+        "inputSanitization": 0,
+        "preparedStatementsUsage": 0
+      },
+      "insecureDesign": {
+        "secureDesignPattern": 0,
+        "sensitiveDataExposure": 0,
+        "threatModeling": 0
+      },
+      "securityLoggingMonitoring": {
+        "anomalyMonitoring": 0,
+        "criticalEventLogging": 0,
+        "secureLogStorage": 0
+      },
+      "securityMisconfiguration": {
+        "adminEndpointExposure": 0,
+        "defaultConfiguration": 0,
+        "securityHeaders": 0
+      },
+      "serverSideRequestForgery": {
+        "inputValidation": 0,
+        "internalSystemExposure": 0,
+        "networkLayerProtection": 0
+      },
+      "softwareDataIntegrity": {
+        "versionControl": 0
+      },
+      "vulnerableOutdatedComponents": {
+        "knownVulnerabilities": 0
+      }
+    },
+    "hash": "46a2d9cef206ba000f788c337d00b65b03c47849b8db589fc3ab2b4eb97ed106",
+    "id": "eJyFk02L2zAQhv/KoJMNTtxeAz1st7RbKGxoUnqIAqu1x/ak+jDSuEtY9r8XOYrXKc3WF4PmeV7JmvGzUCFgCGTbrXNarMT9z5vNerG9Xy/evxOFqFyNt84yWhYr0avql2oRGtKMXlppyfTOM2TSSpaCyaAU0uaxxMce4Y4CO3+EwH6oGJ4jdzPfEmKJbAvn5+EQnF3Jy4NJ8RDNz6RxrbhL6BWzSVSSvnhV4wRdk9pIJeNHQG+VwbeNIVFJ2pLBDSvTn6h4Fcu4dinxmUrWravxO/4mfBoxo/rdabu9ssfJqiZq9k1k20/IinS4prUXVFLvVOjgv9fRqXC+v681SJZ8FaV6BF/+6jlhgN0+9T/WmsFWkHWv5Ry+oc1yIJsGwyMP3oJGm3V5SvynFUJGBRyimcNjnKK53+1ov5zasfyIjfOYdbvDbPWN+M2T6mfxY3KMLCBGwIfxVYy7jCGimCZOrEQZhyeUHVp/1Mo8lmbQTL3GMjZRY8OLSlN5+oNKE9eWrRMvfwCMOTN5"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/gradeDetails.go",
+    "grade": "B",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T10:19:22.271Z",
+    "codeReview": {
+      "review": "The `GetCoverage` function lacks a clear, consistent logic for calculating coverage based on the score.  The `else if` chain is overly complex and prone to errors.  It's also overly specific to a particular threshold value.  The function should be refactored to use a more structured approach, such as a lookup table or a function that maps scores to coverage percentages.  Line 40 (`if g.Score > thresholdAsNum`) is a poor example of this.  Finally, the `GradeDetail` interface is unused, making the code less flexible.\n"
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "B",
+      "interfaceSegregationScore": "B",
+      "liskovSubstitutionScore": "B",
+      "openClosedScore": "B",
+      "singleResponsibilityScore": "B"
+    },
+    "hash": "f3574bdca1d496bf568c152e979c84edf711a8db3fd6619a6e66a992186a7ebc",
+    "id": "eJyNVF2L2zAQ/CuLnpLii++DUjDkoNzRo1DSQto3P5xOXstqZclI65bjyH8vkuXEDj7Imz07450Z2X5j3Hv0Xhn501rNCrb//u3rI8uYsBU+WENoiBWs4+IPlwi10oSuNKVRbWcdQclItViyANFrh/DkeIWPSFxpUIbQ1VwgvJWmpCekB/sXHZe4UobWpTksyTx4cr2gJAoDAAigMhKef3tripLJgJfsOXD2wrrIUYaOBB/ARBjXzggigYnzRWnc8RbPF9UJT7RQEyz4IWv1SFEteuJtB6GbTbg90cZZ5Mb8dW8E7PDftIJVjJd2ZBCzBPMZ1HObGYTFpxvV4n6+ej3vNpbqkHpnZoOIp7qLkC86yAY0FhzR6CShY2PF0VQahI4iO5obwTF5cXIZR4fUQ57D5A0BwbXoNSf0QA3CeFrQoRNoKFy+cI8VWBMJQ0fcVECNQ99YXaVuVxI+TKOup3tWR/Znv+vbUPJ6KEnVIDfDq3UPZ6zUltwc7W7h5vY6xgHUHmGi3m4vkl+/I78/l1/dLD7g08X620X9x4v1d4v6u6l+OeHpuFkWP6wfnBpWsPyXR+fzBo171bx9ydtek+o05uE3pLGmK6FVPvx9cjk5y4207PAf3E61rQ=="
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/model.go",
+    "grade": "A",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T10:19:23.558Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "B",
+      "interfaceSegregationScore": "A*",
+      "liskovSubstitutionScore": "A*",
+      "openClosedScore": "B",
+      "singleResponsibilityScore": "B"
+    },
+    "hash": "38ce36232c0a562f486a90cb94add2a7985ec5301cdf4f830e05d1964931ec90",
+    "id": "eJyFk1Fr2zAQx7/KoScbvPg9sIetZWuh0LJ0T1Ggqn22L5NPRjqvhNLvPuQonlOWzi8G3e/3l6w7vyoTAoZA3D46Z9Vabe7vbq9VoSpX45VjQRa1VoOpfpkWoSEr6DVrpn5wXiDTrEUroR610pzHkhwGhBsK4vwBgvixEniN3JflXhBLxC2cnqd9cLzW5yfS6ima38jig5EuoRfMJlFJ+u5NjTN0SWojlYyfAT2bHj82xkQl6ZF63IjphyMVr2IV184lOVHJunI1/sDfhC8T1pthe9xuZ/gwW9VMLb6JuL1GMWTDJa09o5J6Y0IH/72OzoTT/d3WoEXLRZTqCXx713PCANtd6n+sNSNXkHV/yzncIWc5EKfB8CijZ7DIWZenxH9aIWRUwD6aOTzHKVr63ZZ2q7kdq6/YOI9Zt90vVj+I37yYYRE/JcfIAmIEfJ5exbTLFKKKeeLUWpVxeELZIfuDNf1z2Y9WaLBYxiZabORTZak8/kFlH9dWrVNvfwBZdTG8"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/pathFilter.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T10:19:23.575Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "brokenAccessControl": {
+        "clientServerAccessPolicyEnforcement": 0,
+        "idorPrevention": 0,
+        "roleBasedAccessControl": 0
+      },
+      "cryptographicFailures": {
+        "dataEncryption": 0,
+        "encryptionAlgorithmStrength": 0
+      },
+      "identificationAuthentication": {
+        "multiFactorAuthentication": 0,
+        "passwordPolicy": 0,
+        "sessionManagement": 0
+      },
+      "injection": {
+        "inputSanitization": 0,
+        "preparedStatementsUsage": 0
+      },
+      "insecureDesign": {
+        "secureDesignPattern": 0,
+        "sensitiveDataExposure": 0,
+        "threatModeling": 0
+      },
+      "securityLoggingMonitoring": {
+        "anomalyMonitoring": 0,
+        "criticalEventLogging": 0,
+        "secureLogStorage": 0
+      },
+      "securityMisconfiguration": {
+        "adminEndpointExposure": 0,
+        "defaultConfiguration": 0,
+        "securityHeaders": 0
+      },
+      "serverSideRequestForgery": {
+        "inputValidation": 0,
+        "internalSystemExposure": 0,
+        "networkLayerProtection": 0
+      },
+      "softwareDataIntegrity": {
+        "versionControl": 0
+      },
+      "vulnerableOutdatedComponents": {
+        "knownVulnerabilities": 0
+      }
+    },
+    "hash": "792a1348ef2a1ac68bce8edd428ee235269982729d7c7f49c3524c62b3d4510a",
+    "id": "eJx9VU1v3DYQ/SsTHZpVsRaT6wI+BEGDpIfEgF30YBkBVxpJ01BDgZy1sw383wuS+vRHbxQ5nPfmvRnqV6a9R++J2xtrTXbIvv394frq4ubb1cX7d9k+q2yNHy0LsmSHbNDVD90iNGQEXcklUz9YJ7AruZQyRhts5KIypOQ8oC+zdDJo6VRDBsNi2vTiiNsYk4dkSsGVlu5TzA7kwaEfLHs6GoTGuhGXuA0rhJDLw1F7rMEyUMvWYR3PPGiuobGmRueLkgOZdXIv7lQJ/ApExnuf4jWA27vIvAjf6+OUC27vEu2SH0fOX/FhlblyqCXgA+MDEHvRXCHYZg3/QNKBdAiDs/dUY/2/5JsTV1uU3YbzmvEeXuGbw+8rArFwh3JyDL8t+3F7q8gBANbf+21IQjk8QY1Bj4tEI2ryz4M9Sax+5aJ0WqDXUnWg+RzkCgFbVawLHUE1Rv1o5fgslVLwRSAVNnngDVUIlWXRxKF5LJvzi/jaIbCVKe8k/W5o1uLlYzm7jrxYR+jh87TKl2XS+F67QOLz89AgTSmhrb/vIaU6w+ESnOYWodumKYUaeDM0BfkvidyIfo6uB3L5FFnKBvAS9DAg17v17oyYpzuPo2GrtliHL07O+FB1WP3w8NChdOhAQ0v3yIumyc3YzOeNkcFH8pOHm9Po46uyL7XH/FNfH601qfYwjNb12tC/mMYrxAWJq/CM+PCMQWX7QTvyNhbLU3wdkIL+0ytV3Nhro30XwfIkjVLwMZQNutVhtLcNuvIz1jmbGXxbD+xolFLwpyXetmKcfdY97sM+w0zw2Wi+SnjeCNnjVxFiE6viq+4xz+emeiLA5SU8hZjbamwMcSd83jVKwfVgSBbdicVCTQ6rueGlJucD5/HpL+KV3ZbDHspMldki+R8/K3Oqk6NGewE02AcrqQGSt2HOm/GxVgpuOvKgvT/1OI71zAi5Tn033og6F/Ch/ufkY7YVW6g0gzbewhGBeBnIYmVzTW5xOdR2ezDIu7DKL97fTdKN0Zs38sXuGN/sWfFEaW1KujsHvGDKaMuLM91o4zEOc7bPmtHg7JCpvzw6rzpkdza6P6r+ZIQGg2rzS0/vtxrmmSxamz3+B+NvCTM="
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/pathFilter.go",
+    "grade": "B",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T10:19:23.617Z",
+    "codeReview": {
+      "review": "The `PathFilter` implementation has three critical areas of concern:\n\n1.  **Inefficient `isIgnored` function:**  The nested loops in `isIgnored` (checking ignored files and folders) have a time complexity of O(n*m), where n is the number of ignored files and m is the number of ignored folders.  This is inefficient for large lists of ignored items.  Consider using a Trie or a similar data structure to speed up the lookup.  Example:  Replace the `for` loops with a more optimized approach.\n\n2.  **Assumes file path structure:** The `isIgnored` function assumes that the `path` always ends with a file name.  If the `histories` can contain directory paths, this will lead to incorrect filtering.  Example: Modify the `isIgnored` function to handle directory paths correctly.\n\n3.  **Lack of error handling:** The code lacks error handling.  `filepath.Join` or `filepath.ToSlash` could potentially return errors.  Example: Add error handling to `filepath.Join` and `filepath.ToSlash` calls.\n"
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "B",
+      "interfaceSegregationScore": "B",
+      "liskovSubstitutionScore": "B",
+      "openClosedScore": "B",
+      "singleResponsibilityScore": "A"
+    },
+    "hash": "06723b04f082cf776d0003b16c72a9c337069bb1ce784c98f6e355202ed42c7a",
+    "id": "eJx9VU2P3DYM/SusD+m4mFjodYA9BGmCbFGkBXZ7Wi8KjU3bbGTKkOjdToP974Ukf+5Hb7JE8T2+R8rfM+09ek/c3lprslN28/tv179kx6yyNX60LMiSnbJBV990i9CQEXQll0z9YJ3AoeRSyhhtsJH3lSEllwF9maWTQUunGjIYFvOmF0fcxpg8JFMK/tDSfY7ZgTw49INlT2eD0Fg34RK3YYUQcnk4a481WAZq2Tqs45kHzTU01tTofFFyILNN7sWNlcD3QGS69zleA7i7j8yL8L09Trng7j7RLvlp4vwVHzeZK4daAj4wPgKxF80Vgm228I8kHUiHMDj7QDXW/0u+Gbnaoxx2nLeMj/AG3xx+2hCIhTuU0TG8W/fj9l6REwBsv4/7kIRyeoYag55WiSbU5J8HO0qsfuOidFqg11J1oPkS5AoBe1WsCx1BNUb9aOP4IpVScC2QCps98IYqhMqyaOLQPJbN5VV87RDYypx3lv4wNFvx8qmcQ0derCP08GVe5esyafygXSDx5WVokKaU0NZ/HSGlusDpCpzmFqHbpymFGvhhaAry14nchH6Jrgdy+RxZyg7wCvQwINeH7e6CmKc7T5Nhm7bYhq9OLvhQdVh98/DYoXToQENLD8irpsnN2MyXnZHBR/Kzh7vT6OObsq+1x/xzX5+tNan2MIzW9drQv5jGK8QFiavwjPjwjEFl+0E78jYWy3N8HZCC/vMrVdzaG6N9F8HyJI1S8DGUDbrVYbT3DbrxM9a5mBl82w7sZJRS8Ksl3rdinH3WPR7DPsNC8MVovkl42QjZ41cRYhOr4qvuMc+XpnomwNUVPIdY2mpqDHEjvuwapeBmMCSr7sRioSaH1dLwUpPzgfP09BfxymHP4QhlpspslfzTP5UZ6+So0V4ADfbBSmqA5Mcw5830WCsFtx150N6PPU5jvTBCrlPfTTeizgV8qP8efcy2YQuVZtDGWzgjEK8DWWxsrsmtLofa7k4G+RBW+fuf72fppujdG/lqd0xv9qJ4orQ1Jd1dAl4xZbLl1ZlutPEYhzk7Zs1kcHbK1J8enVcdsrsY3Z9VPxqhwaDa/dLT+62GZSaL1mZP/wF3JAd2"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/collectGrades.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T10:19:24.392Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "brokenAccessControl": {
+        "clientServerAccessPolicyEnforcement": 0,
+        "idorPrevention": 0,
+        "roleBasedAccessControl": 0
+      },
+      "cryptographicFailures": {
+        "dataEncryption": 0,
+        "encryptionAlgorithmStrength": 0
+      },
+      "identificationAuthentication": {
+        "multiFactorAuthentication": 0,
+        "passwordPolicy": 0,
+        "sessionManagement": 0
+      },
+      "injection": {
+        "inputSanitization": 0,
+        "preparedStatementsUsage": 0
+      },
+      "insecureDesign": {
+        "secureDesignPattern": 0,
+        "sensitiveDataExposure": 0,
+        "threatModeling": 0
+      },
+      "securityLoggingMonitoring": {
+        "anomalyMonitoring": 0,
+        "criticalEventLogging": 0,
+        "secureLogStorage": 0
+      },
+      "securityMisconfiguration": {
+        "adminEndpointExposure": 0,
+        "defaultConfiguration": 0,
+        "securityHeaders": 0
+      },
+      "serverSideRequestForgery": {
+        "inputValidation": 0,
+        "internalSystemExposure": 0,
+        "networkLayerProtection": 0
+      },
+      "softwareDataIntegrity": {
+        "versionControl": 0
+      },
+      "vulnerableOutdatedComponents": {
+        "knownVulnerabilities": 0
+      }
+    },
+    "hash": "06140381ad5dfe1d9d8bd8714d319e87c38a4dd8cb66851d89bb783819570213",
+    "id": "eJydVE2PmzAQ/SuWDxWsCOz244K0hzSrbk+7kZJuD6WqXGcAq8ZG9tAoivLfKzALjrP9UG943sx7z+MZjpRZC9YKVW21ljSnj5+Xm/Vi+7he3FzThHK9g5VWCAppTlvGf7AKSCkkgilUofDQAllpKYHjvWE7sEQoBFMyDuRYqALPwKgWFrURYMnH56+EYG3A1lruiEUjVBWTL1+H/DtAJqQt1GnSGuIjp9Cqr+g4OimHMck7yVAbEpxHmrJTnDzAPmCK+G8L4+CGg5gB7IwirwKaAbuwkpOZPekzTr6ZqCJXAU0g+X99c0YrP5LfBjnH3gaW2pBvCXEqhz7LMFUBmWXHeynYe1TPXRxDo8tDOgQTUqVBG9z5oWvACM7kE5MdnBfFk4n0g5CwZljPkaU/q3N4KxrYIGvaOPSY3gOu9E8wrILo39xMPY1HtrP23RLWtqB2kR9NyKzYF7nnnSak+uMkz0MX7M1L5gaq6bGFwgu+zYB5rG4/jpeTH2ZG8YWjyzkPi44vz3GYNlL/7TZO0O4F8tq1zUU4s0AKurwqaO4eZTT1zkdD8K0Hvg/BNx64CsHXHngXgjf9aQcl6ySeI9fzYtOEluP40pxmnywYm9WgzEGy5nvWdBJFKyHrf68SSlxwKTL3V824v/hppenpF8cWHLc="
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/collectGrades.go",
+    "grade": "A",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T10:19:25.356Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "A*",
+      "interfaceSegregationScore": "B",
+      "liskovSubstitutionScore": "A",
+      "openClosedScore": "A",
+      "singleResponsibilityScore": "B"
+    },
+    "hash": "5ec80855026f79443e67ed2e6c60b4fe2d31c27457626ef0af2cb947116760d1",
+    "id": "eJydVE1vnDAQ/SuWDxVEFPp5Qcoh3VXTSlVaaZNeSlS5ZgCrxkb20NUK7X+vwAS83jStesPzZt57Hs8wUGYtWCtUfau1pDndff70cUsTynUJG60QFNKcdoz/ZDWQSkgEU6hC4aEDstFSAsdrw0qwRCgEUzEOZChUgSdg1AiL2giw5MPDV0KwMWAbLUti0QhVx+Tb/ZS/BWRC2kIdF60pPnMKrcaKnqOTchiTvJcMtSHBeaapesXJDewDpoj/sTAObjiJGcDeKPIsoJmwMys5WdmTMePom4lqchHQBJL/1zdntPYj+WWQM4w2sNKGfE+IUzmMWYapGsgqO99Lwd6jeujiHJpdHtIpmJA6Ddrgzjd9C0ZwJr8y2cNpUbyYSN8LCV8YNmvkyh/SNXwrWtgha7s49JheA270LzCshujf3Cw9jWe2k/ZdEtZ1oMrIjyZkVRyL3PMuE1I/Ocnr0AV785i5iWp5bKHwjG83YR6r24/hfPLDzCg+c3Q+52HR8Pgch2kz9d9u4wTtXiBvXNtchDMLpKBXFwXN3aPMpt76aAi+8cB3IfjaAzch+MoDtyH4cjyVULFe4inyYl1smtBqHl+a0+zOgrFZA8ocJGt/ZG0vUXQSsvH3KqHC51yKzP1VM+4vflprevwN6Woa+g=="
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/latestGrades.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T10:19:25.383Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "brokenAccessControl": {
+        "clientServerAccessPolicyEnforcement": 0,
+        "idorPrevention": 0,
+        "roleBasedAccessControl": 0
+      },
+      "cryptographicFailures": {
+        "dataEncryption": 0,
+        "encryptionAlgorithmStrength": 0
+      },
+      "identificationAuthentication": {
+        "multiFactorAuthentication": 0,
+        "passwordPolicy": 0,
+        "sessionManagement": 0
+      },
+      "injection": {
+        "inputSanitization": 0,
+        "preparedStatementsUsage": 0
+      },
+      "insecureDesign": {
+        "secureDesignPattern": 0,
+        "sensitiveDataExposure": 0,
+        "threatModeling": 0
+      },
+      "securityLoggingMonitoring": {
+        "anomalyMonitoring": 0,
+        "criticalEventLogging": 0,
+        "secureLogStorage": 0
+      },
+      "securityMisconfiguration": {
+        "adminEndpointExposure": 0,
+        "defaultConfiguration": 0,
+        "securityHeaders": 0
+      },
+      "serverSideRequestForgery": {
+        "inputValidation": 0,
+        "internalSystemExposure": 0,
+        "networkLayerProtection": 0
+      },
+      "softwareDataIntegrity": {
+        "versionControl": 0
+      },
+      "vulnerableOutdatedComponents": {
+        "knownVulnerabilities": 0
+      }
+    },
+    "hash": "947f6f205ef5910ec0f7166115539052698591d7ed6a47aea76d5a803e7d8c35",
+    "id": "eJyVVE1v2zAM/SuEDkO8unZ3zZBDFyAbsHUNkBQ7VMWg2rQjRJY8idlmpPnvgz/kjyZAsZMFkXx8fH7UkQnn0Dmp860xis3Z/Y/bzfp6e7++/nDDQpaYFJdGE2pic1aKZC9yhEwqQss111SVCCup02+C0NFnK1J0IDWhzUSCcOSa06pJH2fMdtKRsRIdfPGnYDhyferBJ8CO7CGhYxPNDjqB7/hnghuck2koWKSD1fBuHKlhBqSZyuH9OFxD/Sfvtlccw4NDEJCYojROEsIeqzlwtpIK14J2L7dj1Tmrq1TTpoWqYL6AQuxxVojy0ZGVOn/qQkHNmFNmLPwMYTfkW6FzhN2UC6c9NtEcNVpBuPScvmLVTVNFnlePF00Idi05yQzqMKYdlxDwr3Tk6gYT/o97rJ4++mjH5Lw+2soCNySKMvqEmbHYM+oDwVD9SqOmByw8ZZ91ag8nQOVwKH67tCk8taN2dlka/Rst3YlyazZKJjibwASdf+L4oryQWKzTQcBBy1+HxgbwLBymYDR40UHoFKaGaB158Zdl/a+abC60Jgm678T0vgSugLMXzuBqWjtMcTYvJO1NPUMhSjAZeIeSAQGuSRpuo476uXCd1HeihAuefr1CXXbLwe9CnxPCTQgK9Qg0CN5eiqZ5Z4hJgwWIskSdzsa3PUzgfeH1HGc12rGQeY3ZnMUPDq2Ld6htpUTxHBcHRbJUGNePqcKMrhMl4/YNjdXodYlyw07/ABd4GCw="
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/latestGrades.go",
+    "grade": "A",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T10:19:25.393Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "A*",
+      "interfaceSegregationScore": "B",
+      "liskovSubstitutionScore": "A*",
+      "openClosedScore": "B",
+      "singleResponsibilityScore": "A"
+    },
+    "hash": "240de67b09d08d0b9d544f71b5595f3a03e7c06f1094cbe4af381762bcd008ca",
+    "id": "eJyVVE2P0zAQ/SsjH1DDhoRzUQ9QVEDsAlJ3T+sV8iaT1KpjB3sKRN3+d5TEzse20opTLM/Mmzcvb3xkwjl0Tury1hjFlmz7/frLRxazzOS4NppQE1uyWmR7USIUUhFarrmmpkbYSJ1fC0JHn6zI0YHUhLYQGcKRa06bLn2asdhJR8ZKdPA5nKLxyPVpAJ8BO7KHjI5dtDjoDL7hnxludE6mo2CRDlbDq2mkhRmRFqqE19NwC/WfvPteaQp3DkFAZqraOEkIe2yWwNlGKvwhaPf0fio3Z22V6tr0UA0sV1CJPS4qUd87slKXDz4UtYw5FcbCzxh2Y74VukTYzblw2mMXLVGjFYTrwOkrNn6aJgm8BrxkRtC35CQLaMOYey4x4F/pyLUNZvzv99g8vAtRz+S8PrmVFW5JVHXyAQtjcWA0BKKx+plGXQ9YBcoh69QfToDK4Vj8cmlXeOpH9XZZG/0bLd2I+tZslcxwMYOJvH/S9KK8kFls00HAQctfh84G8Cgc5mA0BNFB6BzmhugdefGXFcOvmq0s9CaJ/Hdm+lACV8DZE2dwNa8dpzibF7L+pp2hEjWYAoJDyYAA1yWNt4mnfi6cl/pG1HDB089XyGf3HMIuDDkxvI1BoZ6ARtHLS9E194aYNViBqGvU+WJ6O8BEwRdBz2lWpx2LWdCYLVl659C6dIfaNkpUj2l1UCRrhWn7mCos6E2mZNq/oamavC5JadjpH1rTFm8="
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/report/report.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T10:19:26.166Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "brokenAccessControl": {
+        "clientServerAccessPolicyEnforcement": 0,
+        "idorPrevention": 0,
+        "roleBasedAccessControl": 0
+      },
+      "cryptographicFailures": {
+        "dataEncryption": 0,
+        "encryptionAlgorithmStrength": 0
+      },
+      "identificationAuthentication": {
+        "multiFactorAuthentication": 0,
+        "passwordPolicy": 0,
+        "sessionManagement": 0
+      },
+      "injection": {
+        "inputSanitization": 0,
+        "preparedStatementsUsage": 0
+      },
+      "insecureDesign": {
+        "secureDesignPattern": 0,
+        "sensitiveDataExposure": 0,
+        "threatModeling": 0
+      },
+      "securityLoggingMonitoring": {
+        "anomalyMonitoring": 0,
+        "criticalEventLogging": 0,
+        "secureLogStorage": 0
+      },
+      "securityMisconfiguration": {
+        "adminEndpointExposure": 0,
+        "defaultConfiguration": 0,
+        "securityHeaders": 0
+      },
+      "serverSideRequestForgery": {
+        "inputValidation": 0,
+        "internalSystemExposure": 0,
+        "networkLayerProtection": 0
+      },
+      "softwareDataIntegrity": {
+        "versionControl": 0
+      },
+      "vulnerableOutdatedComponents": {
+        "knownVulnerabilities": 0
+      }
+    },
+    "hash": "0fc3913d388ca96fed1a2276165490855645cccd852b42de0b73e287d79bf6d5",
+    "id": "eJxtVU1v4zYQ/StTAQVkQJF2+3Uw4EPiLdIemgQbd3NYFQUtjmS2NEcYUgmMIP+9GFJSLG9ziTycj/feDIevmfIevTeu2xHZbJ3dP10/Plzt7h+uPn7IiqwhjVtyAV3I1lmvmn9Vh8DYE4fa1c4c5Qvy2tWhjt4W23DVWFO1xgbkOoOqgmvvh6NxHYSD8dCrcADjoSFmbEKKbY+hztKnpU4+V1KgquAWHbIK+DlWBeLmgD6IxUM4TGigS26GHPRMDXpfxvDfA2js0WkP5EDtJbQRNw95SvnEJiCvQDkNDRFr42JybdoWGV2Aho49OXRBcraDay5A5R0rjZ8wKGM9fP0rcS9vz6wF0BD6ITwIeR/YuK6AcGD0B7I6es7mlwgIluiQmRheRSLTgkW3KLqCzQY+pOM6WOrKBzYuWJfX2ZNiZ1y3hjuCGAN6RNozPRuNGgJN+k16lnW2SsmqCn5TTlsE1fdMPRsV0J7gCo7qtMeEFpQDPPbhNLWDGBjDwA58j41pTZMYzDm3jCrITKQwrYKClji2NAmQXMcsyVRGNca+fTH48kkF9Qq7hY7rS13fzsWPrN5ktiKMjyXcDMbqWDcwxi4MTRgYxWMvZ8iw3sAdvuwY8SZZ8pinYxp61FPn1xsYA8pbOTkfgJuTVF82TVIwUbgjjYvoWCSxlJr5ss5qRv9DCVtlm8FK4xp6RlYd+jjJqusYO7H7oIKXgGZ0pYnPdozYzgf5UrqIMMaPEbeW9so+iiUpIC37uwBHGsWFlZMFMXMaB/K9cjnjvYu7ZYScS4IiQV3JyviDtGkN+pg5MZp5vHfvxxIeZdrm5uXUy91WtoCGBqthj6DJIahWrlTUV4aOGPbYEqdZM65LTIlDUj2iz2ceUXEAEGQ/nWveGqcsRBbWghrZJN/Rej0aCwgU1PSzAGWtLN2o7P/pc78Mz5M2M/WfS3hg7BXj8u48G3wRl+fxdkj6i/uSevJ5IreG9DezLZLD9QhwOp8RF3GnW0alTyCaoYb96YxEir8gsP5GkOS2O1MlllrINPpcXPCLG14sp+KXEuKeOH8eBp/eHwTj/sFGIL9vGeR4IxY7ZtLvm91hWtlk8N0GnLHTgI9bqj2G8ldZc21eZ60yNu3WtCITkjV8/1JnheQ4X0USGVe2RD4OjTxg7WDtaV7MOibwJhCf3nP5unaS7gLkiMcZW7u3rMhaY1EOs3VW/emRfXVAxyerjvvqONhgeovV4v1OFcZ/ZUfZ23+g2vuX"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/report/report.go",
+    "grade": "A",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T10:19:27.285Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "A*",
+      "interfaceSegregationScore": "B",
+      "liskovSubstitutionScore": "A",
+      "openClosedScore": "A",
+      "singleResponsibilityScore": "B"
+    },
+    "hash": "51c57788531b386e24a86fbf45fbac84b0f5eccf9b8abc38bb9b9c8f75df8df8",
+    "id": "eJxtVdtu4zYQ/ZWpgAIyoJV6fxDgh8Qp0gXabLBJdx9WRUGLI5ktzRGGVAIjyL8XQ0qK5W1eIg/ncs6Z4fAlU96j98b1j0Q2q7OHD7+/v8mKrCWNO3IBXcjqbFDtv6pHYByIQ+MaZ47yBXnjmtBEb4tdeNdaU3XGBuQmg6qCK+/Ho3E9hIPxMKhwAOOhJWZsQ4rtjqHJ0qelXj43UqCq4BYdsgr4MVYF4vaAPojFQzjMaKBPboYcDEwtel/G8PcBNA7otAdyoPYS2oqbhzyl/MwmIG9AOQ0tEWvjYnJtug4ZXYCWjgM5dEFydqNrL0DlPSuNNxiUsR6+/JW4l7dn1gJoDMMY7oW8D2xcX0A4MPoDWR09F/NzBARrdMhMDC8ikenAolsV3cB2C9+l4yZY6st7Ni5YlzfZZ8XOuL6GO4IYA3pCOjA9GY0aAs36zXqWTbZJyaoKflNOWwQ1DEwDGxXQnuAdHNVpjwktKAd4HMJpbgcxMIaRHfgBW9OZNjFYcu4YVZCZSGFaBQUdcWxpEiC5TlmSqYxqTH37ZPD5RgX1Ao8rHetLXV/PxY+sXmW2IozvS7gejdWxbmCMXRjbMDKKx17OkKHewh0+PzLidbLkMU/PNA6o587XW5gCyls5OR+A65NUXzdNUjBRuCONq+hYJLGUmvm6zmZB/0MJO2Xb0UrjWnpCVj36OMmq7xl7sfuggpeAdnKlmc9uitgtB/lauogwxk8Rt5b2yj6IJSkgLfu7AEcaxYWVkwWxcJoG8q1yueC9i7tlgpxLgiJB3cjK+IO06Qz6mDkxWni8de/HEh5k2pbm5TTI3Va2gJZGq2GPoMkhqE6uVNRXho4Y9tgRp1kzrk9MiUNSPaLPFx5RcQAQZD+da94ZpyxEFtaCmtgk38l6NRkLCBTU/LMAZa1s26js/+nzYR2eJ20W6j+XcM84KMb13Xky+CwuT9PtkPQX9yX15ONMrob0t7AtksPVBHA+XxAXcadbRqVPIJqhhv3pjESKvyBQfyVIcns8UyWWWsk0+Vxc8IsbXqyn4pcS4p44fx5Gn94fBOP+wVYgv20Z5HgjVjtm1u+r3WE62WTwzRacsfOAT1uqO4byV1lzXd5knTI27da0IhOSGr59brJCcpyvIomMK1siH8ZWHrButPa0LGYdE3gTiE9vuXzTOEl3AXLC44xt3GtWZJ2xKIdZnVV/emRfHdDxyarjvjqONpjBYrV6v1OF6V/ZU/b6H1yK+do="
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/report/builder.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T10:19:28.198Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "brokenAccessControl": {
+        "clientServerAccessPolicyEnforcement": 0,
+        "idorPrevention": 0,
+        "roleBasedAccessControl": 0
+      },
+      "cryptographicFailures": {
+        "dataEncryption": 0,
+        "encryptionAlgorithmStrength": 0
+      },
+      "identificationAuthentication": {
+        "multiFactorAuthentication": 0,
+        "passwordPolicy": 0,
+        "sessionManagement": 0
+      },
+      "injection": {
+        "inputSanitization": 0,
+        "preparedStatementsUsage": 0
+      },
+      "insecureDesign": {
+        "secureDesignPattern": 0,
+        "sensitiveDataExposure": 0,
+        "threatModeling": 0
+      },
+      "securityLoggingMonitoring": {
+        "anomalyMonitoring": 0,
+        "criticalEventLogging": 0,
+        "secureLogStorage": 0
+      },
+      "securityMisconfiguration": {
+        "adminEndpointExposure": 0,
+        "defaultConfiguration": 0,
+        "securityHeaders": 0
+      },
+      "serverSideRequestForgery": {
+        "inputValidation": 0,
+        "internalSystemExposure": 0,
+        "networkLayerProtection": 0
+      },
+      "softwareDataIntegrity": {
+        "versionControl": 0
+      },
+      "vulnerableOutdatedComponents": {
+        "knownVulnerabilities": 0
+      }
+    },
+    "hash": "d1a44c3883602cb7ef8246a05a1dd56036f06a44c6b2ccecd990a755378d3760",
+    "id": "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"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/report/calculator.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T10:19:29.965Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "brokenAccessControl": {
+        "clientServerAccessPolicyEnforcement": 0,
+        "idorPrevention": 0,
+        "roleBasedAccessControl": 0
+      },
+      "cryptographicFailures": {
+        "dataEncryption": 0,
+        "encryptionAlgorithmStrength": 0
+      },
+      "identificationAuthentication": {
+        "multiFactorAuthentication": 0,
+        "passwordPolicy": 0,
+        "sessionManagement": 0
+      },
+      "injection": {
+        "inputSanitization": 0,
+        "preparedStatementsUsage": 0
+      },
+      "insecureDesign": {
+        "secureDesignPattern": 0,
+        "sensitiveDataExposure": 0,
+        "threatModeling": 0
+      },
+      "securityLoggingMonitoring": {
+        "anomalyMonitoring": 0,
+        "criticalEventLogging": 0,
+        "secureLogStorage": 0
+      },
+      "securityMisconfiguration": {
+        "adminEndpointExposure": 0,
+        "defaultConfiguration": 0,
+        "securityHeaders": 0
+      },
+      "serverSideRequestForgery": {
+        "inputValidation": 0,
+        "internalSystemExposure": 0,
+        "networkLayerProtection": 0
+      },
+      "softwareDataIntegrity": {
+        "versionControl": 0
+      },
+      "vulnerableOutdatedComponents": {
+        "knownVulnerabilities": 0
+      }
+    },
+    "hash": "adae4a0d544c23a4a5598f4a503ee1c9cef3e11dd3d8ba81d5faca16b0db762a",
+    "id": "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"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/report/builder.go",
+    "grade": "B",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T10:19:30.186Z",
+    "codeReview": {
+      "review": "The code has three critical areas of concern:\n\n1.  **Inefficient Path Handling:** The nested `strings.Split` and manual path concatenation within the `BuildReportTree` function is inefficient and error-prone.  Repeated string manipulation for path traversal is not ideal.  Example: `currentPath = currentPath + \"/\" + part`.\n\n2.  **Redundant Directory Creation:** The code creates directory nodes multiple times for the same directory path, leading to potential memory waste and logic errors.  Example: The `dirs` map is used to avoid duplicates, but the logic for checking if a child already exists in a parent is not perfect.\n\n3.  **Lack of Error Handling:** The code lacks error handling for invalid input paths (e.g., empty paths).  Example: `if len(parts) == 0 { continue }` is a basic check, but more robust error handling is needed.\n"
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "B",
+      "interfaceSegregationScore": "B",
+      "liskovSubstitutionScore": "B",
+      "openClosedScore": "B",
+      "singleResponsibilityScore": "A"
+    },
+    "hash": "f4359dfa0a642b416ab16fe298765dfd315b11a1f82c297bdb0c347e15bbb759",
+    "id": "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"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/report/template.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T10:19:31.942Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "brokenAccessControl": {
+        "clientServerAccessPolicyEnforcement": 0,
+        "idorPrevention": 0,
+        "roleBasedAccessControl": 0
+      },
+      "cryptographicFailures": {
+        "dataEncryption": 0,
+        "encryptionAlgorithmStrength": 0
+      },
+      "identificationAuthentication": {
+        "multiFactorAuthentication": 0,
+        "passwordPolicy": 0,
+        "sessionManagement": 0
+      },
+      "injection": {
+        "inputSanitization": 0,
+        "preparedStatementsUsage": 0
+      },
+      "insecureDesign": {
+        "secureDesignPattern": 0,
+        "sensitiveDataExposure": 0,
+        "threatModeling": 0
+      },
+      "securityLoggingMonitoring": {
+        "anomalyMonitoring": 0,
+        "criticalEventLogging": 0,
+        "secureLogStorage": 0
+      },
+      "securityMisconfiguration": {
+        "adminEndpointExposure": 0,
+        "defaultConfiguration": 0,
+        "securityHeaders": 0
+      },
+      "serverSideRequestForgery": {
+        "inputValidation": 0,
+        "internalSystemExposure": 0,
+        "networkLayerProtection": 0
+      },
+      "softwareDataIntegrity": {
+        "versionControl": 0
+      },
+      "vulnerableOutdatedComponents": {
+        "knownVulnerabilities": 0
+      }
+    },
+    "hash": "010061295045880dca6db655c808c3a227650e6db15b88dcc480812680c73573",
+    "id": "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"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/report/calculator.go",
+    "grade": "B",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T10:19:32.109Z",
+    "codeReview": {
+      "review": "This code, while functional, has several SOLID design flaws.  First, `calculateFileNodeCoverage` and `calculateDirectoryNodeCoverage` modify the `ReportNode` directly, violating the Single Responsibility Principle (SRP).  These functions should only calculate coverage, not modify the node's internal state.  Second, the `calculateCoverageScore` function is tightly coupled to the specific grade-to-coverage mapping, making it hard to change or extend.  Third, the use of `processedToolsThisFile` in `calculateFileNodeCoverage` is redundant and could be simplified.  For example, `calculateFileNodeCoverage` could be improved by removing the `processedToolsThisFile` map and using a conditional check within the loop to avoid double-counting.\n"
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "B",
+      "interfaceSegregationScore": "B",
+      "liskovSubstitutionScore": "A*",
+      "openClosedScore": "B",
+      "singleResponsibilityScore": "A"
+    },
+    "hash": "52944ef0e995a30ee59a6263b0d085bf08db8ef2d219d193db328cf8a44031a9",
+    "id": "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"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/report/template.go",
+    "grade": "B",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T10:19:34.149Z",
+    "codeReview": {
+      "review": "The code has three critical areas of concern.  First, hardcoded colors in the CSS (`#1e1e1e`, etc.) make the theme inflexible.  Second, the template functions (`getCoverageClass`, `getCoverageColor`) use multiple `if` statements for coverage ranges, which is inefficient and could be improved with a lookup table or a more concise conditional.  Finally, the template (`repoReportTemplateHTML`) has numerous removed placeholders (`{{ getFileGrade $node }}`, etc.) that are not used, indicating potential incomplete or unused functionality.\n"
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "B",
+      "interfaceSegregationScore": "A*",
+      "liskovSubstitutionScore": "B",
+      "openClosedScore": "B",
+      "singleResponsibilityScore": "B"
+    },
+    "hash": "9370a6bfc69ffeba37137c841e03ce69bb66ca96c57395e7b0988e35ea963dc2",
+    "id": "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"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/report/writer.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T10:19:34.249Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "A*",
+      "interfaceSegregationScore": "A*",
+      "liskovSubstitutionScore": "A*",
+      "openClosedScore": "A*",
+      "singleResponsibilityScore": "A*"
+    },
+    "hash": "e12367d9ffe27a287a829eb9e677c39c87da95f8992f9bc8a511979b00170ef6",
+    "id": "eJydVE1P3DAQ/StTS5QEhaQXVCkVB7QLgoqPFdD2koubjHctHDuyJ00R2v9e2d5slkVIFbfJZObNe89jvzDuHDon9fLRGMVK9nB3fTVnGatNgzOjCTWxknW8fuJLBIudsVTpSsvWR5BUuqKKiZYqFsMVtaogbDvFCcekcWPUcVoVQir0gU+mHq0o4D5A/7KS0EKDQmp0QCsEqQmt4DWCMBYGK0nqJfANlzw0380WJZwpZQYHjRQCLWoKtWgdJJePN9cZfH+4u80Aqc7T0DS/WpRwKZcrtMcK/6CC1jS9QgcNdqgbMBpoJd3EIK80PXf4muvE78VLDNmk4cQ3ZT8lDnNOPAPTU9fTgtMKHFmplymgtcZWer0xwRN9Dd52ClvU5F4P9Vb44g1mdOHhflHChal7h4F8KLCoG7TBMt2Ad37qCWLezHRk+5qimvEg4WiM8sfxbCNr0esabnHYh0lSSI72k1kUnG7A206FDJSnsMW/xSGpmD/d2FmxNL/ode2SsSR8pfmCW4fJVDgS80P9VpEUAfzTKWip4siKLFJvtc9kIFrKzz0hkVRMcKmwATLQeeDo3jiyhIOhYoFsgPbSR6jP+ypfpi4vcZ35abt2JQO8sSaFD2xOFBX/zmXwcbxb+VzaZOrbNaQ8BePym6dG2jOlkm17Bl++npyk39537R3Daot+RyIQNNJiTcY+w+GBOxyd25mya+KW/oVUmO3QmwXMdxR8gNzObYm34C05P2XviBsUaGFimM+UcZikkfnk55Bv9/f8L9b9lnmU5Q/1A75ihPr/VYx7xjLmFXo5rGTFD4fWFSvU9lnx9nfR9opkp7Dwb7xCQce1kkV8Tov4ZuZLw9b/AEEVMXY="
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/report/writer.go",
+    "grade": "B",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T10:19:35.051Z",
+    "codeReview": {
+      "review": "OWASP TOP 10 Review:\n\nCritical areas of concern include:\n\n1.  **Missing Input Validation:**  No input validation is present for `outputPath`.  A malicious user could potentially manipulate this to write to unintended locations or overwrite critical files (Path Traversal).  Example: `outputPath = \"../important_file.txt\"`.\n\n2.  **Potential Template Injection:**  The code uses a template engine (`template.Template.Execute`) without proper escaping of user-supplied data in `ReportViewData`.  This leaves the application vulnerable to template injection attacks if user input is not properly sanitized before being passed to the template.\n\n3.  **Error Handling:** While error handling is present, it could be improved.  The `MkdirAll` and `Create` functions return errors that are wrapped but not checked for specific error types.  This makes debugging difficult.  Example:  `if err != nil { return fmt.Errorf(...) }`  should be more specific error handling.\n"
+    },
+    "gradingDetails": {
+      "brokenAccessControl": {
+        "clientServerAccessPolicyEnforcement": 0,
+        "idorPrevention": 0,
+        "roleBasedAccessControl": 0
+      },
+      "cryptographicFailures": {
+        "dataEncryption": 0,
+        "encryptionAlgorithmStrength": 0
+      },
+      "identificationAuthentication": {
+        "multiFactorAuthentication": 0,
+        "passwordPolicy": 0,
+        "sessionManagement": 0
+      },
+      "injection": {
+        "inputSanitization": 1,
+        "preparedStatementsUsage": 0
+      },
+      "insecureDesign": {
+        "secureDesignPattern": 0,
+        "sensitiveDataExposure": 0,
+        "threatModeling": 0
+      },
+      "securityLoggingMonitoring": {
+        "anomalyMonitoring": 0,
+        "criticalEventLogging": 0,
+        "secureLogStorage": 0
+      },
+      "securityMisconfiguration": {
+        "adminEndpointExposure": 0,
+        "defaultConfiguration": 0,
+        "securityHeaders": 0
+      },
+      "serverSideRequestForgery": {
+        "inputValidation": 0,
+        "internalSystemExposure": 0,
+        "networkLayerProtection": 0
+      },
+      "softwareDataIntegrity": {
+        "versionControl": 0
+      },
+      "vulnerableOutdatedComponents": {
+        "knownVulnerabilities": 0
+      }
+    },
+    "hash": "ddf38042c6987a30980ecdba0a2252440bfb5bc3670190d023e8fae9e3fffcb7",
+    "id": "eJydVMFO3DAQ/ZWpJUqCsgk9oEqpOKBdEK0KG8G2veTiJpNdC8eO7ElThPj3yvZmsyxCqrhNJjNv3nse+4lxa9FaodYrrSXL2fLXxX0xWy2L2adTlrBK1zjXilARy1nHqwe+RjDYaUOlKpVoXQRRqUoqWdNSyUK4oVZmhG0nOeGY1HaMOk6brBESXeCSsUPLMrjz0L+MIDRQYyMUWqANglCEpuEVQqMNDEaQUGvgWy6pb17OixwupNSDhVo0DRpU5GvRWIiuVzffE/h2v7xNAKlKY9+0+FrkcC3WGzQziX9QQqvrXqKFGjtUNWgFtBF2YpCWih47fMl14vfkJPpsVHPi27KfAocFJ56A7qnrqeC0AUtGqHUMaIw2pXremuCIvgRvO4ktKrIvhzorXPEWM7hwf1fkcKWr3qIn7wsMqhqNt0zV4JyferyYVzMtmb6ioGY8SDgZo3Q1nm1g3fSqglscDmGiGKKTw2QSBMdb8LaTPgP5Oezwb3GISuZON3SWLE6velXZaCzxX3FacGMxmgpHYm6o2yoSjQf/cA5KyDCyJIPUG+UyCTQtpZeOUBOVrOFCYg2koXPAwb1xZA5HQ8k8WQ/tpI9QHw9VPk1dTuJz4qbt2xUN8MqaGN6xOUFU+LsQ3sfxbqULYaKpb9+Q/By0TW8eamEupIx27Qmcfj47i7+87dobhlUG3Y4EIKiFwYq0eYTjI3s8Orc3Zd/EHf0rITHZozf3mG8oeAe5vdsSbsFrcm7KwRHX2KCBiWE6l9piFAfmk59Dutvfy79Y9TvmQZY71Hf4igHq/1cx7BlLmFPo5LCcZT8sGpttUJlHydvfWdtLEp3EzL3xEhuaVVJk4TnNwpuZrjV7/gf5xzMz"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/report/html.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T10:19:35.697Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "brokenAccessControl": {
+        "clientServerAccessPolicyEnforcement": 0,
+        "idorPrevention": 0,
+        "roleBasedAccessControl": 0
+      },
+      "cryptographicFailures": {
+        "dataEncryption": 0,
+        "encryptionAlgorithmStrength": 0
+      },
+      "identificationAuthentication": {
+        "multiFactorAuthentication": 0,
+        "passwordPolicy": 0,
+        "sessionManagement": 0
+      },
+      "injection": {
+        "inputSanitization": 0,
+        "preparedStatementsUsage": 0
+      },
+      "insecureDesign": {
+        "secureDesignPattern": 0,
+        "sensitiveDataExposure": 0,
+        "threatModeling": 0
+      },
+      "securityLoggingMonitoring": {
+        "anomalyMonitoring": 0,
+        "criticalEventLogging": 0,
+        "secureLogStorage": 0
+      },
+      "securityMisconfiguration": {
+        "adminEndpointExposure": 0,
+        "defaultConfiguration": 0,
+        "securityHeaders": 0
+      },
+      "serverSideRequestForgery": {
+        "inputValidation": 0,
+        "internalSystemExposure": 0,
+        "networkLayerProtection": 0
+      },
+      "softwareDataIntegrity": {
+        "versionControl": 0
+      },
+      "vulnerableOutdatedComponents": {
+        "knownVulnerabilities": 0
+      }
+    },
+    "hash": "ee8874e44afd7b119fbb732af8196de07924377dab27a13a00a6e13b1f14145c",
+    "id": "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"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/report/create.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T10:19:37.349Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "brokenAccessControl": {
+        "clientServerAccessPolicyEnforcement": 0,
+        "idorPrevention": 0,
+        "roleBasedAccessControl": 0
+      },
+      "cryptographicFailures": {
+        "dataEncryption": 0,
+        "encryptionAlgorithmStrength": 0
+      },
+      "identificationAuthentication": {
+        "multiFactorAuthentication": 0,
+        "passwordPolicy": 0,
+        "sessionManagement": 0
+      },
+      "injection": {
+        "inputSanitization": 0,
+        "preparedStatementsUsage": 0
+      },
+      "insecureDesign": {
+        "secureDesignPattern": 0,
+        "sensitiveDataExposure": 0,
+        "threatModeling": 0
+      },
+      "securityLoggingMonitoring": {
+        "anomalyMonitoring": 0,
+        "criticalEventLogging": 0,
+        "secureLogStorage": 0
+      },
+      "securityMisconfiguration": {
+        "adminEndpointExposure": 0,
+        "defaultConfiguration": 0,
+        "securityHeaders": 0
+      },
+      "serverSideRequestForgery": {
+        "inputValidation": 0,
+        "internalSystemExposure": 0,
+        "networkLayerProtection": 0
+      },
+      "softwareDataIntegrity": {
+        "versionControl": 0
+      },
+      "vulnerableOutdatedComponents": {
+        "knownVulnerabilities": 0
+      }
+    },
+    "hash": "40d19d3f9b1481aea9bcd26574693e1326e7d27389689e1583f49add78d9426f",
+    "id": "eJytUktLw0AQ/ivLHKSRpNFrblKhFaotGvHgeliTSbK42Q2zE6WU/HfJgzYFj96Wb77XsHME5T16r22ZOmcggd3b3cs+Snf76PYGQshcjitnGS1DAo3KvlSJgrBxxNJKq+v+JeRANFhwlBkdF9owkoSewYcGxcPzoBDaMlKhMhRHaSWv0SIpxnG6KEnleI+stPHi/WN0Wa5naCi4IvSVM7nwTNqWgUAiR9J2p7AN12bK80xtxmPYCKU9Y5ROmqK1mXjCn7NsEZwKD0pCbsmKqzNjgOeWiZCwSR+3EsJ+1E3ek/uiEtdncSD+b++LgnPbvswf9qGQsHI5bvuvWrlvJFViNBKXFddGwiwrkLaDEAptcK+4ggTiV4/k4wotHYyqP+O6Nawbg/HFAYwHEmeEinFZOuh+AZGT5Pg="
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/report/html.go",
+    "grade": "B",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T10:19:37.937Z",
+    "codeReview": {
+      "review": "The code has three critical areas of concern:\n\n1.  **Redundant Calculations:** The code recalculates file-level averages multiple times, leading to unnecessary computations.  Lines like `for _, detail := range detailsList` within the `GenerateRepoHTMLReport` function are examples of this.\n\n2.  **Inefficient Data Handling:**  The use of `groupedDetails` and then recalculating averages from the original data in the `GenerateRepoHTMLReport` function is inefficient.  The code should store the necessary data in the `ReportNode` structure to avoid redundant lookups.\n\n3.  **Lack of Clarity in Coverage Calculation:** The `calculateCoverage` function's logic is complex and not immediately obvious.  The use of `thresholdGrade` and the different coverage values based on grade comparisons needs better documentation and potentially a more structured approach.\n"
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "B",
+      "interfaceSegregationScore": "B",
+      "liskovSubstitutionScore": "A*",
+      "openClosedScore": "B",
+      "singleResponsibilityScore": "B"
+    },
+    "hash": "375533e6780df7c2d3f544c39ea914ff891efc812144d1494be379f7acd1c41e",
+    "id": "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"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/report/create.go",
+    "grade": "A",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T10:19:38.290Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "A*",
+      "interfaceSegregationScore": "B",
+      "liskovSubstitutionScore": "A*",
+      "openClosedScore": "A",
+      "singleResponsibilityScore": "A"
+    },
+    "hash": "df3fb56e6f3e2663b0115a9d824ff7fe2c36c3484a57b8bda5e8d97aefa85d69",
+    "id": "eJytUktrwzAM/itCh9GMtLnn2kJb6B5s3WnewUuUxMyxg6xslJL/PvKgTWHH3cyn7yWsM+oQKATjyqP3FlN8fTrsNxhj5nNaeyfkBFNsdPalSwKmxrMop5yp+xeogWipkGVmTVIYK8QKe4acGoL9y6AA44S40BnBWTklW3LEWmicLkrWOW1ItLEB3j9Gl9V2hsYgFVOovM0hCBtXRkDMnpXrLmE7qe2UF4TbTMawETr2jFE6aYrWZfBIP1fZIroUHpRM0rKDuytjgOeWKSjcHR8OCuN+1E3ek/uigvurOIL/2/um4Ny2L/OHfQwK1z6nQ/9Va/9NrEtajsRVJbVVOMuKlOswxsJYetZSYYrJWyAOSUWOT1bXn0ndWjGNpeTmAMYDSTImLbQqPXa/U43jOw=="
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/read/fileReader.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T10:19:38.306Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "brokenAccessControl": {
+        "clientServerAccessPolicyEnforcement": 0,
+        "idorPrevention": 0,
+        "roleBasedAccessControl": 0
+      },
+      "cryptographicFailures": {
+        "dataEncryption": 0,
+        "encryptionAlgorithmStrength": 0
+      },
+      "identificationAuthentication": {
+        "multiFactorAuthentication": 0,
+        "passwordPolicy": 0,
+        "sessionManagement": 0
+      },
+      "injection": {
+        "inputSanitization": 0,
+        "preparedStatementsUsage": 0
+      },
+      "insecureDesign": {
+        "secureDesignPattern": 0,
+        "sensitiveDataExposure": 0,
+        "threatModeling": 0
+      },
+      "securityLoggingMonitoring": {
+        "anomalyMonitoring": 0,
+        "criticalEventLogging": 0,
+        "secureLogStorage": 0
+      },
+      "securityMisconfiguration": {
+        "adminEndpointExposure": 0,
+        "defaultConfiguration": 0,
+        "securityHeaders": 0
+      },
+      "serverSideRequestForgery": {
+        "inputValidation": 0,
+        "internalSystemExposure": 0,
+        "networkLayerProtection": 0
+      },
+      "softwareDataIntegrity": {
+        "versionControl": 0
+      },
+      "vulnerableOutdatedComponents": {
+        "knownVulnerabilities": 0
+      }
+    },
+    "hash": "74e8a175833f0b39f743aa32bb1ed74684e890f5696d69a243428a14f0bec037",
+    "id": "eJydVlFv20YM/iucgBby4Mjbqwc/DG6xpSiSIGmxF71cJJ51i3Qn8Kh4RtH/PvBOZ0uZ0xjLS2SKR378+JG6b5nyHr03dvfFuTZbZ7d//f5wd/Xl9u7q11+yZVa5GrfOMlrO1lmvqie1QyBUdWlLa7reEUNe2pLL4Nui5quqNSttWkYqs/gKbeVqY3erv72zyag7To/Op6decSOHUR7EuJBEqxVsXY2fUfM9qhoJjGUkrSoB0yljPXCD4FWHpeVDj6/7f5NEYv3TeHZ0yBeQR7RFtBj0S0AiR4vSfh/Tj84pmgdC3zvrzWOLoB0FTozdBRhNdC6kWpBiihHUPIpnGipOgHp37xyD/HkmY3di3o6c3ilujuaE6Qb384AVoWL0oMDiHoz1rGyF4PQ8cRFOXzPsVfsUiTumrw1hJa7AhAjsQBtbBx9tyDMUqc2gXRu4YJD2DkKwH0NroBTQeMCu58NSHGvUamjZS1wJWQ1EaBn2jp6EvGP2GOceeSDrQdnYDzB6kt94sE5gDLYGZQ/7BgnB2BBZ8hel1YOt/sOTdHwuj9Tv2IuEPVhhvQHniz+Q93UuYmSjg/2nDVjTxhNyRqCKZQm64+KjxNN5mWllWqyl4B3y6wWv4d2+zELGkCT0uORAQjWQN8/YHmIvjgyIQzURyBGvuCXlHI/nqazLikCiCY4mxH0/o3E8lKSzDtI9chdfTvW7hhnYFD1lbWgpmU/ynsxomC5/frZAk+vCq9r4yj0j4YSjSyR1PuxMXo6gUlZ+P8b1l7SVNwQ/z2hZwIXLJbIex+WEd68meZcwkpPgjq1rqJhths0GyqzM3hRjSPN5MrynCidz403kPDT1nRdZNlTcT+WTZBGrDBiC7uLeLj45Y/MXIJdQZlOWy2xx1Pi2wepJWjFrA/5jPPtQstVuOo0PrDifJH9d0kaL/7W/cfxRwuUyYOnlD5iaAakdxqYERKAY+qDnkZsXOEZZ/yB4VJ6qqvjpnVX9yiIwGoSE4tp/MLLA3ur0GSLhcQhLU822ztkSTtvntkd7fkDEQf5P+yLel/Xlgn3pJPVb1HCNGil+ZLet85ifVPUBRe4B/aeH2xu5AzhQ4Fsz+yiK97OilApezmvMIqFCmYKkuMF9jE4y3jitc72B0buILvn7MfLit/9HRAx3iUrSKo2ep32aLTOBKS3J1tnqq0fyqwYtHVrVPa66oWXTt7iaXeFkzYWr2Hhr2Lns+7/Pd642"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/read/fileReader.go",
+    "grade": "B",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T10:19:38.349Z",
+    "codeReview": {
+      "review": "This code has three critical areas of concern.  First, `NewHistoryReader` relies on `os.Getwd()`, which is not ideal for a reusable component.  Second, the error handling for `os.Stat` could be improved by checking for `os.IsNotExist` more explicitly.  Third, the code lacks clear separation of concerns; the `HistoryReader` handles both finding the `.codeleft` folder and reading the file, which blurs responsibilities.\n"
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "A*",
+      "interfaceSegregationScore": "B",
+      "liskovSubstitutionScore": "A",
+      "openClosedScore": "B",
+      "singleResponsibilityScore": "B"
+    },
+    "hash": "c3d36054438975005bb4dece31e0a36ede3fc646e9b3e26562f5bdcfa0a3e3cb",
+    "id": "eJydVlFv4zYM/iucgDs4Q+a8Z8hTeth6KNqh3d78otpUrNWRDIpuFhzuvw+UrMTu0muwvtShKfLjx4+0vikdAoZg3e5P7zu1Vk8Pd7c3aqlq3+DWO0bHaq16Xb/oHQKhbipXObvvPTEUlau4ir4dGv6l7uzK2I6RKpVeoat9Y91u9XfwLhvNnvOjD/mp19zKYZQHMS4k0WoFW9/gHRp+RN0ggXWMZHQtYPbaugDcIgS9x8rxscf3/b9JIrH+bgN7OhYLKBLaMlkshiUgkadF5b6P6UfnHC0AYei9C/a5QzCeIifW7SKMNjmXUi1IMeUIah4lMA01Z0C9f/SeQf4Ck3U7MW9HTv/Q3J7MGdM9HuYBa0LNGECDwwNYF1i7GsGbeeIynr5lOOjuJRF3St9YwlpcgQkR2IOxrok+xlJgKHObwfgucsEg7R2E4DCGNkA5oA2A+56PS3Fs0Oih4yBxJWQ9EKFjOHh6EfJO2VOcR+SBXADtUj/Amkl+G8B5gTG4BrQ7HlokBOtiZMlfVs4Mrv4PT9LxuTxyv1MvMvZohfUGfCh/Qz40hYiRrYn2nzbgbJdOyBmBKpYlmD2XXySeKSpltO2wkYJ3yO8XvIZPh0rFjDFJ7HHFkYR6oGBfsTumXpwYEId6IpATXnHLyjkdL3JZ1xWBRBMcbYz7eUbjeChLZx2le+IuvZzqdw0zsDl6ztrSUjKf5T2Z0Thd4fJsgSG/j68aG2r/ioQTjq6R1OWwM3l5glo7+f2c1l/WVtES/DyjZQFXLpfEehqXM96DnuRdwkhOhju2rqVythk2G6hUpT4UY0xzNxnec4WTuQk2cR6b+imILFsqH6fyybJIVUYMUXdpb5dfvXXFG5BLqNSU5UotThrftli/SCtmbcB/bOAQS3bGT6fxiTUXk+TvS9oa8b8N956/SLhCBiy//AFTMyCNx9SUiAg0Qx/1PHLzBsco6x8ET8rTdZ2+ubOq31kE1oCQUN6GGysL7KNOXyASnoe4NPVs61ws4bx9Hnp0lwdEHOT/tC/ifV1frtiXXlJ/RA03aJDSR3bb+YDFWVU3KHKP6L8+PdzLHcCDhtDZ2UdRvF815VTwdl5TFgkVyxQk5T0eUnSS8cZpnesNjN5lcik+j5EXv/4/IlK4a1SSV2nyPO9TtVQCU1qi1mr1V0AKqxYdHTu9f17th45t3+FqdoWTNRevYuOtYefV938BC8OseQ=="
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/read/findCodeLeft.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T10:19:38.378Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "brokenAccessControl": {
+        "clientServerAccessPolicyEnforcement": 0,
+        "idorPrevention": 0,
+        "roleBasedAccessControl": 0
+      },
+      "cryptographicFailures": {
+        "dataEncryption": 0,
+        "encryptionAlgorithmStrength": 0
+      },
+      "identificationAuthentication": {
+        "multiFactorAuthentication": 0,
+        "passwordPolicy": 0,
+        "sessionManagement": 0
+      },
+      "injection": {
+        "inputSanitization": 0,
+        "preparedStatementsUsage": 0
+      },
+      "insecureDesign": {
+        "secureDesignPattern": 0,
+        "sensitiveDataExposure": 0,
+        "threatModeling": 0
+      },
+      "securityLoggingMonitoring": {
+        "anomalyMonitoring": 0,
+        "criticalEventLogging": 0,
+        "secureLogStorage": 0
+      },
+      "securityMisconfiguration": {
+        "adminEndpointExposure": 0,
+        "defaultConfiguration": 0,
+        "securityHeaders": 0
+      },
+      "serverSideRequestForgery": {
+        "inputValidation": 0,
+        "internalSystemExposure": 0,
+        "networkLayerProtection": 0
+      },
+      "softwareDataIntegrity": {
+        "versionControl": 0
+      },
+      "vulnerableOutdatedComponents": {
+        "knownVulnerabilities": 0
+      }
+    },
+    "hash": "061dc9c4abad3387bc1535520f6ddbb23d4d8a2f74e37a4dfce9de013af3f8c7",
+    "id": "eJx1U01v2zAM/SucgHU24FjbNUAOW9oBBQa0WDv0oosqU7EQmQooOVlQ5L8PsuN8bN1JND/fe6TfhI4RY3S0eg7Bi7l4ePn69Dh7fnicffksKmFCg8tACSmJudhos9YrBEbdKFLkuk3gBIUilZSwXVJiNEOcrI1OrbTOYzays8yFUoJ11CxDgx5t+omm5+i2CBE1mxYj8OTye7CBQUPjGE0KvAfSHTagRG2O9UpATw0yKMEhJCVqRbYn8/6QIudATOxoVUIxGhUgc+AS3jLurWaYmj/q1B6zM3SVkBnmC5hI1S/ar4eeFeShxeZcUIEjGyDE+rvzeE82VLDTfn3HPM0bnnGqSs6ewh8WQM5PAZUYU880hUfvYXykhGWLZg3OgumZkRIMIFz8v24/Bt1OYzPO+j7eOi5KuLk5s/umIw6USlgsrovP4K60WgzDp5CU8LR2G2gwGqTG0Qpsz6lFhkAGYYeftgg29NSAhk4n0/5F+QQl97l119yPOeR8/j7k68p08B8Fj4lKKDHsekgfF5pluyKwGNLerbRdqu/yymxxocWFyE3ACBQS4G8XE2ja71pkHA90Dh9j7pKvpbxAcBxxiaIaOR0UiUpkCbJTzIX8FZGjbJF473X3KrveJ7fxKKfqmfFO5l9UTuefIdarIA5/ACNda2o="
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/read/findCodeLeft.go",
+    "grade": "C",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T10:19:38.393Z",
+    "codeReview": {
+      "review": "1. **Missing Error Handling:** The `filepath.Walk` function's error is not checked within the loop.  This could lead to silent failures if there's an issue during traversal.  Example:  `if walkErr != nil { return walkErr }` should be outside the loop.\n\n\n2. **Inconsistent Naming:**  `.codeLeft` in the code and `.codeleft` in the function signature.  This inconsistency should be fixed for better readability and maintainability.\n\n\n3. **Unnecessary Variable:** The `codeleftPath` variable is assigned within the loop but not used until after the loop.  This is unnecessary and can be simplified.\n"
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "F",
+      "interfaceSegregationScore": "B",
+      "liskovSubstitutionScore": "B",
+      "openClosedScore": "F",
+      "singleResponsibilityScore": "A*"
+    },
+    "hash": "16017d114de28950cfca0fbcc107aa6a7a31e2d336052c25240cbcf1e8c3a686",
+    "id": "eJx1U02L2zAQ/StTQbc2uNY94EuTLQQWWrotveiiyqNYRB6ZkZw0LPnvRXacTdrtSeP5fO/N+EXoGDFGR7vvIXixEs9fnrYbUQkTWlwHSkhJrMSgzV7vEBh1q0iR64fACQpFKilh+6TEbIa4WINOnbTOYzays8yFUoJ11K5Dix5t+oZm5OgOCBE1mw4j8OLyJ7CBQUPrGE0KfALSPbagRG0u9UrASC0yKMEhJCVqRXYk8/aQIudATOxoV0IxGxUgc+ASXjLug2ZYmn/VqbtkZ+gqITOsGlhI1T+13089K8hDi+G1oAJHNkCI9WfncUs2VHDUfv/IvMybnnmqSs5ew+8aIOeXgEqMaWRawrP3PD9SwrpDswdnwYzMSAkmEC7+X7enSbfr2Iyz3saN46KEh4dXdp90xIlSCU1zX/wK7k6rZhq+hKSE570boMVokFpHO7Ajpw4ZAhmEI344INgwUgsaep1M9xflK5TcZ+PuuV9yyPn8fc7XlengPwpeEpVQYtr1lD4vNMt2R6CZ0t6stH2qH/PKbHGjxY3IbcAIFBLgbxcTaDodO2ScD3QF72Pukq+lvEFwGXGLopo5nRWJSmQJslOshPwRkaPskPjkdf9L9qNPbvAol+qPxjuZf1G5nH+GWO+COP8BPzxprQ=="
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/read/configReader.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T10:19:38.408Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "brokenAccessControl": {
+        "clientServerAccessPolicyEnforcement": 0,
+        "idorPrevention": 0,
+        "roleBasedAccessControl": 0
+      },
+      "cryptographicFailures": {
+        "dataEncryption": 0,
+        "encryptionAlgorithmStrength": 0
+      },
+      "identificationAuthentication": {
+        "multiFactorAuthentication": 0,
+        "passwordPolicy": 0,
+        "sessionManagement": 0
+      },
+      "injection": {
+        "inputSanitization": 0,
+        "preparedStatementsUsage": 0
+      },
+      "insecureDesign": {
+        "secureDesignPattern": 0,
+        "sensitiveDataExposure": 0,
+        "threatModeling": 0
+      },
+      "securityLoggingMonitoring": {
+        "anomalyMonitoring": 0,
+        "criticalEventLogging": 0,
+        "secureLogStorage": 0
+      },
+      "securityMisconfiguration": {
+        "adminEndpointExposure": 0,
+        "defaultConfiguration": 0,
+        "securityHeaders": 0
+      },
+      "serverSideRequestForgery": {
+        "inputValidation": 0,
+        "internalSystemExposure": 0,
+        "networkLayerProtection": 0
+      },
+      "softwareDataIntegrity": {
+        "versionControl": 0
+      },
+      "vulnerableOutdatedComponents": {
+        "knownVulnerabilities": 0
+      }
+    },
+    "hash": "58b488f94f88fed7563d4a3e63b187e10e785860e7c8dc3f36ec2d8873163355",
+    "id": "eJydVk1v2zgQ/StTAS3khSPtXl34ULjBIkWRBE6LXnRhqKHNjUwaw1G9RtH/vhhSn9mkCZpLbGr43puZNyP/yFQIGIJ1uy/eN9kqu/n24e724svN7cVff2bLTPsaN94xOs5W2VHpB7VDIFR15SpnD0dPDHnlKq5ibIOGL3RjSz4fMVRZeoJO+9q6XflP8K4/NAfuP/oh8qh4XxrboHyQw4XwlCVsvDN2t0VVI4ENQBiO3gV73yAYT1GSdTvgPYKOsYWQgWAVlRM5c4zA1GqGH8K7xaPfes8gf4HJup0cb7qEbhXvh+OfnaBrPM3wNKFiDKDA4QmsC6ycRvBmRlvEu1cMJ9U8hKh2IK8toWZPZ2BCBPZgrKtjjLEUGIq+wmB8E+vAIKVtHSOFDtoA9YA2AB6OfF5KYI1GtQ0HwY1FaonQMZw8PUjhBvaEs0VuyQVQDpDIE1gz4bcBnBcZratBufNpj4RgXUQW/qJypnX6cZXyBeR/TA+WCX2R+tArj6ewWoMPxd/IpzoXG7A18fzNGpxt0g25I0LlZAnmwMWl4Jm8yoyyDdaS7g75+XRX8PZUZZExksT+VhxLoFsK9js259SJIX8J0BNzDHolrHfNcD3v03pdEkg00aEj7rtpzbo7vW9W0bVD6dLDqXVXMNPag/ekmpZCPDpbWBJfnKrw5EyBIX+IT0ZXPGehbgLGoVDRNaOxniSYecwTaOXk+31aP73Bck0wc9Rioj/aLW6iIh3M7VaWcOlCS/goD9k9Qh+Qu45pKmbLYL2GKquyFz0YMT9PJnbMaDIswcapp9jMt0HcqKnYTl3TuyFmESVEt6U9WXzy1uWPNC5BNvJQ0ypbDMbe7FE/SN2nNcd/beAQ83XGTyfwjhXnI/PzLrZGwq/CtedLQctlpvqHv6jSVEbtMfU96gGVujGUZa6iM/IvoJPFlNbpJTfN+JnBtwakAMVV+GhlX73U4v/XEO7buCHVbMk8pX/cNTdHdE+OgTyX/9OGSPCrGvKK3eiF+IWqcI0GKb1KN40PmI9e+ohi8Sj9093NNVjHfpz49JKV0O+KOhqYDmRCF4iYnCgorvGUUCkXyml6qzV00UUKyd8l0MX730s/ob3CFh1WRzduzGyZiUjpQ7bKyq8BKZR7dHRu1OG+PLQN22OD5ezHkSywUk9/Fux89vM/1K9prA=="
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/read/configReader.go",
+    "grade": "B",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T10:19:38.453Z",
+    "codeReview": {
+      "review": "This code has three critical areas of concern.  First, `NewConfigReader` relies on a recursive function (`findCodeleftRecursive`) which is not ideal for large repositories.  Second, error handling is not consistent; some errors are wrapped, others are not.  Third, the code lacks clear separation of concerns; the `ConfigReader` handles both finding the `.codeleft` folder and reading the config file.  Example: `findCodeleftRecursive` function should be extracted.  Example:  Error handling in `ReadConfig` should be more consistent. Example:  Create a separate function to handle finding the `.codeleft` folder.\n"
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "B",
+      "interfaceSegregationScore": "B",
+      "liskovSubstitutionScore": "B",
+      "openClosedScore": "B",
+      "singleResponsibilityScore": "A"
+    },
+    "hash": "14cf29d2c5fee1a25332a9eaf340382cd6cdb2bab5f4667b49c29d8b1b0b0241",
+    "id": "eJydVk1v2zgQ/SuzAlrIC69098InJyhSFEnhdG+6MNTQZiOTwnBU1yj634sh9ZkmTbC5xKaG772ZeTPyj0yFgCFYd/jifZNtsvu7TzdX2TrTvsadd4yOs03WKv2oDgiEqq5c5eyp9cSQV67iKsY2aPgf3diSLy2GKktP0GlfW3covwbvhkNz4uGjHyNbxcfS2AblgxyuhKcsYeedsYc9qhoJbADC0HoX7EODYDxFSdYdgI8IOsYWQgaCVVRO5CwxAlOnGX4I7x5bv/eeQf4Ck3UHOd71CX1WfByPf/aCbvG8wNOEijGAAodnsC6wchrBmwVtEe/eMJxV8xii2pG8toSaPV2ACRHYg7GujjHGUmAohgqD8U2sA4OUtnOMFHpoAzQA2gB4avmylsAajeoaDoIbi9QRoWM4e3qUwo3sCWeP3JELoBwgkSewZsZvAzgvMjpXg3KX8xEJwbqILPxF5Uzn9NMq5SvI/54frBP6KvVhUB5PYbMFH4oPyOc6FxuwNfH8ry0426QbckeEyskazImLa8EzeZUZZRusJd0D8svpbuDducoiYySJ/a04lkB3FOw3bC6pE2P+EqBn5hj1StjgmvF6PqT1tiSQaKZDR9z385r1dwbfbKJrx9Klh3PrbmChdQAfSDWthXhytrAkvjhV4dmZAkP+FJ9MrnjJQv0ETEOhomsmYz1LsPCYJ9DKyfeHtH4Gg+WaYOGo1Ux/tFvcREU6WNqtLOHahY7wSR6ye4Q+IPcd01QslsF2C1VWZa96MGJ+mk3slNFsWIKNU0+xme+CuFFTsZ+7ZnBDzCJKiG5Le7L46K3Ln2hcg2zksaZVthqNvTuifpS6z2uO323gEPN1xs8n8J4V5xPzyy62RsJvwq3na0HLZaaGh3+o0lxG7TH1PeoBlboxlmWpojfyH6CTxZTW6e02z/iFwbcGpADFTbiysq9ea/HvNYSHLm5ItVgyz+mfds1di+7ZMZDn8n/eEAl+U0PesBu9EL9SFa7RIKVX6a7xAfPJS1coFo/SP97f3YJ17KeJTy9ZCf2mqKeB+UAmdIGIyYmC4hbPCZVyoZynt9lCH12kkPx9Al39+//ST2hvsEWP1dNNGzNbZyJS+pBtsvK/gBTKIzq6NOr0UJ66hm3bYLn4cSQLrNTznwUHn/38BS4eZ+8="
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/types/model.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T10:19:39.315Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "brokenAccessControl": {
+        "clientServerAccessPolicyEnforcement": 0,
+        "idorPrevention": 0,
+        "roleBasedAccessControl": 0
+      },
+      "cryptographicFailures": {
+        "dataEncryption": 0,
+        "encryptionAlgorithmStrength": 0
+      },
+      "identificationAuthentication": {
+        "multiFactorAuthentication": 0,
+        "passwordPolicy": 0,
+        "sessionManagement": 0
+      },
+      "injection": {
+        "inputSanitization": 0,
+        "preparedStatementsUsage": 0
+      },
+      "insecureDesign": {
+        "secureDesignPattern": 0,
+        "sensitiveDataExposure": 0,
+        "threatModeling": 0
+      },
+      "securityLoggingMonitoring": {
+        "anomalyMonitoring": 0,
+        "criticalEventLogging": 0,
+        "secureLogStorage": 0
+      },
+      "securityMisconfiguration": {
+        "adminEndpointExposure": 0,
+        "defaultConfiguration": 0,
+        "securityHeaders": 0
+      },
+      "serverSideRequestForgery": {
+        "inputValidation": 0,
+        "internalSystemExposure": 0,
+        "networkLayerProtection": 0
+      },
+      "softwareDataIntegrity": {
+        "versionControl": 0
+      },
+      "vulnerableOutdatedComponents": {
+        "knownVulnerabilities": 0
+      }
+    },
+    "hash": "f7a656feae48a465e9a47fe9a907c837f9aa9d6e225b3fac8cc672d87ccd3d00",
+    "id": "eJx1U01vm0AQ/SujPcemufpWIUXqoTWtHeUQImUNA2y77NCdQS6K/N+r5SsGJ5zQe29m3gyPN6WZkdm48khk1U7tn74eks1xn2zuv6g7lVGOMTlBJ2qnGp390SWCdA1y6lIXRRCTK0wJHhuPjE4YpEJg8W0mrUegogeyXrb9zeSgMBa3qQtdpvJBD2+pS+VYeeSKbB5Q40p4DVW7VMlEpOo1CA+Ytd5IB4vyVPZnzQ2ciOxcSgEay1KJzwhLPjvjyF5mjMf2I/Gz1TYMW846kDU5hGfRjwM8z0v8L9R5txY1A/xuy6J2MeW48jbB70KqG4v/gpulcsY/kCaePlMnnm62/zusO51aFyhd7I2YTNvVDb4b9jpuVievR/T2roteI/2tdORx1fjBWGQAeH4JbwBzi5Agnnd8IJujZ3h+WQWmGIgbB6Yf1sOXMcb9gKsQ6z6lIAQnhEGfg3HXWR4T3Fde+/6ha1xH1+l6+nyJlmpNN1qqyY6669cLMrVT0SOj56hC5zur61NUt1ZMYzEKv6bFQjaZNVH/R0Z1gLYlqct/bMFpJg=="
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/types/model.go",
+    "grade": "A",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T10:19:39.976Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "A*",
+      "interfaceSegregationScore": "B",
+      "liskovSubstitutionScore": "A*",
+      "openClosedScore": "B",
+      "singleResponsibilityScore": "A"
+    },
+    "hash": "439add89080dad73e535702fb5e39322cf3a5d179abdeb67fa51ed3d6e4029c1",
+    "id": "eJx1U11v2zAM/CuEnrv4Pa8eChTY1mzpnqoCVWza1iaLmkgjM4r890H+aux0fjLujuSRPr8pw4zM1tdPRE7t1fHxy8NndacKKjEnL+hF7VUwxW9TI0gfkLXXPssgJ1/ZGiKGiIxeGKRBYIldIV1EoGoAikG2+8XkobIOd9qnLnP5qIc37bU8NRG5IVcm1PoaXlPVXiuZCa1ek/CIRRet9LAq1/J4NhzgROSWUkrQVKYlPyOs+eKME3tZMJ7aT8T3zrg0bD3rSM6WkJ5VP07wMu8Qf6Ap+60ojPC7LYfG51TixtsMvwupDQ7/Jjdr5YJ/ID1E+p/6EOlm+z/juvOpTYXS59GKLYzb3OCr5WjysDl5O6G3d131muiH2lPETeN765AB4PklvQEsLVKCeNnxnlyJkeH5ZROYaiRuHNhh2ABfphgPA65CbIaUghCcEEZ9CdZfZ3lK8FB57fubaXEbXW/a+fMdjDRbOhhpZjvqblgvydReZT8ZI2cN+tg7056ytnNig8Ms/ZoOK/lUOJsNf2TWJmhXk7r8A7CbZ2k="
   }
 ]

@@ -112,7 +112,7 @@ Options:
 	}
 
 	if *createReport {
-		reporter := report.NewHtmlReport(report.NewRepoConstructor())
+		reporter := report.NewHtmlReport()
 		if err := reporter.GenerateReport(gradeDetails, *thresholdGrade); err != nil {
 			fmt.Fprintf(os.Stderr, "Error generating report: %v\n", err)
 			os.Exit(1)

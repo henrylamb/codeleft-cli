@@ -20,7 +20,7 @@ func NewHtmlReport(repoConstructor IRepoConstructor) IReport {
 
 
 func (h *HtmlReport) GenerateReport(gradeDetails []filter.GradeDetails, threshold string) error {
-	repoStructure := h.RepoConstructor.ConstructRepoStructure(gradeDetails)
+	//repoStructure := h.RepoConstructor.ConstructRepoStructure(gradeDetails)
 
-	return GenerateRepoHTMLReport(repoStructure, "CodeLeft-Coverage-Report.html", threshold)
+	return GenerateRepoHTMLReport(gradeDetails, "CodeLeft-Coverage-Report.html", threshold)
 }

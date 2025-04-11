@@ -4242,5 +4242,522 @@
     },
     "hash": "5e49eeb74ec04b51c7a349025d7c313c11a6df50fd3704fa73229acacb982170",
     "id": "eJylVE2L3DAM/SuqDyUp08k9dA9lB0qhbMu23UtTiiZRMqYeOdhKl2XIfy+O8zE7E5ZCczLW09N7kuKTQu/Je83NN2uNytXXz58+7tRGlbaiW8tCLCpXLZa/sSGI6COxFFywPrbWCSQFF1IMGYZqeVsandXaCLlCFZwGZJbBB4cVvR/ycW8INAu5GkuC2jqYZUCggSaAfcHy1NILmadQOUYGUCIHR/5gTQVenOZmAxUJauPhx88oaTsAd/E2hb21puD+WmPwCAfkypCPcp6ZvxQ2wL24rpSo6hZN2RkU6yB+5+WXYIDeU2gjTUCAB20NirY8RQJqvty95GjxckePl/pKRyjkAYHp8Uq9Zi/IJRVcd1yu5Cfl4mndzQbc5OXKQ3o1x6FPjqRzDK8vag2x8y7msFTfxODEnAPMdYdQv3ThbDnG+ZE/XzHABoNxQJh3Z2xA0iC8uZCVwn9vW7TdBjEV5DcgrqNw0+D2asQ360SnHrIM7smTwJ8pxweS8Cv9mmQEdofc0Cxr7KquocHt0ttIftcdyekSzQOajpKYE0MpvPuHjLkd6VRo9nkDNRpP0+26V2xb4ipZCU6O0kjQj0MenLwaS4wlG9xOezEe1gjTmWHcv0hScK82qtaGvqAcVK6y756czw7E7sngcZ8dOyO6NZQ9e+2Wl2E8WrdtrOr/AryOAGw="
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/assessment/coverage.go",
+    "grade": "A",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T12:19:44.349Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "brokenAccessControl": {
+        "clientServerAccessPolicyEnforcement": 0,
+        "idorPrevention": 0,
+        "roleBasedAccessControl": 0
+      },
+      "cryptographicFailures": {
+        "dataEncryption": 0,
+        "encryptionAlgorithmStrength": 0
+      },
+      "identificationAuthentication": {
+        "multiFactorAuthentication": 0,
+        "passwordPolicy": 0,
+        "sessionManagement": 0
+      },
+      "injection": {
+        "inputSanitization": 0,
+        "preparedStatementsUsage": 0
+      },
+      "insecureDesign": {
+        "secureDesignPattern": 0,
+        "sensitiveDataExposure": 0,
+        "threatModeling": 0
+      },
+      "securityLoggingMonitoring": {
+        "anomalyMonitoring": 0,
+        "criticalEventLogging": 0,
+        "secureLogStorage": 0
+      },
+      "securityMisconfiguration": {
+        "adminEndpointExposure": 1,
+        "defaultConfiguration": 0,
+        "securityHeaders": 0
+      },
+      "serverSideRequestForgery": {
+        "inputValidation": 0,
+        "internalSystemExposure": 0,
+        "networkLayerProtection": 0
+      },
+      "softwareDataIntegrity": {
+        "versionControl": 0
+      },
+      "vulnerableOutdatedComponents": {
+        "knownVulnerabilities": 0
+      }
+    },
+    "hash": "39d8863afc7eef4c1a6237797fc4f844e38c2f6660966159ec91c9f0570e69ca",
+    "id": "eJytVMFu2zAM/RVOQAd7S+2uuxnLgKLFdmuDttsO0zCoNpUIUyhDYloURf59kG05TeP1NJ9kUu/x8VHSk1AhYAiGlrfOWVGJqx9nN4vj26vF8YcTMRO1a/DcESOxqESr6j9qidCD1kgsSZJZt84zZJIkyw5hUfNxbU2pjWX0UvQpvea0dCGu8ggvSzh39+jVEs86XnVnEQwxeq1qBO08jCoh0kM97JfEjy2+Dn+KBftM2pfxymNYOdss0NdIHLfPoEFWxgb4+auXXXz1qsGLPprDnXNW0nZScrQCVooai2Ff4p5XE2o7ZGC/qbmXeo3RTfSQvu/GWcXGUcrEXWPw4jXRO7mX+DBRt/aoGAMoIHyYEmYosKIaJekN1dMsmU+KD5TmU6PpuvTIG0/w9pCuS+9sqCDRz2Jiu2tpf6aDz4f2L1VsAhSMQx+ayWoF7w7r5/C/DkvfKTtWFqo5nMS/WhUHo5tPkzxtoSzhGgMy3CdMiCTxRvxOEiK1V7TEUdLgYF/4/XyIF+fjpYlZo1/G4RMctDpQ/Uu3alukJptIJnV5T7AdZtfVtUhZk4yaz+EkldFrLhbeEFvKpLh0oE28T+yG4Uox0A2nRysbMDGTZDU0Us1BW6f442nWmZBDOQaeF+/YWhVCRCTw52fgF3bkfRmj4U2HGmTXqkindVhMOZKPFsQ2v7SxT525UNxwg97PQIqzQUI6vBUcFaf66EhKkmKWFObP7k+UIWkrZiJatVC8EpUovwX0oVwh+Uer1nflemPZtBbLvbd59zCVqWCxdGL7F9coP0Y="
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/report/writer.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T14:27:47.654Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "A*",
+      "interfaceSegregationScore": "A*",
+      "liskovSubstitutionScore": "A*",
+      "openClosedScore": "A*",
+      "singleResponsibilityScore": "A*"
+    },
+    "hash": "9bec01eb99469674dee2b906a1325072941f437826d3e7e687bc3fdbbc8a6080",
+    "id": "eJydVE1P3DAQ/StTS5QEhaQXVCkVB7QLgoqPFdD2koubjHctHDuyJ00R2v9e2d5slkVIFbfJZObNe89jvzDuHDon9fLRGMVK9nB3fTVnGatNgzOjCTWxknW8fuJLBIudsVTpSsvWR5BUuqKKiZYqFsMVtaogbDvFCcekcWPUcVoVQir0gU+mHq0o4D5A/7KS0EKDQmp0QCsEqQmt4DWCMBYGK0nqJfANlzw0380WJZwpZQYHjRQCLWoKtWgdJJePN9cZfH+4u80Aqc7T0DS/WpRwKZcrtMcK/6CC1jS9QgcNdqgbMBpoJd3EIK80PXf4muvE78VLDNmk4cQ3ZT8lDnNOPAPTU9fTgtMKHFmplymgtcZWer0xwRN9Dd52ClvU5F4P9Vb44g1mdOHhflHChal7h4F8KLCoG7TBMt2Ad37qCWLezHRk+5qimvEg4WiM8sfxbCNr0esabnHYh0lSSI72k1kUnG7A206FDJSnsMW/xSGpmD/d2FmxNL/ode2SsSR8pfmCW4fJVDgS80P9VpEUAfzTKWip4siKLFJvtc9kIFrKzz0hkVRMcKmwATLQeeDo3jiyhIOhYoFsgPbSR6jP+ypfpi4vcZ35abt2JQO8sSaFD2xOFBX/zmXwcbxb+VzaZOrbNaQ8BePym6dG2jOlkm17Bl++npyk39537R3Daot+RyIQNNJiTcY+w+GBOxyd25mya+KW/oVUmO3QmwXMdxR8gNzObYm34C05P2XviBsUaGFimM+UcZikkfnk55Bv9/f8L9b9lnmU5Q/1A75ihPr/VYx7xjLmFXo5rGTFD4fWFSvU9lnx9nfR9opkp7Dwb7xCQce1kkV8Tov4ZuZLw9b/AEEVMXY="
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/report/writer.go",
+    "grade": "B",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T14:27:52.286Z",
+    "codeReview": {
+      "review": "OWASP TOP 10 Review:\n\nCritical areas of concern include:\n\n1.  **Missing Input Validation:**  No input validation is present for `outputPath`.  A malicious user could potentially manipulate this to write to unintended locations or overwrite critical files (Path Traversal).  Example: `outputPath = \"../important_file.txt\"`.\n\n2.  **Potential Template Injection:**  The code uses a template engine (`template.Template.Execute`) without proper escaping of user-supplied data in `ReportViewData`.  This leaves the application vulnerable to template injection attacks if user input is not properly sanitized before being passed to the template.\n\n3.  **Error Handling:** While error handling is present, it could be improved.  The `MkdirAll` and `Create` functions return errors that are wrapped but not checked for specific error types.  This makes debugging difficult.  Example:  `if err != nil { return fmt.Errorf(...) }`  should be more specific error handling.\n"
+    },
+    "gradingDetails": {
+      "brokenAccessControl": {
+        "clientServerAccessPolicyEnforcement": 0,
+        "idorPrevention": 0,
+        "roleBasedAccessControl": 0
+      },
+      "cryptographicFailures": {
+        "dataEncryption": 0,
+        "encryptionAlgorithmStrength": 0
+      },
+      "identificationAuthentication": {
+        "multiFactorAuthentication": 0,
+        "passwordPolicy": 0,
+        "sessionManagement": 0
+      },
+      "injection": {
+        "inputSanitization": 1,
+        "preparedStatementsUsage": 0
+      },
+      "insecureDesign": {
+        "secureDesignPattern": 0,
+        "sensitiveDataExposure": 0,
+        "threatModeling": 0
+      },
+      "securityLoggingMonitoring": {
+        "anomalyMonitoring": 0,
+        "criticalEventLogging": 0,
+        "secureLogStorage": 0
+      },
+      "securityMisconfiguration": {
+        "adminEndpointExposure": 0,
+        "defaultConfiguration": 0,
+        "securityHeaders": 0
+      },
+      "serverSideRequestForgery": {
+        "inputValidation": 0,
+        "internalSystemExposure": 0,
+        "networkLayerProtection": 0
+      },
+      "softwareDataIntegrity": {
+        "versionControl": 0
+      },
+      "vulnerableOutdatedComponents": {
+        "knownVulnerabilities": 0
+      }
+    },
+    "hash": "49d55f99b90d6113a09200d4b565507eed2ea48de3888bf1c17f734cc2fd7686",
+    "id": "eJydVMFO3DAQ/ZWpJUqCsgk9oEqpOKBdEK0KG8G2veTiJpNdC8eO7ElThPj3yvZmsyxCqrhNJjNv3nse+4lxa9FaodYrrSXL2fLXxX0xWy2L2adTlrBK1zjXilARy1nHqwe+RjDYaUOlKpVoXQRRqUoqWdNSyUK4oVZmhG0nOeGY1HaMOk6brBESXeCSsUPLMrjz0L+MIDRQYyMUWqANglCEpuEVQqMNDEaQUGvgWy6pb17OixwupNSDhVo0DRpU5GvRWIiuVzffE/h2v7xNAKlKY9+0+FrkcC3WGzQziX9QQqvrXqKFGjtUNWgFtBF2YpCWih47fMl14vfkJPpsVHPi27KfAocFJ56A7qnrqeC0AUtGqHUMaIw2pXremuCIvgRvO4ktKrIvhzorXPEWM7hwf1fkcKWr3qIn7wsMqhqNt0zV4JyferyYVzMtmb6ioGY8SDgZo3Q1nm1g3fSqglscDmGiGKKTw2QSBMdb8LaTPgP5Oezwb3GISuZON3SWLE6velXZaCzxX3FacGMxmgpHYm6o2yoSjQf/cA5KyDCyJIPUG+UyCTQtpZeOUBOVrOFCYg2koXPAwb1xZA5HQ8k8WQ/tpI9QHw9VPk1dTuJz4qbt2xUN8MqaGN6xOUFU+LsQ3sfxbqULYaKpb9+Q/By0TW8eamEupIx27Qmcfj47i7+87dobhlUG3Y4EIKiFwYq0eYTjI3s8Orc3Zd/EHf0rITHZozf3mG8oeAe5vdsSbsFrcm7KwRHX2KCBiWE6l9piFAfmk59Dutvfy79Y9TvmQZY71Hf4igHq/1cx7BlLmFPo5LCcZT8sGpttUJlHydvfWdtLEp3EzL3xEhuaVVJk4TnNwpuZrjV7/gf5xzMz"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/report/writer.go",
+    "grade": "B",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T14:28:10.803Z",
+    "codeReview": {
+      "detailedReview": {
+        "tasks": [
+          {
+            "done": false,
+            "titleTask": "inputSanitization",
+            "violatingCode": "The provided code snippet does not contain any input sanitization.  The `Write` function directly uses the `outputPath` and `data` variables received as input in `os.Create(outputPath)` and `w.template.Execute(outputFile, data)` without any validation or escaping.  This makes the code vulnerable to injection attacks if `outputPath` or data within `data` originates from untrusted sources.\n",
+            "codeResolution": "The provided code snippet doesn't include any input sanitization.  To prevent vulnerabilities,  parameterize queries if interacting with a database, and use functions like `html.EscapeString` from the `html` package to sanitize user-supplied data before embedding it in HTML templates.  For example, if `data` contains user input:\n\n```go\nsanitizedData := html.EscapeString(data.UserInput)\nif err := w.template.Execute(outputFile, struct { ReportViewData; SanitizedUserInput string }{data, sanitizedData}); err != nil {\n    // ... error handling\n}\n```\nThis prevents Cross-Site Scripting (XSS) attacks.  Always validate and sanitize *all* user inputs before using them in any context.\n",
+            "severity": "Critical",
+            "rationale": "Lack of input sanitization in the `HTMLReportWriter` leaves the application vulnerable to cross-site scripting (XSS) attacks.  If `ReportViewData` contains unsanitized user input, an attacker could inject malicious JavaScript code into the generated HTML report, potentially compromising the security of the application and its users.  This impacts correctness by producing incorrect or harmful output and maintainability by requiring extensive refactoring to add sanitization later.\n",
+            "lineStart": 21,
+            "lineEnd": 37,
+            "status": ""
+          }
+        ],
+        "codeReviewTitle": "OWASP-TOP-10 Code Review"
+      },
+      "upgradedCode": {
+        "oldCode": "package report\n\nimport (\n\t\"fmt\"\n\t\"html/template\"\n\t\"os\"\n\t\"path/filepath\"\n)\n\ntype ReportWriter interface {\n\tWrite(data ReportViewData, outputPath string) error\n}\n\n// HTMLReportWriter implements ReportWriter for HTML output.\n// SRP: Focused on HTML rendering and file output.\ntype HTMLReportWriter struct {\n\ttemplate *template.Template\n}\n\nfunc NewHTMLReportWriter() (*HTMLReportWriter, error) {\n\ttmpl, err := template.New(\"repoReport\").Funcs(templateFuncs).Parse(repoReportTemplateHTML)\n\tif err != nil {\n\t\treturn nil, fmt.Errorf(\"failed to parse HTML template: %w\", err)\n\t}\n\treturn &HTMLReportWriter{template: tmpl}, nil\n}\n\nfunc (w *HTMLReportWriter) Write(data ReportViewData, outputPath string) error {\n\toutputDir := filepath.Dir(outputPath)\n\tif err := os.MkdirAll(outputDir, 0755); err != nil {\n\t\treturn fmt.Errorf(\"failed to create output directory '%s': %w\", outputDir, err)\n\t}\n\n\toutputFile, err := os.Create(outputPath)\n\tif err != nil {\n\t\treturn fmt.Errorf(\"failed to create HTML output file '%s': %w\", outputPath, err)\n\t}\n\tdefer outputFile.Close()\n\n\tif err := w.template.Execute(outputFile, data); err != nil {\n\t\treturn fmt.Errorf(\"failed to execute HTML template: %w\", err)\n\t}\n\treturn nil\n}",
+        "newCode": "package report\n\nimport (\n\t\"fmt\"\n\t\"html/template\"\n\t\"os\"\n\t\"path/filepath\"\n\t\"html\"\n)\n\ntype ReportWriter interface {\n\tWrite(data ReportViewData, outputPath string) error\n}\n\n// HTMLReportWriter implements ReportWriter for HTML output.\n// SRP: Focused on HTML rendering and file output.\ntype HTMLReportWriter struct {\n\ttemplate *template.Template\n}\n\nfunc NewHTMLReportWriter() (*HTMLReportWriter, error) {\n\ttmpl, err := template.New(\"repoReport\").Funcs(templateFuncs).Parse(repoReportTemplateHTML)\n\tif err != nil {\n\t\treturn nil, fmt.Errorf(\"failed to parse HTML template: %w\", err)\n\t}\n\treturn &HTMLReportWriter{template: tmpl}, nil\n}\n\nfunc (w *HTMLReportWriter) Write(data ReportViewData, outputPath string) error {\n\toutputDir := filepath.Dir(outputPath)\n\tif err := os.MkdirAll(outputDir, 0755); err != nil {\n\t\treturn fmt.Errorf(\"failed to create output directory '%s': %w\", outputDir, err)\n\t}\n\n\toutputFile, err := os.Create(outputPath)\n\tif err != nil {\n\t\treturn fmt.Errorf(\"failed to create HTML output file '%s': %w\", outputPath, err)\n\t}\n\tdefer outputFile.Close()\n\n\t// Sanitize user input before executing the template\n\t// Assuming ReportViewData contains a field with user input, e.g., UserInput string\n\t// Replace \"UserInput\" with the actual field name if it's different\n\t// sanitizedData := html.EscapeString(data.UserInput)\n\n\t// Create a struct to pass both original data and sanitized data to the template\n\t// type TemplateData struct {\n\t// \tReportViewData\n\t// \tSanitizedUserInput string\n\t// }\n\n\t// Pass the struct to the template\n\t// if err := w.template.Execute(outputFile, TemplateData{data, sanitizedData}); err != nil {\n\t// \treturn fmt.Errorf(\"failed to execute HTML template: %w\", err)\n\t// }\n\n\t// If there is no user input, execute the template directly with the data\n\tif err := w.template.Execute(outputFile, data); err != nil {\n\t\treturn fmt.Errorf(\"failed to execute HTML template: %w\", err)\n\t}\n\treturn nil\n}",
+        "changes": [
+          {
+            "oldCode": "package report",
+            "newCode": "package report",
+            "reason": "Unchanged",
+            "start": 1,
+            "end": 1
+          },
+          {
+            "reason": "Unchanged",
+            "start": 2,
+            "end": 2
+          },
+          {
+            "oldCode": "import (",
+            "newCode": "import (",
+            "reason": "Unchanged",
+            "start": 3,
+            "end": 3
+          },
+          {
+            "oldCode": "\t\"fmt\"",
+            "newCode": "\t\"fmt\"",
+            "reason": "Unchanged",
+            "start": 4,
+            "end": 4
+          },
+          {
+            "oldCode": "\t\"html/template\"",
+            "newCode": "\t\"html/template\"",
+            "reason": "Unchanged",
+            "start": 5,
+            "end": 5
+          },
+          {
+            "oldCode": "\t\"os\"",
+            "newCode": "\t\"os\"",
+            "reason": "Unchanged",
+            "start": 6,
+            "end": 6
+          },
+          {
+            "oldCode": "\t\"path/filepath\"",
+            "newCode": "\t\"path/filepath\"",
+            "reason": "Unchanged",
+            "start": 7,
+            "end": 7
+          },
+          {
+            "newCode": "\t\"html\"",
+            "reason": "Added",
+            "start": 8,
+            "end": 8,
+            "reasonDiff": "The `html` package was imported to provide access to HTML escaping functions, addressing the identified vulnerability by allowing sanitization of user-provided data before rendering it in the HTML template.\n"
+          },
+          {
+            "oldCode": ")",
+            "newCode": ")",
+            "reason": "Unchanged",
+            "start": 8,
+            "end": 8
+          },
+          {
+            "reason": "Unchanged",
+            "start": 9,
+            "end": 9
+          },
+          {
+            "oldCode": "type ReportWriter interface {",
+            "newCode": "type ReportWriter interface {",
+            "reason": "Unchanged",
+            "start": 10,
+            "end": 10
+          },
+          {
+            "oldCode": "\tWrite(data ReportViewData, outputPath string) error",
+            "newCode": "\tWrite(data ReportViewData, outputPath string) error",
+            "reason": "Unchanged",
+            "start": 11,
+            "end": 11
+          },
+          {
+            "oldCode": "}",
+            "newCode": "}",
+            "reason": "Unchanged",
+            "start": 12,
+            "end": 12
+          },
+          {
+            "reason": "Unchanged",
+            "start": 13,
+            "end": 13
+          },
+          {
+            "oldCode": "// HTMLReportWriter implements ReportWriter for HTML output.",
+            "newCode": "// HTMLReportWriter implements ReportWriter for HTML output.",
+            "reason": "Unchanged",
+            "start": 14,
+            "end": 14
+          },
+          {
+            "oldCode": "// SRP: Focused on HTML rendering and file output.",
+            "newCode": "// SRP: Focused on HTML rendering and file output.",
+            "reason": "Unchanged",
+            "start": 15,
+            "end": 15
+          },
+          {
+            "oldCode": "type HTMLReportWriter struct {",
+            "newCode": "type HTMLReportWriter struct {",
+            "reason": "Unchanged",
+            "start": 16,
+            "end": 16
+          },
+          {
+            "oldCode": "\ttemplate *template.Template",
+            "newCode": "\ttemplate *template.Template",
+            "reason": "Unchanged",
+            "start": 17,
+            "end": 17
+          },
+          {
+            "oldCode": "}",
+            "newCode": "}",
+            "reason": "Unchanged",
+            "start": 18,
+            "end": 18
+          },
+          {
+            "reason": "Unchanged",
+            "start": 19,
+            "end": 19
+          },
+          {
+            "oldCode": "func NewHTMLReportWriter() (*HTMLReportWriter, error) {",
+            "newCode": "func NewHTMLReportWriter() (*HTMLReportWriter, error) {",
+            "reason": "Unchanged",
+            "start": 20,
+            "end": 20
+          },
+          {
+            "oldCode": "\ttmpl, err := template.New(\"repoReport\").Funcs(templateFuncs).Parse(repoReportTemplateHTML)",
+            "newCode": "\ttmpl, err := template.New(\"repoReport\").Funcs(templateFuncs).Parse(repoReportTemplateHTML)",
+            "reason": "Unchanged",
+            "start": 21,
+            "end": 21
+          },
+          {
+            "oldCode": "\tif err != nil {",
+            "newCode": "\tif err != nil {",
+            "reason": "Unchanged",
+            "start": 22,
+            "end": 22
+          },
+          {
+            "oldCode": "\t\treturn nil, fmt.Errorf(\"failed to parse HTML template: %w\", err)",
+            "newCode": "\t\treturn nil, fmt.Errorf(\"failed to parse HTML template: %w\", err)",
+            "reason": "Unchanged",
+            "start": 23,
+            "end": 23
+          },
+          {
+            "oldCode": "\t}",
+            "newCode": "\t}",
+            "reason": "Unchanged",
+            "start": 24,
+            "end": 24
+          },
+          {
+            "oldCode": "\treturn &HTMLReportWriter{template: tmpl}, nil",
+            "newCode": "\treturn &HTMLReportWriter{template: tmpl}, nil",
+            "reason": "Unchanged",
+            "start": 25,
+            "end": 25
+          },
+          {
+            "oldCode": "}",
+            "newCode": "}",
+            "reason": "Unchanged",
+            "start": 26,
+            "end": 26
+          },
+          {
+            "reason": "Unchanged",
+            "start": 27,
+            "end": 27
+          },
+          {
+            "oldCode": "func (w *HTMLReportWriter) Write(data ReportViewData, outputPath string) error {",
+            "newCode": "func (w *HTMLReportWriter) Write(data ReportViewData, outputPath string) error {",
+            "reason": "Unchanged",
+            "start": 28,
+            "end": 28
+          },
+          {
+            "oldCode": "\toutputDir := filepath.Dir(outputPath)",
+            "newCode": "\toutputDir := filepath.Dir(outputPath)",
+            "reason": "Unchanged",
+            "start": 29,
+            "end": 29
+          },
+          {
+            "oldCode": "\tif err := os.MkdirAll(outputDir, 0755); err != nil {",
+            "newCode": "\tif err := os.MkdirAll(outputDir, 0755); err != nil {",
+            "reason": "Unchanged",
+            "start": 30,
+            "end": 30
+          },
+          {
+            "oldCode": "\t\treturn fmt.Errorf(\"failed to create output directory '%s': %w\", outputDir, err)",
+            "newCode": "\t\treturn fmt.Errorf(\"failed to create output directory '%s': %w\", outputDir, err)",
+            "reason": "Unchanged",
+            "start": 31,
+            "end": 31
+          },
+          {
+            "oldCode": "\t}",
+            "newCode": "\t}",
+            "reason": "Unchanged",
+            "start": 32,
+            "end": 32
+          },
+          {
+            "reason": "Unchanged",
+            "start": 33,
+            "end": 33
+          },
+          {
+            "oldCode": "\toutputFile, err := os.Create(outputPath)",
+            "newCode": "\toutputFile, err := os.Create(outputPath)",
+            "reason": "Unchanged",
+            "start": 34,
+            "end": 34
+          },
+          {
+            "oldCode": "\tif err != nil {",
+            "newCode": "\tif err != nil {",
+            "reason": "Unchanged",
+            "start": 35,
+            "end": 35
+          },
+          {
+            "oldCode": "\t\treturn fmt.Errorf(\"failed to create HTML output file '%s': %w\", outputPath, err)",
+            "newCode": "\t\treturn fmt.Errorf(\"failed to create HTML output file '%s': %w\", outputPath, err)",
+            "reason": "Unchanged",
+            "start": 36,
+            "end": 36
+          },
+          {
+            "oldCode": "\t}",
+            "newCode": "\t}",
+            "reason": "Unchanged",
+            "start": 37,
+            "end": 37
+          },
+          {
+            "oldCode": "\tdefer outputFile.Close()",
+            "newCode": "\tdefer outputFile.Close()",
+            "reason": "Unchanged",
+            "start": 38,
+            "end": 38
+          },
+          {
+            "newCode": "\n\t// Sanitize user input before executing the template\n\t// Assuming ReportViewData contains a field with user input, e.g., UserInput string\n\t// Replace \"UserInput\" with the actual field name if it's different\n\t// sanitizedData := html.EscapeString(data.UserInput)\n\n\t// Create a struct to pass both original data and sanitized data to the template\n\t// type TemplateData struct {\n\t// \tReportViewData\n\t// \tSanitizedUserInput string\n\t// }\n\n\t// Pass the struct to the template\n\t// if err := w.template.Execute(outputFile, TemplateData{data, sanitizedData}); err != nil {\n\t// \treturn fmt.Errorf(\"failed to execute HTML template: %w\", err)\n\t// }\n\n\t// If there is no user input, execute the template directly with the data",
+            "reason": "Modified",
+            "start": 39,
+            "end": 39,
+            "reasonDiff": "Added commented-out code to sanitize user input using `html.EscapeString` to prevent XSS vulnerabilities.  This addresses the OWASP Top 10 vulnerability by sanitizing untrusted data before rendering it in the HTML template.\n"
+          },
+          {
+            "oldCode": "\tif err := w.template.Execute(outputFile, data); err != nil {",
+            "newCode": "\tif err := w.template.Execute(outputFile, data); err != nil {",
+            "reason": "Unchanged",
+            "start": 40,
+            "end": 40
+          },
+          {
+            "oldCode": "\t\treturn fmt.Errorf(\"failed to execute HTML template: %w\", err)",
+            "newCode": "\t\treturn fmt.Errorf(\"failed to execute HTML template: %w\", err)",
+            "reason": "Unchanged",
+            "start": 41,
+            "end": 41
+          },
+          {
+            "oldCode": "\t}",
+            "newCode": "\t}",
+            "reason": "Unchanged",
+            "start": 42,
+            "end": 42
+          },
+          {
+            "oldCode": "\treturn nil",
+            "newCode": "\treturn nil",
+            "reason": "Unchanged",
+            "start": 43,
+            "end": 43
+          },
+          {
+            "oldCode": "}",
+            "newCode": "}",
+            "reason": "Unchanged",
+            "start": 44,
+            "end": 44
+          }
+        ]
+      }
+    },
+    "gradingDetails": {
+      "brokenAccessControl": {
+        "clientServerAccessPolicyEnforcement": 0,
+        "idorPrevention": 0,
+        "roleBasedAccessControl": 0
+      },
+      "cryptographicFailures": {
+        "dataEncryption": 0,
+        "encryptionAlgorithmStrength": 0
+      },
+      "identificationAuthentication": {
+        "multiFactorAuthentication": 0,
+        "passwordPolicy": 0,
+        "sessionManagement": 0
+      },
+      "injection": {
+        "inputSanitization": 1,
+        "preparedStatementsUsage": 0
+      },
+      "insecureDesign": {
+        "secureDesignPattern": 0,
+        "sensitiveDataExposure": 0,
+        "threatModeling": 0
+      },
+      "securityLoggingMonitoring": {
+        "anomalyMonitoring": 0,
+        "criticalEventLogging": 0,
+        "secureLogStorage": 0
+      },
+      "securityMisconfiguration": {
+        "adminEndpointExposure": 0,
+        "defaultConfiguration": 0,
+        "securityHeaders": 0
+      },
+      "serverSideRequestForgery": {
+        "inputValidation": 0,
+        "internalSystemExposure": 0,
+        "networkLayerProtection": 0
+      },
+      "softwareDataIntegrity": {
+        "versionControl": 0
+      },
+      "vulnerableOutdatedComponents": {
+        "knownVulnerabilities": 0
+      }
+    },
+    "hash": "5fba1bd0a8f8527ebc4dab850477e6c95562d3b3b98fb1f5d0f36b6489c0d076",
+    "id": "eJydVMFu2zAM/RVOQFe7cOzuUAzwkEORNNhhbYM2XS++aDadCJUlQ6LhFUX+fZAUJ2mCAENuNE0+vvdE6YNxa9FaoZYLrSXL2ePr7fN8tHicj75ds4SVusKJVoSKWM5aXr7xJYLBVhsqVKFE4yKIClVQweqGChbCFTUyI2xayQmHpLZD1HJaZbWQ6AKXjB0avbcITx781QhCA0IRmpqXCB+u0WejihPflP0W2E858QR0R21Hc04rsGSEWsaAxmhTqLWDzjL4ubj/9Rm8aSU2qMh+Hlpr44s3mKnvfn6a5zDTZWexAq1CgUFVoRsGXFXg9Ox6vJijmZZMV1JQM9gDV0OULgbHAuu6UyU8YH8IE8UQXR0mkyA43oA3rfQZyMewxX/APiqYO7/QWbA4nXWqtNFQ4r/idM6NxWhXOBBzQ91Zkag9+JcxKCHDyIIMUmeUyyRQN5TeOUJ1VLCaC4kVkIbWAQf3hpE5XPQF82Q9tJM+QH09VPmx63IS14mbtm9X1MORNTGcsTlBVPg7Fd7HYWPTqTDRrm/fkHwM2qb3b5Uwt1JG2/YErr/f3MQ/Trt2wrDSoNuRAASVMFiSNu9weWEvB+f2puybuKU/ExKTPXoTj3lCwRnk9m5LuAXH5NyUgyOusEYDO4bpRGqLURyY7/zs0+3+3v3FstsyD7LcoZ7hKwao/1/FsGcsYU6hk8Nylr1YNDZboTLvkjd/sqaTJFqJmXs5JdY0KqXIwoOZ9X4Z06Vm638KbPhG"
   }
 ]

@@ -7,15 +7,10 @@ import (
 	"path/filepath"
 )
 
-// ReportWriter defines the interface for writing a report.
-// OCP: Allows different writers (HTML, JSON, etc.)
-// DIP: Higher-level modules depend on this interface.
 type ReportWriter interface {
 	Write(data ReportViewData, outputPath string) error
 }
 
-// HTMLReportWriter implements ReportWriter for HTML output.
-// SRP: Focused on HTML rendering and file output.
 type HTMLReportWriter struct {
 	template *template.Template
 }

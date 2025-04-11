@@ -1,17 +1,26 @@
 {
   "threshold": "A",
   "security": {
-    "owasp": true
+    "owasp": true,
+    "cweTop25": false
   },
   "quality": {
     "solid": true,
     "cleanCode": false,
-    "prReady": false
+    "prReady": false,
+    "complexity": false,
+    "complexityPro": false
   },
   "safetyCritical": {
     "misraCpp": false
   },
   "testing": {
     "functionalCoverage": false
+  },
+  "codeReviewType": {
+    "pro": true
+  },
+  "qualitySentry": {
+    "tdd": false
   }
 }

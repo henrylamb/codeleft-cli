@@ -3014,5 +3014,1233 @@
     },
     "hash": "439add89080dad73e535702fb5e39322cf3a5d179abdeb67fa51ed3d6e4029c1",
     "id": "eJx1U11v2zAM/CuEnrv4Pa8eChTY1mzpnqoCVWza1iaLmkgjM4r890H+aux0fjLujuSRPr8pw4zM1tdPRE7t1fHxy8NndacKKjEnL+hF7VUwxW9TI0gfkLXXPssgJ1/ZGiKGiIxeGKRBYIldIV1EoGoAikG2+8XkobIOd9qnLnP5qIc37bU8NRG5IVcm1PoaXlPVXiuZCa1ek/CIRRet9LAq1/J4NhzgROSWUkrQVKYlPyOs+eKME3tZMJ7aT8T3zrg0bD3rSM6WkJ5VP07wMu8Qf6Ap+60ojPC7LYfG51TixtsMvwupDQ7/Jjdr5YJ/ID1E+p/6EOlm+z/juvOpTYXS59GKLYzb3OCr5WjysDl5O6G3d131muiH2lPETeN765AB4PklvQEsLVKCeNnxnlyJkeH5ZROYaiRuHNhh2ABfphgPA65CbIaUghCcEEZ9CdZfZ3lK8FB57fubaXEbXW/a+fMdjDRbOhhpZjvqblgvydReZT8ZI2cN+tg7056ytnNig8Ms/ZoOK/lUOJsNf2TWJmhXk7r8A7CbZ2k="
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/assessment/assessor.go",
+    "grade": "B",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T12:02:33.228Z",
+    "codeReview": {
+      "review": "This code has three critical areas of concern.  First, `AccessorGrade`'s `Assess` method uses a boolean (`failed`) that is unnecessarily inverted.  Second, `AccessorAverageCoverage`'s `Assess` method has a potential division by zero error if `details` is empty.  Third, both `Assess` methods lack clear error handling;  if `GradeNumericalValue` or `threshold` are invalid types, the program will panic.  For example, in `AccessorGrade`,  `ag.Calculator.GradeNumericalValue(detail.Grade)` and `ag.Calculator.GradeNumericalValue(threshold)` could fail if the input types are incorrect.\n"
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "A*",
+      "interfaceSegregationScore": "B",
+      "liskovSubstitutionScore": "B",
+      "openClosedScore": "A",
+      "singleResponsibilityScore": "B"
+    },
+    "hash": "7ce72fe1bbe907dbb10b84ce89c22bf6085218d9e0158676172783ea602fe531",
+    "id": "eJylVe9r2zAQ/Vdugg5785zSfTPNIKRsDEZX6NYv0xiqfHbMZClI545S8r8PWbKTOBnrj3wSp3vv3Z3fRQ9MOIfONbr+ZoxiBbv++uXzBcuYNCUujSbUxAq2FvK3qBFCdouauOa6adfGEiRcc+I9QmFF76RqZlWjCC1n4apqaTga50+ph9P9GmEhJTpnLDSa0FZCIjz4zEWvlNDKolsZVYIj2+g6gxJJNMrBj59BI/9kRYkXIZrCrTGK680Bf5/lSTpJQWEplOyUIGMh/Hb5tpc+9aYxSlBj9NJ0vkwYAy5qVZ2WcIl/9uQSuZU4Tp7B3b+p0+1w+oItUmc1vN7T6G92myliN1vtLKRMmygOtPvEzW5HiajhzZ5eCi/5MqGRSjQKSyjmQLbDPmIs/BoY/IUVusaRMTbZVCDqfNtqELjsWrSNFOpGqA6TgMljseePQIydpIPQWOIcKqEcDlFR59Mp5ouyHGNRPA35mzjOvvBXkTEqHGO6so2mJB1R8XsH4DFPL80dWr+W/9mdK7QSNfm0Z+/PIkiNkrub9PT1mLAlj9qCUfvoNkwoH15ieiG3rp/wHvr/qdMN5ZMh0Tv99PH+D5i38xjPh5rG7ZjE4RwOqhwdLoR8tpkThcO1S1OYz+F0IK5aCkZWOuHs0vg/PnRAJr4dnEXC0d1xv/r5cxKx9GIOlTKC3p8lfdspzMbAnroHrYVzHjGAP+yAJwNIg4zfyB417OOxaUwX0vf2ce2DVWJcfk0lWpsBZ9EjIOPgCzjJz6qTE841Z9lQVrpjW6/de45lzE/oStCKFWz23aF1sxVqe69EeztrO0XNWuFs73XdPsPxaGxeG7b5C8hD6CI="
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/assessment/assessor.go",
+    "grade": "B",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T12:02:57.210Z",
+    "codeReview": {
+      "detailedReview": {
+        "tasks": [
+          {
+            "done": false,
+            "titleTask": "interfaceSegregation",
+            "violatingCode": "The `Accessor` and `AccessorCoverage` interfaces both have an `Assess` method, but with different parameters.  This violates the Interface Segregation Principle because a single interface forces implementations to implement methods they don't need.  For example, `AccessorGrade` doesn't use the `thresholdPercent` parameter, and `AccessorAverageCoverage` doesn't use the `threshold` string parameter.  A better design would separate these concerns into distinct interfaces.\n",
+            "codeResolution": "The `Accessor` interface has two distinct assessment methods (one for grades, one for coverage).  This violates the Interface Segregation Principle (ISP).  Refactor into separate `GradeAccessor` and `CoverageAccessor` interfaces, each with a single `Assess` method tailored to its specific type of assessment.  This allows clients to depend only on the interfaces they need.\n",
+            "severity": "Medium",
+            "rationale": "The `Accessor` interface forces both grade and coverage assessment logic into a single interface.  This violates the Interface Segregation Principle (ISP) because `AccessorGrade` and `AccessorAverageCoverage` have distinct assessment methods and responsibilities.  This leads to less cohesive interfaces, making future modifications and extensions more complex and potentially impacting maintainability.  A better approach would be to create separate interfaces for grade and coverage assessment, improving code organization and reducing coupling.\n",
+            "lineStart": 10,
+            "lineEnd": 42,
+            "status": ""
+          },
+          {
+            "done": false,
+            "titleTask": "openClosed",
+            "violatingCode": "The `AccessorGrade` and `AccessorAverageCoverage` structs both implement assessment logic, but separately.  Adding a new assessment type requires creating a new struct and implementing the assessment logic again.  The `Assess` methods in both structs are nearly identical in structure, violating the Open/Closed Principle.  This is evident in the need to create separate `Assess` functions for grade and coverage assessments.\n",
+            "codeResolution": "The `Accessor` interface and its implementations (`AccessorGrade`, `AccessorAverageCoverage`) violate the Open/Closed Principle.  Adding a new assessment type requires modifying the interface and potentially the calling code.  To improve this, create separate interfaces for grade and coverage assessment,  e.g., `GradeAccessor` and `CoverageAccessor`.  Each would have its own `Assess` method with appropriate parameters.  The calling code would then use the appropriate accessor type.\n",
+            "severity": "Medium",
+            "rationale": "The `AccessorGrade` and `AccessorAverageCoverage` types both implement assessment logic, but with different assessment criteria (grade vs. coverage).  Adding a new assessment type (e.g., complexity) would require modifying the existing code to accommodate the new logic. This violates the Open/Closed Principle because the system is not open for extension without modification.  This impacts maintainability, as adding features requires altering core assessment logic, increasing the risk of introducing bugs and making future extensions more difficult.\n",
+            "lineStart": 40,
+            "lineEnd": 75,
+            "status": ""
+          },
+          {
+            "done": false,
+            "titleTask": "liskovSubstitution",
+            "violatingCode": "The `Accessor` and `AccessorCoverage` interfaces have different `Assess` method signatures, preventing interchangeability.  `Accessor` uses a string threshold and `filter.GradeDetails`, while `AccessorCoverage` uses an integer threshold and `filter.GradeDetails`.  This violates the Liskov Substitution Principle because an `Accessor` cannot be directly substituted for an `AccessorCoverage` and vice-versa.\n",
+            "codeResolution": "The `Accessor` and `AccessorCoverage` interfaces have differing `Assess` method signatures, preventing substitutability.  Create a unified interface, perhaps `CodeAccessor`, with a generic `Assess` method that accepts an interface representing assessment criteria.  Concrete types would implement this interface to handle specific assessment logic (grade or coverage).  This allows for interchangeable assessment strategies without violating the Liskov Substitution Principle.\n",
+            "severity": "Medium",
+            "rationale": "The Liskov Substitution Principle (LSP) is violated because `Accessor` and `AccessorCoverage` have different `Assess` methods.  `Accessor` uses a string threshold and `AccessorCoverage` uses an integer threshold.  This prevents interchangeable use; you cannot substitute one for the other without altering the calling code, impacting maintainability and potentially causing runtime errors if the wrong type is used.\n",
+            "lineStart": 40,
+            "lineEnd": 75,
+            "status": ""
+          },
+          {
+            "done": false,
+            "titleTask": "singleResponsibility",
+            "violatingCode": "The `AccessorGrade` type violates the Single Responsibility Principle because it handles both assessment logic (`Assess` method) and violation counting/printing (delegated to `ViolationCounter`).  The `Assess` method iterates through grade details, performs comparisons, and updates the `ViolationCounter`.  This mixes assessment with reporting, making the class harder to maintain and test.  Similarly, `AccessorAverageCoverage` combines assessment and reporting.\n",
+            "codeResolution": "The `AccessorGrade` and `AccessorAverageCoverage` types violate the Single Responsibility Principle (SRP).  Both handle assessment logic and violation reporting.  Refactor by separating these concerns. Create a `ViolationReporter` interface and have `AccessorGrade` and `AccessorAverageCoverage` depend on it.  This allows for easier testing and extension of violation reporting mechanisms.  For example:\n\n```go\ntype ViolationReporter interface {\n    Report(violations []filter.GradeDetails)\n}\n\ntype ConsoleViolationReporter struct{}\n\nfunc (c *ConsoleViolationReporter) Report(violations []filter.GradeDetails) {\n    // ... existing violation printing logic ...\n}\n\ntype AccessorGrade struct {\n    Calculator       filter.GradeCalculator\n    reporter         ViolationReporter\n}\n\nfunc (ag *AccessorGrade) Assess(threshold string, details []filter.GradeDetails) bool {\n    // ... assessment logic ...\n    if !passed {\n        ag.reporter.Report(violations)\n    }\n    return passed\n}\n```\n",
+            "severity": "Medium",
+            "rationale": "The `AccessorGrade` type violates the Single Responsibility Principle because it handles both assessment logic and violation reporting.  This coupling makes the code harder to maintain, test, and potentially less efficient.  Changes to one aspect (e.g., the assessment algorithm) could inadvertently affect the other (violation reporting), increasing the risk of bugs and hindering future development.  Separating these concerns into distinct types would improve modularity and reduce complexity.\n",
+            "lineStart": 26,
+            "lineEnd": 36,
+            "status": ""
+          }
+        ],
+        "codeReviewTitle": "SOLID Code Review"
+      },
+      "upgradedCode": {
+        "oldCode": "package assessment\n\nimport (\n\t\"codeleft-cli/filter\"\n\t\"fmt\"\n\t\"os\"\n)\n\n// Assessment is a package that provides functionality to assess code quality based on grades and coverage.\ntype Accessor interface {\n\tAssess(threshold string, details []filter.GradeDetails) bool\n}\n\ntype AccessorGrade struct {\n\tCalculator       filter.GradeCalculator\n\tViolationCounter Violations\n}\n\nfunc NewAccessorGrade(calculator filter.GradeCalculator, violationCounter Violations) Accessor {\n\treturn &AccessorGrade{\n\t\tCalculator:       calculator,\n\t\tViolationCounter: violationCounter,\n\t}\n}\n\nfunc (ag *AccessorGrade) Assess(threshold string, details []filter.GradeDetails) bool {\n\tfailed := true\n\tfor _, detail := range details {\n\t\tif ag.Calculator.GradeNumericalValue(detail.Grade) < ag.Calculator.GradeNumericalValue(threshold) {\n\t\t\tfailed = false\n\t\t\tag.ViolationCounter.AddViolation(detail)\n\t\t}\n\t}\n\tif !failed {\n\t\tag.ViolationCounter.Print()\n\t}\n\treturn failed\n}\n\ntype AccessorCoverage interface {\n\tAssess(thresholdPercent int, details []filter.GradeDetails) bool\n}\n\ntype AccessorAverageCoverage struct {\n\tViolationCounter Violations\n}\n\nfunc NewAccessorAverageCoverage(violationCounter Violations) AccessorCoverage {\n\treturn &AccessorAverageCoverage{\n\t\tViolationCounter: violationCounter,\n\t}\n}\n\nfunc (aac *AccessorAverageCoverage) Assess(thresholdPercent int, details []filter.GradeDetails) bool {\n\ttotal := 0\n\tfor _, detail := range details {\n\t\ttotal += detail.Coverage\n\t\tif detail.Coverage < thresholdPercent {\n\t\t\taac.ViolationCounter.AddViolation(detail)\n\t\t}\n\t}\n\tif (len(details)) == 0 {\n\t\tfmt.Println(\"No files to assess\")\n\t\treturn false\n\t}\n\n\taverage := float32(total) / float32(len(details))\n\tpass := average >= float32(thresholdPercent)\n\n\tif !pass {\n\t\taac.ViolationCounter.Print()\n\t}\n\tfmt.Fprintf(os.Stderr, \"Average coverage: %.2f%%\\n\", average)\n\treturn pass\n}\n",
+        "newCode": "package assessment\n\nimport (\n\t\"codeleft-cli/filter\"\n\t\"fmt\"\n\t\"os\"\n)\n\n// ViolationReporter interface for reporting violations\ntype ViolationReporter interface {\n\tReport(violations []filter.GradeDetails)\n}\n\n// ConsoleViolationReporter implements ViolationReporter and prints violations to the console\ntype ConsoleViolationReporter struct{}\n\nfunc (c *ConsoleViolationReporter) Report(violations []filter.GradeDetails) {\n\tfor _, v := range violations {\n\t\tfmt.Printf(\"Violation: File: %s, Grade: %s, Coverage: %d\\n\", v.File, v.Grade, v.Coverage)\n\t}\n}\n\n// GradeAccessor interface for assessing code grades\ntype GradeAccessor interface {\n\tAssess(threshold string, details []filter.GradeDetails) bool\n}\n\n// CoverageAccessor interface for assessing code coverage\ntype CoverageAccessor interface {\n\tAssess(thresholdPercent int, details []filter.GradeDetails) bool\n}\n\n// AccessorGrade assesses code grades\ntype AccessorGrade struct {\n\tCalculator       filter.GradeCalculator\n\tReporter         ViolationReporter\n\tViolationDetails []filter.GradeDetails\n}\n\n// NewGradeAccessor creates a new AccessorGrade instance\nfunc NewGradeAccessor(calculator filter.GradeCalculator, reporter ViolationReporter) GradeAccessor {\n\treturn &AccessorGrade{\n\t\tCalculator: calculator,\n\t\tReporter:   reporter,\n\t}\n}\n\n// Assess assesses code grades against a threshold\nfunc (ag *AccessorGrade) Assess(threshold string, details []filter.GradeDetails) bool {\n\tpassed := true\n\tag.ViolationDetails = []filter.GradeDetails{} // Reset violations\n\tfor _, detail := range details {\n\t\tif ag.Calculator.GradeNumericalValue(detail.Grade) < ag.Calculator.GradeNumericalValue(threshold) {\n\t\t\tpassed = false\n\t\t\tag.ViolationDetails = append(ag.ViolationDetails, detail)\n\t\t}\n\t}\n\tif !passed {\n\t\tag.Reporter.Report(ag.ViolationDetails)\n\t}\n\treturn passed\n}\n\n// AccessorAverageCoverage assesses code coverage\ntype AccessorAverageCoverage struct {\n\tReporter         ViolationReporter\n\tViolationDetails []filter.GradeDetails\n}\n\n// NewCoverageAccessor creates a new AccessorAverageCoverage instance\nfunc NewCoverageAccessor(reporter ViolationReporter) CoverageAccessor {\n\treturn &AccessorAverageCoverage{\n\t\tReporter: reporter,\n\t}\n}\n\n// Assess assesses code coverage against a threshold\nfunc (aac *AccessorAverageCoverage) Assess(thresholdPercent int, details []filter.GradeDetails) bool {\n\ttotal := 0\n\taac.ViolationDetails = []filter.GradeDetails{} // Reset violations\n\tfor _, detail := range details {\n\t\ttotal += detail.Coverage\n\t\tif detail.Coverage < thresholdPercent {\n\t\t\taac.ViolationDetails = append(aac.ViolationDetails, detail)\n\t\t}\n\t}\n\tif len(details) == 0 {\n\t\tfmt.Println(\"No files to assess\")\n\t\treturn false\n\t}\n\n\taverage := float32(total) / float32(len(details))\n\tpass := average >= float32(thresholdPercent)\n\n\tif !pass {\n\t\taac.Reporter.Report(aac.ViolationDetails)\n\t}\n\tfmt.Fprintf(os.Stderr, \"Average coverage: %.2f%%\\n\", average)\n\treturn pass\n}",
+        "changes": [
+          {
+            "oldCode": "package assessment",
+            "newCode": "package assessment",
+            "reason": "Unchanged",
+            "start": 1,
+            "end": 1
+          },
+          {
+            "reason": "Unchanged",
+            "start": 2,
+            "end": 2
+          },
+          {
+            "oldCode": "import (",
+            "newCode": "import (",
+            "reason": "Unchanged",
+            "start": 3,
+            "end": 3
+          },
+          {
+            "oldCode": "\t\"codeleft-cli/filter\"",
+            "newCode": "\t\"codeleft-cli/filter\"",
+            "reason": "Unchanged",
+            "start": 4,
+            "end": 4
+          },
+          {
+            "oldCode": "\t\"fmt\"",
+            "newCode": "\t\"fmt\"",
+            "reason": "Unchanged",
+            "start": 5,
+            "end": 5
+          },
+          {
+            "oldCode": "\t\"os\"",
+            "newCode": "\t\"os\"",
+            "reason": "Unchanged",
+            "start": 6,
+            "end": 6
+          },
+          {
+            "oldCode": ")",
+            "newCode": ")",
+            "reason": "Unchanged",
+            "start": 7,
+            "end": 7
+          },
+          {
+            "oldCode": "\n// Assessment is a package that provides functionality to assess code quality based on grades and coverage.\ntype Accessor interface {",
+            "newCode": "\n// ViolationReporter interface for reporting violations\ntype ViolationReporter interface {\n\tReport(violations []filter.GradeDetails)\n}\n\n// ConsoleViolationReporter implements ViolationReporter and prints violations to the console\ntype ConsoleViolationReporter struct{}\n\nfunc (c *ConsoleViolationReporter) Report(violations []filter.GradeDetails) {\n\tfor _, v := range violations {\n\t\tfmt.Printf(\"Violation: File: %s, Grade: %s, Coverage: %d\\n\", v.File, v.Grade, v.Coverage)\n\t}\n}\n\n// GradeAccessor interface for assessing code grades\ntype GradeAccessor interface {",
+            "reason": "Modified",
+            "start": 8,
+            "end": 10,
+            "reasonDiff": "The `Accessor` interface was replaced with `ViolationReporter`, `ConsoleViolationReporter`, and `GradeAccessor` interfaces to adhere to the Interface Segregation and Open/Closed Principles.  The original `Accessor` interface combined distinct functionalities, violating the SOLID principles.\n"
+          },
+          {
+            "oldCode": "\tAssess(threshold string, details []filter.GradeDetails) bool",
+            "newCode": "\tAssess(threshold string, details []filter.GradeDetails) bool",
+            "reason": "Unchanged",
+            "start": 11,
+            "end": 11
+          },
+          {
+            "oldCode": "}\n",
+            "newCode": "}\n\n// CoverageAccessor interface for assessing code coverage\ntype CoverageAccessor interface {\n\tAssess(thresholdPercent int, details []filter.GradeDetails) bool\n}\n\n// AccessorGrade assesses code grades",
+            "reason": "Modified",
+            "start": 12,
+            "end": 13,
+            "reasonDiff": "The `CoverageAccessor` interface was introduced to adhere to the Interface Segregation Principle, separating the responsibility of coverage assessment from grade assessment.\n"
+          },
+          {
+            "oldCode": "type AccessorGrade struct {",
+            "newCode": "type AccessorGrade struct {",
+            "reason": "Unchanged",
+            "start": 14,
+            "end": 14
+          },
+          {
+            "oldCode": "\tCalculator       filter.GradeCalculator",
+            "newCode": "\tCalculator       filter.GradeCalculator",
+            "reason": "Unchanged",
+            "start": 15,
+            "end": 15
+          },
+          {
+            "oldCode": "\tViolationCounter Violations",
+            "newCode": "\tReporter         ViolationReporter\n\tViolationDetails []filter.GradeDetails",
+            "reason": "Modified",
+            "start": 16,
+            "end": 16,
+            "reasonDiff": "To adhere to the Single Responsibility Principle, the `ViolationCounter` field was replaced with a `ViolationReporter` interface and a `ViolationDetails` slice. This separates the assessment logic from the reporting logic, improving modularity and maintainability.\n"
+          },
+          {
+            "oldCode": "}",
+            "newCode": "}",
+            "reason": "Unchanged",
+            "start": 17,
+            "end": 17
+          },
+          {
+            "reason": "Unchanged",
+            "start": 18,
+            "end": 18
+          },
+          {
+            "oldCode": "func NewAccessorGrade(calculator filter.GradeCalculator, violationCounter Violations) Accessor {",
+            "newCode": "// NewGradeAccessor creates a new AccessorGrade instance\nfunc NewGradeAccessor(calculator filter.GradeCalculator, reporter ViolationReporter) GradeAccessor {",
+            "reason": "Modified",
+            "start": 19,
+            "end": 19,
+            "reasonDiff": "The `NewAccessorGrade` function signature was changed to `NewGradeAccessor` and the return type changed to `GradeAccessor` to adhere to the Interface Segregation Principle, separating grade assessment from coverage assessment.\n"
+          },
+          {
+            "oldCode": "\treturn &AccessorGrade{",
+            "newCode": "\treturn &AccessorGrade{",
+            "reason": "Unchanged",
+            "start": 20,
+            "end": 20
+          },
+          {
+            "oldCode": "\t\tCalculator:       calculator,\n\t\tViolationCounter: violationCounter,",
+            "newCode": "\t\tCalculator: calculator,\n\t\tReporter:   reporter,",
+            "reason": "Modified",
+            "start": 21,
+            "end": 22,
+            "reasonDiff": "To adhere to the Single Responsibility Principle, the `ViolationCounter` field was replaced with a `Reporter` field of type `ViolationReporter`. This change separates the assessment logic from the responsibility of reporting violations.\n"
+          },
+          {
+            "oldCode": "\t}",
+            "newCode": "\t}",
+            "reason": "Unchanged",
+            "start": 23,
+            "end": 23
+          },
+          {
+            "oldCode": "}",
+            "newCode": "}",
+            "reason": "Unchanged",
+            "start": 24,
+            "end": 24
+          },
+          {
+            "reason": "Unchanged",
+            "start": 25,
+            "end": 25
+          },
+          {
+            "newCode": "// Assess assesses code grades against a threshold",
+            "reason": "Added",
+            "start": 26,
+            "end": 26,
+            "reasonDiff": "Added a comment to clarify the purpose of the `Assess` method in `AccessorGrade` as part of refactoring to adhere to SOLID principles, specifically the Interface Segregation Principle.\n"
+          },
+          {
+            "oldCode": "func (ag *AccessorGrade) Assess(threshold string, details []filter.GradeDetails) bool {",
+            "newCode": "func (ag *AccessorGrade) Assess(threshold string, details []filter.GradeDetails) bool {",
+            "reason": "Unchanged",
+            "start": 26,
+            "end": 26
+          },
+          {
+            "oldCode": "\tfailed := true",
+            "newCode": "\tpassed := true\n\tag.ViolationDetails = []filter.GradeDetails{} // Reset violations",
+            "reason": "Modified",
+            "start": 27,
+            "end": 27,
+            "reasonDiff": "The `passed` variable initialization and the `ag.ViolationDetails` slice resetting are added to track assessment results and store violation details, respectively, which are used for reporting violations later.\n"
+          },
+          {
+            "oldCode": "\tfor _, detail := range details {",
+            "newCode": "\tfor _, detail := range details {",
+            "reason": "Unchanged",
+            "start": 28,
+            "end": 28
+          },
+          {
+            "oldCode": "\t\tif ag.Calculator.GradeNumericalValue(detail.Grade) < ag.Calculator.GradeNumericalValue(threshold) {",
+            "newCode": "\t\tif ag.Calculator.GradeNumericalValue(detail.Grade) < ag.Calculator.GradeNumericalValue(threshold) {",
+            "reason": "Unchanged",
+            "start": 29,
+            "end": 29
+          },
+          {
+            "oldCode": "\t\t\tfailed = false\n\t\t\tag.ViolationCounter.AddViolation(detail)",
+            "newCode": "\t\t\tpassed = false\n\t\t\tag.ViolationDetails = append(ag.ViolationDetails, detail)",
+            "reason": "Modified",
+            "start": 30,
+            "end": 31,
+            "reasonDiff": "To adhere to the Single Responsibility Principle, the violation details are now collected in the `ViolationDetails` field and reported using the injected `ViolationReporter` instead of directly managing violation counting and printing within the `AccessorGrade` struct.\n"
+          },
+          {
+            "oldCode": "\t\t}",
+            "newCode": "\t\t}",
+            "reason": "Unchanged",
+            "start": 32,
+            "end": 32
+          },
+          {
+            "oldCode": "\t}\n\tif !failed {\n\t\tag.ViolationCounter.Print()\n\t}\n\treturn failed\n}\n\ntype AccessorCoverage interface {\n\tAssess(thresholdPercent int, details []filter.GradeDetails) bool\n}\n",
+            "newCode": "\t}\n\tif !passed {\n\t\tag.Reporter.Report(ag.ViolationDetails)\n\t}\n\treturn passed\n}\n\n// AccessorAverageCoverage assesses code coverage",
+            "reason": "Modified",
+            "start": 33,
+            "end": 43,
+            "reasonDiff": "To adhere to the Interface Segregation and Single Responsibility Principles, the `AccessorGrade` assessment logic and violation reporting were decoupled.  A `ViolationReporter` interface and a `ConsoleViolationReporter` implementation were introduced, and `AccessorGrade` now relies on the reporter for handling violations.\n"
+          },
+          {
+            "oldCode": "type AccessorAverageCoverage struct {",
+            "newCode": "type AccessorAverageCoverage struct {",
+            "reason": "Unchanged",
+            "start": 44,
+            "end": 44
+          },
+          {
+            "oldCode": "\tViolationCounter Violations",
+            "newCode": "\tReporter         ViolationReporter\n\tViolationDetails []filter.GradeDetails",
+            "reason": "Modified",
+            "start": 45,
+            "end": 45,
+            "reasonDiff": "To adhere to the Single Responsibility Principle and separate violation reporting from assessment logic, the `ViolationCounter` member was replaced with a `ViolationReporter` interface and a `ViolationDetails` slice to store violations before reporting.\n"
+          },
+          {
+            "oldCode": "}",
+            "newCode": "}",
+            "reason": "Unchanged",
+            "start": 46,
+            "end": 46
+          },
+          {
+            "reason": "Unchanged",
+            "start": 47,
+            "end": 47
+          },
+          {
+            "oldCode": "func NewAccessorAverageCoverage(violationCounter Violations) AccessorCoverage {",
+            "newCode": "// NewCoverageAccessor creates a new AccessorAverageCoverage instance\nfunc NewCoverageAccessor(reporter ViolationReporter) CoverageAccessor {",
+            "reason": "Modified",
+            "start": 48,
+            "end": 48,
+            "reasonDiff": "To adhere to the Interface Segregation Principle and the Single Responsibility Principle, the `NewAccessorAverageCoverage` function signature was changed to accept a `ViolationReporter` instead of a `Violations` object, and renamed to `NewCoverageAccessor` to better reflect its purpose of creating a `CoverageAccessor`.\n"
+          },
+          {
+            "oldCode": "\treturn &AccessorAverageCoverage{",
+            "newCode": "\treturn &AccessorAverageCoverage{",
+            "reason": "Unchanged",
+            "start": 49,
+            "end": 49
+          },
+          {
+            "oldCode": "\t\tViolationCounter: violationCounter,",
+            "newCode": "\t\tReporter: reporter,",
+            "reason": "Modified",
+            "start": 50,
+            "end": 50,
+            "reasonDiff": "To adhere to the Single Responsibility Principle.  The `ViolationCounter` field was replaced with a `Reporter` field to separate violation reporting from assessment logic.\n"
+          },
+          {
+            "oldCode": "\t}",
+            "newCode": "\t}",
+            "reason": "Unchanged",
+            "start": 51,
+            "end": 51
+          },
+          {
+            "oldCode": "}",
+            "newCode": "}",
+            "reason": "Unchanged",
+            "start": 52,
+            "end": 52
+          },
+          {
+            "reason": "Unchanged",
+            "start": 53,
+            "end": 53
+          },
+          {
+            "newCode": "// Assess assesses code coverage against a threshold",
+            "reason": "Added",
+            "start": 54,
+            "end": 54,
+            "reasonDiff": "Added a comment to clarify the purpose of the `Assess` method in `AccessorAverageCoverage` to adhere to SOLID principles, specifically the Interface Segregation Principle, by creating separate interfaces for grade and coverage assessment.\n"
+          },
+          {
+            "oldCode": "func (aac *AccessorAverageCoverage) Assess(thresholdPercent int, details []filter.GradeDetails) bool {",
+            "newCode": "func (aac *AccessorAverageCoverage) Assess(thresholdPercent int, details []filter.GradeDetails) bool {",
+            "reason": "Unchanged",
+            "start": 54,
+            "end": 54
+          },
+          {
+            "oldCode": "\ttotal := 0",
+            "newCode": "\ttotal := 0",
+            "reason": "Unchanged",
+            "start": 55,
+            "end": 55
+          },
+          {
+            "newCode": "\taac.ViolationDetails = []filter.GradeDetails{} // Reset violations",
+            "reason": "Added",
+            "start": 56,
+            "end": 56,
+            "reasonDiff": "To reset the `ViolationDetails` before assessing the new details, ensuring that only violations from the current assessment are reported.\n"
+          },
+          {
+            "oldCode": "\tfor _, detail := range details {",
+            "newCode": "\tfor _, detail := range details {",
+            "reason": "Unchanged",
+            "start": 56,
+            "end": 56
+          },
+          {
+            "oldCode": "\t\ttotal += detail.Coverage",
+            "newCode": "\t\ttotal += detail.Coverage",
+            "reason": "Unchanged",
+            "start": 57,
+            "end": 57
+          },
+          {
+            "oldCode": "\t\tif detail.Coverage < thresholdPercent {",
+            "newCode": "\t\tif detail.Coverage < thresholdPercent {",
+            "reason": "Unchanged",
+            "start": 58,
+            "end": 58
+          },
+          {
+            "oldCode": "\t\t\taac.ViolationCounter.AddViolation(detail)",
+            "newCode": "\t\t\taac.ViolationDetails = append(aac.ViolationDetails, detail)",
+            "reason": "Modified",
+            "start": 59,
+            "end": 59,
+            "reasonDiff": "To adhere to the Single Responsibility Principle, the violation details are now stored in the `ViolationDetails` field of the `AccessorAverageCoverage` struct and reported using a `ViolationReporter` instead of being added to a `ViolationCounter` and printed directly.\n"
+          },
+          {
+            "oldCode": "\t\t}",
+            "newCode": "\t\t}",
+            "reason": "Unchanged",
+            "start": 60,
+            "end": 60
+          },
+          {
+            "oldCode": "\t}",
+            "newCode": "\t}",
+            "reason": "Unchanged",
+            "start": 61,
+            "end": 61
+          },
+          {
+            "oldCode": "\tif (len(details)) == 0 {",
+            "newCode": "\tif len(details) == 0 {",
+            "reason": "Modified",
+            "start": 62,
+            "end": 62,
+            "reasonDiff": "Superfluous parentheses were removed.  The updated code style adheres to the Go convention of omitting parentheses around simple conditional expressions.\n"
+          },
+          {
+            "oldCode": "\t\tfmt.Println(\"No files to assess\")",
+            "newCode": "\t\tfmt.Println(\"No files to assess\")",
+            "reason": "Unchanged",
+            "start": 63,
+            "end": 63
+          },
+          {
+            "oldCode": "\t\treturn false",
+            "newCode": "\t\treturn false",
+            "reason": "Unchanged",
+            "start": 64,
+            "end": 64
+          },
+          {
+            "oldCode": "\t}",
+            "newCode": "\t}",
+            "reason": "Unchanged",
+            "start": 65,
+            "end": 65
+          },
+          {
+            "reason": "Unchanged",
+            "start": 66,
+            "end": 66
+          },
+          {
+            "oldCode": "\taverage := float32(total) / float32(len(details))",
+            "newCode": "\taverage := float32(total) / float32(len(details))",
+            "reason": "Unchanged",
+            "start": 67,
+            "end": 67
+          },
+          {
+            "oldCode": "\tpass := average >= float32(thresholdPercent)",
+            "newCode": "\tpass := average >= float32(thresholdPercent)",
+            "reason": "Unchanged",
+            "start": 68,
+            "end": 68
+          },
+          {
+            "reason": "Unchanged",
+            "start": 69,
+            "end": 69
+          },
+          {
+            "oldCode": "\tif !pass {",
+            "newCode": "\tif !pass {",
+            "reason": "Unchanged",
+            "start": 70,
+            "end": 70
+          },
+          {
+            "oldCode": "\t\taac.ViolationCounter.Print()",
+            "newCode": "\t\taac.Reporter.Report(aac.ViolationDetails)",
+            "reason": "Modified",
+            "start": 71,
+            "end": 71,
+            "reasonDiff": "To adhere to the Single Responsibility Principle, the violation reporting logic was decoupled from the `AccessorAverageCoverage` struct.  A `ViolationReporter` interface and a concrete `ConsoleViolationReporter` were introduced to handle the reporting, simplifying the `AccessorAverageCoverage` struct's responsibility to only assessment.\n"
+          },
+          {
+            "oldCode": "\t}",
+            "newCode": "\t}",
+            "reason": "Unchanged",
+            "start": 72,
+            "end": 72
+          },
+          {
+            "oldCode": "\tfmt.Fprintf(os.Stderr, \"Average coverage: %.2f%%\\n\", average)",
+            "newCode": "\tfmt.Fprintf(os.Stderr, \"Average coverage: %.2f%%\\n\", average)",
+            "reason": "Unchanged",
+            "start": 73,
+            "end": 73
+          },
+          {
+            "oldCode": "\treturn pass",
+            "newCode": "\treturn pass",
+            "reason": "Unchanged",
+            "start": 74,
+            "end": 74
+          },
+          {
+            "oldCode": "}",
+            "newCode": "}",
+            "reason": "Unchanged",
+            "start": 75,
+            "end": 75
+          },
+          {
+            "reason": "Removed",
+            "start": 76,
+            "end": 76,
+            "reasonDiff": "The interface `Accessor` was removed because it violated the Interface Segregation Principle by combining distinct assessment methods for grades and coverage.  This change improves code organization and reduces coupling.\n"
+          }
+        ]
+      }
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "A*",
+      "interfaceSegregationScore": "B",
+      "liskovSubstitutionScore": "C",
+      "openClosedScore": "B",
+      "singleResponsibilityScore": "B"
+    },
+    "hash": "e988423d3b099fc92fb5c99b666f526ed5ab5104aa88f349a06f31f21b2395cb",
+    "id": "eJylVW1r2zAQ/is3QYe9ZXbpvplmEFI2BqMrbOuXeYyrfXbEFCmTzh2l9L8PWbKTuBnrSz6J093zcr6LbgU6R85J3X41RolCfPn86eOZmInK1LQ0mkmzKMQGq1/YEoTsNWkudanlemMsQ1Lqksu+QlHDbyol80YqJluKcNWseTga50+pL89zWIx4IB0gDDy8QoaNNdeyJgdNpyuWRqOSfANsogzwjPC7C+ErdFSD0dBa9EWoa6jMNVlsKSs132wIFlVFzhkLUjPZBiuCWy8ryEh4ZcmtjKrBsZW6nUFNjFI5+P4jGMo+ePCzEE3hyhhV6jtvZg+/z/IgXcWBYYmq6hSysRB+u3jbS596KY1Cb3dpOi8TxoCLXL4fcE5/9uiSaktxGHwG1/+GTrfN6QVb4s5qeLnH0d/smimimy33LKRMTRT3uPvEu11HCbbwao8vhed8mWCkQamohmIObDvqI8bCzwHBX1jULY2I0aRsANtsazUQnHdrsrJCdYmqoyTUZFHs6QMqRifpQDRKnEODytEQxTabdjFb1PUYi+RpyL+L7eyFv4iIkeEQ0oWVmpN0rIrfOxQemull3KX/7c4F2arfZ81P3p9FoBopdzfp8esxQUsetAUj98FtmEDePmfosdpO/QT3/vw/trtBPhvGftKPHz7/oeb1PMazQdO4HZM4nMI9leOEI1ZPHuZE0XDt0hTmczgegJs1h0FWOinFufF/fOS2L0QpIuA43XG/+v6XjFF6MYdGGeS3J0lvO4V8DOyx+6INOucrhuJ3O8WTBqSBxm9kXzXs46FuTBfSe3u/8cEmMS77wjVZO4NSxBkZH7cCjrKT5uioLHUpZoOsdGdsPXc/c2ImfIcukFeiEPk3R9blK9L2RuH6Kl93iuVGUb73lG/f/Hg0NmuNuPsL6p0QRg=="
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/assessment/assessor.go",
+    "grade": "B",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T12:04:02.481Z",
+    "codeReview": {
+      "detailedReview": {
+        "tasks": [
+          {
+            "done": false,
+            "titleTask": "interfaceSegregation",
+            "violatingCode": "The `GradeAccessor` and `CoverageAccessor` interfaces both use the `Assess` method, but with different parameters.  This violates the Interface Segregation Principle because they are forced to implement methods they don't need.  A better approach would be to separate the assessment logic into distinct interfaces, such as `GradeAssessment` and `CoverageAssessment`, each with its own specific `Assess` method.\n",
+            "codeResolution": "The `GradeAccessor` and `CoverageAccessor` interfaces both use `Assess` with different parameters.  This violates the Interface Segregation Principle (ISP).  Refactor into separate interfaces: `GradeAssessable` (with `AssessGrade(threshold string, details []filter.GradeDetails) bool`) and `CoverageAssessable` (with `AssessCoverage(thresholdPercent int, details []filter.GradeDetails) bool`).  `AccessorGrade` and `AccessorAverageCoverage` would implement their respective interfaces.  This allows for more focused and reusable interfaces.\n",
+            "severity": "Medium",
+            "rationale": "The `GradeAccessor` and `CoverageAccessor` interfaces both use the `ViolationReporter` interface.  This violates the Interface Segregation Principle (ISP) because `GradeAccessor` and `CoverageAccessor` are forced to depend on a method (`Report`) they may not need.  This can lead to unnecessary dependencies, making the code harder to maintain and potentially impacting performance if unused methods are included.  Separating the reporting functionality into a separate interface would improve modularity and flexibility.\n",
+            "lineStart": 24,
+            "lineEnd": 31,
+            "status": ""
+          },
+          {
+            "done": false,
+            "titleTask": "liskovSubstitution",
+            "violatingCode": "The `AccessorGrade` and `AccessorAverageCoverage` types both implement the `Assess` method, but with different parameter types and functionalities.  This violates the Liskov Substitution Principle because they cannot be used interchangeably.  For example,  `AccessorGrade.Assess` takes a string threshold, while `AccessorAverageCoverage.Assess` takes an integer threshold.\n",
+            "codeResolution": "The Liskov Substitution Principle (LSP) is violated because `AccessorGrade` and `AccessorAverageCoverage` have different `Assess` methods.  To fix this, create a common interface with a generic `Assess` method that both types implement.  This allows interchangeable use without altering the calling code.  For example:\n\n```go\ntype Assessor interface {\n    Assess(threshold interface{}, details []filter.GradeDetails) bool\n}\n\ntype AccessorGrade struct {\n    // ...\n}\n\nfunc (ag *AccessorGrade) Assess(threshold interface{}, details []filter.GradeDetails) bool {\n    // ... type assertion to get threshold string ...\n}\n\ntype AccessorAverageCoverage struct {\n    // ...\n}\n\nfunc (aac *AccessorAverageCoverage) Assess(threshold interface{}, details []filter.GradeDetails) bool {\n    // ... type assertion to get threshold int ...\n}\n```\n",
+            "severity": "Medium",
+            "rationale": "The Liskov Substitution Principle (LSP) is violated because `AccessorGrade` and `AccessorAverageCoverage` both implement the `GradeAccessor` and `CoverageAccessor` interfaces, respectively, but they have different functionalities and cannot be substituted for each other without causing issues.  `AccessorGrade` assesses grades based on a string threshold, while `AccessorAverageCoverage` assesses coverage based on an integer threshold.  This difference in functionality makes them incompatible, impacting maintainability and potentially leading to unexpected behavior if one is used where the other is expected.\n",
+            "lineStart": 24,
+            "lineEnd": 75,
+            "status": ""
+          },
+          {
+            "done": false,
+            "titleTask": "singleResponsibility",
+            "violatingCode": "```go\nfunc (ag *AccessorGrade) Assess(threshold string, details []filter.GradeDetails) bool {\n\tpassed := true\n\tag.ViolationDetails = []filter.GradeDetails{} // Reset violations\n\tfor _, detail := range details {\n\t\tif ag.Calculator.GradeNumericalValue(detail.Grade) < ag.Calculator.GradeNumericalValue(threshold) {\n\t\t\tpassed = false\n\t\t\tag.ViolationDetails = append(ag.ViolationDetails, detail)\n\t\t}\n\t}\n\tif !passed {\n\t\tag.Reporter.Report(ag.ViolationDetails)\n\t}\n\treturn passed\n}\n\nfunc (aac *AccessorAverageCoverage) Assess(thresholdPercent int, details []filter.GradeDetails) bool {\n\ttotal := 0\n\taac.ViolationDetails = []filter.GradeDetails{} // Reset violations\n\tfor _, detail := range details {\n\t\ttotal += detail.Coverage\n\t\tif detail.Coverage < thresholdPercent {\n\t\t\taac.ViolationDetails = append(aac.ViolationDetails, detail)\n\t\t}\n\t}\n\t// ...rest of the function\n}\n```\n",
+            "codeResolution": "The `AccessorGrade` and `AccessorAverageCoverage` types violate the Single Responsibility Principle (SRP).  `AccessorGrade` handles grade assessment and violation reporting, while `AccessorAverageCoverage` handles coverage assessment and reporting.  Refactor them into separate classes for assessment and reporting.  For example, create `GradeAssessment`, `CoverageAssessment`, and `ViolationReporter` interfaces.  Implement separate classes for each assessment type and reuse the `ViolationReporter` implementation.\n",
+            "severity": "Medium",
+            "rationale": "The `AccessorGrade` and `AccessorAverageCoverage` types violate the Single Responsibility Principle (SRP).  `AccessorGrade` handles grade assessment and violation reporting, while `AccessorAverageCoverage` handles coverage assessment and reporting.  These combined responsibilities make the code harder to maintain, test, and understand.  A change in one aspect (e.g., reporting mechanism) could necessitate changes in unrelated parts, increasing the risk of bugs and reducing code clarity.  Separating these concerns into distinct classes would improve modularity and maintainability.\n",
+            "lineStart": 34,
+            "lineEnd": 56,
+            "status": ""
+          }
+        ],
+        "codeReviewTitle": "SOLID Code Review"
+      },
+      "upgradedCode": {
+        "oldCode": "package assessment\n\nimport (\n\t\"codeleft-cli/filter\"\n\t\"fmt\"\n\t\"os\"\n)\n\n// ViolationReporter interface for reporting violations\ntype ViolationReporter interface {\n\tReport(violations []filter.GradeDetails)\n}\n\n// ConsoleViolationReporter implements ViolationReporter and prints violations to the console\ntype ConsoleViolationReporter struct{}\n\nfunc (c *ConsoleViolationReporter) Report(violations []filter.GradeDetails) {\n\tfor _, v := range violations {\n\t\tfmt.Printf(\"Violation: File: %s, Grade: %s, Coverage: %d\\n\", v.FileName, v.Grade, v.Coverage)\n\t}\n}\n\n// GradeAccessor interface for assessing code grades\ntype GradeAccessor interface {\n\tAssess(threshold string, details []filter.GradeDetails) bool\n}\n\n// CoverageAccessor interface for assessing code coverage\ntype CoverageAccessor interface {\n\tAssess(thresholdPercent int, details []filter.GradeDetails) bool\n}\n\n// AccessorGrade assesses code grades\ntype AccessorGrade struct {\n\tCalculator       filter.GradeCalculator\n\tReporter         ViolationReporter\n\tViolationDetails []filter.GradeDetails\n}\n\n// NewGradeAccessor creates a new AccessorGrade instance\nfunc NewGradeAccessor(calculator filter.GradeCalculator, reporter ViolationReporter) GradeAccessor {\n\treturn &AccessorGrade{\n\t\tCalculator: calculator,\n\t\tReporter:   reporter,\n\t}\n}\n\n// Assess assesses code grades against a threshold\nfunc (ag *AccessorGrade) Assess(threshold string, details []filter.GradeDetails) bool {\n\tpassed := true\n\tag.ViolationDetails = []filter.GradeDetails{} // Reset violations\n\tfor _, detail := range details {\n\t\tif ag.Calculator.GradeNumericalValue(detail.Grade) < ag.Calculator.GradeNumericalValue(threshold) {\n\t\t\tpassed = false\n\t\t\tag.ViolationDetails = append(ag.ViolationDetails, detail)\n\t\t}\n\t}\n\tif !passed {\n\t\tag.Reporter.Report(ag.ViolationDetails)\n\t}\n\treturn passed\n}\n\n// AccessorAverageCoverage assesses code coverage\ntype AccessorAverageCoverage struct {\n\tReporter         ViolationReporter\n\tViolationDetails []filter.GradeDetails\n}\n\n// NewCoverageAccessor creates a new AccessorAverageCoverage instance\nfunc NewCoverageAccessor(reporter ViolationReporter) CoverageAccessor {\n\treturn &AccessorAverageCoverage{\n\t\tReporter: reporter,\n\t}\n}\n\n// Assess assesses code coverage against a threshold\nfunc (aac *AccessorAverageCoverage) Assess(thresholdPercent int, details []filter.GradeDetails) bool {\n\ttotal := 0\n\taac.ViolationDetails = []filter.GradeDetails{} // Reset violations\n\tfor _, detail := range details {\n\t\ttotal += detail.Coverage\n\t\tif detail.Coverage < thresholdPercent {\n\t\t\taac.ViolationDetails = append(aac.ViolationDetails, detail)\n\t\t}\n\t}\n\tif len(details) == 0 {\n\t\tfmt.Println(\"No files to assess\")\n\t\treturn false\n\t}\n\n\taverage := float32(total) / float32(len(details))\n\tpass := average >= float32(thresholdPercent)\n\n\tif !pass {\n\t\taac.Reporter.Report(aac.ViolationDetails)\n\t}\n\tfmt.Fprintf(os.Stderr, \"Average coverage: %.2f%%\\n\", average)\n\treturn pass\n}",
+        "newCode": "package assessment\n\nimport (\n\t\"codeleft-cli/filter\"\n\t\"fmt\"\n\t\"os\"\n)\n\n// ViolationReporter interface for reporting violations\ntype ViolationReporter interface {\n\tReport(violations []filter.GradeDetails)\n}\n\n// ConsoleViolationReporter implements ViolationReporter and prints violations to the console\ntype ConsoleViolationReporter struct{}\n\nfunc (c *ConsoleViolationReporter) Report(violations []filter.GradeDetails) {\n\tfor _, v := range violations {\n\t\tfmt.Printf(\"Violation: File: %s, Grade: %s, Coverage: %d\\n\", v.FileName, v.Grade, v.Coverage)\n\t}\n}\n\n// GradeAssessable interface for assessing code grades\ntype GradeAssessable interface {\n\tAssessGrade(threshold string, details []filter.GradeDetails) bool\n}\n\n// CoverageAssessable interface for assessing code coverage\ntype CoverageAssessable interface {\n\tAssessCoverage(thresholdPercent int, details []filter.GradeDetails) bool\n}\n\n// GradeAssessment handles grade assessment\ntype GradeAssessment struct {\n\tCalculator       filter.GradeCalculator\n\tReporter         ViolationReporter\n\tViolationDetails []filter.GradeDetails\n}\n\n// NewGradeAssessment creates a new GradeAssessment instance\nfunc NewGradeAssessment(calculator filter.GradeCalculator, reporter ViolationReporter) GradeAssessable {\n\treturn &GradeAssessment{\n\t\tCalculator: calculator,\n\t\tReporter:   reporter,\n\t}\n}\n\n// AssessGrade assesses code grades against a threshold\nfunc (ga *GradeAssessment) AssessGrade(threshold string, details []filter.GradeDetails) bool {\n\tpassed := true\n\tga.ViolationDetails = []filter.GradeDetails{} // Reset violations\n\tfor _, detail := range details {\n\t\tif ga.Calculator.GradeNumericalValue(detail.Grade) < ga.Calculator.GradeNumericalValue(threshold) {\n\t\t\tpassed = false\n\t\t\tga.ViolationDetails = append(ga.ViolationDetails, detail)\n\t\t}\n\t}\n\tif !passed {\n\t\tga.Reporter.Report(ga.ViolationDetails)\n\t}\n\treturn passed\n}\n\n// CoverageAssessment handles code coverage assessment\ntype CoverageAssessment struct {\n\tReporter         ViolationReporter\n\tViolationDetails []filter.GradeDetails\n}\n\n// NewCoverageAssessment creates a new CoverageAssessment instance\nfunc NewCoverageAssessment(reporter ViolationReporter) CoverageAssessable {\n\treturn &CoverageAssessment{\n\t\tReporter: reporter,\n\t}\n}\n\n// AssessCoverage assesses code coverage against a threshold\nfunc (ca *CoverageAssessment) AssessCoverage(thresholdPercent int, details []filter.GradeDetails) bool {\n\ttotal := 0\n\tca.ViolationDetails = []filter.GradeDetails{} // Reset violations\n\tfor _, detail := range details {\n\t\ttotal += detail.Coverage\n\t\tif detail.Coverage < thresholdPercent {\n\t\t\tca.ViolationDetails = append(ca.ViolationDetails, detail)\n\t\t}\n\t}\n\tif len(details) == 0 {\n\t\tfmt.Println(\"No files to assess\")\n\t\treturn false\n\t}\n\n\taverage := float32(total) / float32(len(details))\n\tpass := average >= float32(thresholdPercent)\n\n\tif !pass {\n\t\tca.Reporter.Report(ca.ViolationDetails)\n\t}\n\tfmt.Fprintf(os.Stderr, \"Average coverage: %.2f%%\\n\", average)\n\treturn pass\n}",
+        "changes": [
+          {
+            "oldCode": "package assessment",
+            "newCode": "package assessment",
+            "reason": "Unchanged",
+            "start": 1,
+            "end": 1
+          },
+          {
+            "reason": "Unchanged",
+            "start": 2,
+            "end": 2
+          },
+          {
+            "oldCode": "import (",
+            "newCode": "import (",
+            "reason": "Unchanged",
+            "start": 3,
+            "end": 3
+          },
+          {
+            "oldCode": "\t\"codeleft-cli/filter\"",
+            "newCode": "\t\"codeleft-cli/filter\"",
+            "reason": "Unchanged",
+            "start": 4,
+            "end": 4
+          },
+          {
+            "oldCode": "\t\"fmt\"",
+            "newCode": "\t\"fmt\"",
+            "reason": "Unchanged",
+            "start": 5,
+            "end": 5
+          },
+          {
+            "oldCode": "\t\"os\"",
+            "newCode": "\t\"os\"",
+            "reason": "Unchanged",
+            "start": 6,
+            "end": 6
+          },
+          {
+            "oldCode": ")",
+            "newCode": ")",
+            "reason": "Unchanged",
+            "start": 7,
+            "end": 7
+          },
+          {
+            "reason": "Unchanged",
+            "start": 8,
+            "end": 8
+          },
+          {
+            "oldCode": "// ViolationReporter interface for reporting violations",
+            "newCode": "// ViolationReporter interface for reporting violations",
+            "reason": "Unchanged",
+            "start": 9,
+            "end": 9
+          },
+          {
+            "oldCode": "type ViolationReporter interface {",
+            "newCode": "type ViolationReporter interface {",
+            "reason": "Unchanged",
+            "start": 10,
+            "end": 10
+          },
+          {
+            "oldCode": "\tReport(violations []filter.GradeDetails)",
+            "newCode": "\tReport(violations []filter.GradeDetails)",
+            "reason": "Unchanged",
+            "start": 11,
+            "end": 11
+          },
+          {
+            "oldCode": "}",
+            "newCode": "}",
+            "reason": "Unchanged",
+            "start": 12,
+            "end": 12
+          },
+          {
+            "reason": "Unchanged",
+            "start": 13,
+            "end": 13
+          },
+          {
+            "oldCode": "// ConsoleViolationReporter implements ViolationReporter and prints violations to the console",
+            "newCode": "// ConsoleViolationReporter implements ViolationReporter and prints violations to the console",
+            "reason": "Unchanged",
+            "start": 14,
+            "end": 14
+          },
+          {
+            "oldCode": "type ConsoleViolationReporter struct{}",
+            "newCode": "type ConsoleViolationReporter struct{}",
+            "reason": "Unchanged",
+            "start": 15,
+            "end": 15
+          },
+          {
+            "reason": "Unchanged",
+            "start": 16,
+            "end": 16
+          },
+          {
+            "oldCode": "func (c *ConsoleViolationReporter) Report(violations []filter.GradeDetails) {",
+            "newCode": "func (c *ConsoleViolationReporter) Report(violations []filter.GradeDetails) {",
+            "reason": "Unchanged",
+            "start": 17,
+            "end": 17
+          },
+          {
+            "oldCode": "\tfor _, v := range violations {",
+            "newCode": "\tfor _, v := range violations {",
+            "reason": "Unchanged",
+            "start": 18,
+            "end": 18
+          },
+          {
+            "oldCode": "\t\tfmt.Printf(\"Violation: File: %s, Grade: %s, Coverage: %d\\n\", v.FileName, v.Grade, v.Coverage)",
+            "newCode": "\t\tfmt.Printf(\"Violation: File: %s, Grade: %s, Coverage: %d\\n\", v.FileName, v.Grade, v.Coverage)",
+            "reason": "Unchanged",
+            "start": 19,
+            "end": 19
+          },
+          {
+            "oldCode": "\t}",
+            "newCode": "\t}",
+            "reason": "Unchanged",
+            "start": 20,
+            "end": 20
+          },
+          {
+            "oldCode": "}\n\n// GradeAccessor interface for assessing code grades\ntype GradeAccessor interface {\n\tAssess(threshold string, details []filter.GradeDetails) bool\n}\n\n// CoverageAccessor interface for assessing code coverage\ntype CoverageAccessor interface {\n\tAssess(thresholdPercent int, details []filter.GradeDetails) bool\n}\n\n// AccessorGrade assesses code grades\ntype AccessorGrade struct {",
+            "newCode": "}\n\n// GradeAssessable interface for assessing code grades\ntype GradeAssessable interface {\n\tAssessGrade(threshold string, details []filter.GradeDetails) bool\n}\n\n// CoverageAssessable interface for assessing code coverage\ntype CoverageAssessable interface {\n\tAssessCoverage(thresholdPercent int, details []filter.GradeDetails) bool\n}\n\n// GradeAssessment handles grade assessment\ntype GradeAssessment struct {",
+            "reason": "Modified",
+            "start": 21,
+            "end": 34,
+            "reasonDiff": "The interface segregation principle was violated because `GradeAccessor` and `CoverageAccessor` interfaces used the same method name `Assess` with different parameters.  The refactor changed the interfaces to `GradeAssessable` with the method `AssessGrade` and `CoverageAssessable` with the method `AssessCoverage`. This adheres to the interface segregation principle.\n"
+          },
+          {
+            "oldCode": "\tCalculator       filter.GradeCalculator",
+            "newCode": "\tCalculator       filter.GradeCalculator",
+            "reason": "Unchanged",
+            "start": 35,
+            "end": 35
+          },
+          {
+            "oldCode": "\tReporter         ViolationReporter",
+            "newCode": "\tReporter         ViolationReporter",
+            "reason": "Unchanged",
+            "start": 36,
+            "end": 36
+          },
+          {
+            "oldCode": "\tViolationDetails []filter.GradeDetails",
+            "newCode": "\tViolationDetails []filter.GradeDetails",
+            "reason": "Unchanged",
+            "start": 37,
+            "end": 37
+          },
+          {
+            "oldCode": "}",
+            "newCode": "}",
+            "reason": "Unchanged",
+            "start": 38,
+            "end": 38
+          },
+          {
+            "reason": "Unchanged",
+            "start": 39,
+            "end": 39
+          },
+          {
+            "oldCode": "// NewGradeAccessor creates a new AccessorGrade instance\nfunc NewGradeAccessor(calculator filter.GradeCalculator, reporter ViolationReporter) GradeAccessor {\n\treturn &AccessorGrade{",
+            "newCode": "// NewGradeAssessment creates a new GradeAssessment instance\nfunc NewGradeAssessment(calculator filter.GradeCalculator, reporter ViolationReporter) GradeAssessable {\n\treturn &GradeAssessment{",
+            "reason": "Modified",
+            "start": 40,
+            "end": 42,
+            "reasonDiff": "Renamed `NewGradeAccessor` to `NewGradeAssessment` and changed return type to `GradeAssessable` to adhere to the Interface Segregation Principle.\n"
+          },
+          {
+            "oldCode": "\t\tCalculator: calculator,",
+            "newCode": "\t\tCalculator: calculator,",
+            "reason": "Unchanged",
+            "start": 43,
+            "end": 43
+          },
+          {
+            "oldCode": "\t\tReporter:   reporter,",
+            "newCode": "\t\tReporter:   reporter,",
+            "reason": "Unchanged",
+            "start": 44,
+            "end": 44
+          },
+          {
+            "oldCode": "\t}",
+            "newCode": "\t}",
+            "reason": "Unchanged",
+            "start": 45,
+            "end": 45
+          },
+          {
+            "oldCode": "}",
+            "newCode": "}",
+            "reason": "Unchanged",
+            "start": 46,
+            "end": 46
+          },
+          {
+            "reason": "Unchanged",
+            "start": 47,
+            "end": 47
+          },
+          {
+            "oldCode": "// Assess assesses code grades against a threshold\nfunc (ag *AccessorGrade) Assess(threshold string, details []filter.GradeDetails) bool {",
+            "newCode": "// AssessGrade assesses code grades against a threshold\nfunc (ga *GradeAssessment) AssessGrade(threshold string, details []filter.GradeDetails) bool {",
+            "reason": "Modified",
+            "start": 48,
+            "end": 49,
+            "reasonDiff": "The interface segregation principle was violated because the `Assess` method was used by multiple interfaces with different parameters.  The method was renamed to `AssessGrade` to adhere to the interface segregation principle.\n"
+          },
+          {
+            "oldCode": "\tpassed := true",
+            "newCode": "\tpassed := true",
+            "reason": "Unchanged",
+            "start": 50,
+            "end": 50
+          },
+          {
+            "oldCode": "\tag.ViolationDetails = []filter.GradeDetails{} // Reset violations",
+            "newCode": "\tga.ViolationDetails = []filter.GradeDetails{} // Reset violations",
+            "reason": "Modified",
+            "start": 51,
+            "end": 51,
+            "reasonDiff": "The variable `ag` was renamed to `ga` due to the renaming of `AccessorGrade` to `GradeAssessment` to adhere to the Single Responsibility Principle and Interface Segregation Principle.\n"
+          },
+          {
+            "oldCode": "\tfor _, detail := range details {",
+            "newCode": "\tfor _, detail := range details {",
+            "reason": "Unchanged",
+            "start": 52,
+            "end": 52
+          },
+          {
+            "oldCode": "\t\tif ag.Calculator.GradeNumericalValue(detail.Grade) < ag.Calculator.GradeNumericalValue(threshold) {",
+            "newCode": "\t\tif ga.Calculator.GradeNumericalValue(detail.Grade) < ga.Calculator.GradeNumericalValue(threshold) {",
+            "reason": "Modified",
+            "start": 53,
+            "end": 53,
+            "reasonDiff": "The change from `ag` to `ga` is due to renaming the `AccessorGrade` type to `GradeAssessment` to adhere to the Single Responsibility Principle and Interface Segregation Principle, separating grade assessment logic into a distinct type.\n"
+          },
+          {
+            "oldCode": "\t\t\tpassed = false",
+            "newCode": "\t\t\tpassed = false",
+            "reason": "Unchanged",
+            "start": 54,
+            "end": 54
+          },
+          {
+            "oldCode": "\t\t\tag.ViolationDetails = append(ag.ViolationDetails, detail)",
+            "newCode": "\t\t\tga.ViolationDetails = append(ga.ViolationDetails, detail)",
+            "reason": "Modified",
+            "start": 55,
+            "end": 55,
+            "reasonDiff": "Refactoring to adhere to the Interface Segregation Principle. `AccessorGrade` was renamed to `GradeAssessment` and the corresponding receiver variable `ag` was renamed to `ga`.\n"
+          },
+          {
+            "oldCode": "\t\t}",
+            "newCode": "\t\t}",
+            "reason": "Unchanged",
+            "start": 56,
+            "end": 56
+          },
+          {
+            "oldCode": "\t}",
+            "newCode": "\t}",
+            "reason": "Unchanged",
+            "start": 57,
+            "end": 57
+          },
+          {
+            "oldCode": "\tif !passed {",
+            "newCode": "\tif !passed {",
+            "reason": "Unchanged",
+            "start": 58,
+            "end": 58
+          },
+          {
+            "oldCode": "\t\tag.Reporter.Report(ag.ViolationDetails)",
+            "newCode": "\t\tga.Reporter.Report(ga.ViolationDetails)",
+            "reason": "Modified",
+            "start": 59,
+            "end": 59,
+            "reasonDiff": "The change from `ag` to `ga` reflects the renaming of `AccessorGrade` to `GradeAssessment` to adhere to the Single Responsibility Principle and Interface Segregation Principle.\n"
+          },
+          {
+            "oldCode": "\t}",
+            "newCode": "\t}",
+            "reason": "Unchanged",
+            "start": 60,
+            "end": 60
+          },
+          {
+            "oldCode": "\treturn passed",
+            "newCode": "\treturn passed",
+            "reason": "Unchanged",
+            "start": 61,
+            "end": 61
+          },
+          {
+            "oldCode": "}",
+            "newCode": "}",
+            "reason": "Unchanged",
+            "start": 62,
+            "end": 62
+          },
+          {
+            "reason": "Unchanged",
+            "start": 63,
+            "end": 63
+          },
+          {
+            "oldCode": "// AccessorAverageCoverage assesses code coverage\ntype AccessorAverageCoverage struct {",
+            "newCode": "// CoverageAssessment handles code coverage assessment\ntype CoverageAssessment struct {",
+            "reason": "Modified",
+            "start": 64,
+            "end": 65,
+            "reasonDiff": "Renamed `AccessorAverageCoverage` to `CoverageAssessment` to better reflect its role in handling code coverage assessment, as part of the refactoring to adhere to the Interface Segregation Principle.\n"
+          },
+          {
+            "oldCode": "\tReporter         ViolationReporter",
+            "newCode": "\tReporter         ViolationReporter",
+            "reason": "Unchanged",
+            "start": 66,
+            "end": 66
+          },
+          {
+            "oldCode": "\tViolationDetails []filter.GradeDetails",
+            "newCode": "\tViolationDetails []filter.GradeDetails",
+            "reason": "Unchanged",
+            "start": 67,
+            "end": 67
+          },
+          {
+            "oldCode": "}",
+            "newCode": "}",
+            "reason": "Unchanged",
+            "start": 68,
+            "end": 68
+          },
+          {
+            "reason": "Unchanged",
+            "start": 69,
+            "end": 69
+          },
+          {
+            "oldCode": "// NewCoverageAccessor creates a new AccessorAverageCoverage instance\nfunc NewCoverageAccessor(reporter ViolationReporter) CoverageAccessor {\n\treturn &AccessorAverageCoverage{",
+            "newCode": "// NewCoverageAssessment creates a new CoverageAssessment instance\nfunc NewCoverageAssessment(reporter ViolationReporter) CoverageAssessable {\n\treturn &CoverageAssessment{",
+            "reason": "Modified",
+            "start": 70,
+            "end": 72,
+            "reasonDiff": "Renamed `NewCoverageAccessor` to `NewCoverageAssessment` and changed return type to `CoverageAssessable` to adhere to the Interface Segregation Principle.\n"
+          },
+          {
+            "oldCode": "\t\tReporter: reporter,",
+            "newCode": "\t\tReporter: reporter,",
+            "reason": "Unchanged",
+            "start": 73,
+            "end": 73
+          },
+          {
+            "oldCode": "\t}",
+            "newCode": "\t}",
+            "reason": "Unchanged",
+            "start": 74,
+            "end": 74
+          },
+          {
+            "oldCode": "}",
+            "newCode": "}",
+            "reason": "Unchanged",
+            "start": 75,
+            "end": 75
+          },
+          {
+            "reason": "Unchanged",
+            "start": 76,
+            "end": 76
+          },
+          {
+            "oldCode": "// Assess assesses code coverage against a threshold\nfunc (aac *AccessorAverageCoverage) Assess(thresholdPercent int, details []filter.GradeDetails) bool {",
+            "newCode": "// AssessCoverage assesses code coverage against a threshold\nfunc (ca *CoverageAssessment) AssessCoverage(thresholdPercent int, details []filter.GradeDetails) bool {",
+            "reason": "Modified",
+            "start": 77,
+            "end": 78,
+            "reasonDiff": "The method name `Assess` was changed to `AssessCoverage` to adhere to the Interface Segregation Principle, as the original `Assess` method was used for both grade and coverage assessment with different parameters. This change creates distinct interfaces for grade and coverage assessment.\n"
+          },
+          {
+            "oldCode": "\ttotal := 0",
+            "newCode": "\ttotal := 0",
+            "reason": "Unchanged",
+            "start": 79,
+            "end": 79
+          },
+          {
+            "oldCode": "\taac.ViolationDetails = []filter.GradeDetails{} // Reset violations",
+            "newCode": "\tca.ViolationDetails = []filter.GradeDetails{} // Reset violations",
+            "reason": "Modified",
+            "start": 80,
+            "end": 80,
+            "reasonDiff": "The variable `aac` was renamed to `ca` to reflect the change in the struct name from `AccessorAverageCoverage` to `CoverageAssessment` as part of the refactoring to adhere to the Single Responsibility Principle and Interface Segregation Principle.\n"
+          },
+          {
+            "oldCode": "\tfor _, detail := range details {",
+            "newCode": "\tfor _, detail := range details {",
+            "reason": "Unchanged",
+            "start": 81,
+            "end": 81
+          },
+          {
+            "oldCode": "\t\ttotal += detail.Coverage",
+            "newCode": "\t\ttotal += detail.Coverage",
+            "reason": "Unchanged",
+            "start": 82,
+            "end": 82
+          },
+          {
+            "oldCode": "\t\tif detail.Coverage < thresholdPercent {",
+            "newCode": "\t\tif detail.Coverage < thresholdPercent {",
+            "reason": "Unchanged",
+            "start": 83,
+            "end": 83
+          },
+          {
+            "oldCode": "\t\t\taac.ViolationDetails = append(aac.ViolationDetails, detail)",
+            "newCode": "\t\t\tca.ViolationDetails = append(ca.ViolationDetails, detail)",
+            "reason": "Modified",
+            "start": 84,
+            "end": 84,
+            "reasonDiff": "The change from `aac` to `ca` reflects the renaming of `AccessorAverageCoverage` to `CoverageAssessment` to adhere to the Single Responsibility Principle and Interface Segregation Principle, separating coverage assessment logic into a dedicated type.\n"
+          },
+          {
+            "oldCode": "\t\t}",
+            "newCode": "\t\t}",
+            "reason": "Unchanged",
+            "start": 85,
+            "end": 85
+          },
+          {
+            "oldCode": "\t}",
+            "newCode": "\t}",
+            "reason": "Unchanged",
+            "start": 86,
+            "end": 86
+          },
+          {
+            "oldCode": "\tif len(details) == 0 {",
+            "newCode": "\tif len(details) == 0 {",
+            "reason": "Unchanged",
+            "start": 87,
+            "end": 87
+          },
+          {
+            "oldCode": "\t\tfmt.Println(\"No files to assess\")",
+            "newCode": "\t\tfmt.Println(\"No files to assess\")",
+            "reason": "Unchanged",
+            "start": 88,
+            "end": 88
+          },
+          {
+            "oldCode": "\t\treturn false",
+            "newCode": "\t\treturn false",
+            "reason": "Unchanged",
+            "start": 89,
+            "end": 89
+          },
+          {
+            "oldCode": "\t}",
+            "newCode": "\t}",
+            "reason": "Unchanged",
+            "start": 90,
+            "end": 90
+          },
+          {
+            "reason": "Unchanged",
+            "start": 91,
+            "end": 91
+          },
+          {
+            "oldCode": "\taverage := float32(total) / float32(len(details))",
+            "newCode": "\taverage := float32(total) / float32(len(details))",
+            "reason": "Unchanged",
+            "start": 92,
+            "end": 92
+          },
+          {
+            "oldCode": "\tpass := average >= float32(thresholdPercent)",
+            "newCode": "\tpass := average >= float32(thresholdPercent)",
+            "reason": "Unchanged",
+            "start": 93,
+            "end": 93
+          },
+          {
+            "reason": "Unchanged",
+            "start": 94,
+            "end": 94
+          },
+          {
+            "oldCode": "\tif !pass {",
+            "newCode": "\tif !pass {",
+            "reason": "Unchanged",
+            "start": 95,
+            "end": 95
+          },
+          {
+            "oldCode": "\t\taac.Reporter.Report(aac.ViolationDetails)",
+            "newCode": "\t\tca.Reporter.Report(ca.ViolationDetails)",
+            "reason": "Modified",
+            "start": 96,
+            "end": 96,
+            "reasonDiff": "The change from `aac` to `ca` reflects the renaming of `AccessorAverageCoverage` to `CoverageAssessment` to adhere to the Single Responsibility Principle and Interface Segregation Principle, separating coverage assessment logic from reporting.\n"
+          },
+          {
+            "oldCode": "\t}",
+            "newCode": "\t}",
+            "reason": "Unchanged",
+            "start": 97,
+            "end": 97
+          },
+          {
+            "oldCode": "\tfmt.Fprintf(os.Stderr, \"Average coverage: %.2f%%\\n\", average)",
+            "newCode": "\tfmt.Fprintf(os.Stderr, \"Average coverage: %.2f%%\\n\", average)",
+            "reason": "Unchanged",
+            "start": 98,
+            "end": 98
+          },
+          {
+            "oldCode": "\treturn pass",
+            "newCode": "\treturn pass",
+            "reason": "Unchanged",
+            "start": 99,
+            "end": 99
+          },
+          {
+            "oldCode": "}",
+            "newCode": "}",
+            "reason": "Unchanged",
+            "start": 100,
+            "end": 100
+          }
+        ]
+      }
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "A*",
+      "interfaceSegregationScore": "B",
+      "liskovSubstitutionScore": "B",
+      "openClosedScore": "A",
+      "singleResponsibilityScore": "B"
+    },
+    "hash": "044161d56184d37f6cbd980001952ad114cd5141b987ec6ad71b0ff5aea7e699",
+    "id": "eJy9V12L3DYU/Su3hi126tohfTOZwrJLSqFsl6TNSxSKIl97TGXJSJoNYZj/XmR92GN7hl1Ku09a6X6ce3XPseaYUK1R6060f0jJkyr58Ptvv94necJkjXdSGBQmqZKBsr9pi+CsexSGCCK6fpDKQEoEMWT04NiYHxnvyqbjBhVJ3FHTm7CU2q4y616W8LGTnJpOivdoQ6GCThhUDWUIjVSgxu1OtPAULDUR5tuAV12PNpfbTydH+PTZwSp+UbTGezS04zoj4uTR3EmhJceNyP3A0VatN9JSUcOgOns4y2UkmD0CcyE95osJtFEHZo4jkOYgGKQMXl2yzuC5pblG2Eb+lcMTVDtQVLQ4xzlaENP0pni0RTQpSWLGCt51HCu40TmMgd3yTj6hoq39ryZEkCSHp8JaPtAe7Xq0tYtgae/bnKZOjwa3jKHWcnnncSLBThS01jRc+iW/sYrb0TE1e4V6L3ltu9qJNofateNSk75IyedD4CA/Dx3z1vGCLzpvQnxExVAYa/ZCmCHDaONRod5o2bmhGzQH5o5yduDUSAXub552Opy4hMEQ1jSwVnHz/lolUw0P+PX8QplCalADBYFfF8g7oQ0VDD1Blr4pm6rZriP3aoJqjT5bTNbYH4XmoAR8f4bD82UKW8GUOXeHIWoFEHPmCwa4Sdi8OKAttdUChTgoQRZoC6/O8GTwb8beFTpYFLWVB6MOaHdoW6wuc7cd6HiCsoT3qNGciXTUHQdjEp8Ay3eya4C2xdRPF/zh0KPqGOUfKT9g6nwKX/HbZ3jEdmQhUaxzBw3lGsPudq10GFDU6cZhqChzAU7+YsdKvvMpfEraFmEW/GIrYBYj+IlzQdZcv3XiEkRmMTwLKbrkNFeA/4zWKx3cZvYS25rjy0DpNQ6vsm7SeJH0uOTsixjL4l1c4SxlE2kX2df0feknwRVppKEjx16P9KXsf+Ovy/zDzu/HT35k92If3sKq1sjQC8ADGTdOr7GRo/DKoTPY7eD16rXDRUqSB2m/GDi+2dztksSH87MT9WKcBWKoL6XaQcMlNT+9Scc2ZFDGjXnyLKis9QjOP8+cFw3JXJogKFFOKFvryUZPJkGxhb4b3LtO6uKDqVGpHEjixzDObwU3xZvm5sY/5+js2TYTJSJOSZ7YZj1Ss0+qpPxTo9LlHoX6xmn/pewP3HQDx/Ls18D0s8EvpSpamZz+AdUEonA="
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/assessment/assessor.go",
+    "grade": "A",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T12:05:22.492Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "A*",
+      "interfaceSegregationScore": "A*",
+      "liskovSubstitutionScore": "B",
+      "openClosedScore": "A",
+      "singleResponsibilityScore": "B"
+    },
+    "hash": "8e4740fe48a02a144248de3f1c45a0a8658bcc11d82502c0d312b92fcde3a18f",
+    "id": "eJy9V22L4zYQ/itTwRb76trH9Zu5FI4sVwplu9y196UuZVYeO6ayZCRljyPkvxdZ8ktsJ2zpSz4p0rw8M5rniXJiaAwZ08j6F6UEy9nHn3/68Z4ljKuS9kpakpblrEP+J9YE3rolaQtZyKbtlLYQFbKwRe8hqLLfctFkVSMs6YL5o6q1w1IZt4qde5bBp0YJtI2SH8iFIg2NtKQr5ASV0qD77UbW8DxYmkLaLx3ddD25XH4/mhzht989rPQHjSXdk8VGmLiQ54Bmr6RRgjYit50gV7XZSIuyhE437nCWyyqwBwLuQwbMVxMYq4/cnnog1VFyiDi8umYdw0tL841wjfwjgWfId6BR1jTH2VsUtmpt+uiKqKKCjRlzeN8IyuHOJNAH9su9eiaNtftWFoUsWALPqbN8wJbcurd1i8HS3bc9T53uDd71w4RPgha3Ps4kuJmC2hkP137ds6/En/RGkT1oMgclStfeRtYJlL4v17r1pJSYT4PH/lKYPNiPd33DfYZ1sJvgPpLmJK0z/5uQZ81x0woHlKUg4zt4Qd5lL3tzP4Ue3B4FPwq0SoP/zNNPhxPRaDCENUec1bh5f6uiqZYH+rzExzWhJQMIkj6v0DfSWJScAoPW/hGfatquJgmCQ3pdQ7wavb5PmuxRS/h6kSvQagqdw5Q98YdD5BxgzJssiDKb53B/ZOasAKzRFQ4I4/wMElIjvFrAiuEfE8SX3TkwpVMUq4/kdmpMV1e82w50OkOWwQcyZC90fZQqD2PSqwFW6GpTQY3p1Fsf/OHYkm44ik8ojhR5H38Uw9sXeIztiIdEY507qFAYGna3a8WuI1lGG4dDRbEPcA6X3FfyVUgRUtaYDnMRFlsB4zFCmD8f5Jp4XYjBhVitRWHDc64L/xnZN/Je8n3DYE35tVF0i9IbIn3B6nW405K7t5m7v+zzuv3X6cvRPQGW+WP4t342fKVWWeyZ9tp94/8fiX3ib3Zhf3wqjBRf7MNbWJU60nQbdyDkxuEtQgqSQTxMDLsdvF69kYSMCvag3I8I9S89f7kFC+HC9IyS0Y9EYTEUku+gEgrtd2+ivgkxZOPGPHk8CK3zGJy/nzkv2hH7NIOmDLD5WlE2OjIpiivzfeffgsqkH21JWidQsHcBAp+ef+mb6u4uPAFx9tSbqVIhzyxhrlWPaA8sZ9mvhrTJDiT1F4HtU9YehW06QdnFP4hJmMJS6bRW7PwXB8i5dA=="
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/assessment/violations.go",
+    "grade": "A",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T12:15:59.391Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "A*",
+      "interfaceSegregationScore": "B",
+      "liskovSubstitutionScore": "A*",
+      "openClosedScore": "A*",
+      "singleResponsibilityScore": "A*"
+    },
+    "hash": "04cfc267771ac9cc44c7f07f9dee10a9be153cc0e0f012066201d6e9bf6b787d",
+    "id": "eJyNUt1LwzAQ/1eOgNJJXd8LPm0ogszh14sRie2lC6aXktwmY+x/lzSbm7CKb5fk93WX2wgVAoZgqHlyzopSPN7f3U5FLipX48QRI7EoRaeqT9UgJHSLxJIkmbZzniGTJFn2DIuaLytrCm0so5ciPemWYzmKpKKAF+OsYuPoAaMAejDE6LWqELTz4PtrQw2s9sggidcd/kndRLN0nx2I8PqWwoxvvKpxiqyMDSNJ212aiaPgLJ5QbjuLsddwwlZRDZ038fHIix3wAqFKkrvMgwaB/bLiTR9EL6mCGX4NgbPRiRB9xx556QnOh5hR/2CRVXAxhBzBf6eXnONfveewgvIKvKIGj0fRIyTrlsfzOCedSfHjWMK1sVjCWcihF07lxK3QqyaeailJihxW44icqRZj3WNjsUfGleLUoMiFNhbniheiFMVzQB+KBZJfW9V+FO3SsuksFr/29LDQxSH7uHFi+w3JxCjk"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/assessment/coverage.go",
+    "grade": "A",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T12:16:09.791Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "A*",
+      "interfaceSegregationScore": "B",
+      "liskovSubstitutionScore": "B",
+      "openClosedScore": "A",
+      "singleResponsibilityScore": "B"
+    },
+    "hash": "65d887277e8a1170df0bc55c64c01b10e5bacb302031327d46b849cc931f43a7",
+    "id": "eJytVFFr2zAQ/is3QYe9ZXbp3swyKC0bg9GVdtvLNIZqnxIx5WSkS0sp+e9FtpQ0jden5Um5u++7776T/CBUCBiCocV356xoxPW3r1/OxUy0rsMzR4zEohG9av+qBcJYvUJiSZLMqneeoZAkWQ4Ii5rftdbU2lhGL8WY0ivORxfiqYzwuoYzd4teLfB04FU3FsEQo9eqRdDOw1YeRHpoU70kvu/xZfhDbDhmcl3BS49h6Wx3ib5F4lg+gw5ZGRvg1+9RdvXZqw7Px2gJN85ZSZtJydEKWCrqLIZ9iXteTagdkIH9uuVR6hVGN9FD/v00zio2jnImVm2D5y+J3sm9wLuJvq1HxRhAAeHdlDBDgRW1KEmvqZ1mKXxWfKC0nFrNMKVHXnuC14d0Q3pnQwOZfhYTm91I+ztNPh/av1BxCFCwXXoapmgVvDnsX8L/uizjpOxYWWjmcBz/tao6WN18muRhA3UNVxiQ4TZjQiSJL+JPlhCpvaIFbiUlB8fGb+cpXp1tH03MGv08Dh/gYNRE9S/dqu+RumIimdWVI8Em7W7oa5GKLhs1n8NxbqNXXF16Q2ypkOLCgTbxPbFLy5Ui0aXbo5UNmJlJskqDNHPQ1il+f1IMJpRQbwNPmw9svQohIjL44xPwMzvKsY3R8GpAJdmtqvJtTYcpR8qtBXHMT32cUxcuVNfcofczkOI0SciXt4Gj6kQfHUlJUsyywvLJ+4kyJG3ETESrLhUvRSPqHwF9qJdI/t6q1U29Wls2vcV679u8+zDVuWG1cGLzCDpGPYk="
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/assessment/assessor.go",
+    "grade": "A",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T12:16:14.288Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "A*",
+      "interfaceSegregationScore": "B",
+      "liskovSubstitutionScore": "A*",
+      "openClosedScore": "A",
+      "singleResponsibilityScore": "B"
+    },
+    "hash": "5e49eeb74ec04b51c7a349025d7c313c11a6df50fd3704fa73229acacb982170",
+    "id": "eJylVE2L3DAM/SuqDyUp08k9dA9lB0qhbMu23UtTiiZRMqYeOdhKl2XIfy+O8zE7E5ZCczLW09N7kuKTQu/Je83NN2uNytXXz58+7tRGlbaiW8tCLCpXLZa/sSGI6COxFFywPrbWCSQFF1IMGYZqeVsandXaCLlCFZwGZJbBB4cVvR/ycW8INAu5GkuC2jqYZUCggSaAfcHy1NILmadQOUYGUCIHR/5gTQVenOZmAxUJauPhx88oaTsAd/E2hb21puD+WmPwCAfkypCPcp6ZvxQ2wL24rpSo6hZN2RkU6yB+5+WXYIDeU2gjTUCAB20NirY8RQJqvty95GjxckePl/pKRyjkAYHp8Uq9Zi/IJRVcd1yu5Cfl4mndzQbc5OXKQ3o1x6FPjqRzDK8vag2x8y7msFTfxODEnAPMdYdQv3ThbDnG+ZE/XzHABoNxQJh3Z2xA0iC8uZCVwn9vW7TdBjEV5DcgrqNw0+D2asQ360SnHrIM7smTwJ8pxweS8Cv9mmQEdofc0Cxr7KquocHt0ttIftcdyekSzQOajpKYE0MpvPuHjLkd6VRo9nkDNRpP0+26V2xb4ipZCU6O0kjQj0MenLwaS4wlG9xOezEe1gjTmWHcv0hScK82qtaGvqAcVK6y756czw7E7sngcZ8dOyO6NZQ9e+2Wl2E8WrdtrOr/AryOAGw="
   }
 ]

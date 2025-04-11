@@ -3,32 +3,22 @@ package assessment
 import (
 	"codeleft-cli/filter"
 	"fmt"
-	"os"
 )
 
-type Violations interface {
-	Print()
-	AddViolation(detail filter.GradeDetails)
+// ViolationReporter interface for reporting violations
+type ViolationReporter interface {
+	Report(violations []filter.GradeDetails)
 }
 
-type Violation struct {
-	ListViolations []filter.GradeDetails
+// ConsoleViolationReporter implements ViolationReporter and prints violations to the console
+type ConsoleViolationReporter struct{}
+
+func NewConsoleViolationReporter() ViolationReporter {
+	return &ConsoleViolationReporter{}
 }
 
-func NewViolation() Violations {
-	return &Violation{}
-}
-
-func (v *Violation) AddViolation(detail filter.GradeDetails) {
-	v.ListViolations = append(v.ListViolations, detail)
-}
-
-func (v *Violation) Print() {
-	for _, detail := range v.ListViolations {
-		_, err := fmt.Fprintf(os.Stderr, "File: %s Tool: %s Grade: %s Coverage (Percent): %d \n", detail.FileName, detail.Tool, detail.Grade, detail.Coverage)
-		if err != nil {
-			fmt.Println("Error printing violation")
-			return
-		}
+func (c *ConsoleViolationReporter) Report(violations []filter.GradeDetails) {
+	for _, v := range violations {
+		fmt.Printf("Violation: File: %s, Grade: %s, Coverage: %d\n", v.FileName, v.Grade, v.Coverage)
 	}
 }

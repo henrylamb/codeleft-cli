@@ -1,23 +1,27 @@
 package filter
 
+import "time"
+
 type GradeDetail interface {
 	GetCoverage(int)
 }
 
 type GradeDetails struct {
-	Grade    string
-	Score    int
-	Coverage int
-	FileName string
-	Tool     string
+	Grade    string `json:"grade"`
+	Score    int `json:"score"`
+	Coverage int `json:"coverage"`
+	FileName string `json:"fileName"`
+	Tool     string `json:"tool"`
+	Timestamp time.Time `json:"timestamp"`
 }
 
-func NewGradeDetails(grade string, score int, fileName string, tool string) GradeDetails {
+func NewGradeDetails(grade string, score int, fileName string, tool string, timeStamp time.Time) GradeDetails {
 	return GradeDetails{
 		Grade:    grade,
 		Score:    score,
 		FileName: fileName,
 		Tool:     tool,
+		Timestamp: timeStamp,
 	}
 }
 

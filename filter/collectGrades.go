@@ -17,7 +17,7 @@ func NewGradeCollection(calculator GradeCalculator) CollectGrades {
 func (g *GradeCollection) CollectGrades(histories Histories, threshold string) []GradeDetails {
 	gradeDetails := []GradeDetails{}
 	for _, history := range histories {
-		newDetails := NewGradeDetails(history.Grade, g.GradeCalculator.GradeNumericalValue(history.Grade), history.FilePath, history.AssessingTool)
+		newDetails := NewGradeDetails(history.Grade, g.GradeCalculator.GradeNumericalValue(history.Grade), history.FilePath, history.AssessingTool, history.TimeStamp)
 		newDetails.GetCoverage(g.GradeCalculator.GradeNumericalValue(threshold))
 		gradeDetails = append(gradeDetails, newDetails)
 

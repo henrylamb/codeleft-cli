@@ -93,26 +93,26 @@ Options:
 	}
 
 	// Collect grades and assess
-	violationCounter := assessment.NewViolation()
+	violationCounter := assessment.NewConsoleViolationReporter()
 
 	calculator := filter.NewGradeStringCalculator()
 	gradeCollector := filter.NewGradeCollection(calculator)
 	gradeDetails := gradeCollector.CollectGrades(history, *thresholdGrade)
 
-	accessorGrade := assessment.NewAccessorGrade(calculator, violationCounter)
-	if *assessGrade && !accessorGrade.Assess(*thresholdGrade, gradeDetails) {
+	accessorGrade := assessment.NewCoverageAssessment(violationCounter)
+	if *assessGrade && !accessorGrade.AssessCoverage(*thresholdPercent, gradeDetails) {
 		fmt.Fprintf(os.Stderr, "Grade threshold failed :( \n")
 		os.Exit(1)
 	}
 
-	accessorCoverage := assessment.NewAccessorAverageCoverage(violationCounter)
-	if *assessCoverage && !accessorCoverage.Assess(*thresholdPercent, gradeDetails) {
+	accessorCoverage := assessment.NewCoverageAssessment(violationCounter)
+	if *assessCoverage && !accessorCoverage.AssessCoverage(*thresholdPercent, gradeDetails) {
 		fmt.Fprintf(os.Stderr, "Coverage threshold failed :( \n")
 		os.Exit(1)
 	}
 
 	if *createReport {
-		reporter := report.NewHtmlReport(report.NewRepoConstructor())
+		reporter := report.NewHtmlReport()
 		if err := reporter.GenerateReport(gradeDetails, *thresholdGrade); err != nil {
 			fmt.Fprintf(os.Stderr, "Error generating report: %v\n", err)
 			os.Exit(1)

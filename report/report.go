@@ -17,7 +17,7 @@ func GenerateReport(gradeDetails []filter.GradeDetails, outputPath string, thres
 	}
 
 	// 1. Build the tree structure
-	builder := NewTreeBuilder()
+	builder := NewTreeBuilder(NewSeparatorPathSplitter(), NewDefaultNodeCreator())
 	groupedDetails := builder.GroupGradeDetailsByPath(gradeDetails)
 	rootNodes := builder.BuildReportTree(groupedDetails)
 

@@ -25,7 +25,6 @@ func NewGradeDetails(grade string, score int, fileName string, tool string, time
 	}
 }
 
-// GetCoverage calculates the coverage percentage based on the score and threshold
 func (g *GradeDetails) GetCoverage(thresholdAsNum int) {
 	if g.Score > thresholdAsNum {
 		g.Coverage = 120

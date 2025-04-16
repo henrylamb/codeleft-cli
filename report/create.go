@@ -1,6 +1,8 @@
 package report
 
-import "codeleft-cli/filter"
+import (
+	"codeleft-cli/filter"
+)
 
 type IReport interface {
 	GenerateReport(gradeDetails []filter.GradeDetails, threshold string) error

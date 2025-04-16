@@ -4,11 +4,11 @@ import (
 	"codeleft-cli/assessment"
 	"codeleft-cli/filter"
 	"codeleft-cli/read"
+	"codeleft-cli/report"
 	"flag"
 	"fmt"
 	"os"
 	"strings"
-	"codeleft-cli/report"
 )
 
 // Version of the CLI tool
@@ -76,7 +76,7 @@ Options:
 	history = toolFilter.Filter(toolsList, history)
 
 	//config filtering
-	configReader, err := read.NewConfigReader()
+	configReader, err := read.NewConfigReader(read.NewOSFileSystem())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error initializing config reader: %v\n", err)
 		os.Exit(1)
@@ -134,5 +134,6 @@ func parseTools(toolsFlag string) []string {
 	for i := range tools {
 		tools[i] = strings.TrimSpace(tools[i])
 	}
+
 	return tools
 }

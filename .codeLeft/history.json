@@ -4759,5 +4759,2466 @@
     },
     "hash": "5fba1bd0a8f8527ebc4dab850477e6c95562d3b3b98fb1f5d0f36b6489c0d076",
     "id": "eJydVMFu2zAM/RVOQFe7cOzuUAzwkEORNNhhbYM2XS++aDadCJUlQ6LhFUX+fZAUJ2mCAENuNE0+vvdE6YNxa9FaoZYLrSXL2ePr7fN8tHicj75ds4SVusKJVoSKWM5aXr7xJYLBVhsqVKFE4yKIClVQweqGChbCFTUyI2xayQmHpLZD1HJaZbWQ6AKXjB0avbcITx781QhCA0IRmpqXCB+u0WejihPflP0W2E858QR0R21Hc04rsGSEWsaAxmhTqLWDzjL4ubj/9Rm8aSU2qMh+Hlpr44s3mKnvfn6a5zDTZWexAq1CgUFVoRsGXFXg9Ox6vJijmZZMV1JQM9gDV0OULgbHAuu6UyU8YH8IE8UQXR0mkyA43oA3rfQZyMewxX/APiqYO7/QWbA4nXWqtNFQ4r/idM6NxWhXOBBzQ91Zkag9+JcxKCHDyIIMUmeUyyRQN5TeOUJ1VLCaC4kVkIbWAQf3hpE5XPQF82Q9tJM+QH09VPmx63IS14mbtm9X1MORNTGcsTlBVPg7Fd7HYWPTqTDRrm/fkHwM2qb3b5Uwt1JG2/YErr/f3MQ/Trt2wrDSoNuRAASVMFiSNu9weWEvB+f2puybuKU/ExKTPXoTj3lCwRnk9m5LuAXH5NyUgyOusEYDO4bpRGqLURyY7/zs0+3+3v3FstsyD7LcoZ7hKwao/1/FsGcsYU6hk8Nylr1YNDZboTLvkjd/sqaTJFqJmXs5JdY0KqXIwoOZ9X4Z06Vm638KbPhG"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/gradeDetails.go",
+    "grade": "B",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T19:45:38.062Z",
+    "codeReview": {
+      "review": "**OWASP Top 10 Review (Snippet)**\n\nThree critical areas of concern:\n\n1.  **Insecure Data Handling:**  The `GetCoverage` function's coverage calculation is overly simplistic and lacks proper input validation.  Hardcoded values (120, 100, etc.) for coverage are problematic.  This could lead to unexpected results or vulnerabilities if the threshold is manipulated.  Example: `if g.Score > thresholdAsNum { g.Coverage = 120 }`.\n\n2.  **Improper Error Handling:**  No error handling is present in `GetCoverage`.  If `thresholdAsNum` is negative or invalid, the program will likely crash or produce incorrect results.\n\n3.  **Lack of Input Validation:** The `GetCoverage` function does not validate the input `thresholdAsNum`.  This could lead to unexpected behavior or vulnerabilities if malicious input is provided.\n"
+    },
+    "gradingDetails": {
+      "brokenAccessControl": {
+        "clientServerAccessPolicyEnforcement": 0,
+        "idorPrevention": 0,
+        "roleBasedAccessControl": 0
+      },
+      "cryptographicFailures": {
+        "dataEncryption": 0,
+        "encryptionAlgorithmStrength": 0
+      },
+      "identificationAuthentication": {
+        "multiFactorAuthentication": 0,
+        "passwordPolicy": 0,
+        "sessionManagement": 0
+      },
+      "injection": {
+        "inputSanitization": 1,
+        "preparedStatementsUsage": 0
+      },
+      "insecureDesign": {
+        "secureDesignPattern": 0,
+        "sensitiveDataExposure": 0,
+        "threatModeling": 0
+      },
+      "securityLoggingMonitoring": {
+        "anomalyMonitoring": 0,
+        "criticalEventLogging": 0,
+        "secureLogStorage": 1
+      },
+      "securityMisconfiguration": {
+        "adminEndpointExposure": 0,
+        "defaultConfiguration": 0,
+        "securityHeaders": 0
+      },
+      "serverSideRequestForgery": {
+        "inputValidation": 0,
+        "internalSystemExposure": 0,
+        "networkLayerProtection": 0
+      },
+      "softwareDataIntegrity": {
+        "versionControl": 0
+      },
+      "vulnerableOutdatedComponents": {
+        "knownVulnerabilities": 0
+      }
+    },
+    "hash": "ce477e515579ad72703ad5c725401260e1de549c7da62d484e45dba2a4824c68",
+    "id": "eJyNVMFq4zAU/JWHTklx4qRlWTCkULpsb2kgXfbiQ1X52dGuLBnpuUsp+fdFspzYwYXc7HkzfjMj25+MO4fOSV29GKNYxp5/P+x3i5fn3WK9YgkTpsBHowk1sYw1XPzlFUIpFaHNda5l3RhLkDOSNebMQ/TRIDxZXuAPJC4VSE1oSy4QPnOd0xPSo3lHyyucSU3zXB+nZA4c2VZQFPkBAHhQ6gpe/zijs5xVHs/Zq+fshbGBIzWdCM6DkdCvHRFEBCPnp1S45TVeLiojHmm+LZjwQ8aoniJrdMTrBnw3S397pvWzwA35y1YL2OK/YQWzEC/uSCBk8eYTKMc2E/CLzzeyxv149XzcbSjVIrVWjwYBj3VnPl9wkHRoKDigwUlE+8ayk6k48B0FdjDXg33y7OwyjI6xhzSFwRsCgivRKk7ogA4I/WlBg1agJn/5xh0WYHQgdB1xXQAdLLqDUUXsdlbBzTDqfLhndmI/uG1b+5LnXUmyhGrZvVr3cMGKbVXLk90NrG9XIQ6gcggD9WZzlXz1hfz+Ur5YTz7g+9X620n9t6v1d5P6u6F+OuH5uFkSPqwdpwPLWPrLoXXpAbX9ULx+S+tWkWwUpv43pLCkhVAy7f4+aTU4y2Vl2PE/QLa3ag=="
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/gradeDetails.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T19:46:43.046Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "brokenAccessControl": {
+        "clientServerAccessPolicyEnforcement": 0,
+        "idorPrevention": 0,
+        "roleBasedAccessControl": 0
+      },
+      "cryptographicFailures": {
+        "dataEncryption": 0,
+        "encryptionAlgorithmStrength": 0
+      },
+      "identificationAuthentication": {
+        "multiFactorAuthentication": 0,
+        "passwordPolicy": 0,
+        "sessionManagement": 0
+      },
+      "injection": {
+        "inputSanitization": 0,
+        "preparedStatementsUsage": 0
+      },
+      "insecureDesign": {
+        "secureDesignPattern": 0,
+        "sensitiveDataExposure": 0,
+        "threatModeling": 0
+      },
+      "securityLoggingMonitoring": {
+        "anomalyMonitoring": 0,
+        "criticalEventLogging": 0,
+        "secureLogStorage": 0
+      },
+      "securityMisconfiguration": {
+        "adminEndpointExposure": 0,
+        "defaultConfiguration": 0,
+        "securityHeaders": 0
+      },
+      "serverSideRequestForgery": {
+        "inputValidation": 0,
+        "internalSystemExposure": 0,
+        "networkLayerProtection": 0
+      },
+      "softwareDataIntegrity": {
+        "versionControl": 0
+      },
+      "vulnerableOutdatedComponents": {
+        "knownVulnerabilities": 0
+      }
+    },
+    "hash": "182fc226fd9432665897e688c93b1973bc8fcbe844a974accd78752a6b9740a3",
+    "id": "eJyNVNFq2zAU/ZWLnpLhxEnLGBhSKB3rWxpIx170EM25VtTKkpGuN0rJvw8pcmIHD/Loc8/xPedI9icT3qP3yshXazUr2Muvx+1m9vqymS0XLGOl3eOTNYSGWMEaUb4LiVApTei44UbVjXUEnJGqkbMA0UeD8OzEHr8jCaVBGUJXiRLhkxtOz0hP9g86IXGiDE25OY7JPHhybUlJFAYAEEBlJOzevDUFZzLgnO0CZ1taFznK0JngA5gI3doBoUxg4vxQGteixutFVcITLbQFI37IWt1RVI2eRN1A6GYeHi+0bha5MX/VmhLW+LdfwSTGSzsyiFmC+Qyqoc0MwuLLg6pxO1w9HXYbS3VIrTODQcRT3UXIFx1kJzQWHNHoJKFdY8XZVBqEjiI7muvALnlxcRlHx9jDbpeamEj40jc2hf69oYNDf7B6/+jXbR0qmZ4iqQrk/HQRHuCKlbLJ+fkerGB5t4jLAbVH6KlXq5vki//IH67ls+XoC77drL8b1X+9WX8/qr/v68cTXg6HZfEz2Ag6sILlPz06nx/QuA8t6t953WpSjcY8/DQ0VjQrtcpP/4pc9s5yLi07/gPIlplR"
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/filterTools.go",
+    "grade": "B",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T19:47:12.657Z",
+    "codeReview": {
+      "detailedReview": {
+        "tasks": [
+          {
+            "done": false,
+            "titleTask": "inputSanitization",
+            "violatingCode": "The `strings.TrimPrefix(value, \" \")` and `strings.TrimSuffix(value, \" \")` lines do not modify the original `value` string because strings in Go are immutable.  The return values of these functions are ignored, leaving the `value` unchanged and potentially leading to unexpected behavior if whitespace is present.\n",
+            "codeResolution": "The `strings.TrimPrefix` and `strings.TrimSuffix` calls in `Filter` don't modify the original `value` string because strings in Go are immutable.  To fix this, reassign the result:\n\n```go\nvalue = strings.TrimPrefix(value, \" \")\nvalue = strings.TrimSuffix(value, \" \")\n```\nThis ensures leading and trailing spaces are removed before filtering.  Consider using `strings.TrimSpace` for a more concise solution that removes both leading and trailing whitespace.\n",
+            "severity": "Critical",
+            "rationale": "Improper input sanitization in `Filter` leaves the code vulnerable to injection attacks if `values` contains malicious input.  Untrimmed whitespace could lead to unexpected filtering behavior.  This impacts correctness and maintainability, as unexpected behavior is difficult to debug and fix.  The lack of robust sanitization increases the attack surface and reduces the code's reliability.\n",
+            "lineStart": 20,
+            "lineEnd": 21,
+            "status": ""
+          }
+        ],
+        "codeReviewTitle": "OWASP-TOP-10 Code Review"
+      }
+    },
+    "gradingDetails": {
+      "brokenAccessControl": {
+        "clientServerAccessPolicyEnforcement": 0,
+        "idorPrevention": 0,
+        "roleBasedAccessControl": 0
+      },
+      "cryptographicFailures": {
+        "dataEncryption": 0,
+        "encryptionAlgorithmStrength": 0
+      },
+      "identificationAuthentication": {
+        "multiFactorAuthentication": 0,
+        "passwordPolicy": 0,
+        "sessionManagement": 0
+      },
+      "injection": {
+        "inputSanitization": 1,
+        "preparedStatementsUsage": 0
+      },
+      "insecureDesign": {
+        "secureDesignPattern": 0,
+        "sensitiveDataExposure": 0,
+        "threatModeling": 0
+      },
+      "securityLoggingMonitoring": {
+        "anomalyMonitoring": 0,
+        "criticalEventLogging": 0,
+        "secureLogStorage": 0
+      },
+      "securityMisconfiguration": {
+        "adminEndpointExposure": 0,
+        "defaultConfiguration": 0,
+        "securityHeaders": 0
+      },
+      "serverSideRequestForgery": {
+        "inputValidation": 0,
+        "internalSystemExposure": 0,
+        "networkLayerProtection": 0
+      },
+      "softwareDataIntegrity": {
+        "versionControl": 0
+      },
+      "vulnerableOutdatedComponents": {
+        "knownVulnerabilities": 0
+      }
+    },
+    "hash": "c7ce1041be20276f02d1a6c4a35380c9c4ff8ff62353d45c1773bab4aef9103c",
+    "id": "eJytlEFvnDAQhf/KyIcKKhba60oc0lRtT82q2aiHOKpcGMCqsZE9JEWr/e+VMSy7JY0UqScs3rxvxn6GAxPOoXNS13tjFNuym+9Xt7vN/ma3ef+OJawwJV4bTaiJbVknil+iRqikIrRccy3bzliCiGtOnDmyUteOM65jr9LQIXwaiz3egdSEthIFwsE7ghQ9CtWjg/uH4E+gkY6Mlejgy7yKlyXXxxPcYwMFHNm+oMOoVb0u4Cs+LXIUXwwytrdIvdXwZqny7gUQEbxdtBnw2nFDr3BkWC6vt/lSM05NlbHwI4GR72UrdI0wtRspnKYjTvdWtjuLlfwd5kmAM+AsXlfd9tU/qui0t7/mojSM+2Hw25+tp21O9vWWchBdh7qMVlICzzZL03SEHc/iWHlfiuRiTt8C/nMoSywBOCzBNJcwTrKC08Gbu65DG02m9Or8M4shz1eVNAoTiVOWWSz7AoEahFKQAGVEOasz9tqU+A0fJT5BDq3o7gP1QeghXKnz4s9WlFLXH5GEVO55w2R5XbRTg+laHOdAX46UJaySCneCGrZl2Z1D67IGtR2UaH9mba9Idgoz/wdSWNGmUDILoOkxfslpbdjxD5AFzEI="
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/filterTools.go",
+    "grade": "B",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T19:48:26.867Z",
+    "codeReview": {
+      "detailedReview": {
+        "tasks": [
+          {
+            "done": false,
+            "titleTask": "inputSanitization",
+            "violatingCode": "The code snippet `value = strings.TrimPrefix(value, \" \"); value = strings.TrimSuffix(value, \" \");` demonstrates insufficient input sanitization.  It only removes leading and trailing spaces.  More robust sanitization is needed to prevent injection attacks, especially if `value` is used to construct queries or commands.\n",
+            "codeResolution": "The current `inputSanitization` (lines 28-29) only trims leading/trailing spaces.  A more robust solution would handle other potential issues like SQL injection.  Replace lines 28-29 with a parameterized query or a library like `database/sql`'s prepared statements to prevent injection vulnerabilities.  For simple sanitization beyond whitespace, consider using a regular expression to remove or replace unwanted characters.  Example: `value = regexp.MustCompile(`[^a-zA-Z0-9 ]+`).ReplaceAllString(value, \"\")` (requires importing `regexp`).\n",
+            "severity": "Critical",
+            "rationale": "Improper input sanitization in `strings.TrimPrefix(value, \" \")` and `strings.TrimSuffix(value, \" \")` leaves the code vulnerable to injection attacks if `values` originates from untrusted sources.  An attacker could inject malicious code disguised as whitespace, leading to incorrect filtering, data corruption,",
+            "lineStart": 20,
+            "lineEnd": 21,
+            "status": ""
+          }
+        ],
+        "codeReviewTitle": "OWASP-TOP-10 Code Review"
+      },
+      "upgradedCode": {
+        "oldCode": "package filter\n\nimport (\n\t\"strings\"\n)\n\ntype FilterTools interface {\n\tFilter(values []string, histories Histories) Histories\n}\n\ntype ToolFilter struct{}\n\nfunc NewToolFilter() FilterTools {\n\treturn &ToolFilter{}\n}\n\nfunc (t *ToolFilter) Filter(values []string, histories Histories) Histories {\n\tfilteredHistories := Histories{}\n\tfor _, value := range values {\n\t\tvalue = strings.TrimPrefix(value, \" \")\n\t\tvalue = strings.TrimSuffix(value, \" \")\n\t\ttoolFilteredHistories := t.filterByTool(value, histories)\n\t\tfilteredHistories = append(filteredHistories, toolFilteredHistories...)\n\t}\n\treturn filteredHistories\n}\n\nfunc (t *ToolFilter) filterByTool(tool string, histories Histories) Histories {\n\tfilteredHistories := Histories{}\n\n\tfor _, history := range histories {\n\t\tif strings.ToUpper(history.AssessingTool) == strings.ToUpper(tool) {\n\t\t\t//reduce the data load\n\t\t\thistory.CodeReview = map[string]any{}\n\t\t\thistory.GradingDetails = map[string]any{}\n\n\t\t\tfilteredHistories = append(filteredHistories, history)\n\t\t}\n\t}\n\n\treturn filteredHistories\n}",
+        "newCode": "package filter\n\nimport (\n\t\"regexp\"\n\t\"strings\"\n)\n\ntype FilterTools interface {\n\tFilter(values []string, histories Histories) Histories\n}\n\ntype ToolFilter struct{}\n\nfunc NewToolFilter() FilterTools {\n\treturn &ToolFilter{}\n}\n\nfunc (t *ToolFilter) Filter(values []string, histories Histories) Histories {\n\tfilteredHistories := Histories{}\n\tfor _, value := range values {\n\t\t// More robust sanitization to prevent injection attacks\n\t\tvalue = strings.TrimSpace(value) // Remove leading/trailing whitespace\n\t\t// Further sanitization using regular expressions\n\t\t// This example removes any characters that are not alphanumeric or spaces.  Adjust as needed.\n\t\tvalue = regexp.MustCompile(`[^a-zA-Z0-9 ]+`).ReplaceAllString(value, \"\")\n\n\t\ttoolFilteredHistories := t.filterByTool(value, histories)\n\t\tfilteredHistories = append(filteredHistories, toolFilteredHistories...)\n\t}\n\treturn filteredHistories\n}\n\nfunc (t *ToolFilter) filterByTool(tool string, histories Histories) Histories {\n\tfilteredHistories := Histories{}\n\n\tfor _, history := range histories {\n\t\tif strings.ToUpper(history.AssessingTool) == strings.ToUpper(tool) {\n\t\t\t//reduce the data load\n\t\t\thistory.CodeReview = map[string]any{}\n\t\t\thistory.GradingDetails = map[string]any{}\n\n\t\t\tfilteredHistories = append(filteredHistories, history)\n\t\t}\n\t}\n\n\treturn filteredHistories\n}",
+        "changes": [
+          {
+            "oldCode": "package filter",
+            "newCode": "package filter",
+            "reason": "Unchanged",
+            "start": 1,
+            "end": 1
+          },
+          {
+            "reason": "Unchanged",
+            "start": 2,
+            "end": 2
+          },
+          {
+            "oldCode": "import (",
+            "newCode": "import (",
+            "reason": "Unchanged",
+            "start": 3,
+            "end": 3
+          },
+          {
+            "newCode": "\t\"regexp\"",
+            "reason": "Added",
+            "start": 4,
+            "end": 4,
+            "reasonDiff": "Added `regexp` import to implement more robust input sanitization and prevent potential injection attacks.\n"
+          },
+          {
+            "oldCode": "\t\"strings\"",
+            "newCode": "\t\"strings\"",
+            "reason": "Unchanged",
+            "start": 4,
+            "end": 4
+          },
+          {
+            "oldCode": ")",
+            "newCode": ")",
+            "reason": "Unchanged",
+            "start": 5,
+            "end": 5
+          },
+          {
+            "reason": "Unchanged",
+            "start": 6,
+            "end": 6
+          },
+          {
+            "oldCode": "type FilterTools interface {",
+            "newCode": "type FilterTools interface {",
+            "reason": "Unchanged",
+            "start": 7,
+            "end": 7
+          },
+          {
+            "oldCode": "\tFilter(values []string, histories Histories) Histories",
+            "newCode": "\tFilter(values []string, histories Histories) Histories",
+            "reason": "Unchanged",
+            "start": 8,
+            "end": 8
+          },
+          {
+            "oldCode": "}",
+            "newCode": "}",
+            "reason": "Unchanged",
+            "start": 9,
+            "end": 9
+          },
+          {
+            "reason": "Unchanged",
+            "start": 10,
+            "end": 10
+          },
+          {
+            "oldCode": "type ToolFilter struct{}",
+            "newCode": "type ToolFilter struct{}",
+            "reason": "Unchanged",
+            "start": 11,
+            "end": 11
+          },
+          {
+            "reason": "Unchanged",
+            "start": 12,
+            "end": 12
+          },
+          {
+            "oldCode": "func NewToolFilter() FilterTools {",
+            "newCode": "func NewToolFilter() FilterTools {",
+            "reason": "Unchanged",
+            "start": 13,
+            "end": 13
+          },
+          {
+            "oldCode": "\treturn &ToolFilter{}",
+            "newCode": "\treturn &ToolFilter{}",
+            "reason": "Unchanged",
+            "start": 14,
+            "end": 14
+          },
+          {
+            "oldCode": "}",
+            "newCode": "}",
+            "reason": "Unchanged",
+            "start": 15,
+            "end": 15
+          },
+          {
+            "reason": "Unchanged",
+            "start": 16,
+            "end": 16
+          },
+          {
+            "oldCode": "func (t *ToolFilter) Filter(values []string, histories Histories) Histories {",
+            "newCode": "func (t *ToolFilter) Filter(values []string, histories Histories) Histories {",
+            "reason": "Unchanged",
+            "start": 17,
+            "end": 17
+          },
+          {
+            "oldCode": "\tfilteredHistories := Histories{}",
+            "newCode": "\tfilteredHistories := Histories{}",
+            "reason": "Unchanged",
+            "start": 18,
+            "end": 18
+          },
+          {
+            "oldCode": "\tfor _, value := range values {",
+            "newCode": "\tfor _, value := range values {",
+            "reason": "Unchanged",
+            "start": 19,
+            "end": 19
+          },
+          {
+            "oldCode": "\t\tvalue = strings.TrimPrefix(value, \" \")\n\t\tvalue = strings.TrimSuffix(value, \" \")",
+            "newCode": "\t\t// More robust sanitization to prevent injection attacks\n\t\tvalue = strings.TrimSpace(value) // Remove leading/trailing whitespace\n\t\t// Further sanitization using regular expressions\n\t\t// This example removes any characters that are not alphanumeric or spaces.  Adjust as needed.\n\t\tvalue = regexp.MustCompile(`[^a-zA-Z0-9 ]+`).ReplaceAllString(value, \"\")\n",
+            "reason": "Modified",
+            "start": 20,
+            "end": 21,
+            "reasonDiff": "Enhanced input sanitization to prevent potential injection attacks.  The previous implementation only removed leading/trailing spaces, leaving the application vulnerable.  The updated code performs more robust sanitization using regular expressions and `strings.TrimSpace`.\n"
+          },
+          {
+            "oldCode": "\t\ttoolFilteredHistories := t.filterByTool(value, histories)",
+            "newCode": "\t\ttoolFilteredHistories := t.filterByTool(value, histories)",
+            "reason": "Unchanged",
+            "start": 22,
+            "end": 22
+          },
+          {
+            "oldCode": "\t\tfilteredHistories = append(filteredHistories, toolFilteredHistories...)",
+            "newCode": "\t\tfilteredHistories = append(filteredHistories, toolFilteredHistories...)",
+            "reason": "Unchanged",
+            "start": 23,
+            "end": 23
+          },
+          {
+            "oldCode": "\t}",
+            "newCode": "\t}",
+            "reason": "Unchanged",
+            "start": 24,
+            "end": 24
+          },
+          {
+            "oldCode": "\treturn filteredHistories",
+            "newCode": "\treturn filteredHistories",
+            "reason": "Unchanged",
+            "start": 25,
+            "end": 25
+          },
+          {
+            "oldCode": "}",
+            "newCode": "}",
+            "reason": "Unchanged",
+            "start": 26,
+            "end": 26
+          },
+          {
+            "reason": "Unchanged",
+            "start": 27,
+            "end": 27
+          },
+          {
+            "oldCode": "func (t *ToolFilter) filterByTool(tool string, histories Histories) Histories {",
+            "newCode": "func (t *ToolFilter) filterByTool(tool string, histories Histories) Histories {",
+            "reason": "Unchanged",
+            "start": 28,
+            "end": 28
+          },
+          {
+            "oldCode": "\tfilteredHistories := Histories{}",
+            "newCode": "\tfilteredHistories := Histories{}",
+            "reason": "Unchanged",
+            "start": 29,
+            "end": 29
+          },
+          {
+            "reason": "Unchanged",
+            "start": 30,
+            "end": 30
+          },
+          {
+            "oldCode": "\tfor _, history := range histories {",
+            "newCode": "\tfor _, history := range histories {",
+            "reason": "Unchanged",
+            "start": 31,
+            "end": 31
+          },
+          {
+            "oldCode": "\t\tif strings.ToUpper(history.AssessingTool) == strings.ToUpper(tool) {",
+            "newCode": "\t\tif strings.ToUpper(history.AssessingTool) == strings.ToUpper(tool) {",
+            "reason": "Unchanged",
+            "start": 32,
+            "end": 32
+          },
+          {
+            "oldCode": "\t\t\t//reduce the data load",
+            "newCode": "\t\t\t//reduce the data load",
+            "reason": "Unchanged",
+            "start": 33,
+            "end": 33
+          },
+          {
+            "oldCode": "\t\t\thistory.CodeReview = map[string]any{}",
+            "newCode": "\t\t\thistory.CodeReview = map[string]any{}",
+            "reason": "Unchanged",
+            "start": 34,
+            "end": 34
+          },
+          {
+            "oldCode": "\t\t\thistory.GradingDetails = map[string]any{}",
+            "newCode": "\t\t\thistory.GradingDetails = map[string]any{}",
+            "reason": "Unchanged",
+            "start": 35,
+            "end": 35
+          },
+          {
+            "reason": "Unchanged",
+            "start": 36,
+            "end": 36
+          },
+          {
+            "oldCode": "\t\t\tfilteredHistories = append(filteredHistories, history)",
+            "newCode": "\t\t\tfilteredHistories = append(filteredHistories, history)",
+            "reason": "Unchanged",
+            "start": 37,
+            "end": 37
+          },
+          {
+            "oldCode": "\t\t}",
+            "newCode": "\t\t}",
+            "reason": "Unchanged",
+            "start": 38,
+            "end": 38
+          },
+          {
+            "oldCode": "\t}",
+            "newCode": "\t}",
+            "reason": "Unchanged",
+            "start": 39,
+            "end": 39
+          },
+          {
+            "reason": "Unchanged",
+            "start": 40,
+            "end": 40
+          },
+          {
+            "oldCode": "\treturn filteredHistories",
+            "newCode": "\treturn filteredHistories",
+            "reason": "Unchanged",
+            "start": 41,
+            "end": 41
+          },
+          {
+            "oldCode": "}",
+            "newCode": "}",
+            "reason": "Unchanged",
+            "start": 42,
+            "end": 42
+          }
+        ]
+      }
+    },
+    "gradingDetails": {
+      "brokenAccessControl": {
+        "clientServerAccessPolicyEnforcement": 0,
+        "idorPrevention": 0,
+        "roleBasedAccessControl": 0
+      },
+      "cryptographicFailures": {
+        "dataEncryption": 0,
+        "encryptionAlgorithmStrength": 0
+      },
+      "identificationAuthentication": {
+        "multiFactorAuthentication": 0,
+        "passwordPolicy": 0,
+        "sessionManagement": 0
+      },
+      "injection": {
+        "inputSanitization": 1,
+        "preparedStatementsUsage": 0
+      },
+      "insecureDesign": {
+        "secureDesignPattern": 0,
+        "sensitiveDataExposure": 0,
+        "threatModeling": 0
+      },
+      "securityLoggingMonitoring": {
+        "anomalyMonitoring": 0,
+        "criticalEventLogging": 0,
+        "secureLogStorage": 0
+      },
+      "securityMisconfiguration": {
+        "adminEndpointExposure": 0,
+        "defaultConfiguration": 0,
+        "securityHeaders": 0
+      },
+      "serverSideRequestForgery": {
+        "inputValidation": 0,
+        "internalSystemExposure": 0,
+        "networkLayerProtection": 0
+      },
+      "softwareDataIntegrity": {
+        "versionControl": 0
+      },
+      "vulnerableOutdatedComponents": {
+        "knownVulnerabilities": 0
+      }
+    },
+    "hash": "03ffb9d9e10ee399c45fbd104a5e2a70d9e12b69f5112e2410b29bfc19aa0cbf",
+    "id": "eJytlEFvnDAQhf/KyIcKKhba60oc0kRpT82q2aiHOIpcGMCqsZE9JEWr/e8VGNa73SRSpJ6wePO+GfsZdkw4h85JXW+NUWzNbn5e3G5W25vN6vMnlrDClHhpNKEmtmadKH6LGqGSitByzbVsO2MJIq45cebISl07zriOR5WGDuF6Kh7xDqQmtJUoEHajw0vRk1A9Orh/8P4EGunIWIkOvi2rOCy53h/gI9ZTwJHtC9pNWtXrAr7jc5Cj+GSQqb1F6q2GD6FqdAdARPAxaAvgveP6Xv7IsAyv13momaamylh4TGDij7IVukaY200UTl7MYT7qdGtlu7FYyT9+rgQ4A87i16tv++qVajrs9Z85KfXjfxnG41ish23P9vMt5iC6DnUZnUkJvNgsTdMJtj+K58z7VkQnc44t4D+HFGLywCEE1ZzCOMkqHLy56zq00WxKL44/uxjy/KySJmEmccoyi2VfIFCDUAoSoIwoF3XBXpoSf+CTxGfIoRXdvac+CD34K3Zc/NWKUur6CklI5V42zJb3RTs3mK/Ffgn07UhZwiqpcCOoYWuW3Tm0LmtQ20GJ9lfW9opkpzAb/0gKK1oVSmYeND+mLzutDdv/Bexv0XY="
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/filterTools.go",
+    "grade": "B",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T19:49:53.079Z",
+    "codeReview": {
+      "detailedReview": {
+        "tasks": [
+          {
+            "done": false,
+            "titleTask": "inputValidation",
+            "violatingCode": "The input validation is insufficient.  The line `value = regexp.MustCompile(`[^a-zA-Z0-9 ]+`).ReplaceAllString(value, \"\")` only removes non-alphanumeric characters and spaces.  It doesn't handle other potential issues like SQL injection or cross-site scripting (XSS).  More robust validation is needed, potentially using parameterized queries or escaping special characters.\n",
+            "codeResolution": "The `inputValidation` is currently performed using `strings.TrimSpace` and a regular expression to remove non-alphanumeric characters.  This is insufficient for robust validation.  A more comprehensive approach should be implemented, potentially using a whitelist of allowed characters or a more specific regular expression tailored to the expected input format.  For example, instead of `regexp.MustCompile(`[^a-zA-Z0-9 ]+`).ReplaceAllString(value, \"\")`, consider a more restrictive regex or a function that explicitly checks for allowed characters.  This would prevent unexpected characters from causing issues.  Adding input length checks would also enhance security.\n",
+            "severity": "Critical",
+            "rationale": "The lack of input validation for `values` in `ToolFilter.Filter` is problematic.  Malicious input could lead to unexpected behavior, such as denial-of-service attacks through excessive computation or unexpected data manipulation via regular expression vulnerabilities.  Robust input validation improves correctness and maintainability by preventing unexpected errors and simplifying debugging.  Improperly sanitized input could also affect the performance of the `regexp.MustCompile` function.\n",
+            "lineStart": 21,
+            "lineEnd": 25,
+            "status": ""
+          },
+          {
+            "done": false,
+            "titleTask": "inputSanitization",
+            "violatingCode": "The code uses `strings.TrimSpace(value)` to remove leading/trailing whitespace and `regexp.MustCompile(`[^a-zA-Z0-9 ]+`).ReplaceAllString(value, \"\")` to remove non-alphanumeric characters.  This is insufficient sanitization; it doesn't handle special characters that could be used for injection attacks.  A more robust approach is needed, potentially using parameterized queries or escaping special characters specific to the database system.\n",
+            "codeResolution": "The current input sanitization is insufficient.  It only removes non-alphanumeric characters and spaces.  A more robust approach is needed to prevent injection attacks.  Consider using a parameterized query or a library specifically designed for input sanitization, depending on the context (database interaction, etc.).  For example, instead of `regexp.MustCompile(`[^a-zA-Z0-9 ]+`).ReplaceAllString(value, \"\")`,  use a library like `github.com/microcosm-cc/bluemonday` for HTML sanitization or escape special characters appropriately for your target system.  This prevents unexpected behavior and security vulnerabilities.\n",
+            "severity": "Critical",
+            "rationale": "Insufficient input sanitization renders the application vulnerable to injection attacks.  Maliciously crafted input could bypass the `regexp` filter, leading to unexpected behavior, data corruption, or security breaches.  This impacts correctness and maintainability, as future developers might overlook the incomplete sanitization, increasing the risk of vulnerabilities.  Robust sanitization is crucial for reliable and secure operation.\n",
+            "lineStart": 21,
+            "lineEnd": 25,
+            "status": ""
+          }
+        ],
+        "codeReviewTitle": "OWASP-TOP-10 Code Review"
+      }
+    },
+    "gradingDetails": {
+      "brokenAccessControl": {
+        "clientServerAccessPolicyEnforcement": 0,
+        "idorPrevention": 0,
+        "roleBasedAccessControl": 0
+      },
+      "cryptographicFailures": {
+        "dataEncryption": 0,
+        "encryptionAlgorithmStrength": 0
+      },
+      "identificationAuthentication": {
+        "multiFactorAuthentication": 0,
+        "passwordPolicy": 0,
+        "sessionManagement": 0
+      },
+      "injection": {
+        "inputSanitization": 1,
+        "preparedStatementsUsage": 0
+      },
+      "insecureDesign": {
+        "secureDesignPattern": 0,
+        "sensitiveDataExposure": 0,
+        "threatModeling": 0
+      },
+      "securityLoggingMonitoring": {
+        "anomalyMonitoring": 0,
+        "criticalEventLogging": 0,
+        "secureLogStorage": 0
+      },
+      "securityMisconfiguration": {
+        "adminEndpointExposure": 0,
+        "defaultConfiguration": 0,
+        "securityHeaders": 0
+      },
+      "serverSideRequestForgery": {
+        "inputValidation": 1,
+        "internalSystemExposure": 0,
+        "networkLayerProtection": 0
+      },
+      "softwareDataIntegrity": {
+        "versionControl": 0
+      },
+      "vulnerableOutdatedComponents": {
+        "knownVulnerabilities": 0
+      }
+    },
+    "hash": "e8823e744e67ba909ecefc7515822bf836d48c29a4548a84381c33cbd1b1ace6",
+    "id": "eJytVF1v00AQ/Cure0AxJHZ5JFIeQlHhBVq1qZCoC13stX3ifHe6W7dNq/x3dD4nbkhVqRJP/pid2fXO+B4Fek/eS12vjFFiLk6/Ly/OZqvTs9n7IzEVhSnp2GgmzWIuLBZ/sCaopGJyuc61bK1xDJNc55wLRzXd21zEJ89O6tqHxyTU8toSnPTU0MyD1EyuwoLgMTAiNLlF1ZGHq+vIn0IjPRsnycOX7V0y3uZ6sxMPslEFPLuu4MceqzpdwDe6G+FJsjdI394Rd07Dm7EqsEeBCcPbEdsKvHbc2CsukMrx9Xwx1vRTc2Uc/JpCrx9gh7omGNr1KjlHcAHDqtOVk+2FxYLiWAlkGZxTa24JFGEpdZ2xQ6mkruGukUw+FEetLIOTznETlodasnxAlkZDF9IBjupOoQO6ty4Exmi/o60a6YHusbWKwPXtPKBeQ9Ggw4LJeeAGGdARaMOAyjaou5acLMA46Kfw6f43xTClXzvPx6a1UtHk5uonzh6Wsx9Hsw9w/e4mSc/JKixoqdRFv4L43VPIRS760AVF3rn2z8Y5jUZ8XAdjt9ydgUmkH5q1ALSWdDk5gKbwbLM0TXuxzZOgHXBfCtvenKEF/Oe4jYGLgusxcs2+WM6yGgNnLq0lNxlI6fLpcZLAYnFQyT0wKIX4OCq7goAbghIZQRkst+hW9tiUdE63ku5gAS3aq6h6jXodf5anxZ9dn/RPxCiVf54wUF5n7dBgiMVma+jLloqpqKSiM+RGzEV26cn5rCHt1grb31nbKZZWURZOWkUVzwolsyg0XPozKq2N2PwFjeghhg=="
+  },
+  {
+    "assessingTool": "OWASP-TOP-10",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/filter/filterTools.go",
+    "grade": "B",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T19:50:41.722Z",
+    "codeReview": {
+      "detailedReview": {
+        "tasks": [
+          {
+            "done": false,
+            "titleTask": "inputSanitization",
+            "violatingCode": "The code snippet `value = strings.TrimPrefix(value, \" \"); value = strings.TrimSuffix(value, \" \");` shows inadequate input sanitization.  While it removes leading and trailing spaces, it doesn't handle other potential issues like SQL injection or cross-site scripting (XSS) vulnerabilities if `value` were used in a database query or web context.  More robust sanitization techniques are needed depending on the context of `value`'s usage.\n",
+            "codeResolution": "The current `inputSanitization` is insufficient.  It only trims leading/trailing whitespace.  To improve, use a parameterized query or a library that escapes special characters to prevent SQL injection vulnerabilities.  For example, replace `strings.ToUpper(history.AssessingTool) == strings.ToUpper(tool)` with a parameterized query using your database library.  This prevents injection attacks even if `tool` contains malicious SQL code.\n",
+            "severity": "Critical",
+            "rationale": "Improper input sanitization can lead to unexpected behavior or vulnerabilities.  In this code, while `strings.TrimPrefix` and `strings.TrimSuffix` handle leading/trailing spaces, it doesn't address other potential issues like SQL injection (though the comment claims it's not used for SQL queries, this should be verified).  Lack of comprehensive sanitization could impact correctness and maintainability, requiring future modifications to address unforeseen problems.  Thorough input validation is crucial for robust and secure code.\n",
+            "lineStart": 20,
+            "lineEnd": 21,
+            "status": ""
+          }
+        ],
+        "codeReviewTitle": "OWASP-TOP-10 Code Review"
+      }
+    },
+    "gradingDetails": {
+      "brokenAccessControl": {
+        "clientServerAccessPolicyEnforcement": 0,
+        "idorPrevention": 0,
+        "roleBasedAccessControl": 0
+      },
+      "cryptographicFailures": {
+        "dataEncryption": 0,
+        "encryptionAlgorithmStrength": 0
+      },
+      "identificationAuthentication": {
+        "multiFactorAuthentication": 0,
+        "passwordPolicy": 0,
+        "sessionManagement": 0
+      },
+      "injection": {
+        "inputSanitization": 1,
+        "preparedStatementsUsage": 0
+      },
+      "insecureDesign": {
+        "secureDesignPattern": 0,
+        "sensitiveDataExposure": 0,
+        "threatModeling": 0
+      },
+      "securityLoggingMonitoring": {
+        "anomalyMonitoring": 0,
+        "criticalEventLogging": 0,
+        "secureLogStorage": 0
+      },
+      "securityMisconfiguration": {
+        "adminEndpointExposure": 0,
+        "defaultConfiguration": 0,
+        "securityHeaders": 0
+      },
+      "serverSideRequestForgery": {
+        "inputValidation": 0,
+        "internalSystemExposure": 0,
+        "networkLayerProtection": 0
+      },
+      "softwareDataIntegrity": {
+        "versionControl": 0
+      },
+      "vulnerableOutdatedComponents": {
+        "knownVulnerabilities": 0
+      }
+    },
+    "hash": "0f032ad74d18a38505760575c127b7fb0a0263f785710a4b517c2826b5826fe9",
+    "id": "eJytVM9v0zAU/leefEApShO4VsphDAEHxArtxGGekEleEgvXDvbLRjT1f0eOnaal26RJnBLl+/X8viQPTDiHzkndbI1RbMWuvl9s1svt1Xr59g1LWWkqvDSaUBNbsU6Uv0SDUEtFaLnmWu46YwkSrjlx5shK3TjOuF54lIYO4cNI9vYOpCa0tSgRHrwiQMmdUD06uLkN+hRa6chYiQ4+TXeL+Zbr/cHc2wYXcGT7kh5GrO51CV/wfoaTxckgY7xF6q2GVzPLq2eDhOD1jE0GLx03ZIWVYTU/XhUzZ5yaamPhRwqjv4et0A1CjBtdOAWwgLjqbGvlbm2xln/CXClwBpwtnmZv+voJdp5TK10kxzGkA20IeocV+Pk2Xz/D7x7t4IKGDvv552yUhSO/G/wKp7jDqmLk+VoKEF2HukrOoBQeDcuybDTbH1V6pn2u1pM5fQT852LnaoPhMJfbnppxkvVclrnuOrRJFGUXx5/qAorijEkjEJ18nxarvkSgFqESJEAZUU3oZHtpKvyGdxLvoYCd6G6C663QQ3gtj8kfraikbt4jCanc44IoeVm1MSC+Fvup0OcrZSmrpcK1oJatWH7t0Lq8RW0HJXY/812vSHYKc/8XU1jTslQyD0bxMv4Nssaw/V/9reRo"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/read/configReader.go",
+    "grade": "B",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T19:51:52.411Z",
+    "codeReview": {
+      "detailedReview": {
+        "tasks": [
+          {
+            "done": false,
+            "titleTask": "openClosed",
+            "violatingCode": "The `ConfigReader` type is tightly coupled to JSON configuration files.  Adding support for YAML or other formats would require modifying the `ReadConfig` function, violating the Open/Closed Principle.  Specifically, lines like `decoder := json.NewDecoder(file)` and `decoder.Decode(&config)` are hardcoded to JSON processing.\n",
+            "codeResolution": "The `ConfigReader` is tightly coupled to JSON.  To improve the Open/Closed Principle, introduce an interface `ConfigSource` with methods `ReadConfig() (*types.Config, error)` and `Close() error`.  `ConfigReader` would implement this interface, and a new `YAMLConfigReader` could be added later without modifying existing code.  The `ReadConfig()` function in `ConfigReader` would then use the appropriate reader based on the file extension.\n",
+            "severity": "Medium",
+            "rationale": "The `ConfigReader` tightly couples the JSON file format and the file reading logic.  Adding support for a different configuration format (e.g., YAML) would require modifying the `ReadConfig` function, violating the Open/Closed Principle. This reduces maintainability and increases the risk of introducing bugs with each new format.  The solution is to introduce an abstraction for configuration reading, allowing different format handlers to be plugged in without altering the core `ConfigReader`.\n",
+            "lineStart": 36,
+            "lineEnd": 61,
+            "status": ""
+          },
+          {
+            "done": false,
+            "titleTask": "dependencyInversion",
+            "violatingCode": "The `ConfigReader` directly uses `os.Open`, `os.Stat`, `json.NewDecoder`, and `filepath.Join`.  It should depend on abstractions for file I/O and JSON decoding instead of concrete implementations.  For example, an interface defining file reading and another for JSON decoding would improve dependency inversion.\n",
+            "codeResolution": "The `ConfigReader` depends on concrete implementations (`os.Getwd`, `os.Open`, `json.NewDecoder`, `os.Stat`, `filepath.Join`).  To improve dependency inversion, inject these dependencies as interfaces.  For example, create interfaces like `FileSystem` (with methods like `Getwd`, `Open`, `Stat`) and `JSONDecoder` (with a `Decode` method).  `ConfigReader` would then depend on these abstractions, allowing for easier testing and swapping of implementations.\n",
+            "severity": "Medium",
+            "rationale": "The `ConfigReader` directly uses `os`, `filepath`, and `json` packages.  This tight coupling violates the Dependency Inversion Principle.  If these dependencies change (e.g., a different file system or JSON library), `ConfigReader` needs modification. This reduces maintainability and increases the risk of introducing bugs during updates.  Using interfaces for file I/O and JSON handling would improve flexibility and testability.\n",
+            "lineStart": 12,
+            "lineEnd": 32,
+            "status": ""
+          },
+          {
+            "done": false,
+            "titleTask": "interfaceSegregation",
+            "violatingCode": "The `ConfigReader` type is responsible for both locating the configuration file and parsing its JSON content.  This violates the Interface Segregation Principle because these are distinct concerns.  The `ReadConfig` method does too much.  A better design would separate file location from JSON decoding into separate interfaces and types.\n",
+            "codeResolution": "The `ConfigReader` currently handles file path resolution and JSON decoding.  To improve interface segregation, split `ConfigReader` into two interfaces: one for path resolution (`ConfigPathResolver`) and another for JSON reading (`ConfigJSONReader`).  `ConfigReader` would then implement both.  This separates concerns, allowing for easier testing and potential replacement of individual components.  For example:\n\n```go\ntype ConfigPathResolver interface {\n    ResolveConfigPath() (string, error)\n}\n\ntype ConfigJSONReader interface {\n    ReadConfigFromJSON(path string) (*types.Config, error)\n}\n\ntype ConfigReader struct {\n    RepoRoot     string\n    CodeleftPath string\n}\n\nfunc (cr *ConfigReader) ResolveConfigPath() (string, error) {\n    // ... (path resolution logic) ...\n}\n\nfunc (cr *ConfigReader) ReadConfigFromJSON(path string) (*types.Config, error) {\n    // ... (JSON decoding logic) ...\n}\n```\n",
+            "severity": "Medium",
+            "rationale": "The `ConfigReader` violates the Interface Segregation Principle (ISP) because it combines file system operations (finding the config file, checking its existence and type, opening it) with JSON decoding.  This coupling makes it harder to reuse parts of the functionality. For example, if you need to read configuration from a different source (e.g., environment variables), you'd have to rewrite the entire `ConfigReader`, even though the JSON decoding logic might be reusable.  This reduces maintainability and increases the risk of introducing bugs when modifying the code.\n",
+            "lineStart": 11,
+            "lineEnd": 72,
+            "status": ""
+          },
+          {
+            "done": false,
+            "titleTask": "liskovSubstitution",
+            "violatingCode": "The provided code does not demonstrate a Liskov Substitution Principle violation.  The `ConfigReader` struct and its methods operate on a specific file (`config.json`) and its path, without defining an interface that would allow for substitution with alternative readers.  There's no indication of a base class or interface being violated by a subclass.\n",
+            "codeResolution": "The Liskov Substitution Principle (LSP) isn't directly violated in this code.  The `ConfigReader` doesn't have any subclasses, so there's no substitution to consider.  The concern might be around error handling.  The numerous `fmt.Errorf` calls create specific error types, which might limit flexibility if different error handling strategies are needed later.  Consider using a more generic error type or an error wrapping mechanism to improve flexibility and adherence to the OCP as well.\n",
+            "severity": "Medium",
+            "rationale": "The Liskov Substitution Principle (LSP) is not directly applicable here because there are no interfaces or inheritance involved in the `ConfigReader` struct.  The code",
+            "lineStart": 12,
+            "lineEnd": 72,
+            "status": ""
+          }
+        ],
+        "codeReviewTitle": "SOLID Code Review"
+      },
+      "upgradedCode": {
+        "oldCode": "package read\n\nimport (\n\t\"codeleft-cli/types\"\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"os\"\n\t\"path/filepath\"\n)\n\n// ConfigReader is responsible for reading the config.json file.\ntype ConfigReader struct {\n\tRepoRoot     string\n\tCodeleftPath string\n}\n\nfunc NewConfigReader() (*ConfigReader, error) {\n\trepoRoot, err := os.Getwd()\n\tif err != nil {\n\t\treturn nil, fmt.Errorf(\"failed to get current working directory: %w\", err)\n\t}\n\n\t// Recursively find .codeleft\n\tcodeleftPath, err := findCodeleftRecursive(repoRoot)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\n\tcr := &ConfigReader{\n\t\tRepoRoot:     repoRoot,\n\t\tCodeleftPath: codeleftPath,\n\t}\n\treturn cr, nil\n}\n\nfunc (cr *ConfigReader) ReadConfig() (*types.Config, error) {\n\t// Ensure the .codeleft path is set\n\tif cr.CodeleftPath == \"\" {\n\t\treturn nil, fmt.Errorf(\".codeLeft folder not found in the repository root: %s\", cr.RepoRoot)\n\t}\n\n\tconfigPath := filepath.Join(cr.CodeleftPath, \"config.json\")\n\n\t// Check if config.json exists\n\tinfo, err := os.Stat(configPath)\n\tif err != nil {\n\t\tif os.IsNotExist(err) {\n\t\t\treturn nil, fmt.Errorf(\"config.json does not exist at path: %s\", configPath)\n\t\t}\n\t\treturn nil, fmt.Errorf(\"error accessing config.json: %w\", err)\n\t}\n\n\tif info.IsDir() {\n\t\treturn nil, fmt.Errorf(\"config.json exists but is a directory: %s\", configPath)\n\t}\n\n\t// Open the config.json file\n\tfile, err := os.Open(configPath)\n\tif err != nil {\n\t\treturn nil, fmt.Errorf(\"failed to open config.json: %w\", err)\n\t}\n\tdefer file.Close()\n\n\t// Decode the JSON into a Config struct\n\tvar config types.Config\n\tdecoder := json.NewDecoder(file)\n\tif err := decoder.Decode(&config); err != nil {\n\t\treturn nil, fmt.Errorf(\"failed to decode config.json: %w\", err)\n\t}\n\n\treturn &config, nil\n}\n",
+        "newCode": "package read\n\nimport (\n\t\"codeleft-cli/types\"\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"os\"\n\t\"path/filepath\"\n)\n\n// FileSystem abstracts file system operations.\ntype FileSystem interface {\n\tGetwd() (string, error)\n\tOpen(name string) (*os.File, error)\n\tStat(name string) (os.FileInfo, error)\n\tJoin(elem ...string) string\n}\n\n// OSFileSystem implements the FileSystem interface using the os package.\ntype OSFileSystem struct{}\n\nfunc (o *OSFileSystem) Getwd() (string, error) {\n\treturn os.Getwd()\n}\n\nfunc (o *OSFileSystem) Open(name string) (*os.File, error) {\n\treturn os.Open(name)\n}\n\nfunc (o *OSFileSystem) Stat(name string) (os.FileInfo, error) {\n\treturn os.Stat(name)\n}\n\nfunc (o *OSFileSystem) Join(elem ...string) string {\n\treturn filepath.Join(elem...)\n}\n\n// JSONDecoder abstracts JSON decoding.\ntype JSONDecoder interface {\n\tDecode(v interface{}) error\n}\n\n// ConfigSource interface for reading configuration.\ntype ConfigSource interface {\n\tReadConfig() (*types.Config, error)\n}\n\n// ConfigPathResolver resolves the path to the config file.\ntype ConfigPathResolver interface {\n\tResolveConfigPath() (string, error)\n}\n\n// ConfigJSONReader reads the config from a JSON file.\ntype ConfigJSONReader interface {\n\tReadConfigFromJSON(path string) (*types.Config, error)\n}\n\n// ConfigReader is responsible for reading the config.json file.\ntype ConfigReader struct {\n\tRepoRoot     string\n\tCodeleftPath string\n\tFileSystem   FileSystem\n\t//\tJSONDecoder  JSONDecoder // Removed direct dependency on JSONDecoder\n}\n\n// NewConfigReader creates a new ConfigReader.\nfunc NewConfigReader(fs FileSystem) (*ConfigReader, error) {\n\tif fs == nil {\n\t\tfs = &OSFileSystem{} // Use OSFileSystem as default\n\t}\n\trepoRoot, err := fs.Getwd()\n\tif err != nil {\n\t\treturn nil, fmt.Errorf(\"failed to get current working directory: %w\", err)\n\t}\n\n\t// Recursively find .codeleft\n\tcodeleftPath, err := findCodeleftRecursive(repoRoot, fs)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\n\tcr := &ConfigReader{\n\t\tRepoRoot:     repoRoot,\n\t\tCodeleftPath: codeleftPath,\n\t\tFileSystem:   fs,\n\t}\n\treturn cr, nil\n}\n\n// ResolveConfigPath resolves the path to the config.json file.\nfunc (cr *ConfigReader) ResolveConfigPath() (string, error) {\n\tif cr.CodeleftPath == \"\" {\n\t\treturn \"\", fmt.Errorf(\".codeLeft folder not found in the repository root: %s\", cr.RepoRoot)\n\t}\n\treturn filepath.Join(cr.CodeleftPath, \"config.json\"), nil\n}\n\n// ReadConfig reads the configuration from config.json.\nfunc (cr *ConfigReader) ReadConfig() (*types.Config, error) {\n\tconfigPath, err := cr.ResolveConfigPath()\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\n\t// Check if config.json exists\n\tinfo, err := cr.FileSystem.Stat(configPath)\n\tif err != nil {\n\t\tif os.IsNotExist(err) {\n\t\t\treturn nil, fmt.Errorf(\"config.json does not exist at path: %s\", configPath)\n\t\t}\n\t\treturn nil, fmt.Errorf(\"error accessing config.json: %w\", err)\n\t}\n\n\tif info.IsDir() {\n\t\treturn nil, fmt.Errorf(\"config.json exists but is a directory: %s\", configPath)\n\t}\n\n\t// Open the config.json file\n\tfile, err := cr.FileSystem.Open(configPath)\n\tif err != nil {\n\t\treturn nil, fmt.Errorf(\"failed to open config.json: %w\", err)\n\t}\n\tdefer file.Close()\n\n\t// Decode the JSON into a Config struct\n\tvar config types.Config\n\tdecoder := json.NewDecoder(file)\n\tif err := decoder.Decode(&config); err != nil {\n\t\treturn nil, fmt.Errorf(\"failed to decode config.json: %w\", err)\n\t}\n\n\treturn &config, nil\n}\n\n// findCodeleftRecursive recursively searches for the .codeleft directory.\nfunc findCodeleftRecursive(startDir string, fs FileSystem) (string, error) {\n\tcurrentDir := startDir\n\tfor {\n\t\tcodeleftPath := fs.Join(currentDir, \".codeleft\")\n\t\tif _, err := fs.Stat(codeleftPath); err == nil {\n\t\t\treturn currentDir, nil\n\t\t}\n\n\t\tparentDir := fs.Join(currentDir, \"..\")\n\t\tif parentDir == currentDir {\n\t\t\t// Reached the root directory\n\t\t\treturn \"\", fmt.Errorf(\".codeleft directory not found\")\n\t\t}\n\t\tcurrentDir = parentDir\n\t}\n}",
+        "changes": [
+          {
+            "oldCode": "package read",
+            "newCode": "package read",
+            "reason": "Unchanged",
+            "start": 1,
+            "end": 1
+          },
+          {
+            "reason": "Unchanged",
+            "start": 2,
+            "end": 2
+          },
+          {
+            "oldCode": "import (",
+            "newCode": "import (",
+            "reason": "Unchanged",
+            "start": 3,
+            "end": 3
+          },
+          {
+            "oldCode": "\t\"codeleft-cli/types\"",
+            "newCode": "\t\"codeleft-cli/types\"",
+            "reason": "Unchanged",
+            "start": 4,
+            "end": 4
+          },
+          {
+            "oldCode": "\t\"encoding/json\"",
+            "newCode": "\t\"encoding/json\"",
+            "reason": "Unchanged",
+            "start": 5,
+            "end": 5
+          },
+          {
+            "oldCode": "\t\"fmt\"",
+            "newCode": "\t\"fmt\"",
+            "reason": "Unchanged",
+            "start": 6,
+            "end": 6
+          },
+          {
+            "oldCode": "\t\"os\"",
+            "newCode": "\t\"os\"",
+            "reason": "Unchanged",
+            "start": 7,
+            "end": 7
+          },
+          {
+            "oldCode": "\t\"path/filepath\"",
+            "newCode": "\t\"path/filepath\"",
+            "reason": "Unchanged",
+            "start": 8,
+            "end": 8
+          },
+          {
+            "oldCode": ")",
+            "newCode": ")",
+            "reason": "Unchanged",
+            "start": 9,
+            "end": 9
+          },
+          {
+            "newCode": "\n// FileSystem abstracts file system operations.\ntype FileSystem interface {\n\tGetwd() (string, error)\n\tOpen(name string) (*os.File, error)\n\tStat(name string) (os.FileInfo, error)\n\tJoin(elem ...string) string\n}\n\n// OSFileSystem implements the FileSystem interface using the os package.\ntype OSFileSystem struct{}\n\nfunc (o *OSFileSystem) Getwd() (string, error) {\n\treturn os.Getwd()\n}\n\nfunc (o *OSFileSystem) Open(name string) (*os.File, error) {\n\treturn os.Open(name)\n}\n\nfunc (o *OSFileSystem) Stat(name string) (os.FileInfo, error) {\n\treturn os.Stat(name)\n}\n\nfunc (o *OSFileSystem) Join(elem ...string) string {\n\treturn filepath.Join(elem...)\n}\n\n// JSONDecoder abstracts JSON decoding.\ntype JSONDecoder interface {\n\tDecode(v interface{}) error\n}\n\n// ConfigSource interface for reading configuration.\ntype ConfigSource interface {\n\tReadConfig() (*types.Config, error)\n}\n\n// ConfigPathResolver resolves the path to the config file.\ntype ConfigPathResolver interface {\n\tResolveConfigPath() (string, error)\n}\n\n// ConfigJSONReader reads the config from a JSON file.\ntype ConfigJSONReader interface {\n\tReadConfigFromJSON(path string) (*types.Config, error)\n}\n",
+            "reason": "Modified",
+            "start": 10,
+            "end": 10,
+            "reasonDiff": "Interfaces for file system operations, JSON decoding, config sources, path resolution, and JSON reading were introduced to improve dependency inversion, adhere to the Open/Closed and Interface Segregation Principles, and improve testability.\n"
+          },
+          {
+            "oldCode": "// ConfigReader is responsible for reading the config.json file.",
+            "newCode": "// ConfigReader is responsible for reading the config.json file.",
+            "reason": "Unchanged",
+            "start": 11,
+            "end": 11
+          },
+          {
+            "oldCode": "type ConfigReader struct {",
+            "newCode": "type ConfigReader struct {",
+            "reason": "Unchanged",
+            "start": 12,
+            "end": 12
+          },
+          {
+            "oldCode": "\tRepoRoot     string",
+            "newCode": "\tRepoRoot     string",
+            "reason": "Unchanged",
+            "start": 13,
+            "end": 13
+          },
+          {
+            "oldCode": "\tCodeleftPath string",
+            "newCode": "\tCodeleftPath string",
+            "reason": "Unchanged",
+            "start": 14,
+            "end": 14
+          },
+          {
+            "newCode": "\tFileSystem   FileSystem\n\t//\tJSONDecoder  JSONDecoder // Removed direct dependency on JSONDecoder",
+            "reason": "Added",
+            "start": 15,
+            "end": 15,
+            "reasonDiff": "To address dependency inversion principle violations, the `FileSystem` field was added to the `ConfigReader` struct, allowing for the injection of file system operations, promoting testability and flexibility.\n"
+          },
+          {
+            "oldCode": "}",
+            "newCode": "}",
+            "reason": "Unchanged",
+            "start": 15,
+            "end": 15
+          },
+          {
+            "reason": "Unchanged",
+            "start": 16,
+            "end": 16
+          },
+          {
+            "oldCode": "func NewConfigReader() (*ConfigReader, error) {\n\trepoRoot, err := os.Getwd()",
+            "newCode": "// NewConfigReader creates a new ConfigReader.\nfunc NewConfigReader(fs FileSystem) (*ConfigReader, error) {\n\tif fs == nil {\n\t\tfs = &OSFileSystem{} // Use OSFileSystem as default\n\t}\n\trepoRoot, err := fs.Getwd()",
+            "reason": "Modified",
+            "start": 17,
+            "end": 18,
+            "reasonDiff": "To address dependency inversion principle violations, the `NewConfigReader` now accepts a `FileSystem` interface, allowing for dependency injection and testability with mock file systems.  If no file system is provided, it defaults to `OSFileSystem`.\n"
+          },
+          {
+            "oldCode": "\tif err != nil {",
+            "newCode": "\tif err != nil {",
+            "reason": "Unchanged",
+            "start": 19,
+            "end": 19
+          },
+          {
+            "oldCode": "\t\treturn nil, fmt.Errorf(\"failed to get current working directory: %w\", err)",
+            "newCode": "\t\treturn nil, fmt.Errorf(\"failed to get current working directory: %w\", err)",
+            "reason": "Unchanged",
+            "start": 20,
+            "end": 20
+          },
+          {
+            "oldCode": "\t}",
+            "newCode": "\t}",
+            "reason": "Unchanged",
+            "start": 21,
+            "end": 21
+          },
+          {
+            "reason": "Unchanged",
+            "start": 22,
+            "end": 22
+          },
+          {
+            "oldCode": "\t// Recursively find .codeleft",
+            "newCode": "\t// Recursively find .codeleft",
+            "reason": "Unchanged",
+            "start": 23,
+            "end": 23
+          },
+          {
+            "oldCode": "\tcodeleftPath, err := findCodeleftRecursive(repoRoot)",
+            "newCode": "\tcodeleftPath, err := findCodeleftRecursive(repoRoot, fs)",
+            "reason": "Modified",
+            "start": 24,
+            "end": 24,
+            "reasonDiff": "To adhere to the dependency inversion principle, the `findCodeleftRecursive` function now accepts a `FileSystem` interface as a parameter, allowing for the injection of different file system implementations.\n"
+          },
+          {
+            "oldCode": "\tif err != nil {",
+            "newCode": "\tif err != nil {",
+            "reason": "Unchanged",
+            "start": 25,
+            "end": 25
+          },
+          {
+            "oldCode": "\t\treturn nil, err",
+            "newCode": "\t\treturn nil, err",
+            "reason": "Unchanged",
+            "start": 26,
+            "end": 26
+          },
+          {
+            "oldCode": "\t}",
+            "newCode": "\t}",
+            "reason": "Unchanged",
+            "start": 27,
+            "end": 27
+          },
+          {
+            "reason": "Unchanged",
+            "start": 28,
+            "end": 28
+          },
+          {
+            "oldCode": "\tcr := &ConfigReader{",
+            "newCode": "\tcr := &ConfigReader{",
+            "reason": "Unchanged",
+            "start": 29,
+            "end": 29
+          },
+          {
+            "oldCode": "\t\tRepoRoot:     repoRoot,",
+            "newCode": "\t\tRepoRoot:     repoRoot,",
+            "reason": "Unchanged",
+            "start": 30,
+            "end": 30
+          },
+          {
+            "oldCode": "\t\tCodeleftPath: codeleftPath,",
+            "newCode": "\t\tCodeleftPath: codeleftPath,",
+            "reason": "Unchanged",
+            "start": 31,
+            "end": 31
+          },
+          {
+            "newCode": "\t\tFileSystem:   fs,",
+            "reason": "Added",
+            "start": 32,
+            "end": 32,
+            "reasonDiff": "To address dependency inversion principle violation, a FileSystem field was added to the ConfigReader struct and initialized in the NewConfigReader function. This allows injecting a mock file system for testing.\n"
+          },
+          {
+            "oldCode": "\t}",
+            "newCode": "\t}",
+            "reason": "Unchanged",
+            "start": 32,
+            "end": 32
+          },
+          {
+            "oldCode": "\treturn cr, nil",
+            "newCode": "\treturn cr, nil",
+            "reason": "Unchanged",
+            "start": 33,
+            "end": 33
+          },
+          {
+            "oldCode": "}",
+            "newCode": "}",
+            "reason": "Unchanged",
+            "start": 34,
+            "end": 34
+          },
+          {
+            "reason": "Unchanged",
+            "start": 35,
+            "end": 35
+          },
+          {
+            "oldCode": "func (cr *ConfigReader) ReadConfig() (*types.Config, error) {\n\t// Ensure the .codeleft path is set",
+            "newCode": "// ResolveConfigPath resolves the path to the config.json file.\nfunc (cr *ConfigReader) ResolveConfigPath() (string, error) {",
+            "reason": "Modified",
+            "start": 36,
+            "end": 37,
+            "reasonDiff": "To adhere to the Interface Segregation Principle, the `ReadConfig` function was split into `ResolveConfigPath` to handle path resolution logic separately. This improves code modularity and allows independent testing and reuse of path resolution.\n"
+          },
+          {
+            "oldCode": "\tif cr.CodeleftPath == \"\" {",
+            "newCode": "\tif cr.CodeleftPath == \"\" {",
+            "reason": "Unchanged",
+            "start": 38,
+            "end": 38
+          },
+          {
+            "oldCode": "\t\treturn nil, fmt.Errorf(\".codeLeft folder not found in the repository root: %s\", cr.RepoRoot)\n\t}\n\n\tconfigPath := filepath.Join(cr.CodeleftPath, \"config.json\")\n",
+            "newCode": "\t\treturn \"\", fmt.Errorf(\".codeLeft folder not found in the repository root: %s\", cr.RepoRoot)\n\t}\n\treturn filepath.Join(cr.CodeleftPath, \"config.json\"), nil\n}\n\n// ReadConfig reads the configuration from config.json.\nfunc (cr *ConfigReader) ReadConfig() (*types.Config, error) {\n\tconfigPath, err := cr.ResolveConfigPath()\n\tif err != nil {\n\t\treturn nil, err\n\t}\n",
+            "reason": "Modified",
+            "start": 39,
+            "end": 43,
+            "reasonDiff": "The `ResolveConfigPath` function was created to separate the logic of resolving the configuration file path from the `ReadConfig` function. This addresses the Interface Segregation Principle violation by separating the concerns of path resolution and config file reading.\n"
+          },
+          {
+            "oldCode": "\t// Check if config.json exists",
+            "newCode": "\t// Check if config.json exists",
+            "reason": "Unchanged",
+            "start": 44,
+            "end": 44
+          },
+          {
+            "oldCode": "\tinfo, err := os.Stat(configPath)",
+            "newCode": "\tinfo, err := cr.FileSystem.Stat(configPath)",
+            "reason": "Modified",
+            "start": 45,
+            "end": 45,
+            "reasonDiff": "To adhere to the dependency inversion principle, the `ConfigReader` now uses the injected `FileSystem` interface for file system operations, allowing for easier testing and the ability to swap implementations.\n"
+          },
+          {
+            "oldCode": "\tif err != nil {",
+            "newCode": "\tif err != nil {",
+            "reason": "Unchanged",
+            "start": 46,
+            "end": 46
+          },
+          {
+            "oldCode": "\t\tif os.IsNotExist(err) {",
+            "newCode": "\t\tif os.IsNotExist(err) {",
+            "reason": "Unchanged",
+            "start": 47,
+            "end": 47
+          },
+          {
+            "oldCode": "\t\t\treturn nil, fmt.Errorf(\"config.json does not exist at path: %s\", configPath)",
+            "newCode": "\t\t\treturn nil, fmt.Errorf(\"config.json does not exist at path: %s\", configPath)",
+            "reason": "Unchanged",
+            "start": 48,
+            "end": 48
+          },
+          {
+            "oldCode": "\t\t}",
+            "newCode": "\t\t}",
+            "reason": "Unchanged",
+            "start": 49,
+            "end": 49
+          },
+          {
+            "oldCode": "\t\treturn nil, fmt.Errorf(\"error accessing config.json: %w\", err)",
+            "newCode": "\t\treturn nil, fmt.Errorf(\"error accessing config.json: %w\", err)",
+            "reason": "Unchanged",
+            "start": 50,
+            "end": 50
+          },
+          {
+            "oldCode": "\t}",
+            "newCode": "\t}",
+            "reason": "Unchanged",
+            "start": 51,
+            "end": 51
+          },
+          {
+            "reason": "Unchanged",
+            "start": 52,
+            "end": 52
+          },
+          {
+            "oldCode": "\tif info.IsDir() {",
+            "newCode": "\tif info.IsDir() {",
+            "reason": "Unchanged",
+            "start": 53,
+            "end": 53
+          },
+          {
+            "oldCode": "\t\treturn nil, fmt.Errorf(\"config.json exists but is a directory: %s\", configPath)",
+            "newCode": "\t\treturn nil, fmt.Errorf(\"config.json exists but is a directory: %s\", configPath)",
+            "reason": "Unchanged",
+            "start": 54,
+            "end": 54
+          },
+          {
+            "oldCode": "\t}",
+            "newCode": "\t}",
+            "reason": "Unchanged",
+            "start": 55,
+            "end": 55
+          },
+          {
+            "reason": "Unchanged",
+            "start": 56,
+            "end": 56
+          },
+          {
+            "oldCode": "\t// Open the config.json file",
+            "newCode": "\t// Open the config.json file",
+            "reason": "Unchanged",
+            "start": 57,
+            "end": 57
+          },
+          {
+            "oldCode": "\tfile, err := os.Open(configPath)",
+            "newCode": "\tfile, err := cr.FileSystem.Open(configPath)",
+            "reason": "Modified",
+            "start": 58,
+            "end": 58,
+            "reasonDiff": "To adhere to the dependency inversion principle, the `ConfigReader` now uses the injected `FileSystem` interface for file operations, promoting loose coupling and testability.\n"
+          },
+          {
+            "oldCode": "\tif err != nil {",
+            "newCode": "\tif err != nil {",
+            "reason": "Unchanged",
+            "start": 59,
+            "end": 59
+          },
+          {
+            "oldCode": "\t\treturn nil, fmt.Errorf(\"failed to open config.json: %w\", err)",
+            "newCode": "\t\treturn nil, fmt.Errorf(\"failed to open config.json: %w\", err)",
+            "reason": "Unchanged",
+            "start": 60,
+            "end": 60
+          },
+          {
+            "oldCode": "\t}",
+            "newCode": "\t}",
+            "reason": "Unchanged",
+            "start": 61,
+            "end": 61
+          },
+          {
+            "oldCode": "\tdefer file.Close()",
+            "newCode": "\tdefer file.Close()",
+            "reason": "Unchanged",
+            "start": 62,
+            "end": 62
+          },
+          {
+            "reason": "Unchanged",
+            "start": 63,
+            "end": 63
+          },
+          {
+            "oldCode": "\t// Decode the JSON into a Config struct",
+            "newCode": "\t// Decode the JSON into a Config struct",
+            "reason": "Unchanged",
+            "start": 64,
+            "end": 64
+          },
+          {
+            "oldCode": "\tvar config types.Config",
+            "newCode": "\tvar config types.Config",
+            "reason": "Unchanged",
+            "start": 65,
+            "end": 65
+          },
+          {
+            "oldCode": "\tdecoder := json.NewDecoder(file)",
+            "newCode": "\tdecoder := json.NewDecoder(file)",
+            "reason": "Unchanged",
+            "start": 66,
+            "end": 66
+          },
+          {
+            "oldCode": "\tif err := decoder.Decode(&config); err != nil {",
+            "newCode": "\tif err := decoder.Decode(&config); err != nil {",
+            "reason": "Unchanged",
+            "start": 67,
+            "end": 67
+          },
+          {
+            "oldCode": "\t\treturn nil, fmt.Errorf(\"failed to decode config.json: %w\", err)",
+            "newCode": "\t\treturn nil, fmt.Errorf(\"failed to decode config.json: %w\", err)",
+            "reason": "Unchanged",
+            "start": 68,
+            "end": 68
+          },
+          {
+            "oldCode": "\t}",
+            "newCode": "\t}",
+            "reason": "Unchanged",
+            "start": 69,
+            "end": 69
+          },
+          {
+            "reason": "Unchanged",
+            "start": 70,
+            "end": 70
+          },
+          {
+            "oldCode": "\treturn &config, nil",
+            "newCode": "\treturn &config, nil",
+            "reason": "Unchanged",
+            "start": 71,
+            "end": 71
+          },
+          {
+            "oldCode": "}\n",
+            "newCode": "}\n\n// findCodeleftRecursive recursively searches for the .codeleft directory.\nfunc findCodeleftRecursive(startDir string, fs FileSystem) (string, error) {\n\tcurrentDir := startDir\n\tfor {\n\t\tcodeleftPath := fs.Join(currentDir, \".codeleft\")\n\t\tif _, err := fs.Stat(codeleftPath); err == nil {\n\t\t\treturn currentDir, nil\n\t\t}\n\n\t\tparentDir := fs.Join(currentDir, \"..\")\n\t\tif parentDir == currentDir {\n\t\t\t// Reached the root directory\n\t\t\treturn \"\", fmt.Errorf(\".codeleft directory not found\")\n\t\t}\n\t\tcurrentDir = parentDir\n\t}\n}",
+            "reason": "Modified",
+            "start": 72,
+            "end": 73,
+            "reasonDiff": "To address the dependency inversion principle violation, the `findCodeleftRecursive` function was updated to receive a `FileSystem` interface, allowing it to use different file system implementations.\n"
+          }
+        ]
+      }
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "B",
+      "interfaceSegregationScore": "B",
+      "liskovSubstitutionScore": "B",
+      "openClosedScore": "B",
+      "singleResponsibilityScore": "A"
+    },
+    "hash": "56d65f4099339e570713a365a6225a57b1ece411b6dda73597e4bb517c90c2dc",
+    "id": "eJydVU1v2zAM/SucgBbOkNl3DzmlxdCiSId0u/niypSj1ZEMiW5WFP3vA+WPyFs/gvlig6IeH/lI+lmU3qP32tQ/rG1ELu5ub64uxFJIW+HaGkJDIhdtKR/KGsFhWRWmMHrfWkeQFKagIvg2qOiLbHRGTy36QvQnaKSttKmzX96a0aj2NH7aybMtaZcp3SB/sHHBcbIM1tYoXW+xrNCB9uDQt9Z4fd8gKOsCJW1qoB2CDL4pBwPGSgvDdOYYnlwnCZ457hZbu7WWgB9PTpuazeshoe8l7SbzCxNSnZGwwUOMmCwg+RwbloDOWbfoY7ghRrBCvgLr029IhyrhFEmrYP+0AqOb/gbfoc4ZtixB7Sm9ZDyVFEKVusEKyEKNBLJzDg3BwboHrkGlHUqy7imHs0MhQsQQJHAvKMtgi7JzXj9i8wRKmwrSUT12kFHiE192GysyXU/GtE5LAp2LeMiAex7XbLgzCpIHRabS9YexLDnMuI7gY1Dplhw4Vi2RDmYyLYDfvSVoGFo37Q1zDbMMLo3vHIY2m0oG3KzclB5pKIN06ax7VisoRCE+FDZg3jCmsg23qbH82ZkKtAlRuRhes7rgQoXOPEssXbqNpRhLHLIIFIKE/WCl11ab5C+OS+ARnianEIupW9Y7lA/AaUWThb+1Jx/yNcrGbX1HJSXHyG+3hlbsfuU3li4ZLeFGHQ/fqVJMo7LoQ5UCHyh7NaayzFkM3fEOdJAbSin7dRhn/MY0aQVcgPTKX2heAh9J/G8N4b4jbp9yNrmv8T8O8G2L5tVlx+f8jgVh55MEOWHhWA78QVWoQoWu373rxnpMjr10gdzigfr13e0GtCEL5bCbh63Mro+lG8JAPJA9OkOE5JhBusFDj+oSDhmnl69g8E57l+S8B118/b/0e7QT2mLAGsId15BYCibJOohcZD89Op/t0LinptzfZ/uuId02mM3+pvx3y2S0tNLaipc/lerCIw=="
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/read/configReader.go",
+    "grade": "A*",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T19:53:15.286Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "A*",
+      "interfaceSegregationScore": "A*",
+      "liskovSubstitutionScore": "A*",
+      "openClosedScore": "A*",
+      "singleResponsibilityScore": "A"
+    },
+    "hash": "a403637fb68b5bba3b1c63d95ed9720fb3d726d7284a01d415f068d2568d6bb1",
+    "id": "eJydV01v4zgM/StcA1PYRda+Z5FTO7PoYNAOkp2bL6pMJdrakiHJyQZF/vuCkh3LSdME00sNiiIfH7+U94RZi9ZKtf5H6zqZJ6uXH0+PySzhusIHrRwql8yTlvE3tkYwyKpSlUo2rTYO0lKVrvS6NQr3J69l4fYt2jIJJ6i4rqRaF/9arQahaNzwqY+aLXObQsga6YOEGfkpCvgma1ztrcMG2Kt1hnFngRTBBqlu0TAntbJ5qch7fEUqh0YwjvBOfv5Gt6vSDFLrjFTrGaAx2pAr99KiShVrEMJZBum9tjnZitVWjrkTtV7rSQkda37XUqVYYwN5ng/K4X+pDn10L6sYbNPW2KByFtzmQhgd5cofawt9Woa4J8asMx13796R6BSHVMN9rJHBBTYCVQZdZxRom/dqPegLtm6g79Tu8coV07dRfmr9eOuK9U/SNDE51GZ+vJDneTZm8vvq5fkRqRVMVKgkhQpDFwx5ilVPCjSI0+0ofz9kIcLR1YNWQq5XujMcIwNCG9+ghJx7lS40xuD3wj3veImsCudUEPe+i/MgGIt6CuAnc5slWl1vkRz7j1C5xBM47b8DEk/fFMfk+hkaLx8VP+rZKRoilYLAQIKdODe6ARaScQ4kunmRlG9GN6SX+tDGEr+Fp8G2JZJarax8rafZGqHmNCg/wNjbCE09gGv1UmsH9DfMldI99MP45wiUxNFkgGiy0FFRlC4uyUl9FgUssdFbrKCSBrmDCltUFSq+B61i3THuZ9xNYHODzKEFBgp3k4jyvi9PbqTCQtyk6X18Om15KUBYWCxAyTpISkcCuIsb/f1AofyyJ1OSWahQsK52dPEQ+j3w6r3AfAEiGoHeHcn/mPjrZ4SS9QxE4/KvhE+kZSKYrLGiXlijA94Zg8rBTps3yntgVJv9HL7sysR7zAYgPjOwRN4ZK7dY70FIVUE+bFtS4FGyR7xSVUMVHK+nQ1i3BYHGRDi4t3sX56C/MxTh3FfhkbpwGJfiHCZYg8KYCLov7CxKgsfCzYzwjJV1NhiuDZ5JQ4UVwA1Myik7t3ppKUoB3OSTFlssoEzK5IREEp2Ugk/cDxQOhK6pK5Smz05VIJVHTPRZSfUAxnP6xZIVbvJlnLzDxa10gm0G9DY7slAm2Rmbw3w7m5n96gijMzLyKYtXV0hgiR95Ptasj/EsCb9RqjR1N8jfgFIVVQD+J62z3uDwaOj9jkUY3gwjusv+paAnxpN91u4rGU6pcYfDT8ZBjKjSaH0NeGjAnK/eY9KnKPqsf2LaEwyM8/Ccj4O/MF2kAOIif7KP0qTZ1Vl2Tie8do72GptMso/wj9mhV9+H/UnnYngunufGvxZvyc0Ns1gThisEuQoFmjA5Hmpt0ZdjiCEsPB+Ff1NI5TSwfrH1S5pUt8wMT5C4G4L1sF/nC/Bt9Yy7fo2m5DIOb76AXjvvn4d3wWj21++FH6zdUCG9rd7dMDySWUIQKQvJPCl+WTS22KAy+5o1r0XT1U62NRaTn4U0Xwoeb/61Tg7/A6n0M1Y="
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/report/builder.go",
+    "grade": "B",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T19:53:55.709Z",
+    "codeReview": {
+      "detailedReview": {
+        "tasks": [
+          {
+            "done": false,
+            "titleTask": "liskovSubstitution",
+            "violatingCode": "The provided code does not demonstrate a Liskov Substitution Principle violation.  The code uses composition and interfaces effectively, allowing for substitution of different implementations without altering the core functionality. There is no evidence of a violation in the given `TreeBuilder` and `ReportNode` structures.\n",
+            "codeResolution": "The Liskov Substitution Principle (LSP) is not directly violated in this code.  The `ReportNode` struct is used consistently throughout the `TreeBuilder`, and there are no subclasses that would break substitutability.  However, the code could be improved for better extensibility.  Consider creating an interface for `ReportNode` if you anticipate needing different types of nodes in the future (e.g., nodes with different data or behavior).  This would allow for easy substitution without modifying the `TreeBuilder`.\n",
+            "severity": "Medium",
+            "rationale": "The provided code snippet does not directly demonstrate a Liskov Substitution Principle (LSP) violation.  The `TreeBuilder` struct has no inheritance or polymorphism involved.  Therefore, there's no opportunity for substitution to cause issues with maintainability, performance, or correctness in this specific context.  LSP concerns arise when substituting subtypes breaks the expected behavior of the base type, which isn't applicable here.\n",
+            "lineStart": 17,
+            "lineEnd": 109,
+            "status": ""
+          },
+          {
+            "done": false,
+            "titleTask": "dependencyInversion",
+            "violatingCode": "The `TreeBuilder` type directly uses `filepath.ToSlash`, `strings.Split`, and `sort.Strings` without abstraction.  Dependency Inversion suggests depending on abstractions, not concrete implementations.  The code should use interfaces for path manipulation and sorting to allow for easier substitution of different implementations.\n",
+            "codeResolution": "The `TreeBuilder` currently depends on the concrete `filter.GradeDetails` type.  To improve dependency inversion, introduce an interface, e.g., `GradeDetailer`, defining methods needed by `TreeBuilder`.  `filter.GradeDetails` would then implement this interface.  `TreeBuilder` would depend on the interface, allowing for flexible substitution of different detail implementations.  For example:\n\n```go\ntype GradeDetailer interface {\n    GetFileName() string\n    // ... other methods as needed\n}\n\nfunc (tb *TreeBuilder) BuildReportTree(groupedDetails map[string][]GradeDetailer) []*ReportNode {\n    // ... implementation using GradeDetailer interface methods ...\n}\n```\n",
+            "severity": "Medium",
+            "rationale": "The `TreeBuilder` depends on the concrete `filter.GradeDetails` type.  This violates the Dependency Inversion Principle because high-level modules (like `TreeBuilder`) should depend on abstractions, not concretions.  If the `filter` package changes its implementation, `TreeBuilder` might need modification, reducing maintainability.  While not directly impacting performance or correctness in this specific example, tighter coupling increases the risk of cascading changes and makes refactoring more difficult.\n",
+            "lineStart": 4,
+            "lineEnd": 108,
+            "status": ""
+          },
+          {
+            "done": false,
+            "titleTask": "interfaceSegregation",
+            "violatingCode": "The `ReportNode` struct includes fields `ToolCoverages` and `ToolCoverageOk`, which are likely related to code coverage.  However, the `TreeBuilder`'s `BuildReportTree` function populates these fields with empty maps.  This suggests a violation of the Interface Segregation Principle because the `ReportNode` interface includes functionality (coverage data) that isn't always used.  A separate interface for nodes with coverage data would improve the design.\n",
+            "codeResolution": "The `TreeBuilder` currently handles both building the report tree and grouping grade details.  To improve interface segregation, separate these concerns. Create a `GradeGrouper` interface:\n\n```go\ntype GradeGrouper interface {\n    GroupByPath([]filter.GradeDetails) map[string][]filter.GradeDetails\n}\n```\n\nImplement this interface with a `PathGrouper` struct.  Modify `TreeBuilder` to depend on `GradeGrouper`, injecting it via constructor.  This isolates path grouping logic, allowing for easier testing and potential alternative grouping strategies.\n",
+            "severity": "Medium",
+            "rationale": "The `TreeBuilder`'s `BuildReportTree` method has multiple responsibilities:  it parses paths, creates nodes, and manages parent-child relationships.  This violates the Interface Segregation Principle (ISP).  Separating these concerns into distinct methods or even separate classes would improve maintainability and reduce the complexity of testing and debugging.  A large, multifaceted method is harder to understand, modify, and test correctly than smaller, focused methods.\n",
+            "lineStart": 11,
+            "lineEnd": 76,
+            "status": ""
+          },
+          {
+            "done": false,
+            "titleTask": "openClosed",
+            "violatingCode": "The `BuildReportTree` function processes file paths to construct a tree.  Adding a new way to organize or represent the report (e.g., by different criteria than file paths) would require modifying this function, violating the Open/Closed Principle.  The function directly manipulates the structure based on path splitting (`strings.Split(fullPath, \"/\")`), making it inflexible to alternative report structures.\n",
+            "codeResolution": "The `BuildReportTree` function's Open/Closed Principle adherence can be improved.  Currently, adding a new type of coverage data (e.g.,  `ToolCoverage`) requires modifying the `ReportNode` struct and potentially the `BuildReportTree` function itself.\n\nTo improve this, introduce an interface for coverage data:\n\n```go\ntype CoverageData interface {\n    GetCoverage(tool string) (float64, bool) // Or a more specific method signature\n    SetCoverage(tool string, coverage float64, ok bool)\n}\n```\n\nModify `ReportNode` to use this interface:\n\n```go\ntype ReportNode struct {\n    // ... other fields\n    CoverageData CoverageData\n}\n```\n\nImplementations for different coverage types can then be created without changing `ReportNode` or `BuildReportTree`.  This enhances the OCP.\n",
+            "severity": "Medium",
+            "rationale": "The `TreeBuilder`'s `BuildReportTree` function directly manipulates the `ReportNode` structure.  Adding a new way to organize or represent report data (e.g., a different tree structure or a flat list) would require modifying this function.  This violates the Open/Closed Principle because the function is not open for extension without modification.  This impacts maintainability, as changes to data representation necessitate code changes in this core function, increasing the risk of introducing bugs.\n",
+            "lineStart": 27,
+            "lineEnd": 112,
+            "status": ""
+          },
+          {
+            "done": false,
+            "titleTask": "singleResponsibility",
+            "violatingCode": "The `BuildReportTree` function violates the Single Responsibility Principle.  It's responsible for both constructing the tree structure from file paths and potentially sorting those paths (`sort.Strings(paths)`).  These are distinct concerns that should be separated into different functions or classes.\n",
+            "codeResolution": "The `TreeBuilder` violates the Single Responsibility Principle (SRP) because it's responsible for both grouping grade details by path and building the report tree.  These are distinct operations.\n\n**Refactoring:** Separate the grouping logic into a dedicated function or type.\n\n```go\n// GroupGradeDetailsByPath groups grade details by file path.\nfunc GroupGradeDetailsByPath(details []filter.GradeDetails) map[string][]filter.GradeDetails {\n    // ... (Existing grouping logic remains unchanged)\n}\n\n// BuildReportTree builds the report tree from pre-grouped details.\nfunc (tb *TreeBuilder) BuildReportTree(groupedDetails map[string][]filter.GradeDetails) []*ReportNode {\n    // ... (Tree building logic remains unchanged)\n}\n```\n\nThis refactoring improves SRP by assigning each responsibility to a separate, more focused unit.  The `GroupGradeDetailsByPath` function can be used independently, enhancing reusability.\n",
+            "severity": "Medium",
+            "rationale": "The `TreeBuilder` violates the Single Responsibility Principle (SRP) because it's responsible for both grouping grade details by path and constructing the report tree.  This coupling makes the code harder to maintain, test, and understand.  Changes in one area (e.g., path normalization) could inadvertently affect the other (tree construction).  Separating these concerns into distinct classes would improve modularity and reduce the risk of introducing bugs.\n",
+            "lineStart": 10,
+            "lineEnd": 113,
+            "status": ""
+          }
+        ],
+        "codeReviewTitle": "SOLID Code Review"
+      },
+      "upgradedCode": {
+        "oldCode": "package report\n\nimport (\n\t\"codeleft-cli/filter\" // Assuming this path is correct\n\t\"path/filepath\"\n\t\"sort\"\n\t\"strings\"\n)\n\n// TreeBuilder is responsible for constructing the ReportNode tree.\ntype TreeBuilder struct{}\n\nfunc NewTreeBuilder() *TreeBuilder {\n\treturn &TreeBuilder{}\n}\n\nfunc (tb *TreeBuilder) GroupGradeDetailsByPath(details []filter.GradeDetails) map[string][]filter.GradeDetails {\n\tgrouped := make(map[string][]filter.GradeDetails)\n\tfor _, d := range details {\n\t\t// Normalize path separators for consistency\n\t\tnormalizedPath := filepath.ToSlash(d.FileName)\n\t\tgrouped[normalizedPath] = append(grouped[normalizedPath], d)\n\t}\n\treturn grouped\n}\n\n// BuildReportTree constructs the basic tree hierarchy from file paths.\n// It does not calculate coverage here.\nfunc (tb *TreeBuilder) BuildReportTree(groupedDetails map[string][]filter.GradeDetails) []*ReportNode {\n    roots := []*ReportNode{}\n    dirs := make(map[string]*ReportNode)\n\n    // Sort paths for potentially more structured processing (optional but can help)\n    paths := make([]string, 0, len(groupedDetails))\n    for p := range groupedDetails {\n        paths = append(paths, p)\n    }\n    sort.Strings(paths)\n\n    for _, fullPath := range paths {\n        details := groupedDetails[fullPath] // Get the details for this file\n        parts := strings.Split(fullPath, \"/\")\n        if len(parts) == 0 {\n            continue // Skip empty paths\n        }\n\n        var parent *ReportNode\n        currentPath := \"\"\n\n        for i, part := range parts {\n            isLastPart := (i == len(parts)-1)\n            if currentPath == \"\" {\n                currentPath = part\n            } else {\n                currentPath = currentPath + \"/\" + part\n            }\n\n            // Check if node already exists (could be a dir created by a previous path)\n            existingNode, found := dirs[currentPath]\n\n            if isLastPart { // This is the file part\n                fileNode := &ReportNode{\n                    Name:           part,\n                    Path:           fullPath, // Store the full original path\n                    IsDir:          false,\n                    Details:        details, // Store associated details\n                    ToolCoverages:  make(map[string]float64),\n                    ToolCoverageOk: make(map[string]bool),\n                }\n                if parent == nil { // File in root\n                    roots = append(roots, fileNode)\n                } else {\n                    parent.Children = append(parent.Children, fileNode)\n                }\n                // Don't add files to the 'dirs' map\n            } else { // This is a directory part\n                if found {\n                    // Directory node already exists, just update parent pointer\n                    parent = existingNode\n                } else {\n                    // Create new directory node\n                    dirNode := &ReportNode{\n                        Name:           part,\n                        Path:           currentPath, // Path up to this directory\n                        IsDir:          true,\n                        Children:       []*ReportNode{},\n                        ToolCoverages:  make(map[string]float64),\n                        ToolCoverageOk: make(map[string]bool),\n                    }\n                    dirs[currentPath] = dirNode // Add to map for lookup\n\n                    if parent == nil { // Directory in root\n                        roots = append(roots, dirNode)\n                    } else {\n                        // Check if child already exists in parent (can happen with sorting/processing order)\n                        childExists := false\n                        for _, child := range parent.Children {\n                            if child.Path == dirNode.Path {\n                                childExists = true\n                                break\n                            }\n                        }\n                        if !childExists {\n                            parent.Children = append(parent.Children, dirNode)\n                        }\n                    }\n                    parent = dirNode // This new dir becomes the parent for the next part\n                }\n            }\n        }\n    }\n    return roots\n}",
+        "newCode": "package report\n\nimport (\n\t\"codeleft-cli/filter\" // Assuming this path is correct\n\t\"path/filepath\"\n\t\"sort\"\n\t\"strings\"\n)\n\n// GradeDetailer interface for abstracting grade details.\ntype GradeDetailer interface {\n\tGetFileName() string\n\t// Add other methods from filter.GradeDetails as needed, e.g., GetGrade(), etc.\n}\n\n// Implement GradeDetailer for filter.GradeDetails\ntype GradeDetailsAdapter struct {\n\tfilter.GradeDetails\n}\n\nfunc (gda GradeDetailsAdapter) GetFileName() string {\n\treturn gda.FileName\n}\n\n// CoverageData interface for abstracting coverage data.\ntype CoverageData interface {\n\tGetCoverage(tool string) (float64, bool)\n\tSetCoverage(tool string, coverage float64, ok bool)\n}\n\n// ReportNode represents a node in the report tree.\ntype ReportNode struct {\n\tName           string\n\tPath           string\n\tIsDir          bool\n\tChildren       []*ReportNode\n\tDetails        []filter.GradeDetails // Store associated details\n\tCoverageData   CoverageData\n}\n\n// TreeBuilder is responsible for constructing the ReportNode tree.\ntype TreeBuilder struct{}\n\nfunc NewTreeBuilder() *TreeBuilder {\n\treturn &TreeBuilder{}\n}\n\n// GroupGradeDetailsByPath groups grade details by file path.\nfunc (tb *TreeBuilder) GroupGradeDetailsByPath(details []filter.GradeDetails) map[string][]filter.GradeDetails {\n\tgrouped := make(map[string][]filter.GradeDetails)\n\tfor _, d := range details {\n\t\t// Normalize path separators for consistency\n\t\tnormalizedPath := filepath.ToSlash(d.FileName)\n\t\tgrouped[normalizedPath] = append(grouped[normalizedPath], d)\n\t}\n\treturn grouped\n}\n\n// BuildReportTree constructs the basic tree hierarchy from file paths.\n// It does not calculate coverage here.\nfunc (tb *TreeBuilder) BuildReportTree(groupedDetails map[string][]filter.GradeDetails) []*ReportNode {\n\troots := []*ReportNode{}\n\tdirs := make(map[string]*ReportNode)\n\n\t// Sort paths for potentially more structured processing (optional but can help)\n\tpaths := make([]string, 0, len(groupedDetails))\n\tfor p := range groupedDetails {\n\t\tpaths = append(paths, p)\n\t}\n\tsort.Strings(paths)\n\n\tfor _, fullPath := range paths {\n\t\tdetails := groupedDetails[fullPath] // Get the details for this file\n\t\tparts := strings.Split(fullPath, \"/\")\n\t\tif len(parts) == 0 {\n\t\t\tcontinue // Skip empty paths\n\t\t}\n\n\t\tvar parent *ReportNode\n\t\tcurrentPath := \"\"\n\n\t\tfor i, part := range parts {\n\t\t\tisLastPart := (i == len(parts)-1)\n\t\t\tif currentPath == \"\" {\n\t\t\t\tcurrentPath = part\n\t\t\t} else {\n\t\t\t\tcurrentPath = currentPath + \"/\" + part\n\t\t\t}\n\n\t\t\t// Check if node already exists (could be a dir created by a previous path)\n\t\t\texistingNode, found := dirs[currentPath]\n\n\t\t\tif isLastPart { // This is the file part\n\t\t\t\tfileNode := &ReportNode{\n\t\t\t\t\tName:     part,\n\t\t\t\t\tPath:     fullPath, // Store the full original path\n\t\t\t\t\tIsDir:    false,\n\t\t\t\t\tDetails:  details, // Store associated details\n\t\t\t\t}\n\t\t\t\tif parent == nil { // File in root\n\t\t\t\t\troots = append(roots, fileNode)\n\t\t\t\t} else {\n\t\t\t\t\tparent.Children = append(parent.Children, fileNode)\n\t\t\t\t}\n\t\t\t\t// Don't add files to the 'dirs' map\n\t\t\t} else { // This is a directory part\n\t\t\t\tif found {\n\t\t\t\t\t// Directory node already exists, just update parent pointer\n\t\t\t\t\tparent = existingNode\n\t\t\t\t} else {\n\t\t\t\t\t// Create new directory node\n\t\t\t\t\tdirNode := &ReportNode{\n\t\t\t\t\t\tName:     part,\n\t\t\t\t\t\tPath:     currentPath, // Path up to this directory\n\t\t\t\t\t\tIsDir:    true,\n\t\t\t\t\t\tChildren: []*ReportNode{},\n\t\t\t\t\t}\n\t\t\t\t\tdirs[currentPath] = dirNode // Add to map for lookup\n\n\t\t\t\t\tif parent == nil { // Directory in root\n\t\t\t\t\t\troots = append(roots, dirNode)\n\t\t\t\t\t} else {\n\t\t\t\t\t\t// Check if child already exists in parent (can happen with sorting/processing order)\n\t\t\t\t\t\tchildExists := false\n\t\t\t\t\t\tfor _, child := range parent.Children {\n\t\t\t\t\t\t\tif child.Path == dirNode.Path {\n\t\t\t\t\t\t\t\tchildExists = true\n\t\t\t\t\t\t\t\tbreak\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t\tif !childExists {\n\t\t\t\t\t\t\tparent.Children = append(parent.Children, dirNode)\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\tparent = dirNode // This new dir becomes the parent for the next part\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\treturn roots\n}",
+        "changes": [
+          {
+            "oldCode": "package report",
+            "newCode": "package report",
+            "reason": "Unchanged",
+            "start": 1,
+            "end": 1
+          },
+          {
+            "reason": "Unchanged",
+            "start": 2,
+            "end": 2
+          },
+          {
+            "oldCode": "import (",
+            "newCode": "import (",
+            "reason": "Unchanged",
+            "start": 3,
+            "end": 3
+          },
+          {
+            "oldCode": "\t\"codeleft-cli/filter\" // Assuming this path is correct",
+            "newCode": "\t\"codeleft-cli/filter\" // Assuming this path is correct",
+            "reason": "Unchanged",
+            "start": 4,
+            "end": 4
+          },
+          {
+            "oldCode": "\t\"path/filepath\"",
+            "newCode": "\t\"path/filepath\"",
+            "reason": "Unchanged",
+            "start": 5,
+            "end": 5
+          },
+          {
+            "oldCode": "\t\"sort\"",
+            "newCode": "\t\"sort\"",
+            "reason": "Unchanged",
+            "start": 6,
+            "end": 6
+          },
+          {
+            "oldCode": "\t\"strings\"",
+            "newCode": "\t\"strings\"",
+            "reason": "Unchanged",
+            "start": 7,
+            "end": 7
+          },
+          {
+            "oldCode": ")",
+            "newCode": ")",
+            "reason": "Unchanged",
+            "start": 8,
+            "end": 8
+          },
+          {
+            "newCode": "\n// GradeDetailer interface for abstracting grade details.\ntype GradeDetailer interface {\n\tGetFileName() string\n\t// Add other methods from filter.GradeDetails as needed, e.g., GetGrade(), etc.\n}\n\n// Implement GradeDetailer for filter.GradeDetails\ntype GradeDetailsAdapter struct {\n\tfilter.GradeDetails\n}\n\nfunc (gda GradeDetailsAdapter) GetFileName() string {\n\treturn gda.FileName\n}\n\n// CoverageData interface for abstracting coverage data.\ntype CoverageData interface {\n\tGetCoverage(tool string) (float64, bool)\n\tSetCoverage(tool string, coverage float64, ok bool)\n}\n\n// ReportNode represents a node in the report tree.\ntype ReportNode struct {\n\tName           string\n\tPath           string\n\tIsDir          bool\n\tChildren       []*ReportNode\n\tDetails        []filter.GradeDetails // Store associated details\n\tCoverageData   CoverageData\n}\n",
+            "reason": "Modified",
+            "start": 9,
+            "end": 9,
+            "reasonDiff": "The `GradeDetailer` and `CoverageData` interfaces, along with the `GradeDetailsAdapter` type, were introduced to improve dependency inversion and the open/closed principle.  The `ReportNode` was modified to include `CoverageData` to support this change.\n"
+          },
+          {
+            "oldCode": "// TreeBuilder is responsible for constructing the ReportNode tree.",
+            "newCode": "// TreeBuilder is responsible for constructing the ReportNode tree.",
+            "reason": "Unchanged",
+            "start": 10,
+            "end": 10
+          },
+          {
+            "oldCode": "type TreeBuilder struct{}",
+            "newCode": "type TreeBuilder struct{}",
+            "reason": "Unchanged",
+            "start": 11,
+            "end": 11
+          },
+          {
+            "reason": "Unchanged",
+            "start": 12,
+            "end": 12
+          },
+          {
+            "oldCode": "func NewTreeBuilder() *TreeBuilder {",
+            "newCode": "func NewTreeBuilder() *TreeBuilder {",
+            "reason": "Unchanged",
+            "start": 13,
+            "end": 13
+          },
+          {
+            "oldCode": "\treturn &TreeBuilder{}",
+            "newCode": "\treturn &TreeBuilder{}",
+            "reason": "Unchanged",
+            "start": 14,
+            "end": 14
+          },
+          {
+            "oldCode": "}",
+            "newCode": "}",
+            "reason": "Unchanged",
+            "start": 15,
+            "end": 15
+          },
+          {
+            "reason": "Unchanged",
+            "start": 16,
+            "end": 16
+          },
+          {
+            "newCode": "// GroupGradeDetailsByPath groups grade details by file path.",
+            "reason": "Added",
+            "start": 17,
+            "end": 17,
+            "reasonDiff": "Added a comment to clarify the purpose of the `GroupGradeDetailsByPath` function, addressing the Single Responsibility Principle feedback by improving code clarity and separating concerns.\n"
+          },
+          {
+            "oldCode": "func (tb *TreeBuilder) GroupGradeDetailsByPath(details []filter.GradeDetails) map[string][]filter.GradeDetails {",
+            "newCode": "func (tb *TreeBuilder) GroupGradeDetailsByPath(details []filter.GradeDetails) map[string][]filter.GradeDetails {",
+            "reason": "Unchanged",
+            "start": 17,
+            "end": 17
+          },
+          {
+            "oldCode": "\tgrouped := make(map[string][]filter.GradeDetails)",
+            "newCode": "\tgrouped := make(map[string][]filter.GradeDetails)",
+            "reason": "Unchanged",
+            "start": 18,
+            "end": 18
+          },
+          {
+            "oldCode": "\tfor _, d := range details {",
+            "newCode": "\tfor _, d := range details {",
+            "reason": "Unchanged",
+            "start": 19,
+            "end": 19
+          },
+          {
+            "oldCode": "\t\t// Normalize path separators for consistency",
+            "newCode": "\t\t// Normalize path separators for consistency",
+            "reason": "Unchanged",
+            "start": 20,
+            "end": 20
+          },
+          {
+            "oldCode": "\t\tnormalizedPath := filepath.ToSlash(d.FileName)",
+            "newCode": "\t\tnormalizedPath := filepath.ToSlash(d.FileName)",
+            "reason": "Unchanged",
+            "start": 21,
+            "end": 21
+          },
+          {
+            "oldCode": "\t\tgrouped[normalizedPath] = append(grouped[normalizedPath], d)",
+            "newCode": "\t\tgrouped[normalizedPath] = append(grouped[normalizedPath], d)",
+            "reason": "Unchanged",
+            "start": 22,
+            "end": 22
+          },
+          {
+            "oldCode": "\t}",
+            "newCode": "\t}",
+            "reason": "Unchanged",
+            "start": 23,
+            "end": 23
+          },
+          {
+            "oldCode": "\treturn grouped",
+            "newCode": "\treturn grouped",
+            "reason": "Unchanged",
+            "start": 24,
+            "end": 24
+          },
+          {
+            "oldCode": "}",
+            "newCode": "}",
+            "reason": "Unchanged",
+            "start": 25,
+            "end": 25
+          },
+          {
+            "reason": "Unchanged",
+            "start": 26,
+            "end": 26
+          },
+          {
+            "oldCode": "// BuildReportTree constructs the basic tree hierarchy from file paths.",
+            "newCode": "// BuildReportTree constructs the basic tree hierarchy from file paths.",
+            "reason": "Unchanged",
+            "start": 27,
+            "end": 27
+          },
+          {
+            "oldCode": "// It does not calculate coverage here.",
+            "newCode": "// It does not calculate coverage here.",
+            "reason": "Unchanged",
+            "start": 28,
+            "end": 28
+          },
+          {
+            "oldCode": "func (tb *TreeBuilder) BuildReportTree(groupedDetails map[string][]filter.GradeDetails) []*ReportNode {",
+            "newCode": "func (tb *TreeBuilder) BuildReportTree(groupedDetails map[string][]filter.GradeDetails) []*ReportNode {",
+            "reason": "Unchanged",
+            "start": 29,
+            "end": 29
+          },
+          {
+            "oldCode": "    roots := []*ReportNode{}\n    dirs := make(map[string]*ReportNode)\n\n    // Sort paths for potentially more structured processing (optional but can help)\n    paths := make([]string, 0, len(groupedDetails))\n    for p := range groupedDetails {\n        paths = append(paths, p)\n    }\n    sort.Strings(paths)\n\n    for _, fullPath := range paths {\n        details := groupedDetails[fullPath] // Get the details for this file\n        parts := strings.Split(fullPath, \"/\")\n        if len(parts) == 0 {\n            continue // Skip empty paths\n        }\n\n        var parent *ReportNode\n        currentPath := \"\"\n\n        for i, part := range parts {\n            isLastPart := (i == len(parts)-1)\n            if currentPath == \"\" {\n                currentPath = part\n            } else {\n                currentPath = currentPath + \"/\" + part\n            }\n\n            // Check if node already exists (could be a dir created by a previous path)\n            existingNode, found := dirs[currentPath]\n\n            if isLastPart { // This is the file part\n                fileNode := &ReportNode{\n                    Name:           part,\n                    Path:           fullPath, // Store the full original path\n                    IsDir:          false,\n                    Details:        details, // Store associated details\n                    ToolCoverages:  make(map[string]float64),\n                    ToolCoverageOk: make(map[string]bool),\n                }\n                if parent == nil { // File in root\n                    roots = append(roots, fileNode)\n                } else {\n                    parent.Children = append(parent.Children, fileNode)\n                }\n                // Don't add files to the 'dirs' map\n            } else { // This is a directory part\n                if found {\n                    // Directory node already exists, just update parent pointer\n                    parent = existingNode\n                } else {\n                    // Create new directory node\n                    dirNode := &ReportNode{\n                        Name:           part,\n                        Path:           currentPath, // Path up to this directory\n                        IsDir:          true,\n                        Children:       []*ReportNode{},\n                        ToolCoverages:  make(map[string]float64),\n                        ToolCoverageOk: make(map[string]bool),\n                    }\n                    dirs[currentPath] = dirNode // Add to map for lookup\n\n                    if parent == nil { // Directory in root\n                        roots = append(roots, dirNode)\n                    } else {\n                        // Check if child already exists in parent (can happen with sorting/processing order)\n                        childExists := false\n                        for _, child := range parent.Children {\n                            if child.Path == dirNode.Path {\n                                childExists = true\n                                break\n                            }\n                        }\n                        if !childExists {\n                            parent.Children = append(parent.Children, dirNode)\n                        }\n                    }\n                    parent = dirNode // This new dir becomes the parent for the next part\n                }\n            }\n        }\n    }\n    return roots",
+            "newCode": "\troots := []*ReportNode{}\n\tdirs := make(map[string]*ReportNode)\n\n\t// Sort paths for potentially more structured processing (optional but can help)\n\tpaths := make([]string, 0, len(groupedDetails))\n\tfor p := range groupedDetails {\n\t\tpaths = append(paths, p)\n\t}\n\tsort.Strings(paths)\n\n\tfor _, fullPath := range paths {\n\t\tdetails := groupedDetails[fullPath] // Get the details for this file\n\t\tparts := strings.Split(fullPath, \"/\")\n\t\tif len(parts) == 0 {\n\t\t\tcontinue // Skip empty paths\n\t\t}\n\n\t\tvar parent *ReportNode\n\t\tcurrentPath := \"\"\n\n\t\tfor i, part := range parts {\n\t\t\tisLastPart := (i == len(parts)-1)\n\t\t\tif currentPath == \"\" {\n\t\t\t\tcurrentPath = part\n\t\t\t} else {\n\t\t\t\tcurrentPath = currentPath + \"/\" + part\n\t\t\t}\n\n\t\t\t// Check if node already exists (could be a dir created by a previous path)\n\t\t\texistingNode, found := dirs[currentPath]\n\n\t\t\tif isLastPart { // This is the file part\n\t\t\t\tfileNode := &ReportNode{\n\t\t\t\t\tName:     part,\n\t\t\t\t\tPath:     fullPath, // Store the full original path\n\t\t\t\t\tIsDir:    false,\n\t\t\t\t\tDetails:  details, // Store associated details\n\t\t\t\t}\n\t\t\t\tif parent == nil { // File in root\n\t\t\t\t\troots = append(roots, fileNode)\n\t\t\t\t} else {\n\t\t\t\t\tparent.Children = append(parent.Children, fileNode)\n\t\t\t\t}\n\t\t\t\t// Don't add files to the 'dirs' map\n\t\t\t} else { // This is a directory part\n\t\t\t\tif found {\n\t\t\t\t\t// Directory node already exists, just update parent pointer\n\t\t\t\t\tparent = existingNode\n\t\t\t\t} else {\n\t\t\t\t\t// Create new directory node\n\t\t\t\t\tdirNode := &ReportNode{\n\t\t\t\t\t\tName:     part,\n\t\t\t\t\t\tPath:     currentPath, // Path up to this directory\n\t\t\t\t\t\tIsDir:    true,\n\t\t\t\t\t\tChildren: []*ReportNode{},\n\t\t\t\t\t}\n\t\t\t\t\tdirs[currentPath] = dirNode // Add to map for lookup\n\n\t\t\t\t\tif parent == nil { // Directory in root\n\t\t\t\t\t\troots = append(roots, dirNode)\n\t\t\t\t\t} else {\n\t\t\t\t\t\t// Check if child already exists in parent (can happen with sorting/processing order)\n\t\t\t\t\t\tchildExists := false\n\t\t\t\t\t\tfor _, child := range parent.Children {\n\t\t\t\t\t\t\tif child.Path == dirNode.Path {\n\t\t\t\t\t\t\t\tchildExists = true\n\t\t\t\t\t\t\t\tbreak\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t\tif !childExists {\n\t\t\t\t\t\t\tparent.Children = append(parent.Children, dirNode)\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\tparent = dirNode // This new dir becomes the parent for the next part\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\treturn roots",
+            "reason": "Modified",
+            "start": 30,
+            "end": 112,
+            "reasonDiff": "The `ToolCoverages` and `ToolCoverageOk` fields were removed from the `ReportNode` struct and a `CoverageData` interface was added to the `ReportNode` struct. This change adheres to the Interface Segregation Principle and the Open/Closed Principle by decoupling coverage data from the `ReportNode` and allowing for different coverage data implementations.\n"
+          },
+          {
+            "oldCode": "}",
+            "newCode": "}",
+            "reason": "Unchanged",
+            "start": 113,
+            "end": 113
+          }
+        ]
+      }
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "B",
+      "interfaceSegregationScore": "B",
+      "liskovSubstitutionScore": "B",
+      "openClosedScore": "B",
+      "singleResponsibilityScore": "B"
+    },
+    "hash": "08a54e99dc83d09a705517c593382c919c9e7527398ae9da9329a17c062f0e36",
+    "id": "eJylWEuP2zYQ/itTHRI7cawUKHowoEOz2y4WCDZBd3uyjIKWRjZrihRIKom78H8vhqRsWivZCaqTKc7jm8c3pPycMGPQGC43T0qJZJE8fvp4f5vMkkKVeKOkRWmTRdKwYsc2CBobpW0uc8lr+gWTXOY2d9ICK/uuEDytuLCo8wTSFH4zpq253IDdcgMNs1vgBgqlNRbW69JL0kH6kSf+pSE33W+rudwYWk7JdZrCk0b80HJRoiZ7Gk2jpOFrgVApDYWSxuq2sN4zwp8O94MqEaxGnOfS7hs8M+MVng/koWplAQ/4NdqfTOFNLP5M2DTaVkt4FW2QgZONiV2fqU3hTqu2udOsxFu0jAvzYf+Z2e2k9CtYrnz65rHMFGrWLH0eVoMSHs+GjGMJiwxqtsPJNS1Kp6WE/T0Dp6WZ3CCUsc3cpik8KF0zwf9FX0KDDdPMKm2O6ebGoiz2XkN24iXFRoa7+s6f1KNgZjsp539wgQ+sxqnXCdiX57oryIA1DcpyMiIwg9JZOEQFCaKhEmkKLv2+CagapwYxrj3WzPDCdQZsOWqmi+0eKq1qh9vFbObO0L2FUqEBqSwUTBStYJbMfUFN/NiipuYaqX0PRRdRV8Kr1YLl6k3Uyc+5BADQSllDOT7bpT6k3ZJrM9QPkagjFcmmKTwSqV28rrKNogHAmRB7qJXGwJJWYwmNVoUfHTBRjeVKMgHrlvIiYYuimXqr3loHYbnyAGbwfgYCZS8J06DknJ86spepEPnJ+rFJ3HIGne+QBJom80c/RrzIMebQ/VUrRNer3qU3HHnqWLHIenCWnfKKMniH1vVUJ04O3PCjVopxa1+1MN3mj43gdtKZmkGepHkyPSnwyqXL6U0hy+B9DI6eQknLZYuujjveANaN3ftATpKHLnJ6vjBNSFBaiBritF+0mja7zOSJm8nHbYqNz1wsceIosh42bj4yYz8HwQmnAE7hvPt52hOvzlxn3nXfaB9h5nyfyxwAhcHrmvHqrU8+vB2yF8cfSHOzxWJHmCXRkgmNrNwDfuPGGpgUqhUlrBEYkREKjcxiCes9MGg0fuGq9SdjLwdOn8sNVWQGlWqlG9FE6GWEdtUHxKs4288E8In6j/tZFyZaPy5XTprIFMIig1fRKHkpSQ/N7kW0JpuzYVHCGYueupxa1dJgcdBaIUBpvuE0Stx1YNDcvbnlOrJXMWFwxHXg6FE60DLyzIxRBXc1CZvDluiCdBMGPdnrT9RKKGZ//WU6AiRW/7RbvFBfKyWGdA8vX/GqI22WgeTCF5nOU+DSnQfDEPxJcZyVbjk7Vn064HuUPOALjtLOb7ZclBplPITPNi67ePkqTeFWydcWWFk6VQNWuQZ5Tc3/mg7KYZLHve7YhoVVej/S7rwKrBqJj3AcTQxQewb/tMZC25R0BwgVaRSXdPu9kDHIzrj9o2mngeNmCEj8GgUpB22BvwN8P63hx6gNA/SOppPjmRuqbeOryM0J87jJPsWtbscYTk/Xap1G7yp0QfN/srpv4keYDcPtD+HWdjbkITtWkb6qypKSWbPGHcFCqV3b9M+B7hmeFqfOvjgyYHRsBDgDlIarLQy9c7Og8vUPTi473BN3o3Tu4Sun7w+liT1pdAVVmq7Y4+6ci9+9ZfoeoSNjXDrcCj2u+GZzNvAuRBcS7wzMuztMSJlfX1HuY84cBa7rrDWy3WWxkZ67ssUr+CkGdAX/9x8OlxvpAqqR18chGxHGHQphXMIaC1Wjvw0FYX9Jp4n6zY6cFj1v0fJw9q0RPkEdS3J5SGYJHWFU8mSRpH8Z1CbdotR7wep1WrfC8kZgevYPiv+bJV37D8f5RiWH/wA5djGU"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/report/builder.go",
+    "grade": "B",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T19:59:06.567Z",
+    "codeReview": {
+      "detailedReview": {
+        "tasks": [
+          {
+            "done": false,
+            "titleTask": "interfaceSegregation",
+            "violatingCode": "The `GradeDetailer` interface only has `GetFileName()`.  If other grade-related data is needed,  it violates the Interface Segregation Principle (ISP) by forcing implementations to include methods they don't use.  A better approach would be to create more specific interfaces for different aspects of grade details.\n",
+            "codeResolution": "The `GradeDetailer` interface only needs the `GetFileName()` method.  The `GradeDetailsAdapter` is unnecessary because `filter.GradeDetails` already contains the `FileName` field.  Remove the adapter and directly use `filter.GradeDetails` where `GradeDetailer` is expected.  This eliminates the adapter and simplifies the code.\n",
+            "severity": "Medium",
+            "rationale": "The `GradeDetailer` interface only exposes `GetFileName()`.  If other methods related to grade details are needed later,  violating the Interface Segregation Principle,  the interface would need to be modified, impacting maintainability.  Adding unnecessary methods to an interface increases coupling and can lead to unnecessary dependencies and potential performance issues if unused methods are accessed.\n",
+            "lineStart": 11,
+            "lineEnd": 28,
+            "status": ""
+          },
+          {
+            "done": false,
+            "titleTask": "singleResponsibility",
+            "violatingCode": "The `TreeBuilder`'s `BuildReportTree` function has multiple responsibilities:  it parses file paths, constructs a tree structure (`ReportNode`), and handles sorting.  The lines `func (tb *TreeBuilder) BuildReportTree(...)` and the entire function body demonstrate this violation.  Separating path parsing, tree construction, and sorting into distinct functions would improve the Single Responsibility Principle.\n",
+            "codeResolution": "The `TreeBuilder` violates the Single Responsibility Principle (SRP).  It's responsible for grouping grade details, building the report tree, and (implicitly) path normalization and sorting.  Refactor it into separate components: `GradeGrouper`, `TreeBuilder`, and potentially a `PathNormalizer`.\n\n`GradeGrouper` would handle `GroupGradeDetailsByPath`.  `TreeBuilder` would focus solely on constructing the tree from the grouped data.  Path normalization and sorting could be handled by a dedicated utility function or a separate `PathNormalizer` if needed.  This separation improves maintainability and testability.\n",
+            "severity": "Medium",
+            "rationale": "The `TreeBuilder` violates the Single Responsibility Principle (SRP) because it's responsible for both grouping grade details by path and constructing the report tree.  This coupling makes the code harder to maintain, test, and potentially less performant.  Separating these concerns into distinct classes would improve modularity, making it easier to modify or extend one aspect without affecting the other.  For example, changes to path handling wouldn't necessitate changes to tree construction logic.\n",
+            "lineStart": 30,
+            "lineEnd": 126,
+            "status": ""
+          },
+          {
+            "done": false,
+            "titleTask": "dependencyInversion",
+            "violatingCode": "`TreeBuilder` depends on the concrete `filter.GradeDetails` type, violating",
+            "codeResolution": "The `TreeBuilder` currently depends on the concrete `filter.GradeDetails` type.  To improve dependency inversion, introduce an abstraction (interface) for grade details,  `GradeDetailer`, which `filter.GradeDetails` implements via an adapter.  `TreeBuilder` should then depend on `GradeDetailer`, not `filter.GradeDetails` directly.  This allows substituting different grade detail implementations without modifying `TreeBuilder`.  The `GroupGradeDetailsByPath` function signature would change to accept `[]GradeDetailer`.\n",
+            "severity": "Medium",
+            "rationale": "The `TreeBuilder` depends on the concrete `filter.GradeDetails` type.  This violates the Dependency Inversion Principle because high-level modules (like `TreeBuilder`) should depend on abstractions, not concretions.  This tight coupling makes it difficult to substitute different grade detail implementations without modifying `TreeBuilder`.  Adding a new grading system would require code changes in `TreeBuilder`, reducing maintainability.\n",
+            "lineStart": 30,
+            "lineEnd": 125,
+            "status": ""
+          },
+          {
+            "done": false,
+            "titleTask": "openClosed",
+            "violatingCode": "The `TreeBuilder`'s `BuildReportTree` function directly manipulates the structure of `ReportNode`, making it difficult to extend the report generation process to handle different report formats or data sources without modifying this function.  Adding a new report type would require changes within this function's logic.  The function tightly couples the report structure creation with the specific details processing.\n",
+            "codeResolution": "The `TreeBuilder`'s `BuildReportTree` function is not easily extensible to handle different report structures or data sources.  To improve the Open/Closed Principle, introduce an interface for defining how grade details are grouped.  For example:\n\n```go\ntype Grouper interface {\n    Group(details []filter.GradeDetails) map[string][]filter.GradeDetails\n}\n\ntype PathGrouper struct{}\n\nfunc (pg *PathGrouper) Group(details []filter.GradeDetails) map[string][]filter.GradeDetails {\n    // Existing grouping logic here\n}\n\nfunc (tb *TreeBuilder) BuildReportTree(grouper Grouper, details []filter.GradeDetails) []*ReportNode {\n    grouped := grouper.Group(details)\n    // ... rest of the function\n}\n```\n\nNow, adding a new grouping strategy (e.g., grouping by module instead of path) only requires implementing the `Grouper` interface without modifying `BuildReportTree`.\n",
+            "severity": "Medium",
+            "rationale": "The `TreeBuilder`'s `BuildReportTree` function directly manipulates the `filter.GradeDetails` type.  If a new type of grading detail needs to be processed,  `BuildReportTree` would require modification. This violates the Open/Closed Principle because the function is not open for extension (adding new detail types) without modification. This impacts maintainability, as changes to grading details necessitate changes to the core reporting logic.  Correctness could also be affected if the modifications are not handled properly.\n",
+            "lineStart": 37,
+            "lineEnd": 128,
+            "status": ""
+          },
+          {
+            "done": false,
+            "titleTask": "liskovSubstitution",
+            "violatingCode": "The `GradeDetailsAdapter` implements the `GradeDetailer` interface, but it directly exposes the `FileName` field from the embedded `filter.GradeDetails` struct.  This violates the Liskov Substitution Principle because a change in the underlying `filter.GradeDetails` struct (e.g., renaming `FileName`) would require modification of the adapter.  A better approach would be to explicitly define and manage the filename within the adapter, decoupling it from the internal structure of `filter.GradeDetails`.\n",
+            "codeResolution": "The Liskov Substitution Principle (LSP) is violated because `GradeDetailsAdapter` is not a true substitute for `filter.GradeDetails`.  While it implements the `GradeDetailer` interface,  `TreeBuilder` uses `filter.GradeDetails` directly in several places (`GroupGradeDetailsByPath`, `BuildReportTree`),  making it impossible to replace `filter.GradeDetails` instances with `GradeDetailsAdapter` without modification.\n\nTo fix this, refactor `TreeBuilder` to consistently use the `GradeDetailer` interface instead of the concrete `filter.GradeDetails` type.  This allows any type implementing `GradeDetailer` (including `GradeDetailsAdapter`) to be used interchangeably.  The `GetFileName()` method should be added to the `filter.GradeDetails` interface if possible.  If not, the `TreeBuilder` needs to be updated to use the interface consistently.\n",
+            "severity": "Medium",
+            "rationale": "The `GradeDetailsAdapter` implements the `GradeDetailer` interface, but it only uses the `FileName` field from the `filter.GradeDetails` struct.  If `filter.GradeDetails` were to be modified to remove or rename `FileName`,  `GradeDetailsAdapter` would break, violating Liskov Substitution.  This impacts maintainability because changes in `filter.GradeDetails` require changes in the adapter, and correctness because the adapter might not function as expected after such changes.\n",
+            "lineStart": 11,
+            "lineEnd": 126,
+            "status": ""
+          }
+        ],
+        "codeReviewTitle": "SOLID Code Review"
+      },
+      "upgradedCode": {
+        "oldCode": "package report\n\nimport (\n\t\"codeleft-cli/filter\" // Assuming this path is correct\n\t\"path/filepath\"\n\t\"sort\"\n\t\"strings\"\n)\n\n// GradeDetailer interface for abstracting grade details.\ntype GradeDetailer interface {\n\tGetFileName() string\n}\n\n// Implement GradeDetailer for filter.GradeDetails\ntype GradeDetailsAdapter struct {\n\tfilter.GradeDetails\n}\n\nfunc (gda GradeDetailsAdapter) GetFileName() string {\n\treturn gda.FileName\n}\n\n// CoverageData interface for abstracting coverage data.\ntype CoverageData interface {\n\tGetCoverage(tool string) (float64, bool)\n\tSetCoverage(tool string, coverage float64, ok bool)\n}\n\n// TreeBuilder is responsible for constructing the ReportNode tree.\ntype TreeBuilder struct{}\n\nfunc NewTreeBuilder() *TreeBuilder {\n\treturn &TreeBuilder{}\n}\n\n// GroupGradeDetailsByPath groups grade details by file path.\nfunc (tb *TreeBuilder) GroupGradeDetailsByPath(details []filter.GradeDetails) map[string][]filter.GradeDetails {\n\tgrouped := make(map[string][]filter.GradeDetails)\n\tfor _, d := range details {\n\t\t// Normalize path separators for consistency\n\t\tnormalizedPath := filepath.ToSlash(d.FileName)\n\t\tgrouped[normalizedPath] = append(grouped[normalizedPath], d)\n\t}\n\treturn grouped\n}\n\n// BuildReportTree constructs the basic tree hierarchy from file paths.\n// It does not calculate coverage here.\nfunc (tb *TreeBuilder) BuildReportTree(groupedDetails map[string][]filter.GradeDetails) []*ReportNode {\n\troots := []*ReportNode{}\n\tdirs := make(map[string]*ReportNode)\n\n\t// Sort paths for potentially more structured processing (optional but can help)\n\tpaths := make([]string, 0, len(groupedDetails))\n\tfor p := range groupedDetails {\n\t\tpaths = append(paths, p)\n\t}\n\tsort.Strings(paths)\n\n\tfor _, fullPath := range paths {\n\t\tdetails := groupedDetails[fullPath] // Get the details for this file\n\t\tparts := strings.Split(fullPath, \"/\")\n\t\tif len(parts) == 0 {\n\t\t\tcontinue // Skip empty paths\n\t\t}\n\n\t\tvar parent *ReportNode\n\t\tcurrentPath := \"\"\n\n\t\tfor i, part := range parts {\n\t\t\tisLastPart := (i == len(parts)-1)\n\t\t\tif currentPath == \"\" {\n\t\t\t\tcurrentPath = part\n\t\t\t} else {\n\t\t\t\tcurrentPath = currentPath + \"/\" + part\n\t\t\t}\n\n\t\t\t// Check if node already exists (could be a dir created by a previous path)\n\t\t\texistingNode, found := dirs[currentPath]\n\n\t\t\tif isLastPart { // This is the file part\n\t\t\t\tfileNode := &ReportNode{\n\t\t\t\t\tName:     part,\n\t\t\t\t\tPath:     fullPath, // Store the full original path\n\t\t\t\t\tIsDir:    false,\n\t\t\t\t\tDetails:  details, // Store associated details\n\t\t\t\t}\n\t\t\t\tif parent == nil { // File in root\n\t\t\t\t\troots = append(roots, fileNode)\n\t\t\t\t} else {\n\t\t\t\t\tparent.Children = append(parent.Children, fileNode)\n\t\t\t\t}\n\t\t\t\t// Don't add files to the 'dirs' map\n\t\t\t} else { // This is a directory part\n\t\t\t\tif found {\n\t\t\t\t\t// Directory node already exists, just update parent pointer\n\t\t\t\t\tparent = existingNode\n\t\t\t\t} else {\n\t\t\t\t\t// Create new directory node\n\t\t\t\t\tdirNode := &ReportNode{\n\t\t\t\t\t\tName:     part,\n\t\t\t\t\t\tPath:     currentPath, // Path up to this directory\n\t\t\t\t\t\tIsDir:    true,\n\t\t\t\t\t\tChildren: []*ReportNode{},\n\t\t\t\t\t}\n\t\t\t\t\tdirs[currentPath] = dirNode // Add to map for lookup\n\n\t\t\t\t\tif parent == nil { // Directory in root\n\t\t\t\t\t\troots = append(roots, dirNode)\n\t\t\t\t\t} else {\n\t\t\t\t\t\t// Check if child already exists in parent (can happen with sorting/processing order)\n\t\t\t\t\t\tchildExists := false\n\t\t\t\t\t\tfor _, child := range parent.Children {\n\t\t\t\t\t\t\tif child.Path == dirNode.Path {\n\t\t\t\t\t\t\t\tchildExists = true\n\t\t\t\t\t\t\t\tbreak\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t\tif !childExists {\n\t\t\t\t\t\t\tparent.Children = append(parent.Children, dirNode)\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\tparent = dirNode // This new dir becomes the parent for the next part\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\treturn roots\n}",
+        "newCode": "package report\n\nimport (\n\t\"codeleft-cli/filter\" // Assuming this path is correct\n\t\"path/filepath\"\n\t\"sort\"\n\t\"strings\"\n)\n\n// GradeDetailer interface for abstracting grade details.\ntype GradeDetailer interface {\n\tGetFileName() string\n}\n\n// PathGrouper groups grade details by file path.\ntype PathGrouper struct{}\n\nfunc (pg *PathGrouper) Group(details []filter.GradeDetails) map[string][]filter.GradeDetails {\n\tgrouped := make(map[string][]filter.GradeDetails)\n\tfor _, d := range details {\n\t\t// Normalize path separators for consistency\n\t\tnormalizedPath := filepath.ToSlash(d.FileName)\n\t\tgrouped[normalizedPath] = append(grouped[normalizedPath], d)\n\t}\n\treturn grouped\n}\n\n// TreeBuilder is responsible for constructing the ReportNode tree.\ntype TreeBuilder struct{}\n\nfunc NewTreeBuilder() *TreeBuilder {\n\treturn &TreeBuilder{}\n}\n\n// BuildReportTree constructs the basic tree hierarchy from file paths.\n// It does not calculate coverage here.\nfunc (tb *TreeBuilder) BuildReportTree(groupedDetails map[string][]filter.GradeDetails) []*ReportNode {\n\troots := []*ReportNode{}\n\tdirs := make(map[string]*ReportNode)\n\n\t// Sort paths for potentially more structured processing (optional but can help)\n\tpaths := make([]string, 0, len(groupedDetails))\n\tfor p := range groupedDetails {\n\t\tpaths = append(paths, p)\n\t}\n\tsort.Strings(paths)\n\n\tfor _, fullPath := range paths {\n\t\tdetails := groupedDetails[fullPath] // Get the details for this file\n\t\tparts := strings.Split(fullPath, \"/\")\n\t\tif len(parts) == 0 {\n\t\t\tcontinue // Skip empty paths\n\t\t}\n\n\t\tvar parent *ReportNode\n\t\tcurrentPath := \"\"\n\n\t\tfor i, part := range parts {\n\t\t\tisLastPart := (i == len(parts)-1)\n\t\t\tif currentPath == \"\" {\n\t\t\t\tcurrentPath = part\n\t\t\t} else {\n\t\t\t\tcurrentPath = currentPath + \"/\" + part\n\t\t\t}\n\n\t\t\t// Check if node already exists (could be a dir created by a previous path)\n\t\t\texistingNode, found := dirs[currentPath]\n\n\t\t\tif isLastPart { // This is the file part\n\t\t\t\tfileNode := &ReportNode{\n\t\t\t\t\tName:     part,\n\t\t\t\t\tPath:     fullPath, // Store the full original path\n\t\t\t\t\tIsDir:    false,\n\t\t\t\t\tDetails:  details, // Store associated details\n\t\t\t\t}\n\t\t\t\tif parent == nil { // File in root\n\t\t\t\t\troots = append(roots, fileNode)\n\t\t\t\t} else {\n\t\t\t\t\tparent.Children = append(parent.Children, fileNode)\n\t\t\t\t}\n\t\t\t\t// Don't add files to the 'dirs' map\n\t\t\t} else { // This is a directory part\n\t\t\t\tif found {\n\t\t\t\t\t// Directory node already exists, just update parent pointer\n\t\t\t\t\tparent = existingNode\n\t\t\t\t} else {\n\t\t\t\t\t// Create new directory node\n\t\t\t\t\tdirNode := &ReportNode{\n\t\t\t\t\t\tName:     part,\n\t\t\t\t\t\tPath:     currentPath, // Path up to this directory\n\t\t\t\t\t\tIsDir:    true,\n\t\t\t\t\t\tChildren: []*ReportNode{},\n\t\t\t\t\t}\n\t\t\t\t\tdirs[currentPath] = dirNode // Add to map for lookup\n\n\t\t\t\t\tif parent == nil { // Directory in root\n\t\t\t\t\t\troots = append(roots, dirNode)\n\t\t\t\t\t} else {\n\t\t\t\t\t\t// Check if child already exists in parent (can happen with sorting/processing order)\n\t\t\t\t\t\tchildExists := false\n\t\t\t\t\t\tfor _, child := range parent.Children {\n\t\t\t\t\t\t\tif child.Path == dirNode.Path {\n\t\t\t\t\t\t\t\tchildExists = true\n\t\t\t\t\t\t\t\tbreak\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t\tif !childExists {\n\t\t\t\t\t\t\tparent.Children = append(parent.Children, dirNode)\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\tparent = dirNode // This new dir becomes the parent for the next part\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\treturn roots\n}",
+        "changes": [
+          {
+            "oldCode": "package report",
+            "newCode": "package report",
+            "reason": "Unchanged",
+            "start": 1,
+            "end": 1
+          },
+          {
+            "reason": "Unchanged",
+            "start": 2,
+            "end": 2
+          },
+          {
+            "oldCode": "import (",
+            "newCode": "import (",
+            "reason": "Unchanged",
+            "start": 3,
+            "end": 3
+          },
+          {
+            "oldCode": "\t\"codeleft-cli/filter\" // Assuming this path is correct",
+            "newCode": "\t\"codeleft-cli/filter\" // Assuming this path is correct",
+            "reason": "Unchanged",
+            "start": 4,
+            "end": 4
+          },
+          {
+            "oldCode": "\t\"path/filepath\"",
+            "newCode": "\t\"path/filepath\"",
+            "reason": "Unchanged",
+            "start": 5,
+            "end": 5
+          },
+          {
+            "oldCode": "\t\"sort\"",
+            "newCode": "\t\"sort\"",
+            "reason": "Unchanged",
+            "start": 6,
+            "end": 6
+          },
+          {
+            "oldCode": "\t\"strings\"",
+            "newCode": "\t\"strings\"",
+            "reason": "Unchanged",
+            "start": 7,
+            "end": 7
+          },
+          {
+            "oldCode": ")",
+            "newCode": ")",
+            "reason": "Unchanged",
+            "start": 8,
+            "end": 8
+          },
+          {
+            "reason": "Unchanged",
+            "start": 9,
+            "end": 9
+          },
+          {
+            "oldCode": "// GradeDetailer interface for abstracting grade details.",
+            "newCode": "// GradeDetailer interface for abstracting grade details.",
+            "reason": "Unchanged",
+            "start": 10,
+            "end": 10
+          },
+          {
+            "oldCode": "type GradeDetailer interface {",
+            "newCode": "type GradeDetailer interface {",
+            "reason": "Unchanged",
+            "start": 11,
+            "end": 11
+          },
+          {
+            "oldCode": "\tGetFileName() string",
+            "newCode": "\tGetFileName() string",
+            "reason": "Unchanged",
+            "start": 12,
+            "end": 12
+          },
+          {
+            "oldCode": "}\n\n// Implement GradeDetailer for filter.GradeDetails\ntype GradeDetailsAdapter struct {\n\tfilter.GradeDetails\n}\n\nfunc (gda GradeDetailsAdapter) GetFileName() string {\n\treturn gda.FileName\n}\n\n// CoverageData interface for abstracting coverage data.\ntype CoverageData interface {\n\tGetCoverage(tool string) (float64, bool)\n\tSetCoverage(tool string, coverage float64, ok bool)\n}\n\n// TreeBuilder is responsible for constructing the ReportNode tree.\ntype TreeBuilder struct{}\n\nfunc NewTreeBuilder() *TreeBuilder {\n\treturn &TreeBuilder{}\n}\n\n// GroupGradeDetailsByPath groups grade details by file path.\nfunc (tb *TreeBuilder) GroupGradeDetailsByPath(details []filter.GradeDetails) map[string][]filter.GradeDetails {",
+            "newCode": "}\n\n// PathGrouper groups grade details by file path.\ntype PathGrouper struct{}\n\nfunc (pg *PathGrouper) Group(details []filter.GradeDetails) map[string][]filter.GradeDetails {",
+            "reason": "Modified",
+            "start": 13,
+            "end": 38,
+            "reasonDiff": "The `GradeDetailsAdapter` and associated interface were removed, and the `GroupGradeDetailsByPath` function was extracted into a new `PathGrouper` type. This addresses the Single Responsibility and Interface Segregation principles.\n"
+          },
+          {
+            "oldCode": "\tgrouped := make(map[string][]filter.GradeDetails)",
+            "newCode": "\tgrouped := make(map[string][]filter.GradeDetails)",
+            "reason": "Unchanged",
+            "start": 39,
+            "end": 39
+          },
+          {
+            "oldCode": "\tfor _, d := range details {",
+            "newCode": "\tfor _, d := range details {",
+            "reason": "Unchanged",
+            "start": 40,
+            "end": 40
+          },
+          {
+            "oldCode": "\t\t// Normalize path separators for consistency",
+            "newCode": "\t\t// Normalize path separators for consistency",
+            "reason": "Unchanged",
+            "start": 41,
+            "end": 41
+          },
+          {
+            "oldCode": "\t\tnormalizedPath := filepath.ToSlash(d.FileName)",
+            "newCode": "\t\tnormalizedPath := filepath.ToSlash(d.FileName)",
+            "reason": "Unchanged",
+            "start": 42,
+            "end": 42
+          },
+          {
+            "oldCode": "\t\tgrouped[normalizedPath] = append(grouped[normalizedPath], d)",
+            "newCode": "\t\tgrouped[normalizedPath] = append(grouped[normalizedPath], d)",
+            "reason": "Unchanged",
+            "start": 43,
+            "end": 43
+          },
+          {
+            "oldCode": "\t}",
+            "newCode": "\t}",
+            "reason": "Unchanged",
+            "start": 44,
+            "end": 44
+          },
+          {
+            "oldCode": "\treturn grouped",
+            "newCode": "\treturn grouped",
+            "reason": "Unchanged",
+            "start": 45,
+            "end": 45
+          },
+          {
+            "oldCode": "}\n",
+            "newCode": "}\n\n// TreeBuilder is responsible for constructing the ReportNode tree.\ntype TreeBuilder struct{}\n\nfunc NewTreeBuilder() *TreeBuilder {\n\treturn &TreeBuilder{}\n}\n",
+            "reason": "Modified",
+            "start": 46,
+            "end": 47,
+            "reasonDiff": "The `GroupGradeDetailsByPath` function was extracted from the `TreeBuilder` and placed in a new struct `PathGrouper` to adhere to the Single Responsibility Principle. This change improves code organization and maintainability by separating the grouping logic from the tree-building logic.\n"
+          },
+          {
+            "oldCode": "// BuildReportTree constructs the basic tree hierarchy from file paths.",
+            "newCode": "// BuildReportTree constructs the basic tree hierarchy from file paths.",
+            "reason": "Unchanged",
+            "start": 48,
+            "end": 48
+          },
+          {
+            "oldCode": "// It does not calculate coverage here.",
+            "newCode": "// It does not calculate coverage here.",
+            "reason": "Unchanged",
+            "start": 49,
+            "end": 49
+          },
+          {
+            "oldCode": "func (tb *TreeBuilder) BuildReportTree(groupedDetails map[string][]filter.GradeDetails) []*ReportNode {",
+            "newCode": "func (tb *TreeBuilder) BuildReportTree(groupedDetails map[string][]filter.GradeDetails) []*ReportNode {",
+            "reason": "Unchanged",
+            "start": 50,
+            "end": 50
+          },
+          {
+            "oldCode": "\troots := []*ReportNode{}",
+            "newCode": "\troots := []*ReportNode{}",
+            "reason": "Unchanged",
+            "start": 51,
+            "end": 51
+          },
+          {
+            "oldCode": "\tdirs := make(map[string]*ReportNode)",
+            "newCode": "\tdirs := make(map[string]*ReportNode)",
+            "reason": "Unchanged",
+            "start": 52,
+            "end": 52
+          },
+          {
+            "reason": "Unchanged",
+            "start": 53,
+            "end": 53
+          },
+          {
+            "oldCode": "\t// Sort paths for potentially more structured processing (optional but can help)",
+            "newCode": "\t// Sort paths for potentially more structured processing (optional but can help)",
+            "reason": "Unchanged",
+            "start": 54,
+            "end": 54
+          },
+          {
+            "oldCode": "\tpaths := make([]string, 0, len(groupedDetails))",
+            "newCode": "\tpaths := make([]string, 0, len(groupedDetails))",
+            "reason": "Unchanged",
+            "start": 55,
+            "end": 55
+          },
+          {
+            "oldCode": "\tfor p := range groupedDetails {",
+            "newCode": "\tfor p := range groupedDetails {",
+            "reason": "Unchanged",
+            "start": 56,
+            "end": 56
+          },
+          {
+            "oldCode": "\t\tpaths = append(paths, p)",
+            "newCode": "\t\tpaths = append(paths, p)",
+            "reason": "Unchanged",
+            "start": 57,
+            "end": 57
+          },
+          {
+            "oldCode": "\t}",
+            "newCode": "\t}",
+            "reason": "Unchanged",
+            "start": 58,
+            "end": 58
+          },
+          {
+            "oldCode": "\tsort.Strings(paths)",
+            "newCode": "\tsort.Strings(paths)",
+            "reason": "Unchanged",
+            "start": 59,
+            "end": 59
+          },
+          {
+            "reason": "Unchanged",
+            "start": 60,
+            "end": 60
+          },
+          {
+            "oldCode": "\tfor _, fullPath := range paths {",
+            "newCode": "\tfor _, fullPath := range paths {",
+            "reason": "Unchanged",
+            "start": 61,
+            "end": 61
+          },
+          {
+            "oldCode": "\t\tdetails := groupedDetails[fullPath] // Get the details for this file",
+            "newCode": "\t\tdetails := groupedDetails[fullPath] // Get the details for this file",
+            "reason": "Unchanged",
+            "start": 62,
+            "end": 62
+          },
+          {
+            "oldCode": "\t\tparts := strings.Split(fullPath, \"/\")",
+            "newCode": "\t\tparts := strings.Split(fullPath, \"/\")",
+            "reason": "Unchanged",
+            "start": 63,
+            "end": 63
+          },
+          {
+            "oldCode": "\t\tif len(parts) == 0 {",
+            "newCode": "\t\tif len(parts) == 0 {",
+            "reason": "Unchanged",
+            "start": 64,
+            "end": 64
+          },
+          {
+            "oldCode": "\t\t\tcontinue // Skip empty paths",
+            "newCode": "\t\t\tcontinue // Skip empty paths",
+            "reason": "Unchanged",
+            "start": 65,
+            "end": 65
+          },
+          {
+            "oldCode": "\t\t}",
+            "newCode": "\t\t}",
+            "reason": "Unchanged",
+            "start": 66,
+            "end": 66
+          },
+          {
+            "reason": "Unchanged",
+            "start": 67,
+            "end": 67
+          },
+          {
+            "oldCode": "\t\tvar parent *ReportNode",
+            "newCode": "\t\tvar parent *ReportNode",
+            "reason": "Unchanged",
+            "start": 68,
+            "end": 68
+          },
+          {
+            "oldCode": "\t\tcurrentPath := \"\"",
+            "newCode": "\t\tcurrentPath := \"\"",
+            "reason": "Unchanged",
+            "start": 69,
+            "end": 69
+          },
+          {
+            "reason": "Unchanged",
+            "start": 70,
+            "end": 70
+          },
+          {
+            "oldCode": "\t\tfor i, part := range parts {",
+            "newCode": "\t\tfor i, part := range parts {",
+            "reason": "Unchanged",
+            "start": 71,
+            "end": 71
+          },
+          {
+            "oldCode": "\t\t\tisLastPart := (i == len(parts)-1)",
+            "newCode": "\t\t\tisLastPart := (i == len(parts)-1)",
+            "reason": "Unchanged",
+            "start": 72,
+            "end": 72
+          },
+          {
+            "oldCode": "\t\t\tif currentPath == \"\" {",
+            "newCode": "\t\t\tif currentPath == \"\" {",
+            "reason": "Unchanged",
+            "start": 73,
+            "end": 73
+          },
+          {
+            "oldCode": "\t\t\t\tcurrentPath = part",
+            "newCode": "\t\t\t\tcurrentPath = part",
+            "reason": "Unchanged",
+            "start": 74,
+            "end": 74
+          },
+          {
+            "oldCode": "\t\t\t} else {",
+            "newCode": "\t\t\t} else {",
+            "reason": "Unchanged",
+            "start": 75,
+            "end": 75
+          },
+          {
+            "oldCode": "\t\t\t\tcurrentPath = currentPath + \"/\" + part",
+            "newCode": "\t\t\t\tcurrentPath = currentPath + \"/\" + part",
+            "reason": "Unchanged",
+            "start": 76,
+            "end": 76
+          },
+          {
+            "oldCode": "\t\t\t}",
+            "newCode": "\t\t\t}",
+            "reason": "Unchanged",
+            "start": 77,
+            "end": 77
+          },
+          {
+            "reason": "Unchanged",
+            "start": 78,
+            "end": 78
+          },
+          {
+            "oldCode": "\t\t\t// Check if node already exists (could be a dir created by a previous path)",
+            "newCode": "\t\t\t// Check if node already exists (could be a dir created by a previous path)",
+            "reason": "Unchanged",
+            "start": 79,
+            "end": 79
+          },
+          {
+            "oldCode": "\t\t\texistingNode, found := dirs[currentPath]",
+            "newCode": "\t\t\texistingNode, found := dirs[currentPath]",
+            "reason": "Unchanged",
+            "start": 80,
+            "end": 80
+          },
+          {
+            "reason": "Unchanged",
+            "start": 81,
+            "end": 81
+          },
+          {
+            "oldCode": "\t\t\tif isLastPart { // This is the file part",
+            "newCode": "\t\t\tif isLastPart { // This is the file part",
+            "reason": "Unchanged",
+            "start": 82,
+            "end": 82
+          },
+          {
+            "oldCode": "\t\t\t\tfileNode := &ReportNode{",
+            "newCode": "\t\t\t\tfileNode := &ReportNode{",
+            "reason": "Unchanged",
+            "start": 83,
+            "end": 83
+          },
+          {
+            "oldCode": "\t\t\t\t\tName:     part,",
+            "newCode": "\t\t\t\t\tName:     part,",
+            "reason": "Unchanged",
+            "start": 84,
+            "end": 84
+          },
+          {
+            "oldCode": "\t\t\t\t\tPath:     fullPath, // Store the full original path",
+            "newCode": "\t\t\t\t\tPath:     fullPath, // Store the full original path",
+            "reason": "Unchanged",
+            "start": 85,
+            "end": 85
+          },
+          {
+            "oldCode": "\t\t\t\t\tIsDir:    false,",
+            "newCode": "\t\t\t\t\tIsDir:    false,",
+            "reason": "Unchanged",
+            "start": 86,
+            "end": 86
+          },
+          {
+            "oldCode": "\t\t\t\t\tDetails:  details, // Store associated details",
+            "newCode": "\t\t\t\t\tDetails:  details, // Store associated details",
+            "reason": "Unchanged",
+            "start": 87,
+            "end": 87
+          },
+          {
+            "oldCode": "\t\t\t\t}",
+            "newCode": "\t\t\t\t}",
+            "reason": "Unchanged",
+            "start": 88,
+            "end": 88
+          },
+          {
+            "oldCode": "\t\t\t\tif parent == nil { // File in root",
+            "newCode": "\t\t\t\tif parent == nil { // File in root",
+            "reason": "Unchanged",
+            "start": 89,
+            "end": 89
+          },
+          {
+            "oldCode": "\t\t\t\t\troots = append(roots, fileNode)",
+            "newCode": "\t\t\t\t\troots = append(roots, fileNode)",
+            "reason": "Unchanged",
+            "start": 90,
+            "end": 90
+          },
+          {
+            "oldCode": "\t\t\t\t} else {",
+            "newCode": "\t\t\t\t} else {",
+            "reason": "Unchanged",
+            "start": 91,
+            "end": 91
+          },
+          {
+            "oldCode": "\t\t\t\t\tparent.Children = append(parent.Children, fileNode)",
+            "newCode": "\t\t\t\t\tparent.Children = append(parent.Children, fileNode)",
+            "reason": "Unchanged",
+            "start": 92,
+            "end": 92
+          },
+          {
+            "oldCode": "\t\t\t\t}",
+            "newCode": "\t\t\t\t}",
+            "reason": "Unchanged",
+            "start": 93,
+            "end": 93
+          },
+          {
+            "oldCode": "\t\t\t\t// Don't add files to the 'dirs' map",
+            "newCode": "\t\t\t\t// Don't add files to the 'dirs' map",
+            "reason": "Unchanged",
+            "start": 94,
+            "end": 94
+          },
+          {
+            "oldCode": "\t\t\t} else { // This is a directory part",
+            "newCode": "\t\t\t} else { // This is a directory part",
+            "reason": "Unchanged",
+            "start": 95,
+            "end": 95
+          },
+          {
+            "oldCode": "\t\t\t\tif found {",
+            "newCode": "\t\t\t\tif found {",
+            "reason": "Unchanged",
+            "start": 96,
+            "end": 96
+          },
+          {
+            "oldCode": "\t\t\t\t\t// Directory node already exists, just update parent pointer",
+            "newCode": "\t\t\t\t\t// Directory node already exists, just update parent pointer",
+            "reason": "Unchanged",
+            "start": 97,
+            "end": 97
+          },
+          {
+            "oldCode": "\t\t\t\t\tparent = existingNode",
+            "newCode": "\t\t\t\t\tparent = existingNode",
+            "reason": "Unchanged",
+            "start": 98,
+            "end": 98
+          },
+          {
+            "oldCode": "\t\t\t\t} else {",
+            "newCode": "\t\t\t\t} else {",
+            "reason": "Unchanged",
+            "start": 99,
+            "end": 99
+          },
+          {
+            "oldCode": "\t\t\t\t\t// Create new directory node",
+            "newCode": "\t\t\t\t\t// Create new directory node",
+            "reason": "Unchanged",
+            "start": 100,
+            "end": 100
+          },
+          {
+            "oldCode": "\t\t\t\t\tdirNode := &ReportNode{",
+            "newCode": "\t\t\t\t\tdirNode := &ReportNode{",
+            "reason": "Unchanged",
+            "start": 101,
+            "end": 101
+          },
+          {
+            "oldCode": "\t\t\t\t\t\tName:     part,",
+            "newCode": "\t\t\t\t\t\tName:     part,",
+            "reason": "Unchanged",
+            "start": 102,
+            "end": 102
+          },
+          {
+            "oldCode": "\t\t\t\t\t\tPath:     currentPath, // Path up to this directory",
+            "newCode": "\t\t\t\t\t\tPath:     currentPath, // Path up to this directory",
+            "reason": "Unchanged",
+            "start": 103,
+            "end": 103
+          },
+          {
+            "oldCode": "\t\t\t\t\t\tIsDir:    true,",
+            "newCode": "\t\t\t\t\t\tIsDir:    true,",
+            "reason": "Unchanged",
+            "start": 104,
+            "end": 104
+          },
+          {
+            "oldCode": "\t\t\t\t\t\tChildren: []*ReportNode{},",
+            "newCode": "\t\t\t\t\t\tChildren: []*ReportNode{},",
+            "reason": "Unchanged",
+            "start": 105,
+            "end": 105
+          },
+          {
+            "oldCode": "\t\t\t\t\t}",
+            "newCode": "\t\t\t\t\t}",
+            "reason": "Unchanged",
+            "start": 106,
+            "end": 106
+          },
+          {
+            "oldCode": "\t\t\t\t\tdirs[currentPath] = dirNode // Add to map for lookup",
+            "newCode": "\t\t\t\t\tdirs[currentPath] = dirNode // Add to map for lookup",
+            "reason": "Unchanged",
+            "start": 107,
+            "end": 107
+          },
+          {
+            "reason": "Unchanged",
+            "start": 108,
+            "end": 108
+          },
+          {
+            "oldCode": "\t\t\t\t\tif parent == nil { // Directory in root",
+            "newCode": "\t\t\t\t\tif parent == nil { // Directory in root",
+            "reason": "Unchanged",
+            "start": 109,
+            "end": 109
+          },
+          {
+            "oldCode": "\t\t\t\t\t\troots = append(roots, dirNode)",
+            "newCode": "\t\t\t\t\t\troots = append(roots, dirNode)",
+            "reason": "Unchanged",
+            "start": 110,
+            "end": 110
+          },
+          {
+            "oldCode": "\t\t\t\t\t} else {",
+            "newCode": "\t\t\t\t\t} else {",
+            "reason": "Unchanged",
+            "start": 111,
+            "end": 111
+          },
+          {
+            "oldCode": "\t\t\t\t\t\t// Check if child already exists in parent (can happen with sorting/processing order)",
+            "newCode": "\t\t\t\t\t\t// Check if child already exists in parent (can happen with sorting/processing order)",
+            "reason": "Unchanged",
+            "start": 112,
+            "end": 112
+          },
+          {
+            "oldCode": "\t\t\t\t\t\tchildExists := false",
+            "newCode": "\t\t\t\t\t\tchildExists := false",
+            "reason": "Unchanged",
+            "start": 113,
+            "end": 113
+          },
+          {
+            "oldCode": "\t\t\t\t\t\tfor _, child := range parent.Children {",
+            "newCode": "\t\t\t\t\t\tfor _, child := range parent.Children {",
+            "reason": "Unchanged",
+            "start": 114,
+            "end": 114
+          },
+          {
+            "oldCode": "\t\t\t\t\t\t\tif child.Path == dirNode.Path {",
+            "newCode": "\t\t\t\t\t\t\tif child.Path == dirNode.Path {",
+            "reason": "Unchanged",
+            "start": 115,
+            "end": 115
+          },
+          {
+            "oldCode": "\t\t\t\t\t\t\t\tchildExists = true",
+            "newCode": "\t\t\t\t\t\t\t\tchildExists = true",
+            "reason": "Unchanged",
+            "start": 116,
+            "end": 116
+          },
+          {
+            "oldCode": "\t\t\t\t\t\t\t\tbreak",
+            "newCode": "\t\t\t\t\t\t\t\tbreak",
+            "reason": "Unchanged",
+            "start": 117,
+            "end": 117
+          },
+          {
+            "oldCode": "\t\t\t\t\t\t\t}",
+            "newCode": "\t\t\t\t\t\t\t}",
+            "reason": "Unchanged",
+            "start": 118,
+            "end": 118
+          },
+          {
+            "oldCode": "\t\t\t\t\t\t}",
+            "newCode": "\t\t\t\t\t\t}",
+            "reason": "Unchanged",
+            "start": 119,
+            "end": 119
+          },
+          {
+            "oldCode": "\t\t\t\t\t\tif !childExists {",
+            "newCode": "\t\t\t\t\t\tif !childExists {",
+            "reason": "Unchanged",
+            "start": 120,
+            "end": 120
+          },
+          {
+            "oldCode": "\t\t\t\t\t\t\tparent.Children = append(parent.Children, dirNode)",
+            "newCode": "\t\t\t\t\t\t\tparent.Children = append(parent.Children, dirNode)",
+            "reason": "Unchanged",
+            "start": 121,
+            "end": 121
+          },
+          {
+            "oldCode": "\t\t\t\t\t\t}",
+            "newCode": "\t\t\t\t\t\t}",
+            "reason": "Unchanged",
+            "start": 122,
+            "end": 122
+          },
+          {
+            "oldCode": "\t\t\t\t\t}",
+            "newCode": "\t\t\t\t\t}",
+            "reason": "Unchanged",
+            "start": 123,
+            "end": 123
+          },
+          {
+            "oldCode": "\t\t\t\t\tparent = dirNode // This new dir becomes the parent for the next part",
+            "newCode": "\t\t\t\t\tparent = dirNode // This new dir becomes the parent for the next part",
+            "reason": "Unchanged",
+            "start": 124,
+            "end": 124
+          },
+          {
+            "oldCode": "\t\t\t\t}",
+            "newCode": "\t\t\t\t}",
+            "reason": "Unchanged",
+            "start": 125,
+            "end": 125
+          },
+          {
+            "oldCode": "\t\t\t}",
+            "newCode": "\t\t\t}",
+            "reason": "Unchanged",
+            "start": 126,
+            "end": 126
+          },
+          {
+            "oldCode": "\t\t}",
+            "newCode": "\t\t}",
+            "reason": "Unchanged",
+            "start": 127,
+            "end": 127
+          },
+          {
+            "oldCode": "\t}",
+            "newCode": "\t}",
+            "reason": "Unchanged",
+            "start": 128,
+            "end": 128
+          },
+          {
+            "oldCode": "\treturn roots",
+            "newCode": "\treturn roots",
+            "reason": "Unchanged",
+            "start": 129,
+            "end": 129
+          },
+          {
+            "oldCode": "}",
+            "newCode": "}",
+            "reason": "Unchanged",
+            "start": 130,
+            "end": 130
+          }
+        ]
+      }
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "B",
+      "interfaceSegregationScore": "B",
+      "liskovSubstitutionScore": "B",
+      "openClosedScore": "B",
+      "singleResponsibilityScore": "B"
+    },
+    "hash": "0129a1e9ebba8064a186c2e8f7549291f45f7e0c66e17fd02c26a28dd60155cc",
+    "id": "eJyNWE2P2zYQ/StTHRI5cawUKHow4EOy2wYBgm1Qb0+WUdDSyGZNkQRJJXEX/u/FkKJFae2ke5LEmXnz8WaG66eMWYvWcrl/VEpky2z9x6eP99k8q1SNd0o6lC5bZppVR7ZHMKiVcaUsJW/pCfJSlq700gIb96YSvGi4cGjKDIoC3lnbtVzuwR24Bc3cAbiFShmDlQu69JF0kB7KLHy0BBOfneFyb+l1RtBFAR8Mq/EeHeMCDXDp0DSsQmiUAbazzrDKEeqe5KD2gnZRSnfSeFP5ieA+oPudC3xgLeYzCNClPPe4H1stsEXpJkYIN4S9SA7sc0D7rmbaoSHLXeUC5lVND9l0soJ8X7NrNmZwzdlg0qDrjIR9zRZRYojiTn1Bw/Z4zxz7TvKqXgxq5lhM3g3dmLt4nDulRO/RDPJGKOZ+/WUOO6UEFdGtr8vOB9SLjjpGtRjAo0F833FRU/0sGLRaSct3IgRRKRnSG4iH8Ken7YOqEZxBjLGkZoLC05D1B/yanOczeJWKp0l+kRyQgfOFpKrTad3enz5TA+zpux1zE3YnIhD6FlnEwrvdCHV2y2QerWy2V7g0g5bpTcjv9qpECMf7hTUsV9CyI+Y/0vJ1pHz/PQevZZjcDxF5m6UrCnhQpmWC/xuiA4uaGeaUsZdqcetQVqegIaN47dO1XEGcDotHtRbMHvL6wupZ0Ol934x1t7ACpjXKOr8hMIfaWzinTRNEh0L69AcOUTUGflnPrh2zvPLEggNHw0x1OEFjVDtUlGYPjQ8HtUILUjmomKg6wRwOjD+gwdu1n3gRI4ol/GG1YLN9lTRCYLBSzlKGR2e+C1zNjb3GhUTQj2Nf4jUtAx+pr6lWtDg4E+IErTLYt1dnsAZtVBVWDuRKO64kE7DrKCMSDii0L0iwFeE32zge3s5BoJwEP7tQUQ88nOSnp2Owe6GFf52DHkhAm2exDisnHPdR9kxvOiEiLwNQMNnbj+xfriYObKLilvbiB3SeO1GcjPsVSZSJnppQm37/LdZacJdHM3Mos6LMev7zxqfF68xgtYK30aHSVUo6Ljsk3PWRa8BWu1NwO8icQ4Sl+8IMaGZowSVlDmdVZ+ggxl5mfj/7I/Kez0nTpWkh/y9ecPuJWfe5F8k5OTm4/Obn2UWwgRRqFaAGQ2NPVh4nnp0BhcXbsunb65BAeD22EGPytL47YHUE3oCklmHCIKtPgN+4dRbySnWihh0Cg5obqAwyhzWNcgba4BeuunDnucTmNbncU1bn0KhO+sFJrbZJfNsOTvAGksw9UQ0fiSc8zJ5+wgz++9sE+g5fruBF0tSDROloci6B/kh3nh4RfjgamEbEcdTGHrITApThe06N6y9tifpHe8+N12+YsDgy3XfCEiLtE8vMWlVxn786XoGi3nl45E3k52oFkouQEVoGwCXQOEsBw3i7NLt/nUNM0CxBeMYb338o3eLuwEVtUKYzY3Rw3eDwWBRwr+RLB6yuvagFp3wmX1LdX9LknvI3LbMnF1ZOmdOk0rzpKTTym/AuCld4O4d/Ouug0zUtnz6bWvm73PP4YQUpab+fMuoY3wQg8Wvithxp+tXyI4Z+l6MpS5O28XTyvd3pkGNuBy/GBgaeOtPhxHos7XK6F0dy50lI4xYG39Y+TPo/qK7Jo5ZpP+qFUsdOD11+m9pDKa/w+xbDe+DZyNsr9RrPuIqing45LqNXud/PHgi+crrHKUO0KJKFrgxdVcYQ3uxvwRrd5WgsjCX6zRrw0/0x6r+J52FR0OEi7ok+7PD+THzsycrX/bnMziA7Tj+fxx8mr7yBn1LTz5D//yS5VrgJ3vlqjyZU83Oj7z/YYaVaDLuiFw5XDWrRb24yUC62z8O9YHQ19vwq5TmbZzTJKNHZMiv+smhscUBpToK1u6LthONaYDH6XSD8eFDswoV2sVfZ+T+RYBAY"
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/report/builder.go",
+    "grade": "B",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T19:59:50.145Z",
+    "codeReview": {
+      "detailedReview": {
+        "tasks": [
+          {
+            "done": false,
+            "titleTask": "openClosed",
+            "violatingCode": "The `TreeBuilder`'s `BuildReportTree` function directly manipulates the structure of `ReportNode` to build the tree.  Adding a new way to structure the report (e.g., grouping by different criteria than file path) would require modifying this function.  The function's logic is tightly coupled to the file path-based grouping.  Specifically, lines like `parts := strings.Split(fullPath, \"/\")` and the nested loop processing `parts` are directly tied to the path structure and would need changes for alternative grouping methods.\n",
+            "codeResolution": "The `TreeBuilder`'s `BuildReportTree` function violates the Open/Closed Principle.  Adding a new way to structure the report (e.g., grouping by something other than path) requires modifying this function. To improve this, introduce an interface `ReportTreeBuilder` with a `BuildTree` method.  `TreeBuilder` would implement this interface.  New builders (e.g., `CategoryGrouper`) can then be created to implement the interface without altering `BuildReportTree`.\n",
+            "severity": "Medium",
+            "rationale": "The `TreeBuilder`'s `BuildReportTree` function processes grade details and constructs a tree structure.  Adding a new way to group or structure the report (e.g., grouping by coverage percentage instead of path) would require modifying this function.  This violates the Open/Closed Principle because the function is not open for extension without modification, impacting maintainability and potentially requiring extensive testing after any change.\n",
+            "lineStart": 37,
+            "lineEnd": 115,
+            "status": ""
+          },
+          {
+            "done": false,
+            "titleTask": "liskovSubstitution",
+            "violatingCode": "The provided code does not violate the Liskov Substitution Principle (LSP).  The",
+            "codeResolution": "The Liskov Substitution Principle (LSP) is not directly violated in this code.  The `GradeDetailer` interface is simple and any type implementing it can be substituted. However, the code's structure could be improved for better extensibility.  Consider creating a more robust interface that includes methods for retrieving relevant data (e.g., file name, grade information) instead of relying solely on `GetFileName()`. This would allow for more flexible implementations of `GradeDetailer` without modifying the `PathGrouper` or `TreeBuilder`.\n",
+            "severity": "Medium",
+            "rationale": "The Liskov Substitution Principle (LSP) is not directly violated in this code, as there are no obvious cases where a subtype cannot be substituted for its supertype without altering the correctness of the program.  However, the design could be improved for better adherence to LSP.  For example, the `GradeDetailer` interface is very simple and might not capture all the necessary information for future extensions.  Adding more methods to `GradeDetailer` later could break existing implementations of `PathGrouper` or `TreeBuilder` if they don't implement the new methods.  This would necessitate changes throughout the codebase, reducing maintainability.\n",
+            "lineStart": 11,
+            "lineEnd": 115,
+            "status": ""
+          },
+          {
+            "done": false,
+            "titleTask": "interfaceSegregation",
+            "violatingCode": "The `GradeDetailer` interface only has `GetFileName()`.  The `PathGrouper` and `TreeBuilder` use `filter.GradeDetails`, which likely contains more methods than just getting the filename. This violates the Interface Segregation Principle because `PathGrouper` and `TreeBuilder` are forced to depend on methods of `filter.GradeDetails` that they don't use.  A more granular interface, perhaps one that only exposes `FileName`, would improve adherence to ISP.\n",
+            "codeResolution": "The `GradeDetailer` interface is too generic.  It only has `GetFileName()`, which is used only by `PathGrouper`.  This violates the Interface Segregation Principle (ISP).  Refactor by creating separate interfaces for different functionalities. For example, create a `FileDetails` interface with `GetFileName()` and other file-specific methods if needed.  `PathGrouper` would then depend on `FileDetails` instead of `GradeDetailer`.  This improves cohesion and reduces unnecessary dependencies.\n",
+            "severity": "Medium",
+            "rationale": "The `GradeDetailer` interface only defines `GetFileName()`.  If other operations are needed on grade details (e.g., accessing metrics), adding them",
+            "lineStart": 11,
+            "lineEnd": 114,
+            "status": ""
+          },
+          {
+            "done": false,
+            "titleTask": "singleResponsibility",
+            "violatingCode": "The `TreeBuilder`'s `BuildReportTree` function has multiple responsibilities:  it parses file paths, constructs a tree structure (`ReportNode`), and handles sorting.  The lines iterating through `paths`, splitting paths (`strings.Split`), creating and adding `ReportNode` instances, and managing parent-child relationships all contribute to this violation.  Separating path parsing, tree construction, and sorting into distinct functions would improve the SRP.\n",
+            "codeResolution": "The `TreeBuilder`'s `BuildReportTree` method has multiple responsibilities:  it parses paths, creates `ReportNode` objects, and manages the tree structure.  To improve SRP, separate path parsing and node creation. Create a new function, e.g., `createReportNodes`, that takes parsed path components and details as input and returns the corresponding `ReportNode`s.  `BuildReportTree` would then focus solely on assembling the tree structure using the nodes created by `createReportNodes`.\n",
+            "severity": "Medium",
+            "rationale": "The `TreeBuilder`'s `BuildReportTree` function has multiple responsibilities:  it parses file paths, constructs a tree structure (`ReportNode`), and handles path normalization and sorting. This violates the Single Responsibility Principle (SRP).  Separating these concerns into distinct functions or classes would improve maintainability (easier to understand, test, and modify individual parts) and potentially performance (by optimizing individual tasks).  For example, path parsing could be a separate function, improving readability and reducing the complexity of the main tree-building logic.\n",
+            "lineStart": 28,
+            "lineEnd": 115,
+            "status": ""
+          }
+        ],
+        "codeReviewTitle": "SOLID Code Review"
+      }
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "A",
+      "interfaceSegregationScore": "B",
+      "liskovSubstitutionScore": "B",
+      "openClosedScore": "B",
+      "singleResponsibilityScore": "B"
+    },
+    "hash": "de2ef7d33cbee7bd6c8c6c796e76ea485f14845275ab64ef7556fe3746c68f52",
+    "id": "eJyNV9+P2zYM/lc4P7RJm8bda4A8bL3tUKC4FbvbUxwMik0n2imSIMlts0P+94GUFcu+XLt7Odvij4/kR1J5KoT36L3U+wdjVLEq7v/49PGmWBS1afCD0QF1KFaFFfWj2CM4tMaFSldaHukJZpWuQsXSCtvwrlaybKUK6KoCyhJ+8b47Sr2HcJAerAgHkB5q4xzWIerSR9JBeqiK+NGTm/QcnNR7T69zcl2WcOtEgzcYhFToQOqArhU1QmsciJ0PTtSBvO5JDhoW9MtKh5PFF5WfyN0tht+lwjtxxNkcoutKn3u/n0U43DrTWXSwp/9+7AJ2J6BQONLkL1fywXV1eGJ7badrmNk9vMkk5sAPs2Rws43pXGao/RyOwm4iuO1ViRgMQ8QGVms4ikec/UiL0hsoh38vgLWc0PshOLZZhbKEO+OOQsl/Y6Dg0QongnGeK1Ab7aUPqOtT1NBJvKFIyXCq9/LB3CvhD7NmmdI+jzo99s1YdwtrENaibmYvCCygYQuU4uAwdE5DLzrU8cEh/tpJ1RABPDj0ljDvFF4C4EJF5iL8yby/Mw1CcIipsrmZZ5W9w6/Z+WwOb3Lxpwzeq+yADCSU/Cm6JokBlmdQO+FlzXjgINEJVx9O0DpzHChInC9L+BigMehBmwC1UHWnRCBzX9BRVx/QUUiRj2E3Ajqfokh5T0T7Iadgs32T5S8GbkzwxIPRGScvNNL5a4zNBHkMMBHvaQhxpFw4a2hgSaHUCY7GYV+VzmED1pk6jjqYGRuk0ULBrqOMaDigskybaCu532yj8wW8X4BCPQl+fmkYO3TLJD9900S7F/Ly6wLsQFWaeMv7OOricR9l349tp1Tqnugomuztpx5drScANklxS/P4FgNzJ4mTcR7NRJmE1MXa9HN3eW+VDLNkZgFVUVZF36Wy5bSwzhzWa3ifAFWhNjpI3SH5vX+UFvBowynCjjLnGGEVvggHVjjUAbIyx7O6c3SQYq8K3gt8ROjlgjRDnhbCf0Eh/Sfhw+deZCYJ5AD53c/zi2ALuat1dDUYGiNZs590dgZUHl+Wzd/exgTC27GFFBPT+sMB60eQLWhqGaEciuYE+E364GFWm041sEMQ0EgHtUMRsKHdI8A6/CJNF3ftJTbWlHpPWV1AazrN451abZNh2w4gZAtZ5p6ohg/EExlnTz9hBvxVoE/c4as1vMqaepCoAs33FdAf6S7yI/IfjwamEXECtTG77JQC4+ReUuPyZSFT/+hvpGP9ViiPI9N9J6wg0T6zLLw3teT89YeD5nl4lG3i53oNWqqYEVpZIDXQOMsdxvF2aXZ+XUBK0Dzz8Iw33H+ow/LDQarGoc5nxujgusHhsSzhxujXAUTTsKiHYDiTr6nur2lyT/mbl5nJhXUw7jSptGx7Co1wk7+LwhXeLuCfzgfobEPLp8+mNXz/eh4/rCEn7fdTRh3DTQAav2aw9UiTV8uPGPpdjuYszdqG6cS93dmYY+kHFGMDA0+D63BiPZV2Nd2LI7nzJKRxCwO3NYdJ9++mIURHYXnUK2MeOzt0+cvUHkp5hd8vMbx3PB+hvVKv8YyrKerpkJM6oZrxfmZH8FXSbdM4okWZLXTj6KoydsFmf4vW6MZJY2Es0W/W6D/fH6P+myCPi4IOl2lP9GHH92fiYyRrrvtzmZ1D8Tj9fB5/mLzKFn7KTT/z/P8nybXCTfydr/ZoRjWeG33/wQ5rc8S4K3rheNWgFv0WJgPlYvs83AtGF3jmV6XPxaKgSUaJLlZF+ZdH58sDandS4rgrj50K0iosR79H44/WchcvtMu9Kc7/AfsEgA8="
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/report/builder.go",
+    "grade": "A",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T20:02:54.661Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "A*",
+      "interfaceSegregationScore": "B",
+      "liskovSubstitutionScore": "A*",
+      "openClosedScore": "A*",
+      "singleResponsibilityScore": "B"
+    },
+    "hash": "6765a9ad9c1c3283ef90ba6d21e2c1663dde7e01cb92c1fd14daa0e6bbed74fb",
+    "id": "eJy1WEuP2zYQ/itTHQppo9gpUPRgwJdk2yBAkAR1erKMgJJGNrE0KZDjTd3F/veAL4nS2pu0QG/mcN7zzQzlh4wZg8Zwuf+slMhW2ebj+3e3WZk1qsU3ShJKylZZz5o7tkfQ2CtNlawkP9pfkFeyospxC+zoZSP4suOCUFeZv+oZHSwJ7Y9INFZL/E2ay72xx8JqXi7hjbpHzfZ4y4gBl4S6Yw1CpzSw2pBmDXG5hyawQcuILSpJ5x6vyT5YY2+R4nVOSgnwtgvIO6EY/fZrCbVSwrpBm8u85Wh1kFF3UewxBPCJ0WHTC06EehaAcWTrvk0K2KyY6PsVMee7o+eWffB6u/O/Rrsb7JlmpPREkzNpvCmoz0AHhI+bl6bHhne8AROloh9X1JA+NfTgbHUn2UBu4OYiawHPeOvD0UgnLcOlWYz8ZaDlETOLwUSRZPiDxadGS54luLFUa+dPB1bLCFwaYrLBIdOXxZ1njox/cIGWKZfsiEPtk4BKaJEYFwa2O4/4xVvNWrz11AJuRvuj2luusSGlz8/qngnHmG+xYydBE98NMGiUbDQSAj/2Ao8oiRFXElSXxhlDv6DlaWUbuHnKV8D/kJsJHH4e6Y5c0Qd2xBUAgLVVepqFmqM5vHjaO3PLtSV2TJjIGOytojuO/BgS+gOB/odq/Wg4F+O5GBCQPkXONwcuWo1yBdtdYvThcRLZcgmfNeLrExctOoxoNL2Shtci9IiSvua2T+w4SAIgjRixkqrxAj6+Pp0LaefbS5kgKwVg0rz4NdXsOhYtkiV+ndj8yukAvVb3vMUWWuxRtigb7hrZFXCqKr/qWAmpW5Na36QWJ+VLLkL9Uv0rSE+hQomVFaQ25xV6q9WpT7vi9dn6C3tLN7C3N0Mb1edxW8TIc6onrhfXVObfacYj67ceybuLHD4nzi9sYbWGI7vD/HtSbolarH0pwUlpJvdjRCGfbpLrIxP8Hww9Fae9GZDKDaFszjHBgb116VqtYVgUn9VGMHPI24WbUOyIhZcJvm+nsjtYA+stpPIrDCW0RSjbAIrAOhaytum3dQCNzUkbfo/i7KnG9ZZ/NLm+gk6ro4+zZ5rM9VoOWnOtFJlpv5fQcm3Swk0uneph35bQnYT49C+m88SWrxTvQKDMneYC1mt4FSsY0uK8jLmSFd0zbf1ASfNF2Jy0JcfqVZl7CAawcO/9iBcfS7DFzXtm6FNgyLl1ZHTr5S+h3LyD1MjaG4lKph6snQV/8wgoDF7jS08voMqWVQYvUmkfRUX4Nzd2sPpidOokHf5tybaJkl3k5x0kgQ3Wu7BlrSzVi2SULGZr2PowVnkobxE18S6WYr0GycVooyKPrqER3LGEaHtQMU+NnYRW4yJupFHF7OKSssvp5l1I1hMrsIY0qdedarl+NmXThe7zlpSkmGiaVgtcBYP5ge251F5LblCTGHsaSEWNzd/vNmrjhpx91qT3YbQ6tkm7TKoyUek7w14tYmMEX/x5xjz1Ye3eIXOOWiO7mxIf0+PkwDv4KVU5s/fjiHqawYmlxwv4GWs3geB8uocxFme7G8d+fLkJP7yb/GSvmeGNH+wHjprp5nD2I37ybbdcwjuCVqEBqQgaJpqTYITjp+QBNV7fBTMv4raK6/m7m/jSQPfQXK3nD0l755bLhT2fMBa+CfwnZWQdN86r0s3lqaPF8CToR8DOYkmeWSYFAB1MCf24jO0fCIuN/3j018W4RL4kKy/pDKsy6I8LcLWeObCNgrvoiPZponqRvvbCB2vkHhfPlS1ZUaMkcRk7KOAvDgiqF7OF71d82OXXhntYOTPsZmVm4WfZs1W2/MugNssDSn0W7FgvjydBvBe4nPxp4x8py9pjbrFX2eM3/V22Dw=="
+  },
+  {
+    "assessingTool": "SOLID",
+    "filePath": "/Users/henrylamb/multiple/codeleft-cli/report/builder.go",
+    "grade": "A",
+    "username": "Hlamb",
+    "timestamp": "2025-04-11T20:05:32.780Z",
+    "codeReview": {
+      "review": "Congratulations! Your code has passed the code review assessment."
+    },
+    "gradingDetails": {
+      "dependencyInversionScore": "A*",
+      "interfaceSegregationScore": "B",
+      "liskovSubstitutionScore": "A*",
+      "openClosedScore": "A",
+      "singleResponsibilityScore": "B"
+    },
+    "hash": "6180c2931aca8f9653a419b685cf197adad5abaa4491657a0a6f6da30ceee532",
+    "id": "eJy1WN1v2zYQ/1duehikVLU7YNiDAb+02YoCRVss2ZNlFLR0sonIpECek3lB/veBXxKpyGk7YG/m8b7vd3eUHzOmNWrNxf5Wyi5bZTefP364zsqslg2+k4JQULbKelbfsT2Cwl4qqkQl+NH8grwSFVWWu8OWXtcdX7a8I1RV5q56RgdDQvMjELXREn6T4mKvzbEwmpdLeCfvUbE9XjNiwAWhalmN0EoFbKdJsZq42EPt2aBhxBaVoHOPl2QfjbH3SOE6Jyk7cLYLyNtOMvrt1xJ2UnbGDbqZ5y1Hq4OMvAtiTz6AL4wON33HiVBNAtCWbNw3SQGTFR18vyBmfbf03LAPXm+27tdo9wZ7phhJlWiyJrUzBbsz0AHh881r3WPNW16DDlLBjwtqSJ1qerS22pOo4RM+zHLmRRqJ9V8hnZSAn2cljNJRb67hapatgBeykJjxoFqM/KWn5QGLi8FEEVXuk8G9QkOeFK42VGPnT9sEhhG40MREjUMF58WtZ5aMf/AODVMu2BEHTEUBldAgMd5p2GxdJy3eK9bgtaMWcDXaH9Vec4U1SXV+UfdEOMR8jS07dZT4roFBLUWtkBD4se/wiIIYcSlAtnGcIfQZLXOIec6WF0naErQ8555ApYar5zwF/A/JTh0b6ZZc0Sd2xBUAgLFVOprBrqVZADraB33NlSG2rNOB0dtbBXcs+QcC/Q/l/95wZuOZDQhInQLnuwPvGoViBZttZPTxKYlsuYRbhfj2xLsGLegU6l4KzXedbzopHIhM45m5FQVACjGAL1bjBFx8fTyH4lFiLkWEuhiC0TTAh1izHQFoWkPgQ2LzgdMBeiXveYMNNNijaFDU3E6GAP1IIL/oWAmxW0mtr2KLSfmiC1+/WP8K4pOvUGRlBbHNaYXeK3nq4654ezb+wt7QNezNzdBGu/O41kLkOe0S14tLKvNvNOOR9RuH5O0sh8uJ9QsbWK3hyO4w/5aU3fYGa19LsFKKif0Ykc+nXQ3qyDr+D/qeCutDD0jlmlDU55Bgz97YdK3WMGyeW3nTMX3Im4WdUOyIhZPxvm9S2S2sgfUGUvkFhhKawpdtAIVnHQu5M+k3dQCF9Ulpfo/d2VG17S33urN9Ba2SRxdnzxTpy7UctOZKStJpv5fQcKXjwiWXVvWwwEtoT1335Qemc2LLVYq30KHIreYC1mt4Eyro02K9DLkSFd0zZfxAQdPNWp+UIYfqVZl9sXqwcOf9iBcXi7fF9Uem6YtnyLlxZHTr9S++3LyF2MjaGQlKUg/W1oK7eQLsNF7ii0+voMqWVQavYmkXRUX4N9dmsLpitPIkLP5NyTaRkm3g5y1EgQ3WW79ljSztFtEoWUzWsPFhrPJQ3iJo4m0oxXoNgnejjYocuoZGsMcSgu1BxTQ1ZhIajYuwkUYVk4s5ZfPp5q1P1jMrsIY4qZedarh6MWXpQnd5i0pSJJrSaoGtoDc/sL2U2kvJ9WoiY88Dqag2+fvdRK3tkDPPmvjej1bLlrRLUpVEpesMc7UIjeF9cecJc+rD2r5Dphw7hewuJT7Fx+TAW/gpVjmx9/2Iep7BxNLTDH7G2iUQnE53P8bCbLfj2I0vO+GHd5Ob7Dumee0G+4GjYqo+nN2ITz5Cl0v4QNBI1CAkQc26+tQxwvGb94AKL++CiRdhW4X1/M1NPDfQHTRX6+lD0tzZ5TKz5yPGwjWB+/YNrOPGeVPauZw6WgxPgn4E7CSW6JmlYwDQQZfQj8vY/NOxuHFfo+66GJfI12jlRZ1hVHr9YQGu1hMHNkFwGxxRLk20W8SvPf8FHLjHxXNhS1ZUS0FchA7y+AsDgnaLycJ3K97v8kvD3a+cCXazMjPwM+zZKlv+pVHp5QGFOnfsuFseTx3xvsNl8u+Se6Qsdw5zi73Mnv4FChP3Uw=="
   }
 ]

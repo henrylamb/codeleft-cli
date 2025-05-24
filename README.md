@@ -1,6 +1,6 @@
 # codeleft-cli
 
-**Version:** 1.0.3
+**Version:** 1.0.8
 
 ## Overview
 
@@ -95,11 +95,11 @@ The `-tools` flag can accept various tool names, including but not limited to:
 - **Clean-Code**
 - **Functional-Coverage**
 - **MISRA-C++**
-- **PR-Readiness**
+- **PR-Ready**
 
 Use them as follows:
 ```bash
-codeleft-cli -tools "SOLID,OWASP-Top-10,PR-Readiness"
+codeleft-cli -tools "SOLID,OWASP-Top-10,PR Ready"
 ```
 
 ## Usage Examples

@@ -385,7 +385,7 @@ func sortReportNodes(nodes []*ReportNode) {
 // --- Utility functions (getGradeIndex, calculateCoverage) remain the same ---
 func getGradeIndex(grade string) int {
     gradeIndices := map[string]int{
-        "A+": 90, "A": 85, "A-": 80,
+        "A*": 90,"A+": 90, "A": 85, "A-": 80,
         "B+": 75, "B": 70, "B-": 65,
         "C+": 60, "C": 55, "C-": 50,
         "D+": 45, "D": 40, "D-": 30,

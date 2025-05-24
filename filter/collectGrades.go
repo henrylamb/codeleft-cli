@@ -37,6 +37,8 @@ func NewGradeStringCalculator() GradeCalculator {
 
 func (g *GradeStringCalculator) GradeNumericalValue(grade string) int {
 	switch grade {
+	case "A*":
+		return 90
 	case "A+":
 		return 90 // Minimum score for A+ in the new system
 	case "A":

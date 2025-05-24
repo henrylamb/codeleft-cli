@@ -409,15 +409,15 @@ func calculateCoverage(grade, thresholdGrade string) float64 {
         return 120.0
     } else if gradeIndex == thresholdIndex {
         return 100.0
-    } else if gradeIndex == thresholdIndex-1 {
+    } else if gradeIndex == thresholdIndex-10 {
         return 90.0
-    } else if gradeIndex == thresholdIndex-2 {
+    } else if gradeIndex == thresholdIndex-20 {
         return 80.0
-    } else if gradeIndex == thresholdIndex-3 {
+    } else if gradeIndex == thresholdIndex-30 {
         return 70.0
-    } else if gradeIndex == thresholdIndex-4 {
+    } else if gradeIndex == thresholdIndex-40 {
         return 50.0
-    } else if gradeIndex == thresholdIndex-5 {
+    } else if gradeIndex == thresholdIndex-50 {
         return 30.0
     } else {
         return 10.0

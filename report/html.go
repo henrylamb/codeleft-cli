@@ -384,33 +384,42 @@ func sortReportNodes(nodes []*ReportNode) {
 
 // --- Utility functions (getGradeIndex, calculateCoverage) remain the same ---
 func getGradeIndex(grade string) int {
-	gradeIndices := map[string]int{
-		"A*": 5, "A": 4, "B": 3, "C": 2, "D": 1, "F": 0,
-	}
-	// Ensure comparison is case-insensitive
-	index, ok := gradeIndices[strings.ToUpper(grade)]
-	if !ok {
-		log.Printf("Warning: Unrecognized grade '%s', treating as F (0)", grade)
-		return 0 // Default to lowest index for unrecognized grades
-	}
-	return index
+    gradeIndices := map[string]int{
+        "A+": 90, "A": 85, "A-": 80,
+        "B+": 75, "B": 70, "B-": 65,
+        "C+": 60, "C": 55, "C-": 50,
+        "D+": 45, "D": 40, "D-": 30,
+        "F": 20,
+    }
+    // Ensure comparison is case-insensitive
+    index, ok := gradeIndices[strings.ToUpper(grade)]
+    if !ok {
+        log.Printf("Warning: Unrecognized grade '%s', treating as F (20)", grade)
+        return 20 // Default to lowest index for unrecognized grades
+    }
+    return index
 }
-func calculateCoverage(grade, thresholdGrade string) float64 {
-	gradeIndex := getGradeIndex(grade)
-	thresholdIndex := getGradeIndex(thresholdGrade)
 
-	// Logic matches the JS example and previous Go version
-	if gradeIndex > thresholdIndex {
-		return 120.0
-	} else if gradeIndex == thresholdIndex {
-		return 100.0
-	} else if gradeIndex >= thresholdIndex-1 {
-		return 70.0
-	} else if gradeIndex >= thresholdIndex-2 {
-		return 50.0
-	} else if gradeIndex >= thresholdIndex-3 {
-		return 30.0
-	} else {
-		return 10.0
-	}
+func calculateCoverage(grade, thresholdGrade string) float64 {
+    gradeIndex := getGradeIndex(grade)
+    thresholdIndex := getGradeIndex(thresholdGrade)
+
+    // Logic matches the JS example and previous Go version
+    if gradeIndex > thresholdIndex {
+        return 120.0
+    } else if gradeIndex == thresholdIndex {
+        return 100.0
+    } else if gradeIndex == thresholdIndex-1 {
+        return 90.0
+    } else if gradeIndex == thresholdIndex-2 {
+        return 80.0
+    } else if gradeIndex == thresholdIndex-3 {
+        return 70.0
+    } else if gradeIndex == thresholdIndex-4 {
+        return 50.0
+    } else if gradeIndex == thresholdIndex-5 {
+        return 30.0
+    } else {
+        return 10.0
+    }
 }

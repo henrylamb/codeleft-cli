@@ -50,7 +50,7 @@ jobs:
 
           echo "Running CodeLeft CLI..."
           # Run the codeleft-cli command - ensure it creates 'CodeLeft-Coverage-Report.html'
-          codeleft-cli -asses-coverage --create-report -threshold-percent=80 -threshold-grade=A -tools "SOLID,OWASP-TOP-10,Complexity"
+          codeleft-cli -asses-coverage --create-report -threshold-percent=80 -threshold-grade="A-" -tools "SOLID,OWASP-TOP-10,Complexity"
 
           # Check if the report file was created
           if [ ! -f "CodeLeft-Coverage-Report.html" ]; then

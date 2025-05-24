@@ -1,4 +1,4 @@
-## Releasing New Versions and Packaging with GoReleaser
+## Releasing New Versions and Packaging with GoReleaser 
 
 **codeleft-cli** leverages **GoReleaser** for streamlined version releases and multi-platform packaging. GoReleaser automates the entire release process for Go projects, from tagging and building to publishing and creating GitHub releases.
 

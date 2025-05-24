@@ -93,7 +93,7 @@ func GenerateRepoHTMLReport(gradeDetails []filter.GradeDetails, outputPath strin
 				continue // Skip if we already processed this tool for this file
 			}
 			if detail.Tool != "" && detail.Grade != "" {
-				cov := calculateCoverageScore(detail.Grade, thresholdGrade)
+				cov := filter.CalculateCoverageScore(detail.Grade, thresholdGrade)
 				fileCoverageSum += cov
 				fileToolCount++
 				processedToolsThisFile[detail.Tool] = struct{}{}
@@ -292,7 +292,7 @@ func calculateNodeCoverages(
 				continue // Only count first entry for a tool for this specific file node calculation
 			}
 
-			coverage := calculateCoverageScore(detail.Grade, thresholdGrade)
+			coverage := filter.CalculateCoverageScore(detail.Grade, thresholdGrade)
 			node.ToolCoverages[detail.Tool] = coverage
 			node.ToolCoverageOk[detail.Tool] = true
 			toolSet[detail.Tool] = struct{}{} // Add tool to global set

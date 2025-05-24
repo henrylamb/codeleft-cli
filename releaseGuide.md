@@ -19,7 +19,7 @@ To release a new version of `codeleft-cli` using GoReleaser, you typically follo
 
 1.  **Ensure your `.goreleaser.yaml` is configured correctly.** This file dictates how GoReleaser will build and package your application. You'll define the target operating systems, architectures, archive formats, and any post-build hooks or publishing steps.
 
-    An example snippet from a `.goreleaser.yaml` might look like this, enabling builds for Linux, Windows, and macOS:
+    An example snippet from a `.goreleaser.yaml` might look like this, enabling builds for Linux, Windows, and macOS: 
 
     ```yaml
     builds:

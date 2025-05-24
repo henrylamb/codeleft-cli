@@ -173,21 +173,25 @@ func (cc *CoverageCalculator) CalculateOverallAverages(stats *GlobalStats) (over
 // calculateCoverage calculates coverage score based on grade and threshold.
 // SRP: Focused responsibility for grade-to-coverage conversion.
 func calculateCoverageScore(grade, thresholdGrade string) float64 {
-	gradeIndex := getGradeIndex(grade)
-	thresholdIndex := getGradeIndex(thresholdGrade)
+    gradeIndex := getGradeIndex(grade)
+    thresholdIndex := getGradeIndex(thresholdGrade)
 
-	// Logic matches the JS example and previous Go version
-	if gradeIndex > thresholdIndex {
-		return 120.0
-	} else if gradeIndex == thresholdIndex {
-		return 100.0
-	} else if gradeIndex >= thresholdIndex-1 {
-		return 70.0
-	} else if gradeIndex >= thresholdIndex-2 {
-		return 50.0
-	} else if gradeIndex >= thresholdIndex-3 {
-		return 30.0
-	} else {
-		return 10.0
-	}
+    // Logic matches the JS example
+    if gradeIndex > thresholdIndex {
+        return 120.0
+    } else if gradeIndex == thresholdIndex {
+        return 100.0
+    } else if gradeIndex == thresholdIndex-1 {
+        return 90.0
+    } else if gradeIndex == thresholdIndex-2 {
+        return 80.0
+    } else if gradeIndex == thresholdIndex-3 {
+        return 70.0
+    } else if gradeIndex == thresholdIndex-4 {
+        return 50.0
+    } else if gradeIndex == thresholdIndex-5 {
+        return 30.0
+    } else {
+        return 10.0
+    }
 }

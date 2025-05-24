@@ -1,5 +1,5 @@
 {
-  "threshold": "A",
+  "threshold": "A-",
   "security": {
     "owasp": true,
     "cweTop25": false
@@ -8,8 +8,9 @@
     "solid": true,
     "cleanCode": false,
     "prReady": false,
-    "complexity": false,
-    "complexityPro": false
+    "complexity": true,
+    "complexityPro": false,
+    "testability": false
   },
   "safetyCritical": {
     "misraCpp": false
@@ -22,5 +23,12 @@
   },
   "qualitySentry": {
     "tdd": false
+  },
+  "testGeneration": {
+    "active": false,
+    "override": false,
+    "language": "Golang",
+    "testType": "Unit",
+    "library": "Ginkgo"
   }
 }

@@ -26,17 +26,22 @@ func NewGradeDetails(grade string, score int, fileName string, tool string, time
 }
 
 func (g *GradeDetails) GetCoverage(thresholdAsNum int) {
-	if g.Score > thresholdAsNum {
-		g.Coverage = 120
-	} else if g.Score == thresholdAsNum {
-		g.Coverage = 100
-	} else if g.Score >= thresholdAsNum-1 {
-		g.Coverage = 70
-	} else if g.Score >= thresholdAsNum-2 {
-		g.Coverage = 50
-	} else if g.Score >= thresholdAsNum-3 {
-		g.Coverage = 30
-	} else {
-		g.Coverage = 10
-	}
+    if g.Score > thresholdAsNum {
+        g.Coverage = 120
+    } else if g.Score == thresholdAsNum {
+        g.Coverage = 100
+    } else if g.Score >= thresholdAsNum-1 {
+        g.Coverage = 90
+    } else if g.Score >= thresholdAsNum-2 {
+        g.Coverage = 80
+    } else if g.Score >= thresholdAsNum-3 {
+        g.Coverage = 70
+    } else if g.Score >= thresholdAsNum-4 {
+        g.Coverage = 50
+    } else if g.Score >= thresholdAsNum-5 {
+        g.Coverage = 30
+    } else {
+        g.Coverage = 10
+    }
 }
+

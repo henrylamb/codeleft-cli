@@ -23,7 +23,7 @@ jobs:
       # 2. Download and Extract codeleft-cli
       - name: Download & Install codeleft-cli
         run: |
-          VERSION=v0.1.9 # Make sure this is the desired version
+          VERSION=v0.1.10 # Make sure this is the desired version
           OS=Linux
           ARCH=x86_64
           ASSET_NAME=codeleft-cli_${OS}_${ARCH}.tar.gz

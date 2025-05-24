@@ -1,11 +1,11 @@
-package report
+package filter
 
 import (
 	"log"
 	"strings"
 )
 
-func getGradeIndex(grade string) int {
+func GetGradeIndex(grade string) int {
     // Use the same index values as the Javascript implementation
     gradeIndices := map[string]int{
         "A*": 11, "A+": 12, "A": 11, "A-": 10,

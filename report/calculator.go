@@ -2,6 +2,7 @@ package report
 
 import (
 	"sort"
+	"codeleft-cli/filter"
 )
 
 // CoverageCalculator encapsulates the logic for calculating various coverage metrics.
@@ -62,7 +63,7 @@ func (cc *CoverageCalculator) calculateFileNodeCoverage(node *ReportNode, stats 
 			continue // Only count first entry for a tool for this specific file node calculation
 		}
 
-		coverage := calculateCoverageScore(detail.Grade, cc.ThresholdGrade)
+		coverage := filter.CalculateCoverageScore(detail.Grade, cc.ThresholdGrade)
 		node.ToolCoverages[tool] = coverage
 		node.ToolCoverageOk[tool] = true
 		stats.ToolSet[tool] = struct{}{} // Add tool to global set
@@ -168,29 +169,4 @@ func (cc *CoverageCalculator) CalculateOverallAverages(stats *GlobalStats) (over
 	}
 
 	return overallAvg, totalAvg, allTools
-}
-
-func calculateCoverageScore(grade, thresholdGrade string) float64 {
-    // These calls will now use the modified getGradeIndex function
-    gradeIndex := getGradeIndex(grade)
-    thresholdIndex := getGradeIndex(thresholdGrade)
-
-    // Logic must precisely match the Javascript implementation using the new indices
-    if gradeIndex > thresholdIndex {
-        return 120.0
-    } else if gradeIndex == thresholdIndex {
-        return 100.0
-    } else if gradeIndex == thresholdIndex-1 { // Check for difference of 1
-        return 90.0
-    } else if gradeIndex == thresholdIndex-2 { // Check for difference of 2
-        return 80.0
-    } else if gradeIndex == thresholdIndex-3 { // Check for difference of 3
-        return 70.0
-    } else if gradeIndex == thresholdIndex-4 { // Check for difference of 4
-        return 50.0
-    } else if gradeIndex == thresholdIndex-5 { // Check for difference of 5
-        return 30.0
-    } else { // Covers gradeIndex < thresholdIndex - 5 and any other lower cases
-        return 10.0
-    }
 }

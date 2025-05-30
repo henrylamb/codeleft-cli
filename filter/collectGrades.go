@@ -6,19 +6,22 @@ type CollectGrades interface {
 
 type GradeCollection struct {
 	GradeCalculator GradeCalculator
+	CoverageCalculator ICoverageCalculator
 }
 
-func NewGradeCollection(calculator GradeCalculator) CollectGrades {
+func NewGradeCollection(calculator GradeCalculator, coverageCalculator ICoverageCalculator) CollectGrades {
 	return &GradeCollection{
 		GradeCalculator: calculator,
+		CoverageCalculator: coverageCalculator,
 	}
 }
 
 func (g *GradeCollection) CollectGrades(histories Histories, threshold string) []GradeDetails {
 	gradeDetails := []GradeDetails{}
 	for _, history := range histories {
-		newDetails := NewGradeDetails(history.Grade, g.GradeCalculator.GradeNumericalValue(history.Grade), history.FilePath, history.AssessingTool, history.TimeStamp)
-		newDetails.GetCoverage(g.GradeCalculator.GradeNumericalValue(threshold))
+		newDetails := NewGradeDetails(history.Grade, g.GradeCalculator.GradeNumericalValue(history.Grade), history.FilePath, history.AssessingTool, history.TimeStamp, g.CoverageCalculator)
+		newDetails.UpdateCoverage(g.GradeCalculator.GradeNumericalValue(threshold))
+
 		gradeDetails = append(gradeDetails, newDetails)
 
 	}

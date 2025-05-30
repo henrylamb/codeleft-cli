@@ -1,7 +1,6 @@
 package filter
 
 import (
-	"log"
 	"strings"
 )
 
@@ -9,18 +8,20 @@ type FilterTools interface {
 	Filter(values []string, histories Histories) Histories
 }
 
-type ToolFilter struct{}
+type ToolFilter struct{
+	toolCleaner IToolCleaner
+}
 
-func NewToolFilter() FilterTools {
-	return &ToolFilter{}
+func NewToolFilter(toolCleaner IToolCleaner) FilterTools {
+	return &ToolFilter{
+		toolCleaner: toolCleaner,
+	}
 }
 
 func (t *ToolFilter) Filter(values []string, histories Histories) Histories {
 	filteredHistories := Histories{}
 	for _, value := range values {
-		log.Println("Filtering by tool:", value)
-		value = strings.TrimPrefix(value, " ")
-		value = strings.TrimSuffix(value, " ")
+		value = t.toolCleaner.Clean(value)
 
 		toolFilteredHistories := t.filterByTool(value, histories)
 		filteredHistories = append(filteredHistories, toolFilteredHistories...)

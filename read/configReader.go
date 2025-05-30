@@ -8,42 +8,6 @@ import (
 	"path/filepath"
 )
 
-// FileSystem abstracts file system operations.
-type FileSystem interface {
-	Getwd() (string, error)
-	Open(name string) (*os.File, error)
-	Stat(name string) (os.FileInfo, error)
-	Join(elem ...string) string
-}
-
-// OSFileSystem implements the FileSystem interface using the os package.
-type OSFileSystem struct{}
-
-func NewOSFileSystem() FileSystem {
-	return &OSFileSystem{}
-}
-
-func (o *OSFileSystem) Getwd() (string, error) {
-	return os.Getwd()
-}
-
-func (o *OSFileSystem) Open(name string) (*os.File, error) {
-	return os.Open(name)
-}
-
-func (o *OSFileSystem) Stat(name string) (os.FileInfo, error) {
-	return os.Stat(name)
-}
-
-func (o *OSFileSystem) Join(elem ...string) string {
-	return filepath.Join(elem...)
-}
-
-// JSONDecoder abstracts JSON decoding.
-type JSONDecoder interface {
-	Decode(v interface{}) error
-}
-
 // ConfigSource interface for reading configuration.
 type ConfigSource interface {
 	ReadConfig() (*types.Config, error)
@@ -63,14 +27,13 @@ type ConfigJSONReader interface {
 type ConfigReader struct {
 	RepoRoot     string
 	CodeleftPath string
-	FileSystem   FileSystem
-	//	JSONDecoder  JSONDecoder // Removed direct dependency on JSONDecoder
+	FileSystem   IFileSystem
 }
 
 // NewConfigReader creates a new ConfigReader.
-func NewConfigReader(fs FileSystem) (*ConfigReader, error) {
+func NewConfigReader(fs IFileSystem) (*ConfigReader, error) {
 	if fs == nil {
-		fs = &OSFileSystem{} // Use OSFileSystem as default
+		fs = &OSFileSystem{}
 	}
 	repoRoot, err := fs.Getwd()
 	if err != nil {

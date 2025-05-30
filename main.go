@@ -72,7 +72,7 @@ Options:
 	latestGradeFilter := filter.NewLatestGrades()
 	history = latestGradeFilter.FilterLatestGrades(history)
 
-	toolFilter := filter.NewToolFilter()
+	toolFilter := filter.NewToolFilter(filter.NewToolCleaner())
 	history = toolFilter.Filter(toolsList, history)
 
 	//config filtering
@@ -96,7 +96,8 @@ Options:
 	violationCounter := assessment.NewConsoleViolationReporter()
 
 	calculator := filter.NewGradeStringCalculator()
-	gradeCollector := filter.NewGradeCollection(calculator)
+	coverageCalculator := filter.NewDefaultCoverageCalculator()
+	gradeCollector := filter.NewGradeCollection(calculator, coverageCalculator)
 	gradeDetails := gradeCollector.CollectGrades(history, *thresholdGrade)
 
 	accessorGrade := assessment.NewCoverageAssessment(violationCounter)

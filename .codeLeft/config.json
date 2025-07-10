@@ -25,8 +25,8 @@
     "tdd": false
   },
   "testGeneration": {
-    "active": false,
-    "override": false,
+    "active": true,
+    "override": true,
     "language": "Golang",
     "testType": "Unit",
     "library": "Ginkgo"

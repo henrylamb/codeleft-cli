@@ -18,7 +18,7 @@ func GetGradeIndex(grade string) int {
     index, ok := gradeIndices[strings.ToUpper(grade)]
     if !ok {
         log.Printf("Warning: Unrecognized grade '%s', treating as F (0)", grade)
-        return 0 // Default to 0 for unrecognized grades, matching JS behavior
+        return 0 // Default to 0 for unrecognized grades
     }
     return index
 }

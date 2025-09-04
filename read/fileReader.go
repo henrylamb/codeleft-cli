@@ -1,6 +1,7 @@
 package read
 
 import (
+	"bufio"
 	"codeleft-cli/filter"
 	"encoding/json"
 	"fmt"
@@ -13,7 +14,7 @@ type CodeLeftReader interface {
 	ReadHistory() (filter.Histories, error)
 }
 
-// HistoryReader is responsible for reading the history.json file.
+// HistoryReader is responsible for reading the history.ndjson file.
 type HistoryReader struct {
 	RepoRoot     string
 	CodeleftPath string
@@ -42,42 +43,53 @@ func NewHistoryReader() (CodeLeftReader, error) {
 	return hr, nil
 }
 
-// ReadHistory reads the history.json file from the discovered .codeleft directory.
-// Returns an error if the history.json file is not found or cannot be read.
+// ReadHistory reads the history.ndjson file from the discovered .codeleft directory.
+// Returns an error if the history.ndjson file is not found or cannot be read.
 func (hr *HistoryReader) ReadHistory() (filter.Histories, error) {
 	// If .codeleft was not found, return an error
 	if hr.CodeleftPath == "" {
 		return nil, fmt.Errorf(".codeLeft folder not found in the repository root: %s", hr.RepoRoot)
 	}
 
-	historyPath := filepath.Join(hr.CodeleftPath, "history.json")
+	historyPath := filepath.Join(hr.CodeleftPath, "history.ndjson")
 
-	// Check if history.json exists
+	// Check if history.ndjson exists
 	info, err := os.Stat(historyPath)
 	if err != nil {
 		if os.IsNotExist(err) {
-			return nil, fmt.Errorf("history.json does not exist at path: %s", historyPath)
+			return nil, fmt.Errorf("history.ndjson does not exist at path: %s", historyPath)
 		}
-		return nil, fmt.Errorf("error accessing history.json: %w", err)
+		return nil, fmt.Errorf("error accessing history.ndjson: %w", err)
 	}
 
 	if info.IsDir() {
-		return nil, fmt.Errorf("history.json exists but is a directory: %s", historyPath)
+		return nil, fmt.Errorf("history.ndjson exists but is a directory: %s", historyPath)
 	}
 
-	// Open the history.json file
+	// Open the history.ndjson file
 	file, err := os.Open(historyPath)
 	if err != nil {
-		return nil, fmt.Errorf("failed to open history.json: %w", err)
+		return nil, fmt.Errorf("failed to open history.ndjson: %w", err)
 	}
 	defer file.Close()
 
-	// Decode the JSON into a slice of History
+	// Decode the NDJSON into a slice of History
 	var history filter.Histories
-	decoder := json.NewDecoder(file)
-	if err := decoder.Decode(&history); err != nil {
-		return nil, fmt.Errorf("failed to decode history.json: %w", err)
+	histories := filter.Histories{}
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		var item filter.History
+		if err := json.Unmarshal(scanner.Bytes(), &item); err != nil {
+			return nil, fmt.Errorf("failed to decode history.ndjson: %w", err)
+		}
+		histories = append(histories, item)
 	}
+
+	if err := scanner.Err(); err != nil {
+		return nil, fmt.Errorf("error reading history.ndjson: %w", err)
+	}
+
+	history = histories
 
 	return history, nil
 }

@@ -6,22 +6,78 @@ import (
 	"strings"
 )
 
-// PathFilter is responsible for filtering file paths based on ignored files and folders.
-type PathFilter struct {
-	ignoredFiles   []types.File
+// FilterRule defines the interface for any filtering rule.
+type FilterRule interface {
+	Match(path string) bool
+}
+
+// IgnoreFileRule implements FilterRule for ignoring specific files.
+// It encapsulates the logic for file path comparison, adhering to SRP.
+type IgnoreFileRule struct {
+	ignoredFiles []types.File
+}
+
+// NewIgnoreFileRule creates a new IgnoreFileRule.
+func NewIgnoreFileRule(files []types.File) *IgnoreFileRule {
+	return &IgnoreFileRule{ignoredFiles: files}
+}
+
+// Match checks if the given path matches any of the ignored files.
+func (r *IgnoreFileRule) Match(path string) bool {
+	normalizedPath := filepath.ToSlash(path)
+	for _, file := range r.ignoredFiles {
+		ignoredFilePath := filepath.ToSlash(filepath.Join(file.Path, file.Name))
+		if normalizedPath == ignoredFilePath {
+			return true
+		}
+	}
+	return false
+}
+
+// IgnoreFolderRule implements FilterRule for ignoring files within specific folders.
+// It encapsulates the logic for folder path comparison, adhering to SRP.
+type IgnoreFolderRule struct {
 	ignoredFolders []string
 }
 
-// NewPathFilter creates a new instance of PathFilter with the provided ignored files and folders.
-func NewPathFilter(ignoredFiles []types.File, ignoredFolders []string) *PathFilter {
+// NewIgnoreFolderRule creates a new IgnoreFolderRule.
+func NewIgnoreFolderRule(folders []string) *IgnoreFolderRule {
+	return &IgnoreFolderRule{ignoredFolders: folders}
+}
+
+// Match checks if the given path resides within any of the ignored folders.
+func (r *IgnoreFolderRule) Match(path string) bool {
+	normalizedPath := filepath.ToSlash(path)
+	dirs := strings.Split(normalizedPath, "/")
+
+	// Exclude the last element if it's a file, as we are checking for folder containment.
+	// This assumes that the path ends with a file name.
+	for _, dir := range dirs[:len(dirs)-1] {
+		for _, ignoredFolder := range r.ignoredFolders {
+			if dir == ignoredFolder {
+				return true
+			}
+		}
+	}
+	return false
+}
+
+// PathFilter is responsible for orchestrating the filtering of file paths.
+// It depends on abstractions (FilterRule interface), adhering to DIP.
+type PathFilter struct {
+	rules []FilterRule
+}
+
+// NewPathFilter creates a new instance of PathFilter with the provided filtering rules.
+// This constructor allows injecting different filtering strategies.
+func NewPathFilter(rules ...FilterRule) *PathFilter {
 	return &PathFilter{
-		ignoredFiles:   ignoredFiles,
-		ignoredFolders: ignoredFolders,
+		rules: rules,
 	}
 }
 
-// Filter filters out the file paths that match any of the ignored files or reside within ignored folders.
-// It returns a new slice containing only the file paths that are not ignored.
+// Filter filters out the file paths that match any of the configured rules.
+// It returns a new slice containing only the file histories that are not ignored.
 func (pf *PathFilter) Filter(histories Histories) Histories {
 	var newHistories Histories
 
@@ -34,32 +90,13 @@ func (pf *PathFilter) Filter(histories Histories) Histories {
 	return newHistories
 }
 
-// isIgnored checks whether a given file path matches any ignored file or is within any ignored folder.
+// isIgnored checks whether a given file path matches any of the configured filter rules.
+// This method's responsibility is solely to check against the rules, adhering to SRP.
 func (pf *PathFilter) isIgnored(path string) bool {
-	// Normalize the path for consistent comparison
-	normalizedPath := filepath.ToSlash(path)
-
-	// Check against ignored files
-	for _, file := range pf.ignoredFiles {
-		// Join the file path and name, then normalize
-		ignoredFilePath := filepath.ToSlash(filepath.Join(file.Path, file.Name))
-		if normalizedPath == ignoredFilePath {
+	for _, rule := range pf.rules {
+		if rule.Match(path) {
 			return true
 		}
 	}
-
-	// Split the path into directories
-	dirs := strings.Split(normalizedPath, "/")
-
-	// Exclude the last element if it's a file
-	// This assumes that the path ends with a file name. Adjust if directories can also be in histories.
-	for _, dir := range dirs[:len(dirs)-1] {
-		for _, ignoredFolder := range pf.ignoredFolders {
-			if dir == ignoredFolder {
-				return true
-			}
-		}
-	}
-
 	return false
 }

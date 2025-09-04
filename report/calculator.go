@@ -54,6 +54,10 @@ func (cc *CoverageCalculator) calculateFileNodeCoverage(node *ReportNode, stats 
 	processedToolsThisFile := make(map[string]struct{}) // Ensure each tool contributes once per file
 
 	// Use the details stored directly on the node
+	if (len(node.Details) == 0) && node.ToolCoverages == nil {
+		return
+	}
+
 	for _, detail := range node.Details {
 		if detail.Tool == "" || detail.Grade == "" {
 			continue // Skip if tool or grade is missing

@@ -1,5 +1,6 @@
 package main
 
+
 import (
 	"codeleft-cli/assessment"
 	"codeleft-cli/filter"
@@ -88,7 +89,10 @@ Options:
 	}
 
 	if config.Ignore.Folders != nil || config.Ignore.Files != nil {
-		pathFilter := filter.NewPathFilter(config.Ignore.Files, config.Ignore.Folders)
+		ignorefileRule := filter.NewIgnoreFileRule(config.Ignore.Files)
+		ignoreFolderRule := filter.NewIgnoreFolderRule(config.Ignore.Folders)
+
+		pathFilter := filter.NewPathFilter(ignorefileRule, ignoreFolderRule)
 		history = pathFilter.Filter(history)
 	}
 

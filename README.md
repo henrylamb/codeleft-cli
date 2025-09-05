@@ -4,7 +4,7 @@
 
 ## Overview
 
-**codeleft-cli** is an open-source command-line tool that analyzes and assesses code quality based on user-defined thresholds and tooling preferences. This CLI is designed to:
+**codeleft-cli** is an open-source command-line tool that ana   This will create or update `.codeleft`, `config.json`, and `history.ndjson` (if they don't exist), and then check if the project's latest grades meet or exceed `"A"`. If not, the CLI exits with a non-zero status.yzes and assesses code quality based on user-defined thresholds and tooling preferences. This CLI is designed to:
 
 1. **Automatically manage config files**: If no configuration or history file is found in the project root, it creates them with default data.
 2. **Assess code quality**: It can optionally fail CI/CD pipelines if certain thresholds (e.g., grade or coverage) are not met.
@@ -16,7 +16,7 @@
 - **Coverage Threshold Assessment**: Checks average coverage values against a specified percentage threshold.
 - **Tool-Specific Filtering**: Include or exclude specific tool checks (e.g., `SOLID`, `OWASP-Top-10`, `Clean-Code`, etc.).
 - **Flexible Configuration**: A `.codeleft` file and `config.json` can be customized to fine-tune how the tool runs and what it ignores.
-- **History Tracking**: A `history.json` file logs prior results to track how grades evolve over time.
+- **History Tracking**: A `history.ndjson` file logs prior results to track how grades evolve over time.
 
 ## Installation
 
@@ -39,13 +39,13 @@
 
 ## Quick Start
 
-To run **codeleft-cli** in a repository that contains (or will contain) `.codeleft`, `config.json`, and `history.json`, simply call:
+To run **codeleft-cli** in a repository that contains (or will contain) `.codeleft`, `config.json`, and `history.ndjson`, simply call:
 
 ```bash
 codeleft-cli
 ```
 
-- **If `.codeleft`, `history.json`, or `config.json` do not exist in the current directory**, `codeleft-cli` will create them using default values.
+- **If `.codeleft`, `history.ndjson`, or `config.json` do not exist in the current directory**, `codeleft-cli` will create them using default values.
 - **By default**, the tool verifies if you have set any thresholds or chosen any tools. If no flags are passed, the CLI will simply generate the needed files and exit with a success message.
 
 ## Configuration Files
@@ -54,9 +54,9 @@ codeleft-cli
 A placeholder file that signals the tool to treat the current directory as the project root for **codeleft-cli** operations.
 > _If `.codeleft` does not exist, the tool generates it automatically._
 
-### `history.json`
+### `history.ndjson`
 Stores a log of prior assessments, enabling the CLI to track and filter the latest results.
-> _If `history.json` does not exist, the tool generates it as an empty array: `[]`._
+> _If `history.ndjson` does not exist, the tool generates it as an empty array: `[]`._
 
 ### `config.json`
 Contains the configuration specifics, such as ignored files/folders or other advanced settings.
@@ -126,7 +126,7 @@ codeleft-cli -tools "SOLID,OWASP-Top-10,PR Ready"
    ```bash
    codeleft-cli -tools "SOLID,OWASP-Top-10,Clean-Code" 
    ```
-   Only these three tooling checks count toward the pass/fail logic, ignoring other categories in `history.json`.
+   Only these three tooling checks count toward the pass/fail logic, ignoring other categories in `history.ndjson`.
 
 5. **Check Version**
    ```bash
@@ -141,8 +141,8 @@ codeleft-cli -tools "SOLID,OWASP-Top-10,PR Ready"
 2. **Unexpected Failures**
     - Verify that you are passing the correct flags (`-asses-grade` or `-asses-coverage`) in conjunction with `-threshold-grade` or `-threshold-percent`.
 3. **No Tools in Results**
-    - Ensure your `-tools` flag matches the tool names in your `history.json`.
-    - Example: If your `history.json` has results under `"OWASP-Top-10"`, specifying `-tools "OWASP-Top-10"` is required to include them.
+    - Ensure your `-tools` flag matches the tool names in your `history.ndjson`.
+    - Example: If your `history.ndjson` has results under `"OWASP-Top-10"`, specifying `-tools "OWASP-Top-10"` is required to include them.
 
 ## Contributing
 

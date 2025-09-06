@@ -1,0 +1,85 @@
+name: Release codeleft-cli
+
+on:
+  push:
+    branches:
+      - main
+    # Only run when version is updated in main.go
+    paths:
+      - 'main.go'
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+    paths:
+      - 'main.go'
+
+permissions:
+  contents: write # Needed for creating releases
+
+jobs:
+  check-version:
+    runs-on: ubuntu-latest
+    if: (github.event_name == 'push') || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
+    outputs:
+      current_version: ${{ steps.get_version.outputs.version }}
+      should_release: ${{ steps.check_tag.outputs.should_release }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Fetch all history for tags
+          
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.22' # Use a version compatible with your project
+
+      - name: Get version from main.go
+        id: get_version
+        run: |
+          VERSION=$(grep -o 'const Version = "[^"]*"' main.go | cut -d'"' -f2)
+          echo "Version found: $VERSION"
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Check if tag exists
+        id: check_tag
+        run: |
+          if [ -z "$(git tag -l v${{ steps.get_version.outputs.version }})" ]; then
+            echo "Tag v${{ steps.get_version.outputs.version }} does not exist. Creating release."
+            echo "should_release=true" >> $GITHUB_OUTPUT
+          else
+            echo "Tag v${{ steps.get_version.outputs.version }} already exists. Skipping release."
+            echo "should_release=false" >> $GITHUB_OUTPUT
+          fi
+  
+  release:
+    needs: check-version
+    if: needs.check-version.outputs.should_release == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Fetch all history for tags
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.22' # Use a version compatible with your project
+
+      - name: Create tag
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git tag -a v${{ needs.check-version.outputs.current_version }} -m "Release v${{ needs.check-version.outputs.current_version }}"
+          git push origin v${{ needs.check-version.outputs.current_version }}
+
+      - name: Run GoReleaser
+        uses: goreleaser/goreleaser-action@v5
+        with:
+          distribution: goreleaser
+          version: latest
+          args: release --clean
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

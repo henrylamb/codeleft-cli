@@ -76,7 +76,15 @@ func (hr *HistoryReader) ReadHistory() (filter.Histories, error) {
 	// Decode the NDJSON into a slice of History
 	var history filter.Histories
 	histories := filter.Histories{}
+	
+	// Create a scanner with a larger buffer capacity to handle long lines
 	scanner := bufio.NewScanner(file)
+	
+	// Set a buffer with 10MB capacity (adjust as needed)
+	const maxCapacity = 10 * 1024 * 1024 // 10MB
+	buf := make([]byte, maxCapacity)
+	scanner.Buffer(buf, maxCapacity)
+	
 	for scanner.Scan() {
 		var item filter.History
 		if err := json.Unmarshal(scanner.Bytes(), &item); err != nil {

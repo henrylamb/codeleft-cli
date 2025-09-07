@@ -9,6 +9,10 @@ jobs:
   run-codeleft-cli:
     runs-on: ubuntu-latest
 
+    # Grant write permission to the GITHUB_TOKEN for this job only
+    permissions:
+      contents: write
+
     steps:
       # 1. Checkout the repository
       - name: Checkout Repository
@@ -17,12 +21,22 @@ jobs:
       # 2. Download and Extract codeleft-cli
       - name: Download & Install codeleft-cli
         run: |
-          VERSION=v0.1.18  # Update to the desired version
+          # Get the latest release version
+          VERSION=$(curl -s "https://api.github.com/repos/henrylamb/codeleft-cli/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+          if [ -z "$VERSION" ] || [ "$VERSION" = "null" ]; then
+            # Fallback to hardcoded version if API fails
+            VERSION=v1.0.18
+            echo "API failed, using fallback version: $VERSION"
+          else
+            echo "Using latest release version: $VERSION"
+          fi
+          
           OS=Linux
           ARCH=x86_64
           ASSET_NAME=codeleft-cli_${OS}_${ARCH}.tar.gz
           DOWNLOAD_URL="https://github.com/henrylamb/codeleft-cli/releases/download/${VERSION}/${ASSET_NAME}"
           
+          echo "Downloading from: $DOWNLOAD_URL"
           curl -L -o codeleft-cli.tar.gz "$DOWNLOAD_URL"
           tar -xzf codeleft-cli.tar.gz
           chmod +x codeleft-cli
@@ -33,11 +47,40 @@ jobs:
         run: |
           cd "${GITHUB_WORKSPACE}"
 
-          # Ensure .codeLeft directory exists
+          # Ensure .codeLeft directory exists - fail if it doesn't
           if [ ! -d ".codeLeft" ]; then
-            echo "Error: .codeleft directory does not exist in the repository root."
+            echo "Error: .codeLeft directory does not exist in the repository root."
+            echo "This directory should contain the CodeLeft history data (history.ndjson)."
+            echo "Please ensure your repository has been analyzed by CodeLeft before running this workflow."
             exit 1
           fi
 
-          # Run the codeleft-cli command
-          codeleft-cli -asses-coverage -threshold-percent=80 -threshold-grade="A-" -tools "SOLID,OWASP-TOP-10,Complexity"
+          # Run the codeleft-cli command with create-report flag
+          codeleft-cli -asses-coverage --create-report -threshold-percent=80 -threshold-grade="A-" -tools "SOLID,OWASP-TOP-10,Complexity"
+
+      # 4. Deploy Report to GitHub Pages
+      - name: Deploy Report to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
+          publish_branch: gh-pages
+
+      # 5. Add Link to GitHub Pages Report in Job Summary
+      - name: Add Report Link to Summary
+        run: |
+          REPORT_PATH="CodeLeft-Coverage-Report.html"
+          OWNER_AND_REPO="${{ github.repository }}"
+          IFS='/' read -r OWNER REPO <<< "$OWNER_AND_REPO"
+          
+          echo "## Analysis Report Generated Successfully" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          PAGES_URL="https://${OWNER}.github.io/${REPO}/${REPORT_PATH}"
+          
+          echo "📊 **Report Details:**" >> $GITHUB_STEP_SUMMARY
+          echo "- **File:** $REPORT_PATH" >> $GITHUB_STEP_SUMMARY
+          echo "- **Location:** Published to GitHub Pages" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "[**Click here to view the rendered report on GitHub Pages**](${PAGES_URL})" >> $GITHUB_STEP_SUMMARY
+          echo "(Opens the report hosted on GitHub Pages in a new tab. Note: There might be a small delay before the page updates after deployment.)" >> $GITHUB_STEP_SUMMARY

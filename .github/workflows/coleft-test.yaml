@@ -1,6 +1,43 @@
-name: Run Codeleft CLI and Deploy Report to GitHub Pages
+name: Run Analysis Tool and Deploy Report to GitHub Pages
 
 on:
+  workflow_call:
+    inputs:
+      tool_name:
+        description: 'Name of the analysis tool to run (e.g., codeleft-cli)'
+        required: false
+        type: string
+        default: 'codeleft-cli'
+      tool_repo:
+        description: 'GitHub repository where the tool is hosted (format: owner/repo)'
+        required: false
+        type: string
+        default: 'henrylamb/codeleft-cli'
+      version_source:
+        description: 'How to determine the version (auto, main.go, package.json, or a specific version)'
+        required: false
+        type: string
+        default: 'auto'
+      fixed_version:
+        description: 'Specific version to use (without v prefix, e.g., 1.0.15)'
+        required: false
+        type: string
+        default: ''
+      tool_command:
+        description: 'Command to run the tool with arguments'
+        required: false
+        type: string
+        default: '-asses-coverage --create-report -threshold-percent=80 -threshold-grade="A-" -tools "SOLID,OWASP-TOP-10,Complexity"'
+      report_file:
+        description: 'Name of the report file generated'
+        required: false
+        type: string
+        default: 'CodeLeft-Coverage-Report.html'
+      setup_directory:
+        description: 'Directory to create if needed'
+        required: false
+        type: string
+        default: '.codeLeft'
   push:
     branches:
       - main # Trigger workflow on pushes to the main branch
@@ -18,123 +55,145 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # Fetches all history, potentially needed by gh-pages action or changelogs
+          fetch-depth: 0 # Fetches all history, potentially needed by gh-pages action
           
-      # 2. Set up Go environment
-      - name: Set up Go
-        uses: actions/setup-go@v4
-        with:
-          go-version: '1.22' # Use a version compatible with your project
-
-      # 2. Download and Extract codeleft-cli
-      - name: Download & Install codeleft-cli
+      # 2. Download and Extract the analysis tool
+      - name: Download & Install tool
+        id: install-binary
         run: |
-          # Extract version from main.go
-          VERSION_NUMBER=$(grep -o 'const Version = "[^"]*"' main.go | cut -d'"' -f2)
-          VERSION="v${VERSION_NUMBER}"
+          TOOL_NAME="${{ inputs.tool_name || 'codeleft-cli' }}"
+          TOOL_REPO="${{ inputs.tool_repo || 'henrylamb/codeleft-cli' }}"
+          VERSION_SOURCE="${{ inputs.version_source || 'auto' }}"
+          FIXED_VERSION="${{ inputs.fixed_version }}"
           
-          echo "Using CodeLeft CLI version: ${VERSION}"
+          # Determine version
+          if [[ "$FIXED_VERSION" != "" ]]; then
+            # Use fixed version if provided
+            VERSION_NUMBER="$FIXED_VERSION"
+          elif [[ "$VERSION_SOURCE" == "main.go" ]]; then
+            # Extract version from main.go
+            VERSION_NUMBER=$(grep -o 'const Version = "[^"]*"' main.go | cut -d'"' -f2)
+          elif [[ "$VERSION_SOURCE" == "package.json" ]]; then
+            # Extract version from package.json
+            VERSION_NUMBER=$(grep -o '"version": "[^"]*"' package.json | cut -d'"' -f4)
+          elif [[ "$VERSION_SOURCE" == "auto" ]]; then
+            # Auto-detect version source
+            if [[ -f "main.go" ]]; then
+              VERSION_NUMBER=$(grep -o 'const Version = "[^"]*"' main.go | cut -d'"' -f2 || echo "latest")
+            elif [[ -f "package.json" ]]; then
+              VERSION_NUMBER=$(grep -o '"version": "[^"]*"' package.json | cut -d'"' -f4 || echo "latest")
+            else
+              VERSION_NUMBER="latest"
+            fi
+          else
+            VERSION_NUMBER="latest"
+          fi
+          
+          VERSION="v${VERSION_NUMBER}"
+          echo "Using tool version: ${VERSION}"
           
           OS=Linux
           ARCH=x86_64
-          ASSET_NAME=codeleft-cli_${OS}_${ARCH}.tar.gz
-          DOWNLOAD_URL="https://github.com/henrylamb/codeleft-cli/releases/download/${VERSION}/${ASSET_NAME}"
+          ASSET_NAME="${TOOL_NAME}_${OS}_${ARCH}.tar.gz"
+          DOWNLOAD_URL="https://github.com/${TOOL_REPO}/releases/download/${VERSION}/${ASSET_NAME}"
+          
+          echo "Trying to download from: ${DOWNLOAD_URL}"
           
           # Check if the release exists before downloading
           HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" -L -I "$DOWNLOAD_URL")
           
           if [[ "$HTTP_CODE" == "200" || "$HTTP_CODE" == "302" ]]; then
-            echo "Downloading CodeLeft CLI from ${DOWNLOAD_URL}"
-            curl -L -o codeleft-cli.tar.gz "$DOWNLOAD_URL"
-            tar -xzf codeleft-cli.tar.gz
-            chmod +x codeleft-cli
-            sudo mv codeleft-cli /usr/local/bin/
-            echo "CodeLeft CLI installed."
+            echo "Downloading ${TOOL_NAME} from ${DOWNLOAD_URL}"
+            curl -L -o ${TOOL_NAME}.tar.gz "$DOWNLOAD_URL"
+            tar -xzf ${TOOL_NAME}.tar.gz
+            chmod +x ${TOOL_NAME}
+            sudo mv ${TOOL_NAME} /usr/local/bin/
+            echo "${TOOL_NAME} installed successfully."
+            echo "binary_installed=true" >> $GITHUB_OUTPUT
           else
             echo "Error: Release ${VERSION} not found at ${DOWNLOAD_URL} (HTTP code: ${HTTP_CODE})"
-            echo "Building from source instead..."
-            
-            # Set up Go
-            go version
-            
-            # Build the CLI
-            go build -o codeleft-cli
-            chmod +x codeleft-cli
-            sudo mv codeleft-cli /usr/local/bin/
-            echo "CodeLeft CLI built and installed from source."
+            echo "Will use fallback method..."
+            echo "binary_installed=false" >> $GITHUB_OUTPUT
           fi
 
-      # 3. Execute codeleft-cli Command
-      - name: Execute codeleft-cli Command
-        id: run-codeleft # Give the step an ID to check its outcome
+      # Fallback: Set up Go and build from source only if binary download fails
+      - name: Set up Go (Fallback)
+        if: steps.install-binary.outputs.binary_installed != 'true'
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.22'
+
+      # Fallback: Build from source only if binary download fails
+      - name: Build from source (Fallback)
+        if: steps.install-binary.outputs.binary_installed != 'true'
+        run: |
+          TOOL_NAME="${{ inputs.tool_name || 'codeleft-cli' }}"
+          echo "Building ${TOOL_NAME} from source..."
+          go build -o ${TOOL_NAME}
+          chmod +x ${TOOL_NAME}
+          sudo mv ${TOOL_NAME} /usr/local/bin/
+          echo "${TOOL_NAME} built and installed from source."
+
+      # 3. Execute Analysis Tool Command
+      - name: Execute Tool Command
+        id: run-tool
         run: |
           cd "${GITHUB_WORKSPACE}"
+          
+          TOOL_NAME="${{ inputs.tool_name || 'codeleft-cli' }}"
+          TOOL_COMMAND="${{ inputs.tool_command || '-asses-coverage --create-report -threshold-percent=80 -threshold-grade=\"A-\" -tools \"SOLID,OWASP-TOP-10,Complexity\"' }}"
+          REPORT_FILE="${{ inputs.report_file || 'CodeLeft-Coverage-Report.html' }}"
+          SETUP_DIR="${{ inputs.setup_directory || '.codeLeft' }}"
 
-          # Ensure .codeLeft directory exists (Adjust if your tool needs different setup)
-          if [ ! -d ".codeLeft" ]; then
-            echo "Warning: .codeleft directory does not exist in the repository root. Creating it."
-            mkdir .codeLeft # Or handle as needed by your tool
+          # Ensure setup directory exists if needed
+          if [[ ! -z "$SETUP_DIR" && "$SETUP_DIR" != "none" && ! -d "$SETUP_DIR" ]]; then
+            echo "Creating ${SETUP_DIR} directory..."
+            mkdir -p "$SETUP_DIR"
           fi
 
-          echo "Running CodeLeft CLI..."
-          # Run the codeleft-cli command - ensure it creates 'CodeLeft-Coverage-Report.html'
-          codeleft-cli -asses-coverage --create-report -threshold-percent=80 -threshold-grade="A-" -tools "SOLID,OWASP-TOP-10,Complexity"
+          echo "Running ${TOOL_NAME} with command: ${TOOL_COMMAND}"
+          # Run the tool command
+          ${TOOL_NAME} ${TOOL_COMMAND}
 
           # Check if the report file was created
-          if [ ! -f "CodeLeft-Coverage-Report.html" ]; then
-            echo "::error::CodeLeft-Coverage-Report.html was not generated by the command."
+          if [[ ! -f "$REPORT_FILE" ]]; then
+            echo "::error::${REPORT_FILE} was not generated by the command."
             exit 1
           else
-            echo "CodeLeft-Coverage-Report.html generated successfully."
+            echo "${REPORT_FILE} generated successfully."
           fi
 
-      # 4. Upload Coverage Report as an Artifact (Useful backup/alternative)
-      - name: Upload Coverage Report Artifact
-        # Only run if the report generation step was successful
-        if: steps.run-codeleft.outcome == 'success'
+      # 4. Upload Report as an Artifact
+      - name: Upload Report Artifact
+        if: steps.run-tool.outcome == 'success'
         uses: actions/upload-artifact@v4
         with:
-          name: CodeLeft-Coverage-Report-(Downloadable) # Name shown in Artifacts section
-          path: CodeLeft-Coverage-Report.html # Path to the file to upload
+          name: Analysis-Report-Downloadable
+          path: ${{ inputs.report_file || 'CodeLeft-Coverage-Report.html' }}
 
-      # 5. Deploy Report to GitHub Pages branch (gh-pages)
+      # 5. Deploy Report to GitHub Pages
       - name: Deploy Report to GitHub Pages
-        # Only run if the report generation step was successful
-        if: steps.run-codeleft.outcome == 'success'
-        uses: peaceiris/actions-gh-pages@v4 # Use the dedicated action
+        if: steps.run-tool.outcome == 'success'
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          # The GITHUB_TOKEN is granted 'contents: write' permission by the 'permissions' key above
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          # Directory to deploy from (relative to workspace root)
           publish_dir: ./
-          # The branch to deploy to
           publish_branch: gh-pages
-          # Keep default user_name and user_email (github-actions[bot])
-          # Optional: Add a commit message
-          # commit_message: 'Deploy CodeLeft report for ${{ github.sha }}'
-          # Optional: Set destination directory within the branch (e.g., './reports/${{ github.run_id }}')
-          # destination_dir: ./reports/latest
 
       # 6. Add Link to GitHub Pages Report in Job Summary
       - name: Add Report Link to Summary
-        # Only run if the report generation step was successful
-        if: steps.run-codeleft.outcome == 'success'
+        if: steps.run-tool.outcome == 'success'
         run: |
-          # Construct the GitHub Pages URL dynamically
-          # Assumes report is at the root of the gh-pages branch.
-          # Adjust the final path if using destination_dir in step 5.
-          # Example: /CodeLeft-Coverage-Report.html if destination_dir is not set or './'
-          # Example: /reports/latest/CodeLeft-Coverage-Report.html if destination_dir is './reports/latest'
-          REPORT_PATH="CodeLeft-Coverage-Report.html" # Change this if using destination_dir
-          OWNER_AND_REPO="${{ github.repository }}" # e.g., henrylamb/codeleft-cli
+          REPORT_PATH="${{ inputs.report_file || 'CodeLeft-Coverage-Report.html' }}"
+          OWNER_AND_REPO="${{ github.repository }}"
           OWNER=$(echo $OWNER_AND_REPO | cut -d/ -f1)
           REPO=$(echo $OWNER_AND_REPO | cut -d/ -f2)
+          TOOL_NAME="${{ inputs.tool_name || 'codeleft-cli' }}"
           PAGES_URL="https://${OWNER}.github.io/${REPO}/${REPORT_PATH}"
 
-          echo "### CodeLeft Coverage Report" >> $GITHUB_STEP_SUMMARY
+          echo "### ${TOOL_NAME} Analysis Report" >> $GITHUB_STEP_SUMMARY
           echo "📊 A new report has been generated and deployed." >> $GITHUB_STEP_SUMMARY
-          # Use Markdown link syntax: [Link Text](URL)
           echo "[**Click here to view the rendered report on GitHub Pages**](${PAGES_URL})" >> $GITHUB_STEP_SUMMARY
           echo "(Opens the report hosted on GitHub Pages in a new tab. Note: There might be a small delay before the page updates after deployment.)" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "Alternatively, download the raw report file from the 'Artifacts' section named 'CodeLeft-Coverage-Report-(Downloadable)'." >> $GITHUB_STEP_SUMMARY
+          echo "Alternatively, download the raw report file from the 'Artifacts' section named 'Analysis-Report-Downloadable'." >> $GITHUB_STEP_SUMMARY

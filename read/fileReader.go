@@ -2,9 +2,11 @@ package read
 
 import (
 	"bufio"
+	"bytes"
 	"codeleft-cli/filter"
 	"encoding/json"
 	"fmt"
+	"io"
 	"os"
 	"path/filepath"
 )
@@ -77,26 +79,61 @@ func (hr *HistoryReader) ReadHistory() (filter.Histories, error) {
 	var history filter.Histories
 	histories := filter.Histories{}
 	
-	// Create a scanner with a larger buffer capacity to handle long lines
-	scanner := bufio.NewScanner(file)
+	// Use a more robust line-by-line reader that can handle very large lines
+	reader := bufio.NewReader(file)
+	lineNumber := 0
 	
-	// Set a buffer with 10MB capacity (adjust as needed)
-	const maxCapacity = 10 * 1024 * 1024 // 10MB
-	buf := make([]byte, maxCapacity)
-	scanner.Buffer(buf, maxCapacity)
-	
-	for scanner.Scan() {
-		var item filter.History
-		if err := json.Unmarshal(scanner.Bytes(), &item); err != nil {
-			return nil, fmt.Errorf("failed to decode history.ndjson: %w", err)
+	for {
+		lineNumber++
+		
+		// Read a complete line, handling very large lines gracefully
+		var lineBuffer bytes.Buffer
+		for {
+			chunk, isPrefix, err := reader.ReadLine()
+			if err != nil {
+				if err == io.EOF {
+					// Process any remaining content in the buffer
+					if lineBuffer.Len() > 0 {
+						line := bytes.TrimSpace(lineBuffer.Bytes())
+						if len(line) > 0 {
+							var item filter.History
+							if err := json.Unmarshal(line, &item); err != nil {
+								return nil, fmt.Errorf("failed to decode history.ndjson at line %d: %w", lineNumber, err)
+							}
+							histories = append(histories, item)
+						}
+					}
+					goto done
+				}
+				return nil, fmt.Errorf("error reading history.ndjson at line %d: %w", lineNumber, err)
+			}
+			
+			lineBuffer.Write(chunk)
+			
+			// If isPrefix is false, we've read the complete line
+			if !isPrefix {
+				break
+			}
 		}
+		
+		// Process the complete line
+		line := bytes.TrimSpace(lineBuffer.Bytes())
+		
+		// Skip empty lines
+		if len(line) == 0 {
+			continue
+		}
+		
+		// Parse the JSON line
+		var item filter.History
+		if err := json.Unmarshal(line, &item); err != nil {
+			return nil, fmt.Errorf("failed to decode history.ndjson at line %d: %w", lineNumber, err)
+		}
+		
 		histories = append(histories, item)
 	}
-
-	if err := scanner.Err(); err != nil {
-		return nil, fmt.Errorf("error reading history.ndjson: %w", err)
-	}
-
+	
+done:
 	history = histories
 
 	return history, nil

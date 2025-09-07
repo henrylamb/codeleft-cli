@@ -58,7 +58,15 @@ jobs:
           # Run the codeleft-cli command with create-report flag
           codeleft-cli -asses-coverage --create-report -threshold-percent=80 -threshold-grade="A-" -tools "SOLID,OWASP-TOP-10,Complexity"
 
-      # 4. Deploy Report to GitHub Pages
+      # 4. Upload HTML Report as Artifact
+      - name: Upload HTML Report as Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: codeleft-coverage-report
+          path: CodeLeft-Coverage-Report.html
+          retention-days: 30
+
+      # 5. Deploy Report to GitHub Pages
       - name: Deploy Report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
@@ -66,7 +74,7 @@ jobs:
           publish_dir: ./
           publish_branch: gh-pages
 
-      # 5. Add Link to GitHub Pages Report in Job Summary
+      # 6. Add Link to GitHub Pages Report in Job Summary
       - name: Add Report Link to Summary
         run: |
           REPORT_PATH="CodeLeft-Coverage-Report.html"
@@ -81,6 +89,7 @@ jobs:
           echo "📊 **Report Details:**" >> $GITHUB_STEP_SUMMARY
           echo "- **File:** $REPORT_PATH" >> $GITHUB_STEP_SUMMARY
           echo "- **Location:** Published to GitHub Pages" >> $GITHUB_STEP_SUMMARY
+          echo "- **Artifact:** Available for download from this workflow run" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "[**Click here to view the rendered report on GitHub Pages**](${PAGES_URL})" >> $GITHUB_STEP_SUMMARY
           echo "(Opens the report hosted on GitHub Pages in a new tab. Note: There might be a small delay before the page updates after deployment.)" >> $GITHUB_STEP_SUMMARY

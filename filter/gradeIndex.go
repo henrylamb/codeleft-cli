@@ -14,12 +14,8 @@ func GetGradeIndex(grade string) int {
         "D+": 3,  "D": 2,  "D-": 1,
         "F":  0, // F is 0
     }
-    
-    // Clean up grade - remove any surrounding quotes
-    cleanGrade := strings.Trim(grade, "\"'")
-    
     // Ensure comparison is case-insensitive
-    index, ok := gradeIndices[strings.ToUpper(cleanGrade)]
+    index, ok := gradeIndices[strings.ToUpper(grade)]
     if !ok {
         log.Printf("Warning: Unrecognized grade '%s', treating as F (0)", grade)
         return 0 // Default to 0 for unrecognized grades

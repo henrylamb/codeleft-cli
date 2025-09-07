@@ -13,11 +13,10 @@ import (
 )
 
 // Version of the CLI tool
-const Version = "1.0.17"
+const Version = "1.0.18"
 
 // main is the entry point for your CLI tool.
 func main() {
-	// Define flags
 	thresholdGrade := flag.String("threshold-grade", "", "Sets the grade threshold.")
 	thresholdPercent := flag.Int("threshold-percent", 0, "Sets the percentage threshold.")
 	toolsFlag := flag.String("tools", "", "Comma-separated list of tooling (e.g., SOLID,OWASP-Top-10,Clean-Code,...)")

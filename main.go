@@ -13,7 +13,7 @@ import (
 )
 
 // Version of the CLI tool
-const Version = "1.0.16"
+const Version = "1.0.17"
 
 // main is the entry point for your CLI tool.
 func main() {
